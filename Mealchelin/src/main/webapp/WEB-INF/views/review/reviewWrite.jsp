@@ -71,6 +71,7 @@
 		</section>
 	</main>
 
+
 	<!-- 푸터 -->
 	<footer>
 		<jsp:include page="./../layout/footer.jsp" />
