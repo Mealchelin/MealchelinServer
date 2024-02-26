@@ -11,32 +11,32 @@ import lombok.extern.slf4j.Slf4j;
 public class payController {
 
 	
-	@GetMapping("/pay/payment")
+	@GetMapping("/pay/pay")
 	public ModelAndView payment(ModelAndView modelAndView) {
 		
-		modelAndView.setViewName("pay/payment");
+		modelAndView.setViewName("pay/pay");
 		
 		return modelAndView;
 	}
 	
-	@GetMapping("/pay/orderInquiry")
+	@GetMapping("/pay/lnquiry")
 	public ModelAndView paylnquiry(ModelAndView modelAndView) {
 		
-		modelAndView.setViewName("pay/orderInquiry");
+		modelAndView.setViewName("pay/lnquiry");
 		
 		return modelAndView;
 	}
-	@GetMapping("/pay/orderDetails")
+	@GetMapping("/pay/Details")
 	public ModelAndView payDetails(ModelAndView modelAndView) {
 		
-		modelAndView.setViewName("pay/orderDetails");
+		modelAndView.setViewName("pay/Details");
 		
 		return modelAndView;
 	}
-	@GetMapping("/pay/orderDelete")
+	@GetMapping("/pay/Delete")
 	public ModelAndView payDelete(ModelAndView modelAndView) {
 		
-		modelAndView.setViewName("pay/orderDelete");
+		modelAndView.setViewName("pay/Delete");
 		
 		return modelAndView;
 	}
