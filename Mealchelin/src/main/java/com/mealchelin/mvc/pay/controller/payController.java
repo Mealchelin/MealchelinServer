@@ -25,6 +25,8 @@ public class payController {
 		modelAndView.setViewName("pay/lnquiry");
 		
 		return modelAndView;
+		
+		
 	}
 	@GetMapping("/pay/Details")
 	public ModelAndView payDetails(ModelAndView modelAndView) {
