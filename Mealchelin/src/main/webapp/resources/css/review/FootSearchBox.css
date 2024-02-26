@@ -1,0 +1,13 @@
+#re_bottomSearchBox{
+    /* margin: 20px; */
+    text-align: center;
+}
+
+
+#re_shearchBtn{
+    border:1px solid #A7A7A7;
+    border-radius: 3px;
+    padding:7px 20px;
+    background-color: #ffffff;
+    color: #141414;
+}

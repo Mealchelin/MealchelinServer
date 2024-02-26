@@ -1,0 +1,25 @@
+h3 {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+#noSearch{
+    text-align: center;
+    margin: 100px;
+    margin-bottom: 340px;
+}
+
+#re_bottomSearchBox{
+    margin: 210px;
+    text-align: center;
+}
+
+#re_shearchBtn{
+    border:1px solid #A7A7A7;
+    border-radius: 3px;
+    padding:7px 20px;
+    background-color: #ffffff;
+    color: #141414;
+}
