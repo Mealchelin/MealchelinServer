@@ -14,9 +14,8 @@
 <title>밀슐랭</title>
 <!--default css-->
 <link rel="stylesheet" href="${ path }/css/common.css">
-<link rel="stylesheet" href="${ path }/css/review/reviewMain.css" />
 <!-- 필요한 css -->
-
+<link rel="stylesheet" href="${ path }/css/review/reviewMain.css" />
 
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>

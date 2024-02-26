@@ -1,36 +1,33 @@
 package com.mealchelin.mvc.review.controller;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @Controller
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping("/review")
 public class ReviewController {
 
-	@GetMapping("/Main")
-	public String main() {
+	@GetMapping("/main")
+	public String home() {
 		
 		
         return "/review/Main";
     }
 	
-	@GetMapping("/FootSearchBox")
+	@GetMapping("/footSearchBox")
 	public String footSearchBox() {
 		
 		
         return "/review/FootSearchBox";
     }
 
-	@GetMapping("/MypageProductReview")
+	@GetMapping("/mypageProductReview")
 	public String mypageProductReview() {
 		
 		
@@ -39,7 +36,7 @@ public class ReviewController {
 
 	
 	
-	@GetMapping("/MypageWritableReview")
+	@GetMapping("/mypageWritableReview")
 	public String mypageWritableReview() {
 		
 		
@@ -47,14 +44,14 @@ public class ReviewController {
     }
 	
 	
-	@GetMapping("/MypageWritableReviewEmpty")
+	@GetMapping("/mypageWritableReviewEmpty")
 	public String mypageWritableReviewEmpty() {
 		
 		
         return "/review/MypageWritableReviewEmpty";
     }
 	
-	@GetMapping("/MypageWrittenReviewEmpty")
+	@GetMapping("/mypageWrittenReviewEmpty")
 	public String mypageWrittenReviewEmpty() {
 		
 		
