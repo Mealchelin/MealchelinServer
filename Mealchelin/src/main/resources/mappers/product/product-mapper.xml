@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+<mapper namespace="com.mealchelin.mvc.product.model.mapper.ProductMapper">
+	<resultMap id="productResultMap" type="Product">
+		<id property="no" column="PRD_NO"/>
+		<result property="name" column="NAME"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="price" column="PRICE"/>
+		<result property="description" column="PRD_DESC"/>
+		<result property="image" column="IMAGE"/>
+		<result property="brand" column="BRAND"/>
+		<result property="sale" column="SALE"/>
+		<result property="stock" column="STOCK"/>
+		<result property="rgstrDate" column="RGSTR_DATE"/>
+		<result property="totalSales" column="TOTAL_SALES"/>
+		<result property="views" column="VIEWS"/>
+		<result property="rating" column="RATING"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+
+	<select id="selectCount" resultType="_int">
+		SELECT COUNT(*) FROM Product
+	</select>
+	
+	<select id="selectProductList" resultMap="productResultMap" resultType="Product">
+		SELECT PRD_NO,
+			   NAME,
+			   CATEGORY,
+			   PRICE,
+			   PRD_DESC,
+			   IMAGE,
+			   BRAND,
+			   DISPLAY,
+			   SALE,
+			   STOCK,
+			   RGSTR_DATE,
+			   TOTAL_SALES,
+			   VIEWS,
+			   RATING,
+			   STATUS
+		FROM PRODUCT
+		WHERE STATUS = 'Y'
+		ORDER BY PRD_NO
+			   
+	</select>
+</mapper>
