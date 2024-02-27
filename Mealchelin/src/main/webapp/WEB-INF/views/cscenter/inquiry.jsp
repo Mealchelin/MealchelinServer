@@ -38,12 +38,12 @@
             <div class="cs-list-header">
                 <div class="cs-inquiry-head">    
                     <h3>1:1 문의</h3>
-                    <button class="cs-inquiry-writeBtn" onclick="location.href='inquiryWrite.html'">문의하기</button>
+                    <button class="cs-inquiry-writeBtn" onclick="location.href='${ path }/cscenter/inquiryWrite'">문의하기</button>
                 </div>
                 <div class="cs-list-btns">
-                    <button class="cs-faqBtn-notice" onclick="location.href='${ path }/cscenter/notice'">공지사항</button>
-                    <button class="cs-faqBtn-faq" onclick="location.href='${ path }/cscenter/faq'">자주 묻는 질문</button>
-                    <button class="cs-faqBtn-inquiry" onclick="location.href='${ path }/cscenter/inquiry'">1:1 문의</button>
+                    <button class="cs-notice" onclick="location.href='${ path }/cscenter/notice'">공지사항</button>
+                    <button class="cs-faq" onclick="location.href='${ path }/cscenter/faq'">자주 묻는 질문</button>
+                    <button class="cs-inquiry active" onclick="location.href='${ path }/cscenter/inquiry'">1:1 문의</button>
                 </div>
             </div>
         </section>

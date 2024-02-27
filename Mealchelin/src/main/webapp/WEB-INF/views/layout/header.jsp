@@ -15,7 +15,7 @@
         <li><a href="">신상품</a></li>
         <li><a href="">전체상품</a></li>
         <li><a href="">밀슐랭 리뷰</a></li>
-        <li style="padding-right:0;"><a href="">고객센터</a></li>
+        <li style="padding-right:0;"><a href="${ path }/cscenter/notice">고객센터</a></li>
     </ul>
     <ul class="right_nav">
         <li class="nav_search">

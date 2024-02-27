@@ -38,9 +38,9 @@
             <div class="cs-list-header">
                 <h3>공지사항</h3>
                 <div class="cs-list-btns">
-                   <button class="cs-faqBtn-notice" onclick="location.href='${ path }/cscenter/notice'">공지사항</button>
-                    <button class="cs-faqBtn-faq" onclick="location.href='${ path }/cscenter/faq'">자주 묻는 질문</button>
-                    <button class="cs-faqBtn-inquiry" onclick="location.href='${ path }/cscenter/inquiry'">1:1 문의</button>
+                   <button class="cs-notice active" onclick="location.href='${ path }/cscenter/notice'">공지사항</button>
+                    <button class="cs-faq" onclick="location.href='${ path }/cscenter/faq'">자주 묻는 질문</button>
+                    <button class="cs-inquiry" onclick="location.href='${ path }/cscenter/inquiry'">1:1 문의</button>
                 </div>
             </div>
         </section>
@@ -55,7 +55,7 @@
             <ul class="cs-list-ul">
                 <li class="cs-list-content">
                     <div class="cs-notice-number">205</div>
-                    <div class="cs-notice-title cs-list-ul-title"><a href="./noticeView.html">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
+                    <div class="cs-notice-title cs-list-ul-title"><a href="${ path }/cscenter/noticeView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
                     <div class="cs-notice-writeMem">밀슐랭</div>
                     <div class="cs-notice-date">2024.02.09</div>
                 </li>

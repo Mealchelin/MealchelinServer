@@ -24,39 +24,6 @@
 }
 
 
-.cs-inquiryBtn-notice {
-    box-shadow: 0 0 0 1px #559D50 inset;
-    padding:7px 30px;
-    background-color: #fff;
-    color: #559D50;
-}
-
-.cs-inquiryBtn-notice:active {
-    background-color: #ededed;
-}
-
-.cs-inquiryBtn-faq {
-    box-shadow: 0 0 0 1px #559D50 inset;
-    padding:7px 30px;
-    background-color: #fff;
-    color: #559D50;
-}
-
-.cs-inquiryBtn-faq:active {
-    background-color: #ededed;
-}
-
-.cs-inquiryBtn-inquiry {
-    
-    padding:7px 30px;
-    background-color: #3B6C51;
-    color: #fff;
-}
-
-.cs-inquiryBtn-inquiry:active {
-    background-color: #2f5640
-}
-
 /* 섹션 2 */
 /* 컬럼명 */
 .cs-inquiry-number {

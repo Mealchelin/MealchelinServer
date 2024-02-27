@@ -5,7 +5,7 @@
 }
 
 .cs-list-btns {
-    margin: 20px;
+    margin: 50px 0 30px 0;
 }
 
 .cs-list-btns>button {
@@ -15,6 +15,19 @@
     border:none;
     line-height: 0;
     font-size: 16px;
+    box-shadow: 0 0 0 1px #3B6C51 inset;
+    background-color: #fff;
+    color: #3B6C51;
+}
+
+.cs-list-btns>button:hover{
+	background-color:#3B6C51;
+	color:#fff;
+}
+
+.cs-list-btns>button.active{
+	background-color:#3B6C51;
+	color:#fff;
 }
 
 .cs-list-btns>button:nth-child(2) {

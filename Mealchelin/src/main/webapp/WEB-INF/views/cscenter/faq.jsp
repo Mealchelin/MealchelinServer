@@ -38,9 +38,9 @@
             <div class="cs-list-header">
                 <h3>자주 묻는 질문</h3>
                 <div class="cs-list-btns">
-                    <button class="cs-faqBtn-notice" onclick="location.href='${ path }/cscenter/notice'">공지사항</button>
-                    <button class="cs-faqBtn-faq" onclick="location.href='${ path }/cscenter/faq'">자주 묻는 질문</button>
-                    <button class="cs-faqBtn-inquiry" onclick="location.href='${ path }/cscenter/inquiry'">1:1 문의</button>
+                    <button class="cs-notice" onclick="location.href='${ path }/cscenter/notice'">공지사항</button>
+                    <button class="cs-faq active" onclick="location.href='${ path }/cscenter/faq'">자주 묻는 질문</button>
+                    <button class="cs-inquiry" onclick="location.href='${ path }/cscenter/inquiry'">1:1 문의</button>
                 </div>
             </div>
         </section>
