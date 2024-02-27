@@ -33,10 +33,32 @@ public class ProductController {
 		List<Product> list = null;
 		int listCount = 0;
 		
-		listCount = productService.getProductCount();
-		list = productService.getProductList();
+		if (category.equals("")) {
+			listCount = productService.getProductCount();
+		} else {
+			listCount = productService.getProductCountByCategory(category);
+		}
 		
-		log.info("List: {}", list);
+		
+		// 리스트는 카테고리 + 분류 방식에 영향
+		list = productService.getProductList();
+		// 1. 전부 없을 때 order by 인기
+		// 2. 카테고리만 있을 때 = where 카테고리 order by 인기
+		// 3. 분류만 있을 때
+		// 4. 카테고리 + 분류일 때
+		
+		if (category.equals("") && sort.equals("")) {
+			list = productService.getProductList();
+		} else if (!category.equals("") && sort.equals("")) {
+			list = productService.getProductListByCategory(category);
+		} else if (category.equals("") && !sort.equals("")) {
+			list = productService.getProductList(sort);
+		} else if (!category.equals("") && !sort.equals("")) {
+			list = productService.getProductListByCategory(category, sort);
+		}
+		 
+		
+//		log.info("List: {}", list);
 		
 		modelAndView.addObject("listCount", listCount);   
 		modelAndView.addObject("list", list);   
@@ -44,6 +66,15 @@ public class ProductController {
 //		modelAndView.setViewName("redirect:/product/list");
 		modelAndView.setViewName("product/list");
 		return modelAndView;
+	}
+	
+	@GetMapping("/view")
+	public ModelAndView view(ModelAndView modelAndView) {
+		
+		
+		modelAndView.setViewName("product/view");
+		
+		return modelAndView; 
 	}
 	
 	

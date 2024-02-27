@@ -86,7 +86,7 @@
             <div class="pd-main_new_menu">
 	            <c:forEach var="product" items="${ list }">
 	                <div class="pd-main_new_box">
-	                    <a href="./productDetail.html"><div class="pd-main_new_box_img"><img src="../img/new_01.jpg"></div></a>
+	                    <a href="${ path }/product/view"><div class="pd-main_new_box_img"><img src="../img/new_01.jpg"></div></a>
 	                    <div class="pd-main_new_box_txt">
 	                        <div class="pd-main_new_txt_name">${ product.name }</div>
 	                        <div class="pd-main_new_txt_brand">${ product.brand }</div>
@@ -232,54 +232,43 @@
  	    	
  	    	// 선택된 카테고리 css 변경
  	    	let category = "<c:out value="${ param.category }"/>";
-		    let array = document.getElementsByClassName('pd-main-category-name');
 		    let className = ' pd-main-selectedC';
-		    let korean = array[0].href;
-		    let bunsik = array[1].href;
-		    let chinese = array[2].href;
-		    let japanese = array[3].href;
-		    let western = array[4].href;
-		    let southeast = array[5].href;
+		    let korean = document.getElementsByClassName('pd-main-category-name')[0];
+		    let bunsik = document.getElementsByClassName('pd-main-category-name')[1];
+		    let chinese = document.getElementsByClassName('pd-main-category-name')[2];
+		    let japanese = document.getElementsByClassName('pd-main-category-name')[3];
+		    let western = document.getElementsByClassName('pd-main-category-name')[4];
+		    let southeast = document.getElementsByClassName('pd-main-category-name')[5];
 	    	
-	    	if (korean.includes(category) && !category == '' ) {
- 	    		array[0].className += className;
-			} else if (bunsik.includes(category) && !category == '' ) {
-				array[1].className += className;
-			} else if (chinese.includes(category) && !category == '') {
-				array[2].className += className;
-			} else if (japanese.includes(category) && !category == '') {
-				array[3].className += className;
-			} else if (western.includes(category) && !category == '') {
-				array[4].className += className;
-			} else if (southeast.includes(category) && !category == '') {
-				array[5].className += className;
+	    	if (korean.href.includes(category) && !category == '' ) {
+	    		korean.className += className;
+			} else if (bunsik.href.includes(category) && !category == '' ) {
+				bunsik.className += className;
+			} else if (chinese.href.includes(category) && !category == '') {
+				chinese.className += className;
+			} else if (japanese.href.includes(category) && !category == '') {
+				japanese.className += className;
+			} else if (western.href.includes(category) && !category == '') {
+				western.className += className;
+			} else if (southeast.href.includes(category) && !category == '') {
+				southeast.className += className;
 			} 
- 	    	$('.pd-main-selectedC').css({"color": "#3B6C51",
- 			    "font-weight": "bolder",
- 			    "background-color": "#F6F6F6"})
+ 	    	$('.pd-main-selectedC').css({"color": "#3B6C51", "font-weight": "bolder", "background-color": "#F6F6F6"})
 
 
 			// 선택된 분류 방식 css 변경
 			let sort = "<c:out value="${ param.sort }"/>";
-			let array2 = document.getElementsByClassName('pd-main-sort-btn');
 			let className2 = ' pd-main-selectedS';
-			// base URI의 파라미터는 계속 바뀜 -> 다른 방식 생각해보자
-			let popular = array2[0].baseURI;
-			let lowest = array2[1].baseURI;
-			let highest = array2[2].baseURI;
-			console.log(sort)
-			console.log(array2)
-			console.log(className2)
-			console.log(popular)
-			console.log(lowest)
-			console.log(highest)
+			let popular = document.getElementsByClassName('pd-main-sort-btn')[0];
+			let lowest = document.getElementsByClassName('pd-main-sort-btn')[1];
+			let highest = document.getElementsByClassName('pd-main-sort-btn')[2];
 			
-			if (popular.includes(sort)) {
-				array2[0].className += className2;
-			} else if (lowest.includes(sort)) {
-				array2[1].className += className2;
-			} else if (highest.includes(sort)) {
-				array2[2].className += className2;
+			if (popular.id.includes(sort)) {
+				popular.className += className2;
+			} else if (lowest.id.includes(sort)) {
+				lowest.className += className2;
+			} else if (highest.id.includes(sort)) {
+				highest.className += className2;
 			}
 			$('.pd-main-selectedS').css({"color": "#191919", "font-weight": "bolder"})
 	    })

@@ -14,6 +14,16 @@ import lombok.RequiredArgsConstructor;
 public class ProductServiceImpl implements ProductService {
 
 	private final ProductMapper productMapper;
+
+	@Override
+	public int getProductCount() {
+		return productMapper.selectProductCount();
+	}
+
+	@Override
+	public int getProductCountByCategory(String category) {
+		return productMapper.selectProductCountByCategory(category);
+	}
 	
 	@Override
 	public List<Product> getProductList() {
@@ -21,8 +31,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int getProductCount() {
-		return productMapper.selectProductCount();
+	public List<Product> getProductListByCategory(String category) {
+		return productMapper.selectProductListByCategory(category);
+	}
+
+	@Override
+	public List<Product> getProductList(String sort) {
+		return productMapper.selectProductList(sort);
+	}
+
+	@Override
+	public List<Product> getProductListByCategory(String category, String sort) {
+		return productMapper.selectProductListByCategory(category, sort);
 	}
 
 }
