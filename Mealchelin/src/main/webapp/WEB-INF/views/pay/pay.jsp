@@ -21,6 +21,9 @@
     
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    
+ 	
 </head>
 
 <body>
@@ -98,7 +101,6 @@
                 <div class="pay_thirdContent">
                     <span class="pay_thirdContentTitle">배송 정보</span>
                 </div>
-                <span class="pay_DeliveryInfo">배송지 변경 안내</span>
                 <div class="pay_ShippingInfo">
                     <div class="pay_SenderInfo">
                         <span class="pay_username">이름</span>
@@ -132,15 +134,15 @@
                     <div class="pay_payList">
                         <div class="pay_Info">
                             <div class="pay_kakaoArea">
-                            <input type="checkbox" id="pay_kakao" name="pay_check">
+                            <input type="checkbox" id="pay_kakao" name="pay_check" value="pay_kakao">
                             <label for="pay_kakao"><img src="../img/all/kakao-pay.png"></label>
                             </div>
                             <div class="pay_cardArea">
-                            <input type="checkbox" id="pay_card" name="pay_check">
+                            <input type="checkbox" id="pay_card" name="pay_check" value="pay_card">
                             <label for="pay_card">신용카드</label>
                             </div>
                             <div class="pay_phoneArea">
-                            <input type="checkbox" id="pay_phone" name="pay_check">
+                            <input type="checkbox" id="pay_phone" name="pay_check" value="pay_phone">
                             <label for="pay_phone">휴대폰</label>
                         </div>
                         </div>
@@ -407,7 +409,7 @@
                     </div>
             
                 <div class="pay_pay_Productreview">
-                    <input type="button" value="결제하기" />
+                    <input type="button" id="payButton" value="결제하기" />
                     <input type="button" value="홈으로 이동" />
                 </div>
                 </div>
@@ -423,6 +425,8 @@
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/index.js"></script>
     <script type="text/javascript" src="${ path }/js/pay/payPage.js"></script>
+    <script type="text/javascript" src="${ path }/js/pay/payModal.js"></script>
+    
     
 </body>
 

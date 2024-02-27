@@ -32,11 +32,11 @@ $(document).ready(()=>{
                $(this).prop('checked',true);
            
               }
-            
+
              });
 
 
-
+		
 
 
 
