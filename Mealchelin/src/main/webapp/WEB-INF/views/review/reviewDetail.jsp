@@ -53,7 +53,7 @@
                     <p id="re_titleAndDetailReview">상세리뷰</p>
                     <p id="re_detailReviewContent" >정말 빠른 배송, 포장상태, 맛 다 만족입니다. 식감, 퀄리티 모두 좋아요</p>
                     <div id="re_SubmitAndCancelBtn">
-                        <a href="./reviewMain.html"><input id="re_goToListBtn"  type="button" value="목록"></a>
+                        <a href="${ path }/review/main"><input id="re_goToListBtn"  type="button" value="목록"></a>
                     </div>
                 </div>
             </div>

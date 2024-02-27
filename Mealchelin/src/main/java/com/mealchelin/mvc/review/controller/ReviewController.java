@@ -86,6 +86,20 @@ public class ReviewController {
 		
         return "/review/reviewWrite";
     }
+	
+	@GetMapping("/reviewAddComplete")
+	public String reviewAddComplete() {
+		
+		
+        return "/review/reviewAddComplete";
+    }
+	
+	@GetMapping("/reviewEditComplete")
+	public String reviewEditComplete() {
+		
+		
+	    return "/review/reviewEditComplete";
+	}
 }
 
 

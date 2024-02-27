@@ -17,6 +17,39 @@ $('.starR').click(function() {
     console.log(selectedValue);
 });
 
+// 별점 Jquery로 DB에 넘기는 코드
+{/* <script>
+$(document).ready(function() {
+  // 별 클릭 이벤트 처리
+  $(".starR").click(function() {
+    // 선택된 별의 data-value 값 가져오기
+    var starValue = $(this).data("value");
+
+    // 선택된 별만 'on' 클래스 추가
+    $(".starR").removeClass("on");
+    $(this).addClass("on");
+
+    // 별점 값을 서버로 전송 (예: Ajax 사용)
+    $.ajax({
+      url: "/review/rating",
+      method: "POST",
+      data: {
+        starRating: starValue
+      },
+      success: function(response) {
+        // 성공 처리
+      },
+      error: function(error) {
+        // 실패 처리
+      }
+    });
+  });
+});
+</script> */}
+
+
+
+
 // 리뷰 수정 페이지 글자 수 출력하는 코드
 $('#re_detailReviewContent').keyup(function (e) {
 	let content = $(this).val();
@@ -59,3 +92,5 @@ $('#re_periodDropBox').change(function(){
 
     console.log(period);
 });
+
+

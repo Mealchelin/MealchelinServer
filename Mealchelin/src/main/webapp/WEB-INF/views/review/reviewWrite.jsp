@@ -36,7 +36,7 @@
 		<section>
 			<h3>리뷰 작성</h3>
             <div id="re_maindiv">
-                <form action="">
+                <form action="${ path }/review/reviewAddComplete" method="get">
                     <div id="re_innerdivMain">
                         <img id="re_img" src="../img/new_01.jpg" alt="">
                         <div id="re_foodInfo">
@@ -45,25 +45,25 @@
                             <!-- <p class="re_star">★★★★★</p> -->
                             <div class="re_star">
                                 <!-- 편의 상 가장 첫번째의 별은 기본으로 class="on"이 되게 설정해주었습니다. -->
-                                <span data-value="1" class="starR on">★</span>
-                                <span data-value="2" class="starR">★</span>
-                                <span data-value="3" class="starR">★</span>
-                                <span data-value="4" class="starR">★</span>
-                                <span data-value="5" class="starR">★</span>
+                                <span name="starRating" data-value="1" class="starR">★</span>
+                                <span name="starRating" data-value="2" class="starR">★</span>
+                                <span name="starRating" data-value="3" class="starR">★</span>
+                                <span name="starRating" data-value="4" class="starR">★</span>
+                                <span name="starRating" data-value="5" class="starR">★</span>
                             </div>
                         </div>
                         <br>
                         <p id="re_titleAndDetailReview" >제목</p>
-                        <textarea maxlength="30" name="" id="re_inputTitle" cols="3" rows="1" placeholder="다른 고객님에게 도움이 되도록 상품에 대한 솔직한 평가를 남겨주세요."></textarea>
+                        <textarea maxlength="30" name="title" id="re_inputTitle" cols="3" rows="1" placeholder="다른 고객님에게 도움이 되도록 상품에 대한 솔직한 평가를 남겨주세요."></textarea>
                         <p id="re_titleAndDetailReview">상세리뷰</p>
-                        <textarea maxlength="300" name="" id="re_detailReview" cols="30" rows="10"></textarea>
+                        <textarea maxlength="300" name="content" id="re_detailReview" cols="30" rows="10"></textarea>
                         <p id="re_textCount"><span id="re_nowTextCount">0</span>/300</p>
-                        <input id="re_imgadd" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
+                        <input id="re_imgadd" name="fileName" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
                         <label id="re_imgAttachBtn" for="re_imgadd">사진 첨부</label>
                         <span id="re_imgSizeMsg">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 1장까지 첨부 가능합니다.</span>
                         <div id="re_SubmitAndCancelBtn">
                             <input id="re_subMitBtn" type="submit" value="등록">
-                            <a href="../review/reviewMain.html"><input id="re_cancelBtn" type="button" value="취소"></a>
+                            <a href="${ path }/review/mypageWritableReview"><input id="re_cancelBtn" type="button" value="취소"></a>
                         </div>
                     </div>
                 </form>

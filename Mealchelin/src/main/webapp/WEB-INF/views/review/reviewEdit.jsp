@@ -37,7 +37,7 @@
 		<section>
 			<h3>리뷰 수정</h3>
             <div id="re_maindiv">
-                <form action="">
+                <form action="${ path }/review/reviewEditComplete" method="get">
                     <div id="re_innerdivMain">
                         <img id="re_img" src="../img/new_01.jpg" alt="">
                         <div id="re_foodInfo">
@@ -66,7 +66,7 @@
                         <span id="re_imgSizeMsg">안동찜닭.jpg</span>
                         <div id="re_SubmitAndCancelBtn">
                             <input id="re_subMitBtn" type="submit" value="수정">
-                            <a href="./MypageProductReview.html"><input id="re_cancelBtn" type="button" value="취소"></a>
+                            <a href="${ path }/review/mypageProductReview"><input id="re_cancelBtn" type="button" value="취소"></a>
                         </div>
                     </div>
                 </form>

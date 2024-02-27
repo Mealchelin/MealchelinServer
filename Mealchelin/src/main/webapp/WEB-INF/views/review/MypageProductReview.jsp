@@ -35,8 +35,8 @@
 	<main>
 		<section>
 			<h3>나의 리뷰</h3>
-                <a href="./MypageProductReview.html"><span id="re_writtenReview">작성한 리뷰</span></a>
-                <a href="./MypageWritableReview.html"><span id="re_writableReview">작성 가능한 리뷰</span></a>
+                <a href="${ path }/review/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
+                <a href="${ path }/review/mypageWritableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
                 <select name="period" id="re_periodDropBox">
                     <option value="">기간</option>
                     <option value="3">3개월</option>
@@ -61,7 +61,7 @@
                             <p id="re_companyName">업체이름</p>
                             <input class="re_deleteAndEditBtn" type="button" value="삭제하기" />
                             <br />
-                            <a href="./reviewEdit.html"><input class="re_deleteAndEditBtn" type="button" value="수정하기" /></a>
+                            <a href="${ path }/review/reviewEdit "><input class="re_deleteAndEditBtn" type="button" value="수정하기" /></a>
                         </div>
                     </div>
                 </div>

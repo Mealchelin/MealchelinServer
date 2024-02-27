@@ -35,11 +35,11 @@
 		<section>
 			<h3>밀슐랭 상품 리뷰</h3>
 			<div id="re_reviewBtnDiv">
-				<a href="../review/reviewWrite.html"><input id="re_reviewBtn"
+				<a href="${ path }/review/mypageWritableReview"><input id="re_reviewBtn"
 					type="button" value="리뷰 작성" /></a>
 			</div>
 			<div class="mainDiv">
-				<a href="../review/reviewDetail.html">
+				<a href="${ path }/review/reviewDetail">
 					<div class="re_imgDiv">
 						<img class="re_img" src="../img/new_01.jpg" alt="" />
 						<div class="re_innerimgDiv">
@@ -223,7 +223,8 @@
 			</div>
 
 			<!-- 하단 검색창 -->
-			<form action="../review/reviewEmpty.html"></form>
+			<jsp:include page="FootSearchBox.jsp" />
+			
 
 			<div id="re_bottomPageNumbers">
 				<span>&lt;</span> <span>1</span> <span>2</span> <span>3</span> <span>4</span>

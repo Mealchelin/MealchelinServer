@@ -35,8 +35,8 @@
 	<main>
 		<section>
 			<h3>나의 리뷰</h3>
-                <a href="./MypageProductReview.html"><span id="re_writtenReview">작성한 리뷰</span></a>
-                <a href="./MypageWritableReview.html"><span id="re_writableReview">작성 가능한 리뷰</span></a>
+                <a href="${ path }/review/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
+                <a href="${ path }/review/mypageWritableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
                 <select name="period" id="re_periodDropBox">
                     <option value="">기간</option>
                     <option value="3">3개월</option>
@@ -56,7 +56,7 @@
                         </div>
                         <div id="re_reviewBtnDiv">
                             <!-- 취소 누르면 뒤로 이동하게끔 해야함. reviewWrite페이지에서 취소 누르면 reviewMain으로 이동함.-->
-                            <a href="./reviewWrite.html"><input class="re_reviewBtn" type="button" value="리뷰쓰기" /></a>
+                            <a href="${ path }/review/reviewWrite"><input class="re_reviewBtn" type="button" value="리뷰쓰기" /></a>
                             <p id="re_reviewEndDate">작성기한 : <span>2024.03.13</span></p>
                         </div>
                     </div>
