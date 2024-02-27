@@ -35,8 +35,8 @@
 	<main>
 		<section>
 			<h3>나의 리뷰</h3>
-            <a href="./MypageWrittenReviewEmpty.html"><span id="re_writtenReview" >작성한 리뷰</span></a>
-            <a href="./MypageWritableReviewEmpty.html"><span id="re_writableReview" >작성 가능한 리뷰</span></a>
+            <a href="${ path }/review/mypageWrittenReviewEmpty"><span id="re_writtenReview" >작성한 리뷰</span></a>
+            <a href="${ path }/review/mypageWritableReviewEmpty"><span id="re_writableReview" >작성 가능한 리뷰</span></a>
             <select name="period" id="re_periodDropBox">
                 <option value="">기간</option>
                 <option value="3">3개월</option>
