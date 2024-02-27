@@ -1,0 +1,219 @@
+.memTitle {
+    text-align: center;
+    margin: 42px 0px 20px 0px;
+}
+
+.memEnrollBox {
+    width: 605px;
+    height: 479px;
+    border-top: 1px solid #c1c1c1;
+    border-bottom: 1px solid #c1c1c1;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px 0px;
+}
+
+.memEnrollTable {
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 10px 5px;
+}
+
+.memTdIp {
+    border: 1px solid #A7A7A7 ;
+    width: 262px;
+    height: 34px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.memTdIpsmall{
+    width: 145px;
+    height: 34px;
+    border: 1px solid #A7A7A7 ;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+
+.memP{
+    font-size: 12px;
+    color: #559D50;
+    text-align: unset;
+}
+
+.memtd {
+    text-align: right;
+    margin-right: 10px;
+    
+}
+
+.memIdcheck, .memtdBtn{
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:7px 5px;
+    background-color: #fff;
+    color: #559D50;
+    border-radius: 3px;
+    width: 109px;
+    height: 34px;
+    margin-left: 5px;
+}
+
+.memtdBtn:hover, .memIdcheck:hover, .memtdBtn:active, .memIdcheck:active{
+    border:none;
+    padding:7px 5px;
+    background-color: #3B6C51;
+    color: #fff;
+}
+
+/* 이용약관 */
+.memtermsBox {
+
+    width: 605px;
+    margin: 0 auto;
+}
+
+.memcheckAll {
+    width: 23px;
+    height: 23px;
+}
+
+.memtd1 {
+    width: 148px;
+    text-align: right;
+    
+}
+
+.memtd2 {
+    display: flex;
+    width: 320px;
+    padding-left: 8px;
+}
+
+.memtd3 {
+    width: 140px;
+    text-align: right;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+input[type=checkbox]+label{
+    display: inline-block;  
+    cursor: pointer; 
+    position: relative;
+    margin-top: 3px;
+    font-size: 19px;
+}
+
+input[type=checkbox]+label::before{
+    content: '';
+    display: inline-block; 
+    vertical-align: middle;
+    margin: 0px 10px 5px 3px;
+    width: 21px;
+    height: 21px;
+    background: url('../../img/all/check.png') no-repeat;
+    background-size: cover;
+}
+
+input[type="checkbox"]:checked + label::before{
+    background: url('../../img/all/check-active.png') no-repeat; 
+    background-size: cover;
+}
+
+
+.memAlldiv {
+    font-weight: bold;
+}
+
+.memspan {
+    color: #A7A7A7;
+}
+
+.memtd3>div{
+    color: #559D50;
+}
+
+.memtd3>div:hover{
+    text-decoration-line: underline;
+}
+
+.memEnroll{
+    width: 350px;
+    height: 52px;
+    border-radius: 3px;
+    margin:40px auto ;
+    display: block;
+    border:none;
+    padding:7px 5px;
+    background-color: #3B6C51;
+    color: #fff;
+    font-size: 18px;
+}
+
+
+/* 모달창 */
+
+.memmodalbox1, .memmodalbox2 {
+    display: none;
+    width: 550px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+    flex-flow: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-54%);
+    z-index: 1002;
+
+}
+
+.memmodalbox1>h3 ,.memmodalbox2>h3{
+    font-size: 22px;
+    text-align: center;
+    padding: 20px 30px;
+}
+
+.memmodal_in1, .memmodal_in2{
+    overflow-y: scroll;
+    padding: 20px 30px;
+    height: 600px;
+}
+
+.memmodal_btn_box1, .memmodal_btn_box2 {
+    width: 550px;
+    height: 45px;
+    text-align: center;
+}
+
+.memmodal_btn1, .memmodal_btn2{
+    width: 120px;
+    height: 35px;
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:7px 30px;
+    background-color: #fff;
+    color: #559D50;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+}
+
+.memview1, .memview2, .memmodal_btn1, .memmodal_btn2{
+    cursor: pointer;
+}
+
+.memmodal_bg {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+}

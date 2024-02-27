@@ -1,0 +1,75 @@
+.memLogo {
+    width: 123px;
+    height: 130px;
+    display: block;
+    margin:auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+section {
+    text-align: center;
+}
+
+.memInput {
+    display: block;
+    margin: 0 auto;
+} 
+
+.memInputId, .memInputPwd {
+    width: 350px;
+    height: 52px;
+    border: 1px solid #A7A7A7;
+    border-radius: 4px;
+    padding: 10px 10px;
+    margin-bottom: 16px;
+}
+
+.memInputBtn {
+    width: 350px;
+    height: 52px;
+    border-radius: 4px;
+    border:none;
+    padding:7px 30px;
+    background-color: #3B6C51;
+    color: #fff;
+}
+
+.memtext {
+    width: 350px;
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
+.memtext1, .memtext2 {
+    display: inline-block;
+    color: #888888;
+}
+
+.memtext1 {
+    float: left ;
+}
+
+.memtext2 {
+    float: right;
+}
+
+.memSns {
+    width: 350px;
+    height: 47px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.memSns1 {
+    float: left;
+}
+
+.memSns2 {
+    float: right;
+}
+
+.memtext1:hover, .memtext2:hover {
+    text-decoration: underline;
+}
