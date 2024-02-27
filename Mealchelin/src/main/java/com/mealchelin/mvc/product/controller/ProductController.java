@@ -27,14 +27,18 @@ public class ProductController {
 	@GetMapping("/list")
 	public ModelAndView list(
 			ModelAndView modelAndView,
-			@RequestParam(defaultValue="") String category) {
+			@RequestParam(defaultValue="") String category,
+			@RequestParam(defaultValue="") String sort) {
 		
 		List<Product> list = null;
+		int listCount = 0;
 		
+		listCount = productService.getProductCount();
 		list = productService.getProductList();
 		
 		log.info("List: {}", list);
 		
+		modelAndView.addObject("listCount", listCount);   
 		modelAndView.addObject("list", list);   
 		
 //		modelAndView.setViewName("redirect:/product/list");

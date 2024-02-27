@@ -11,4 +11,6 @@ public interface ProductMapper {
 
 	List<Product> selectProductList();
 
+	int selectProductCount();
+
 }

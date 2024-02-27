@@ -22,7 +22,7 @@
 		<result property="status" column="STATUS"/>
 	</resultMap>
 
-	<select id="selectCount" resultType="_int">
+	<select id="selectProductCount" resultType="_int">
 		SELECT COUNT(*) FROM Product
 	</select>
 	

@@ -20,4 +20,9 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.selectProductList();
 	}
 
+	@Override
+	public int getProductCount() {
+		return productMapper.selectProductCount();
+	}
+
 }

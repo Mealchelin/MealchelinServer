@@ -7,5 +7,7 @@ import com.mealchelin.mvc.product.model.vo.Product;
 public interface ProductService {
 
 	List<Product> getProductList();
+
+	int getProductCount();
 	
 }
