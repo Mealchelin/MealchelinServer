@@ -58,19 +58,19 @@
             <ul class="cs-list-ul">
                 <li class="cs-list-content">
                     <div class="cs-inquiry-number">205</div>
-                    <div class="cs-inquiry-title cs-list-ul-title"><a href="./inquiryView.html">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
+                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
                     <div class="cs-inquiry-date">2024.11.09</div>
                     <div class="cs-inquiry-answer">대기중</div>
                 </li>
                 <li class="cs-list-content">
                     <div class="cs-inquiry-number">205</div>
-                    <div class="cs-inquiry-title cs-list-ul-title"><a href="./inquiryView.html">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
+                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
                     <div class="cs-inquiry-date">2024.02.09</div>
                     <div class="cs-inquiry-answer">대기중</div>
                 </li>
                 <li class="cs-list-content">
                     <div class="cs-inquiry-number">205</div>
-                    <div class="cs-inquiry-title cs-list-ul-title"><a href="./inquiryView.html">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
+                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
                     <div class="cs-inquiry-date">2024.02.09</div>
                     <div class="cs-inquiry-answer">대기중</div>
                 </li>
