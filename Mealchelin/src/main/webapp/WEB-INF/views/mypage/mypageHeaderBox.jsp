@@ -3,19 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>밀슐랭</title>
-    <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
-</head>
-<body>
-    <!-- 메인 파트 코드 진행-->
-    <main>
-        <!-- 회색 박스 -->
-        <section class="myGraybox">
+
+<div class="myGraybox">
             <div class="myGrayboxIn">
                 <div class="myGrayboxLeft">
                     <div>
@@ -64,7 +53,4 @@
                     </a>
                 </div>
             </div>
-        </section>
-    </main>
-</body>
-</html>
+</div>

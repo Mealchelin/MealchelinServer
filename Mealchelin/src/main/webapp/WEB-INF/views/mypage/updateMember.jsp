@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${ path }/css/common.css">
     <!-- 필요한 css -->
     <link rel="stylesheet" href="${ path }/css/mypage/updateMember.css">
+    <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
     
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -32,8 +33,8 @@
     
     <!-- 내용 넣기 -->
     <main>
+        <jsp:include page="mypageHeaderBox.jsp"/>
         <section>
-        	<jsp:include page="mypageHeaderBox.jsp"/>
             <h3 class="myTitle"> 내 정보 수정 </h3>
             <p class="mySubTitle1"">비밀번호 재확인</p>
             <p class="mySubTitle2">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요</p>
