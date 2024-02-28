@@ -69,9 +69,12 @@ public class ProductController {
 	}
 	
 	@GetMapping("/view")
-	public ModelAndView view(ModelAndView modelAndView) {
+	public ModelAndView view(
+			ModelAndView modelAndView,
+			@RequestParam int no) {
 		
-		
+		// no에 맞는 상품 조회해서 add 
+//		modelAndView.addObject("product", product);
 		modelAndView.setViewName("product/view");
 		
 		return modelAndView; 

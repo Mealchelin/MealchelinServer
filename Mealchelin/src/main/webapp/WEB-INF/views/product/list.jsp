@@ -61,7 +61,7 @@
                         <span>
                             <button class="pd-main-sort-btn" id="pd-btn-popular" 
                             onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if>sort=popular'"
-                            >인기순</button>
+                            >주문 많은 순</button>
                         </span>
                         <span>
                             <button class="pd-main-sort-btn" id="pd-btn-lowestPrice"
@@ -84,120 +84,21 @@
         <!-- 한 페이지 16개의 제품 노출 -->
         <section id="pd-section2">
             <div class="pd-main_new_menu">
+            	<c:if test="${ listCount == 0 }">
+<%--             		<jsp:include page="" /> --%>
+            	</c:if>
 	            <c:forEach var="product" items="${ list }">
 	                <div class="pd-main_new_box">
-	                    <a href="${ path }/product/view"><div class="pd-main_new_box_img"><img src="../img/new_01.jpg"></div></a>
+	                    <a href="${ path }/product/view?no=${product.no}"><div class="pd-main_new_box_img"><img src="${ path }/img/${ product.image }.jpg"></div></a>
 	                    <div class="pd-main_new_box_txt">
 	                        <div class="pd-main_new_txt_name">${ product.name }</div>
 	                        <div class="pd-main_new_txt_brand">${ product.brand }</div>
-	                        <div class="pd-main_new_txt_price">${ product.price }</div>
+	                        <div class="pd-main_new_txt_price">
+	                        	<fmt:formatNumber  value="${product.price}" type="number"/>원
+	                        </div>
 	                    </div>
 	                </div>
 	            </c:forEach>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_02.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">기사식당 돼지불백(2-3인)</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">14,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_03.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">소고기뭇국</div>
-                        <div class="pd-main_new_txt_brand">쿡킷</div>
-                        <div class="pd-main_new_txt_price">16,800원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_04.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_05.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_06.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">바질 크림 빠네파스타 밀키트 2인분</div>
-                        <div class="pd-main_new_txt_brand">프레시지</div>
-                        <div class="pd-main_new_txt_price">13,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_07.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_08.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_01.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_02.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">기사식당 돼지불백(2-3인)</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">14,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_03.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">소고기뭇국</div>
-                        <div class="pd-main_new_txt_brand">쿡킷</div>
-                        <div class="pd-main_new_txt_price">16,800원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_04.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_05.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="pd-main_new_txt_brand">마이셰프</div>
-                        <div class="pd-main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="pd-main_new_box">
-                    <a href=""><div class="pd-main_new_box_img"><img src="../img/new_06.jpg"></div></a>
-                    <div class="pd-main_new_box_txt">
-                        <div class="pd-main_new_txt_name">바질 크림 빠네파스타 밀키트 2인분</div>
-                        <div class="pd-main_new_txt_brand">프레시지</div>
-                        <div class="pd-main_new_txt_price">13,900원</div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -225,11 +126,7 @@
     <script type="text/javascript" src="${ path }/js/index.js"></script>
     <script type="text/javascript">
 	    $(document).ready(() => {
-	    	// 가격 , 원 추가  
-	    	let price = $('.pd-main_new_txt_price').html();
- 	    	let price2 = price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
- 	    	$('.pd-main_new_txt_price').html(price2 + "원");
- 	    	
+	    	
  	    	// 선택된 카테고리 css 변경
  	    	let category = "<c:out value="${ param.category }"/>";
 		    let className = ' pd-main-selectedC';

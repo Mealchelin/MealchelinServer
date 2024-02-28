@@ -18,9 +18,8 @@ public interface ProductMapper {
 
 	List<Product> selectProductListByCategory(@Param("category") String category);
 	
-	// sort 는 동적 mapper 문법 찾아보기
-	List<Product> selectProductList(@Param("category") String sort);
+	List<Product> selectProductList(@Param("sort") String sort);
 
-	List<Product> selectProductListByCategory(@Param("category") String category, String sort);
+	List<Product> selectProductListByCategory(@Param("category") String category, @Param("param1") String sort);
 
 }
