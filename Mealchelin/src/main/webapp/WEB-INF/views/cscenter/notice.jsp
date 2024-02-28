@@ -53,42 +53,38 @@
                 <div class="cs-notice-date">작성일</div>
             </div>
             <ul class="cs-list-ul">
-                <li class="cs-list-content">
-                    <div class="cs-notice-number">205</div>
-                    <div class="cs-notice-title cs-list-ul-title"><a href="${ path }/cscenter/noticeView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-notice-writeMem">밀슐랭</div>
-                    <div class="cs-notice-date">2024.02.09</div>
-                </li>
-                <li class="cs-list-content">
-                    <div class="cs-notice-number">205</div>
-                    <div class="cs-notice-title cs-list-ul-title"><a>asdfasdf교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-notice-writeMem">밀슐랭</div>
-                    <div class="cs-notice-date">2024.02.09</div>
-                </li>
-                <li class="cs-list-content">
-                    <div class="cs-notice-number">205</div>
-                    <div class="cs-notice-title cs-list-ul-title"><a>zzzzzzzzzzzzzzzzzzzzz교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-notice-writeMem">밀슐랭</div>
-                    <div class="cs-notice-date">2024.02.09</div>
-                </li>
-                <li class="cs-list-content">
-                    <div class="cs-notice-number">205</div>
-                    <div class="cs-notice-title cs-list-ul-title"><a>교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-notice-writeMem">밀슐랭</div>
-                    <div class="cs-notice-date">2024.02.09</div>
-                </li>
+	            <c:if test="${ empty list }">
+					<li class="cs-list-content">
+                    	<div>조회된 게시글이 없습니다.</div>
+                	</li>	
+				</c:if>
+				<c:if test="${ not empty list }">
+					<c:forEach var="support" items="${ list }">
+		                <li class="cs-list-content">
+		                    <div class="cs-notice-number">${ support.rnum }</div>
+		                    <div class="cs-notice-title cs-list-ul-title"><a href="${ path }/cscenter/noticeView?no=${ support.supportNo }"></a>${ support.sname }</div>
+		                    <div class="cs-notice-writeMem">${ support.mname }</div>
+		                    <div class="cs-notice-date"><fmt:formatDate value="${ support.rgstrDate }" pattern="yyyy.MM.dd"/></div>
+		                </li>
+					</c:forEach>
+				</c:if>
             </ul>
         </section>
         <!-- 페이징 버튼 섹션 -->
         <section id="cs-section3">
             <div class="cs-paging">
-                <button>&lt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>&gt;</button>
+	            <button onclick="location.href='${ path }/cscenter/notice?page=${ pageInfo.prevPage }'">&lt;</button>
+		        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+						<c:choose>
+							<c:when test="${ current == pageInfo.currentPage }">
+								<button disabled>${ current }</button>
+							</c:when>
+							<c:otherwise>
+								<button onclick="location.href='${ path }/cscenter/notice?page=${ current }'">${ current }</button>
+							</c:otherwise>
+						</c:choose>
+				</c:forEach>
+				<button onclick="location.href='${ path }/cscenter/notice?page=${ pageInfo.nextPage }'">&gt;</button>
             </div>
         </section>
     </main>

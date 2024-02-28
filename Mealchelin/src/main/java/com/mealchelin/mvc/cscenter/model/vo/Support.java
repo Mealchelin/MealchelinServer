@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Support {
+	private int rnum;
+	
 	private int supportNo;
 	
 	private String category;
 	
-	private String name;
+	private String sname;
 	
 	private String content;
 	
@@ -25,4 +27,6 @@ public class Support {
 	private int memberNo;
 	
 	private String subCategory;
+	
+	private String mname;
 }
