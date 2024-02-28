@@ -14,7 +14,10 @@ $('.re_star > .starR').click(function() {
 $('.starR').click(function() {
     let selectedValue = 0;
     selectedValue = $(this).data('value');
-    console.log(selectedValue);
+    
+    $('#ratedInput').val(selectedValue);
+    console.log($('#ratedInput').val());
+
 });
 
 // 별점 Jquery로 DB에 넘기는 코드

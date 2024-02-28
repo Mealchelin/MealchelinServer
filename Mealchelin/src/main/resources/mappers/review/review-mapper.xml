@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+<mapper namespace="com.mealchelin.mvc.review.model.mapper.ReviewMapper">
+
+	<!-- 게시글 등록 -->
+	<insert id="insertReview" parameterType="Review"
+		useGeneratedKeys="true" keyProperty="reviewNo" keyColumn="REVIEW_NO">
+		INSERT INTO REVIEW (
+			REVIEW_NO,
+			RATED,
+			NAME,
+			CONTENT,
+			RGSTR_DATE,
+			IMAGE
+		) VALUES(
+			SEQ_REVIEW_NO.NEXTVAL,
+			#{rated},
+			#{name},
+			#{content},
+            SYSDATE,
+			#{image}
+		)
+	</insert>
+
+
+
+
+
+
+
+</mapper>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
