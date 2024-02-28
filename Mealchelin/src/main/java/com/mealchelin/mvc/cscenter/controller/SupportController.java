@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/cscenter")
-public class CscenterController {
+public class SupportController {
 	@GetMapping("/faq")
 	public ModelAndView csFaq(ModelAndView modelAndView) {
 		

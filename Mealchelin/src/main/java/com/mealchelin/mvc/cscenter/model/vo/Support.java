@@ -9,16 +9,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Inquiry {
-	private int inquiryNo;
+public class Support {
+	private int supportNo;
+	
+	private String category;
 	
 	private String name;
 	
-	private String inquiryContent;
+	private String content;
 	
 	private Date rgstrDate;
 	
-	private String answerContent;
+	private String status;
 	
 	private int memberNo;
+	
+	private String subCategory;
 }
