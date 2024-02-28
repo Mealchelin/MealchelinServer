@@ -36,16 +36,16 @@
         <section id="pd-view-section1">
             <form action="" method="">
                 <div class="pd-view-image">
-                    <img src="../img/new_01.jpg" width="550px">
+                    <img src="${path}/img/${product.image}.jpg" width="550px">
                 </div>
                 <div class="pd-view-saleInfo">
                     <div class="pd-view-name">
-                        <p>브랜드</p>
-                        <h3>제품 이름</h3>
+                        <p>${product.brand}</p>
+                        <h3>${product.name}</h3>
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">판매가</div>
-                        <div class="pd-view-contentValue">18,900</div>
+                        <div class="pd-view-contentValue">${product.price}</div>
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">배송비</div>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">중량</div>
-                        <div class="pd-view-contentValue">약 500g</div>
+                        <div class="pd-view-contentValue">약 ${product.weight}</div>
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">수량</div>
@@ -164,6 +164,7 @@
     
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/index.js"></script>
+    <script type="text/javascript" src="${ path }/js/product/productDetail.js"></script>
 </body>
 
 </html>

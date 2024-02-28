@@ -1,6 +1,4 @@
 $(document).ready(() => {
-
-
     // 1. 수량 버튼으로 수량 바꾸기
     // 2. 수량에 맞는 총 상품 금액 표현하기
     let quantity = parseInt($('#pd-view-quantity').val());

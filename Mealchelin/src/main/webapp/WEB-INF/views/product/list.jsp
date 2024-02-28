@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
-
+ 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,7 +36,7 @@
         <!-- 카테고리 -->
         <section id="pd-section1">
             <div class="pd-main-navi">
-                <h3 class="pd-main-heading">전체 상품</h3>
+                <h3 class="pd-main-heading">전체 상품 ${ category }</h3>
 				<!-- 
                  데이터 연결 성공
                 <c:forEach var="product" items="${ list }">
@@ -106,13 +106,23 @@
         <!-- 페이징 버튼 -->
         <section id="pd-section3">
             <div class="pd-paging">
-                <button>&lt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>&gt;</button>
+                <!-- 이전 페이지로 -->
+				<button onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if><c:if test="${ not empty param.sort }">sort=<c:out value="${ param.sort }"/>&</c:if>page=${ pageInfo.prevPage }'">&lt;</button>
+
+				<!--  10개 페이지 목록 -->
+				<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+					<c:choose>
+						<c:when test="${ current == pageInfo.currentPage }">
+							<button disabled>${ current }</button>
+						</c:when>
+						<c:otherwise>
+							<button onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if><c:if test="${ not empty param.sort }">sort=<c:out value="${ param.sort }"/>&</c:if>page=${ current }'">${ current }</button>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				
+				<!-- 다음 페이지로 -->
+				<button onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if><c:if test="${ not empty param.sort }">sort=<c:out value="${ param.sort }"/>&</c:if>page=${ pageInfo.nextPage }'">&gt;</button>
             </div>
         </section>
     </main>

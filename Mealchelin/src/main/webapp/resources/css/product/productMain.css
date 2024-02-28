@@ -119,10 +119,9 @@
 }
 
 .pd-paging {
-    width: 200px;
+	gap: 20px;
     height: 25px;
     display: flex;
-    justify-content: space-between;
 }
 
 .pd-paging button{    
