@@ -23,7 +23,7 @@ public class MemberController {
 		
 		return modelAndView;
 	}
-	
+
 	@GetMapping("/mypage/updateMember")
 	public ModelAndView updateMember(ModelAndView modelAndView) {
 		
