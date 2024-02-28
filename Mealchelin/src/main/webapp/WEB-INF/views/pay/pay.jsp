@@ -1,4 +1,4 @@
-<!-- jsp 기본틀 지켜줘 -->
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -16,12 +16,17 @@
     <!--default css-->
     <link rel="stylesheet" href="${ path }/css/common.css">
     <!-- 필요한 css -->
-    <link rel="stylesheet" href="${ path }/css/pay/payPage.css">
+   <link rel="stylesheet" href="${ path }/css/pay/payPage.css">
+
     
-    
+ 
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script>
+        var IMP = window.IMP;
+        IMP.init("imp31687115");
+    </script>
     
  	
 </head>
