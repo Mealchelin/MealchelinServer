@@ -46,7 +46,7 @@ document.getElementById('payButton').addEventListener('click', function() {
                    	IMP.request_pay({
 				      pg: "mobilians",
 				      pay_method: "card",
-				      merchant_uid: "ORD20180131-0000011",   // 주문번호
+				      merchant_uid: "ORD20180131-0000090",   // 주문번호
 				      name: "안동식 순살찜닭 외 3개",
 				      amount: 47500,                         // 숫자 타입
 				      buyer_email: "gildong@gmail.com",
@@ -70,7 +70,7 @@ document.getElementById('payButton').addEventListener('click', function() {
                    	IMP.request_pay({
 				      pg: "mobilians",
 				      pay_method: "phone",
-				      merchant_uid: "ORD20180131-0000011",   // 주문번호
+				      merchant_uid: "ORD20180131-0000111",   // 주문번호
 				      name: "노르웨이 회전 의자",
 				      amount: 64900,                         // 숫자 타입
 				      buyer_email: "gildong@gmail.com",
