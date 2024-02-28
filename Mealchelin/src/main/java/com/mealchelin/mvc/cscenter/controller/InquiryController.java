@@ -5,9 +5,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealchelin.mvc.cscenter.model.service.InquiryServie;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/cscenter")
 public class InquiryController {
+	private final InquiryServie service;
+	
 	@GetMapping("/inquiry")
 	public ModelAndView csinquiry(ModelAndView modelAndView) {
 		
