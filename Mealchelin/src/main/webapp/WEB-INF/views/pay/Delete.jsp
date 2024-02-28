@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="${ path }/css/common.css">
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/pay/OrderDelete.css">
+<link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
 
 
 <!-- jquery -->
@@ -35,6 +36,7 @@
 
 	<!-- 내용 넣기 -->
 	<main id="pay_Mains">
+	<jsp:include page="/WEB-INF/views/mypage/mypageHeaderBox.jsp"/>
 		<section class="pay_Sections">
 			<!-- <h2 class="pay_Title">주문서</h2> -->
 			<h3 class="pay_Title">주문취소</h3>

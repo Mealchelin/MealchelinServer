@@ -135,6 +135,7 @@
                 <div class="pay_FiveContent">
                     <span class="pay_fiveContentTitle">결제 수단</span>
                 </div>
+                <div id="overlay"></div>
                 <div class="pay_payInfo">
                     <div class="pay_payList">
                         <div class="pay_Info">

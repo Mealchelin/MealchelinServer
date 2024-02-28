@@ -16,6 +16,7 @@ public class payController {
 	public ModelAndView payment(ModelAndView modelAndView) {
 		
 		modelAndView.setViewName("pay/pay");
+	
 		
 		return modelAndView;
 	}

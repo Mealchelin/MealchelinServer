@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="${ path }/css/common.css">
     <!-- 필요한 css -->
     <link rel="stylesheet" href="${ path }/css/pay/OrderInquiry.css">
+    <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
     
     
     <!-- jquery -->
@@ -35,6 +36,7 @@
     
     <!-- 내용 넣기 -->
      <main id="pay_mains">
+     <jsp:include page="/WEB-INF/views/mypage/mypageHeaderBox.jsp"/>
         <section id="pay_sections">
             <h2>주문 조회</h2>
             <div class="pay_mainContentTitle">
