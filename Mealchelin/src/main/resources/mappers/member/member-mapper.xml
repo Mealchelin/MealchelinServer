@@ -3,6 +3,15 @@
 <!DOCTYPE mapper 
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 <mapper namespace="com.mealchelin.mvc.member.model.mapper.MemberMapper">
 	<sql id="selectMemberSql">
@@ -53,6 +62,14 @@
 		WHERE STATUS = 'Y' AND ID = #{ID}
 	</select>
 	
+	
+	<select id="selectMemberByNo" resultMap="memberResultMap">
+	SELECT MEMBER_NO,
+			      NAME,
+			      PHONE,
+			      EMAIL
+			FROM MEMBER
+	</select>
 	
 	
 	

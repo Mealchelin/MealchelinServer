@@ -10,6 +10,6 @@ public interface MemberMapper {
 	
 	Member selectMemberById(@Param("id") String id);
 	
-
+	Member selectMemberByNo(@Param("No") int memberNo);
 
 }

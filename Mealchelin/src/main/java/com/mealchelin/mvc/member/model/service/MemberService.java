@@ -8,5 +8,9 @@ public interface MemberService {
 	
 	Member login(String userId, String userPwd);
 
+	Member getMemberByNo(int i);
+
+	
+
 
 }

@@ -5,10 +5,13 @@ import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Member {
 	
 	// 회원 번호
@@ -21,12 +24,15 @@ public class Member {
 	private String password;
 	
 	// 회원 이름
+	@NonNull
 	private String name;
 	
 	// 회원 전화번호
+	@NonNull
 	private String phone;
 	
 	// 회원 이메일
+	@NonNull
 	private String email;
 	
 	// 회원 우편번호

@@ -31,4 +31,21 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	@Override
+	public Member getMemberByNo(int i) {
+		
+		return mapper.selectMemberByNo(i);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
