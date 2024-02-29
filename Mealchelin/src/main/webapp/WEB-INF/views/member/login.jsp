@@ -35,9 +35,9 @@
         <section>
             <img src="../img/all/logo5.png" alt="로고사진" class="memLogo">
 
-            <form action="" method="post">
-                <input type="text" placeholder="아이디를 입력해주세요" id="userId" class="memInput memInputId" >
-                <input type="password" placeholder="비밀번호를 입력해주세요" id="userPwd" class="memInput memInputPwd">
+            <form action="${ pageContext.request.contextPath }/member/login" method="post">
+                <input type="text" placeholder="아이디를 입력해주세요" name="userId" id="userId" class="memInput memInputId" >
+                <input type="password" placeholder="비밀번호를 입력해주세요" name="userPwd" id="userPwd" class="memInput memInputPwd">
                 <input type="submit" value="로그인" class="memInput memInputBtn">
             </form>
 

@@ -9,6 +9,8 @@ import com.mealchelin.mvc.member.model.vo.Member;
 public interface MemberMapper {
 	
 	Member selectMemberById(@Param("id") String id);
+
+	int insertMember(Member member);
 	
 
 

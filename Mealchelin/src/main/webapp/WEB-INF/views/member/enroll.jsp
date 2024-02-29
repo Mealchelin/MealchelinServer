@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -31,19 +32,19 @@
     <!-- 내용 넣기 -->
     <main>
         <section>
+            <form method="post" class="memEnrollSubmit">
             <h3 class="memTitle">회원가입</h3>
             <div class="memEnrollBox">
-                <form method="post" class="memEnrollSubmit">
                     <table class="memEnrollTable">
                         <tr>
                             <td class="memtd">이름</td>
-                            <td><input type="text" class="memTdIp" placeholder="이름을 입력해주세요" required></td>
+                            <td><input type="text" name="name" class="memTdIp" placeholder="이름을 입력해주세요" required></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="memtd">아이디</td>
                             <td>
-                                <input type="text" class="memTdIp" id="memID" placeholder="아이디을 입력해주세요" required>
+                                <input type="text" name="id" class="memTdIp" id="memID" placeholder="아이디을 입력해주세요" required>
                                 <button class="memIdcheck" type="button">중복확인</button>
                             </td>
                             <td></td>
@@ -55,7 +56,7 @@
                         </tr>
                         <tr>
                             <td class="memtd">비밀번호</td>
-                            <td><input type="password" class="memTdIp" id="memPwd" placeholder="비밀번호를 입력해주세요" required></td>
+                            <td><input type="password" name="password" class="memTdIp" id="memPwd" placeholder="비밀번호를 입력해주세요" required></td>
                             <td></td>
                         </tr>
                         <tr>
@@ -75,37 +76,37 @@
                         </tr>
                         <tr>
                             <td class="memtd">휴대폰</td>
-                            <td><input type="text" class="memTdIp" placeholder="-빼고, 숫자만 입력해주세요" required></td>
+                            <td><input type="text" name="phone" class="memTdIp" placeholder="-빼고, 숫자만 입력해주세요" required></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td class="memtd">이메일</td>
-                            <td><input type="email" class="memTdIp" placeholder="ex juyeon123@iei.or.kr" required></td>
+                            <td><input type="email" name="email" class="memTdIp" placeholder="ex juyeon123@iei.or.kr" required></td>
                             <td></td>
                         </tr>
                     <tr>
                         <td class="memtd">주소</td>
-                        <td><input type="text" placeholder="우편번호 검색" id="memAdPost" class="memTdIpsmall" readonly required>
+                        <td><input type="text" name="postalCode" placeholder="우편번호 검색" id="memAdPost" class="memTdIpsmall" readonly required>
                             <button type="button" id="memtdButton" class="memtdBtn">우편번호 검색</button></td>
                         <td></td>
                     </tr> 
                     <tr>
                         <td class="memtd"></td>
-                        <td><input type="text" class="memTdIp"  id="mem_Ad" placeholder="주소를 입력해주세요" readonly required></td>
+                        <td><input type="text" name="address" class="memTdIp"  id="mem_Ad" placeholder="주소를 입력해주세요" readonly required></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="text" class="memTdIp" id="memDetail_Ad" placeholder="상세주소를 입력해주세요" required></td>
+                        <td><input type="text" name="addressDetail" class="memTdIp" id="memDetail_Ad" placeholder="상세주소를 입력해주세요" required></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td class="memtd">생년월일</td>
-                        <td><input type="text" class="memTdIp" placeholder="ex 900101" required></td>
+                        <td><input type="text" name="birth" class="memTdIp" placeholder="ex 900101" required></td>
                         <td></td>
                     </tr>
                     </table>
-                </form>    
+                  
             </div>
                 
                 <!-- 이용약관 -->
@@ -143,6 +144,7 @@
                     </table>
                 </div>
             <button class="memEnroll" type="submit">가입하기</button>
+        </form>   
         </section>
         <section>
             <!-- 모달창 -->

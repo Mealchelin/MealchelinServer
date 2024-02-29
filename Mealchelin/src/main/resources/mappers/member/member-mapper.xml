@@ -32,7 +32,7 @@
 		<result property="postalCode" column="POSTAL_CODE"/>
 		<result property="address" column="ADDRESS"/>
 		<result property="addressDetail" column="ADDRESS_DETAIL"/>
-		<result property="bitth" column="BIRTH"/>
+		<result property="birth" column="BIRTH"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="role" column="ROLE"/>
 		<result property="status" column="STATUS"/>
@@ -50,10 +50,36 @@
 	
 	<select id="selectMemberById" parameterType="String" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
-		WHERE STATUS = 'Y' AND ID = #{ID}
+		WHERE STATUS = 'Y' AND ID = #{id}
 	</select>
 	
-	
+	<insert id="insertMember" parameterType="member"
+		useGeneratedKeys="true" keyColumn="MEMBER_NO" keyProperty="memberNo" >
+		INSERT INTO MEMBER (
+				MEMBER_NO,
+				ID,
+				PASSWORD,
+				NAME,
+				PHONE,
+				EMAIL,
+				POSTAL_CODE,
+				ADDRESS,
+				ADDRESS_DETAIL,
+				BIRTH
+		) VALUES (
+		SEQ_MEMBER_NO.NEXTVAL,
+		#{id},
+		#{password},
+		#{name},
+		#{phone},
+		#{email},
+		#{postalCode},
+		#{address},
+		#{addressDetail},
+		#{birth}
+		)
+
+	</insert>
 	
 	
 </mapper>
