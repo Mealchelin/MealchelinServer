@@ -79,9 +79,9 @@
 }
 
 .cs-paging {
-    width: 200px;
     height: 25px;
     display: flex;
+    gap:10px;
     justify-content: space-between;
 }
 
@@ -93,6 +93,10 @@
 }   
 
 .cs-paging button:hover{    
-    color: #3B6C51;
+    color: #86BC66;
     cursor: pointer;
+}
+
+.cs-paging button:disabled{
+	color:#86BC66;
 }

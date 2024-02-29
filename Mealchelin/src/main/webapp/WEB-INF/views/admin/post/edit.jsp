@@ -144,17 +144,16 @@
                                         <td class="ad_th"><label for="adCSWrite">카테고리</label></td>
                                         <td>
                                             <select name="adCSWrite" id="adCSWrite" class="adCat" onchange="QnASelect2(this)">
-                                                <option selected value="notice">공지사항</option>
-                                                <option value="qna">자주 묻는 질문</option>
+                                                <option selected value="공지사항">공지사항</option>
+                                                <option value="자주묻는질문">자주 묻는 질문</option>
                                             </select>
 											<select name="adQnAcat2" id="adQnAcat2" class="adCat">
-                                                <option selected value="">-</option>
-                                                <option value="">회원</option>
-                                                <option value="">주문/결제</option>
-                                                <option value="">취소/교환/환불</option>
-                                                <option value="">배송</option>
-                                                <option value="">상품</option>
-                                                <option value="">시스템오류</option>
+												<option selected value="회원">회원</option>
+                                                <option value="주문/결제">주문/결제</option>
+                                                <option value="취소/교환/환불">취소/교환/환불</option>
+                                                <option value="배송">배송</option>
+                                                <option value="상품">상품</option>
+                                                <option value="시스템오류">시스템오류</option>
                                             </select>
                                         </td>
                                     </tr>
