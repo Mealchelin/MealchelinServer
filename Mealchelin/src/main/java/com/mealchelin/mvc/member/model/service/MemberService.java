@@ -4,9 +4,11 @@ import com.mealchelin.mvc.member.model.vo.Member;
 
 public interface MemberService {
 
-	Member findMemberById(String userId);
+	Member findMemberById(String id);
 	
-	Member login(String userId, String userPwd);
+	Member login(String id, String password);
+
+	int save(Member member);
 
 
 }

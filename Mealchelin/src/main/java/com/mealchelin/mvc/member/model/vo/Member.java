@@ -39,7 +39,7 @@ public class Member {
 	private String addressDetail;
 	
 	// 회원 생년월일
-	private String bitth;
+	private String birth;
 	
 	// 회원 가입일자
 	private Date enrollDate;
