@@ -1,0 +1,193 @@
+.myAllBox {
+    margin: 0 auto;
+    width: 1100px;
+    padding: 0px 40px;
+}
+
+.mytitle {
+    font-size: 25px;
+    text-align: center;
+    margin: 50px 0px;
+}
+
+.myToptext {
+    margin-left: 46px;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+input[type=checkbox]+label{
+    display: inline-block;  
+    cursor: pointer; 
+    position: relative;
+    margin-top: 3px;
+    font-size: 19px;
+}
+
+input[type=checkbox]+label::before{
+    content: '';
+    display: inline-block; 
+    vertical-align: middle;
+    margin: 0px 10px 5px 3px;
+    width: 21px;
+    height: 21px;
+    background: url('../../img/all/check.png') no-repeat;
+    background-size: cover;
+}
+
+input[type="checkbox"]:checked + label::before{
+    background: url('../../img/all/check-active.png') no-repeat; 
+    background-size: cover;
+}
+
+.myToptext2 {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+/* 왼쪽 상품 리스트 */
+.myList{
+    display: inline-block;
+    width: 680px;
+
+}
+
+.mytr {
+    border-top: 1px solid #191919;
+    width: 1000px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mytd1 {
+    width: 52px;
+    padding-left: 3px;
+}
+
+.mytd1>img{
+    margin-top: 2px;
+}
+
+.mytd2 {
+    width: 75px;
+    text-align: center;
+    padding-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+} 
+
+.mytd3 {
+    width: 284px;
+}
+
+.mytd5 {
+    width: 146px;
+    text-align: right;
+    font-size: 20px;
+}
+
+.myProductName{
+    margin-left: 20px;
+}
+
+.myProductName:hover{
+    text-decoration: underline;
+}
+
+.myProductPrice {
+    font-weight: bold; 
+}
+
+.mytd6 {
+    width: 40px;
+    text-align: right;
+}
+
+.mytd6>img {
+    width: 21px;
+    height: 21px;
+    margin-top: 5px
+}
+
+.myAllPriceDiv{
+    border-top: 1px solid #bbb;
+    width: 999px;
+    height: 110px;
+    margin-bottom: 10px;
+    text-align: right;
+    margin-top: -10px;
+}
+
+.myAllPriceDiv > div {
+    display: inline-block;
+}
+
+.myAllPriceText {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.myAllPrice {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 8px;
+    color: #284D38;
+    margin-top: 10px;
+}
+
+.myCounter {
+    border: 1px solid #C0C0C0;
+    gap: 2px;
+    border-radius: 5px;
+    margin-left: 275px;
+    display: flex;
+}
+
+.myCounter>button {
+width: 30px;
+height: 30px;
+background-color: transparent;
+border: none;
+cursor: pointer;
+color: #C0C0C0;
+}
+
+.myCounter>button:hover {
+    border-radius: 2px;
+    background-color: #ededed;
+    color: #191919;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.myCounter-quantity {
+    border: none;
+    text-align: center;
+    width: 18px;
+}
+
+.finalbtnDiv {
+    width: 100%;
+    text-align: center;
+}
+
+.finalbtn {
+    border:none;
+    width: 150px;
+    height: 40px;
+    border-radius: 3px;
+    padding:7px 30px;
+    background-color: #3B6C51;
+    color: #fff;
+    margin: 20px auto;
+    text-align: center;
+}

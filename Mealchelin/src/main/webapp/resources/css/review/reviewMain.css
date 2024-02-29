@@ -1,0 +1,65 @@
+h3 {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+#re_reviewBtn {
+    border:none;
+    padding:7px 30px;
+    background-color: #559D50;
+    color: #fff;
+}
+
+#re_reviewBtnDiv{
+    text-align: right;
+
+}
+
+.mainDiv{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.re_img {
+    width: 252px;
+    height: 250px;
+    /* float: left; */
+}
+
+.re_imgDiv{
+    margin-top: 26px;
+    border: 1px solid #E1E1E1;
+    width: 254px;
+}
+
+#re_bottomPageNumbers{
+    text-align: center;
+    margin: 20px;
+}
+
+.re_brandName{
+    margin-top: 5px;
+    color: #8F8F8F;
+    float:right
+}
+
+.re_star{
+    color: #86BC66;
+    font-size: 20px;
+}
+
+.re_innerimgDiv{
+    word-break: break-all;
+    padding: 10px;
+}
+
+.re_foodName{
+    float: left;
+    font-size: 19px;
+}
+
