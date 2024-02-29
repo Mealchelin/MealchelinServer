@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,7 +79,6 @@ public class ProductController {
 		
 		Product product = null;
 		product = productService.getProductByNo(no);
-		log.info("중량: {}", product.getWeight());
 		// no에 맞는 상품 조회해서 add 
 		modelAndView.addObject("product", product);
 		modelAndView.setViewName("product/view");
@@ -86,5 +86,23 @@ public class ProductController {
 		return modelAndView; 
 	}
 	
+	// 장바구니에 추가
+	@PostMapping("/shoppingBasket")
+	public ModelAndView shop(
+			ModelAndView modelAndView,
+			@RequestParam int no,
+			@RequestParam int quantity) {
+		
+		int result = 0;
+		Product product = null;
+//		ShoppingBasketProduct sbp = null;
+		product = productService.getProductByNo(no);
+		int totalPrice = product.getPrice() * quantity;
+		
+//		result = service.save();
+		
+		
+		return modelAndView;
+	}
 	
 }

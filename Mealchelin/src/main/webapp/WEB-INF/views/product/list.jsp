@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<c:set var="category" value="${ not empty param.category ? 'category='+=param.category+='&' : '' }"/>
+<c:set var="sort" value="${ not empty param.sort ? 'sort='+=param.sort+='&' : '' }"/>
  
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,15 +38,7 @@
         <!-- 카테고리 -->
         <section id="pd-section1">
             <div class="pd-main-navi">
-                <h3 class="pd-main-heading">전체 상품 ${ category }</h3>
-				<!-- 
-                 데이터 연결 성공
-                <c:forEach var="product" items="${ list }">
-                	<h2>${ product.name }</h2>
-                </c:forEach>.
-				-->
-               
-                
+                <h3 class="pd-main-heading">전체 상품</h3>
                 <div class="pd-main-category">
                     <!-- get방식 리다이렉트 -->
                     <a href="${ path }/product/list?category=korean"  class="pd-main-category-name">한식</a>
@@ -60,17 +54,17 @@
                         <!-- 비동기? --> 
                         <span>
                             <button class="pd-main-sort-btn" id="pd-btn-popular" 
-                            onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if>sort=popular'"
+                            onclick="location.href='${ path }/product/list?${ category }sort=popular'"
                             >주문 많은 순</button>
                         </span>
                         <span>
                             <button class="pd-main-sort-btn" id="pd-btn-lowestPrice"
-                            onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if>sort=lowest'"
+                            onclick="location.href='${ path }/product/list?${ category }sort=lowest'"
                             >가격 낮은 순</button>
                         </span>
                         <span>
                             <button class="pd-main-sort-btn" id="pd-btn-highestPrice"
-                            onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if>sort=highest'"
+                            onclick="location.href='${ path }/product/list?${ category }sort=highest'"
                             >가격 높은 순</button>
                         </span>
                     </div>
@@ -89,7 +83,7 @@
             	</c:if>
 	            <c:forEach var="product" items="${ list }">
 	                <div class="pd-main_new_box">
-	                    <a href="${ path }/product/view?no=${product.no}"><div class="pd-main_new_box_img"><img src="${ path }/img/${ product.image }.jpg"></div></a>
+	                    <a href="${ path }/product/view?no=${product.no}"><div class="pd-main_new_box_img"><img src="${ path }/img/product/${ product.image }"></div></a>
 	                    <div class="pd-main_new_box_txt">
 	                        <div class="pd-main_new_txt_name">${ product.name }</div>
 	                        <div class="pd-main_new_txt_brand">${ product.brand }</div>
@@ -107,7 +101,7 @@
         <section id="pd-section3">
             <div class="pd-paging">
                 <!-- 이전 페이지로 -->
-				<button onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if><c:if test="${ not empty param.sort }">sort=<c:out value="${ param.sort }"/>&</c:if>page=${ pageInfo.prevPage }'">&lt;</button>
+				<button onclick="location.href='${ path }/product/list?${ category }${ sort }page=${ pageInfo.prevPage }'">&lt;</button>
 
 				<!--  10개 페이지 목록 -->
 				<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
@@ -116,13 +110,13 @@
 							<button disabled>${ current }</button>
 						</c:when>
 						<c:otherwise>
-							<button onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if><c:if test="${ not empty param.sort }">sort=<c:out value="${ param.sort }"/>&</c:if>page=${ current }'">${ current }</button>
+							<button onclick="location.href='${ path }/product/list?${ category }${ sort }page=${ current }'">${ current }</button>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				
 				<!-- 다음 페이지로 -->
-				<button onclick="location.href='${ path }/product/list?<c:if test="${ not empty param.category }">category=<c:out value="${ param.category }"/>&</c:if><c:if test="${ not empty param.sort }">sort=<c:out value="${ param.sort }"/>&</c:if>page=${ pageInfo.nextPage }'">&gt;</button>
+				<button onclick="location.href='${ path }/product/list?${ category }${ sort }page=${ pageInfo.nextPage }'">&gt;</button>
             </div>
         </section>
     </main>
@@ -138,7 +132,7 @@
 	    $(document).ready(() => {
 	    	
  	    	// 선택된 카테고리 css 변경
- 	    	let category = "<c:out value="${ param.category }"/>";
+ 	    	let category = '${ param.category }';
 		    let className = ' pd-main-selectedC';
 		    let korean = document.getElementsByClassName('pd-main-category-name')[0];
 		    let bunsik = document.getElementsByClassName('pd-main-category-name')[1];
@@ -164,7 +158,7 @@
 
 
 			// 선택된 분류 방식 css 변경
-			let sort = "<c:out value="${ param.sort }"/>";
+			let sort = '${ param.sort }';
 			let className2 = ' pd-main-selectedS';
 			let popular = document.getElementsByClassName('pd-main-sort-btn')[0];
 			let lowest = document.getElementsByClassName('pd-main-sort-btn')[1];
