@@ -15,8 +15,10 @@
 <!--default css-->
 <link rel="stylesheet" href="${ path }/css/common.css">
 <link rel="stylesheet" href="${ path }/css/review/reviewMain.css" />
+
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/review/MypageWritableReview.css" />
+<link rel="stylesheet"href="${ path }/css/mypage/mypageHeaderBox.css">
 
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -33,6 +35,7 @@
 
 	<!-- 내용 넣기 -->
 	<main>
+	<jsp:include page="./../mypage/mypageHeaderBox.jsp" />
 		<section>
 			<h3>나의 리뷰</h3>
                 <a href="${ path }/review/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>

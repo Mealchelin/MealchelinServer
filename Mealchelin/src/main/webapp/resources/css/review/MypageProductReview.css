@@ -69,23 +69,34 @@ hr {
 #re_foodName {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #re_reviewTitle {
     font-size: 16px;
     margin-bottom: 5px;
+    overflow: hidden;
+    width: 600px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 
 #re_reviewContent{
     font-size: 14px;
     color: #B4B4B4;
+    overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	width: 700px;
 }
 
 #re_star {
     color: #86BC66;
     font-size: 30px;
-    margin-top: 15px;
 }
 
 #re_companyName {
