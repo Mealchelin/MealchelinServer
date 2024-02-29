@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+	
+<mapper namespace="com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketProductMapper">
+
+	<insert id="insertSbp" parameterType="ShoppingBasketProduct">
+		INSERT INTO SHOPPING_BASKET_PRODUCT (
+			PRD_NO,
+			MEMBER_NO,
+			QUANTITY,
+			TOTAL_PRICE
+		) VALUES (
+			#{prdNo}, 
+			#{memNo}, 
+			#{quantity}, 
+			#{totalPrice}
+		)
+	</insert>
+
+
+
+
+</mapper>
