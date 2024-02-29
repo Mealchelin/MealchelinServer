@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<fmt:formatNumber var="price"  value="${product.price}" type="number"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -34,18 +35,19 @@
     <main>
     	<!-- 제품 이미지, 정보 -->
         <section id="pd-view-section1">
-            <form action="" method="">
+            <form>
+            	<input type="hidden" name="no" value="${ product.no }">
                 <div class="pd-view-image">
-                    <img src="../img/new_01.jpg" width="550px">
+                    <img src="${path}/img/product/${product.image}" width="550px">
                 </div>
                 <div class="pd-view-saleInfo">
                     <div class="pd-view-name">
-                        <p>브랜드</p>
-                        <h3>제품 이름</h3>
+                        <p>${product.brand}</p>
+                        <h3>${product.name}</h3>
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">판매가</div>
-                        <div class="pd-view-contentValue">18,900</div>
+                        <div class="pd-view-contentValue">${price}원</div>
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">배송비</div>
@@ -71,14 +73,14 @@
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">중량</div>
-                        <div class="pd-view-contentValue">약 500g</div>
+                        <div class="pd-view-contentValue">약 ${product.weight}</div>
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">수량</div>
                         <div class="pd-view-contentValue">
                             <div class="pd-view-quantity-btn">
                                 <button type="button" id="pd-view-quantity-minus">-</button>
-                                <input type="number" class="pd-view-quantity" name="qunatity"
+                                <input type="number" class="pd-view-quantity" name="quantity"
                                     id="pd-view-quantity" value="1" dir="rtl" min="1" max="99" readonly>
                                 <button type="button" id="pd-view-quantity-plus">+</button>
                             </div>
@@ -86,13 +88,12 @@
                     </div>
                     <div class="pd-view-content">
                         <div class="pd-view-contentName">총 상품 금액</div>
-                        <div class="pd-view-contentValue" id="pd-view-totalPrice">18,900원</div>
+                        <div class="pd-view-contentValue" id="pd-view-totalPrice">${price}원</div>
                     </div>
                     <div class="pd-view-btns">
-                        <!-- 파라미터로 name=value 넘어감 -->
-                        <!-- 컨트롤러에서 if 문 사용하면 될 거 같음 -->
-                        <button class="pd-view-btn-basket" name="action" value="basket">장바구니 담기</button>
-                        <button class="pd-view-btn-purchase" name="action" value="purchase">구매하기</button>
+                        <!-- 임의의 주소값 -->
+                        <button class="pd-view-btn-basket" formaction="/product/shoppingBasket" formmethod="post">장바구니 담기</button>
+                        <button class="pd-view-btn-purchase" formaction="/product/purchase" formmethod="post">구매하기</button>
                     </div>
                 </div>
             </form>
@@ -101,9 +102,9 @@
         <!-- 제품 상세 정보 -->
         <section id="pd-view-section2">
             <h3 class="pd-view-detail-header">상품 상세 정보</h3>
-            (상세 정보 이미지 추가 예정)
-            <img class="pd-view-detail-image" src="../img/main-sprite.png" width="900">
-
+            <br>
+            <br>
+            <img class="pd-view-detail-image" src="${path}/img/product/${product.description}" width="900">
         </section>
 
         <!-- 제품 교환 및 환불 정보 -->
@@ -164,6 +165,41 @@
     
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/index.js"></script>
+    <script type="text/javascript">
+    $(document).ready(() => {
+        // 1. 수량 버튼으로 수량 바꾸기
+        // 2. 수량에 맞는 총 상품 금액 표현하기
+        let quantity = parseInt($('#pd-view-quantity').val());
+        
+        // 1) 하나 빼기 (최소값: 1)
+        let minus = $('#pd-view-quantity-minus');
+        minus.on('click', () => {
+            if (quantity != 1) {
+                $('#pd-view-quantity').val(quantity-=1)
+                if (quantity < 10) {
+                    $('#pd-view-quantity').css("width", "10px")
+                }
+            }
+            let price1 = quantity*${product.price};
+            let price2 = price1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            $("#pd-view-totalPrice").html(price2 + "원");
+        });
+
+        // 2) 하나 더하기 (최대값: 99)
+        let plus = $('#pd-view-quantity-plus');
+        plus.on('click', () => {
+            if (quantity != 99) {
+                $('#pd-view-quantity').val(quantity+=1)
+                if (quantity >= 10) {
+                    $('#pd-view-quantity').css("width", "16px")
+                }
+            }
+            let price1 = quantity*${product.price};
+            let price2 = price1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            $("#pd-view-totalPrice").html(price2 + "원");
+        });
+    });
+    </script>
 </body>
 
 </html>
