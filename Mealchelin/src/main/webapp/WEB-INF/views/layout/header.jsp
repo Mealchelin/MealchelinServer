@@ -43,14 +43,26 @@
                 <input type="submit" id="nav_search_but" value="">
             </form>
         </li>
-        <li class="nav_login">
-        	<a href="">
-	        	<ul class="nav_login_hover">
-	        		<li><a href="">로그인</a></li>
-	        		<li><a href="">마이페이지</a></li>
-	        	</ul>
-        	</a>
-        </li>
+        <c:if test="${ empty loginMember }">
+	        <li class="nav_login">
+	        	<a href="${ path }/member/login">
+		        	<ul class="nav_login_hover">
+		        		<li><a href="${ path }/member/enroll">회원가입</a></li>
+		        		<li><a href="${ path }/member/login">로그인</a></li>
+		        	</ul>
+	        	</a>
+	        </li>
+        </c:if>
+        <c:if test="${ not empty loginMember }">
+	        <li class="nav_login">
+	        	<a href="${ path }/mypage/updateMember">
+		        	<ul class="nav_login_hover">
+		        		<li><a href="${ path }/member/logout">로그아웃</a></li>
+		        		<li><a href="${ path }/mypage/updateMember">마이페이지</a></li>
+		        	</ul>
+	        	</a>
+	        </li>
+        </c:if>
         <a href=""><li class="nav_cart" ></li></a>
     </ul>
 </nav>
