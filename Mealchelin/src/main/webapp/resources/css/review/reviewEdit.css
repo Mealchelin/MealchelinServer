@@ -1,0 +1,39 @@
+#re_titleContent {
+    width: 485px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding:8px 10px;
+    border-color: #D9D9D9;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+    font-size: 14px;
+    height: 45px;
+}
+
+#re_detailReviewContent {
+    width: 485px;
+    height: 200px;
+    margin-top: 10px;
+    padding:8px 10px;
+    border-color: #D9D9D9;
+    border-width: 1px;
+    border-style: solid;
+    outline: none;
+    font-size: 14px;
+}
+
+#re_emptySpace {
+    height: 25px;
+}
+
+#re_star4 {
+    color: #86BC66;
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+#re_textCount {
+    text-align: right;
+    margin-bottom: 20px;
+}
