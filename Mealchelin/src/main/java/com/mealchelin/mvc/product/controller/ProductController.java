@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.product.model.service.ProductService;
 import com.mealchelin.mvc.product.model.vo.Product;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketProductService;
+import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductController {
 	
 	private final ProductService productService;
+	private final ShoppingBasketProductService sbpService;
 
 	// 주소와 화면 연결
 	// + 카테고리 선택
@@ -88,19 +91,52 @@ public class ProductController {
 	
 	// 장바구니에 추가
 	@PostMapping("/shoppingBasket")
-	public ModelAndView shop(
-			ModelAndView modelAndView,
+	public String shop(
 			@RequestParam int no,
 			@RequestParam int quantity) {
 		
 		int result = 0;
 		Product product = null;
-//		ShoppingBasketProduct sbp = null;
+		ShoppingBasketProduct sbp = new ShoppingBasketProduct();
+		
 		product = productService.getProductByNo(no);
 		int totalPrice = product.getPrice() * quantity;
 		
-//		result = service.save();
+		sbp.setPrdNo(product.getNo());
+		sbp.setMemNo(1);
+		sbp.setQuantity(quantity);
+		sbp.setTotalPrice(totalPrice);
 		
+		result = sbpService.save(sbp);
+		
+		return "redirect:/mypage/shoppingBasket";
+	}
+	
+	// 구매하기
+	@PostMapping("/purchase")
+	public ModelAndView purchase(
+			ModelAndView modelAndView,
+			@RequestParam int no,
+			@RequestParam int quantity) {
+		
+		Product product = null;
+		product = productService.getProductByNo(no);
+		
+		log.info("{}", product);
+		
+		modelAndView.addObject("product", product);
+		modelAndView.setViewName("redirect:/product/purchase2");
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/purchase2")
+	public ModelAndView	purchase2(
+			ModelAndView modelAndView,
+			Product product) {
+		
+		log.info("{}", product);
+		modelAndView.addObject("product", product);
 		
 		return modelAndView;
 	}
