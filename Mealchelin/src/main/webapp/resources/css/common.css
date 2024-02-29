@@ -126,6 +126,7 @@ input::-webkit-search-cancel-button {
     z-index: 1000;
     border-bottom: 1px solid #E8E8E8;
     min-width: 1100px;;
+    transition: height 0.3s ease;
 }
 
 
@@ -161,6 +162,7 @@ input::-webkit-search-cancel-button {
     width: 55%;
     float:left;
     text-align: left;
+    margin-bottom: 12.5px;
 }
 
 .main_nav li{
