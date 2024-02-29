@@ -31,7 +31,7 @@
     </header>
     
     <!-- 내용 넣기 -->
- <main>
+ 	 <main>
         <section>
             <h3 class="myTitle">내 정보수정</h3>
                 <form action="" method="post">
@@ -61,7 +61,7 @@
                             <input type="password"  class="mymemberIp" name="myMemberPwd" id="myMemberPwd" 
                                 placeholder="비밀번호를 입력해주세요" style="margin-bottom: -10px;">
                         </div>
-                        <div class="mySubText mySubText1" style="margin-bottom: 10px;">6자 이상 영문/숫자/특수문자 조합</div>
+                        <div class="mySubText mySubText1" style="margin-bottom: 10px;"></div>
                 
                         
                         <div class="myInputDiv1">
@@ -71,7 +71,7 @@
                             <input type="password"  class="mymemberIp" name="myMemberPwd2" id="myMemberPwd2" 
                             placeholder="비밀번호를 한번 더 입력해주세요" style="margin-bottom: -10px;">
                         </div>
-                        <div class="mySubText mySubText2" style="margin-bottom: 10px;">동일한 비밀번호를 입력해주세요</div>
+                        <div class="mySubText mySubText2" style="margin-bottom: 10px;"></div>
                         
                         
                         <div class="myInputDiv1">

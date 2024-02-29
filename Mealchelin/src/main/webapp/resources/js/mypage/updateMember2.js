@@ -1,4 +1,36 @@
 $(document).ready(()=>{
+
+    // 비밀번호 정규화 
+    $('#myMemberPwd').keyup(function(){
+        let pwd = $('#myMemberPwd').val();
+        let regex = /^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,25}$/;
+        
+        if(regex.exec(pwd)){
+            $('.mySubText1').html("사용 가능한 비밀번호 입니다.");
+            $('.mySubText1').css( { "margin-left" : "-41px"});
+
+        }else {
+            $('.mySubText1').html("6자 이상 25자 이하 영문/숫자/특수문자 조합");
+            $('.mySubText1').css( { "margin-left" : "41px"});
+        }
+    });
+
+    // 비밀번호 비교
+    $('#myMemberPwd2').keyup(function(){
+        let pwd = $('#myMemberPwd').val();
+        let pwd2 = $('#myMemberPwd2').val();
+
+        if(pwd === pwd2){
+            $('.mySubText2').html("동일한 비밀번호 입니다.");
+            $('.mySubText2').css( { "padding-left" : "-35px"});
+        } else {
+            $('.mySubText2').html("동일 하지 않은 비밀번호입니다.");
+            $('.mySubText2').css( { "margin-left" : "-3px"});
+            $('.mySubText2').css( { "padding-left" : "35px"});
+        }
+    });
+
+    // 주소 api
     $('.myInputBtn1').on('click', ()=>{
             new daum.Postcode({
             oncomplete: function(data) {

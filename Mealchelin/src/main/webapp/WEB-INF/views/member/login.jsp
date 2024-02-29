@@ -36,8 +36,8 @@
             <img src="../img/all/logo5.png" alt="로고사진" class="memLogo">
 
             <form action="" method="post">
-                <input type="text" placeholder="아이디를 입력해주세요" class="memInput memInputId" >
-                <input type="password" placeholder="비밀번호를 입력해주세요" class="memInput memInputPwd">
+                <input type="text" placeholder="아이디를 입력해주세요" id="userId" class="memInput memInputId" >
+                <input type="password" placeholder="비밀번호를 입력해주세요" id="userPwd" class="memInput memInputPwd">
                 <input type="submit" value="로그인" class="memInput memInputBtn">
             </form>
 

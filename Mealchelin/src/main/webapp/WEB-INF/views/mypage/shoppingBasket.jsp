@@ -31,78 +31,58 @@
     </header>
     
     <!-- 내용 넣기 -->
-   <main>
+  	 <main>
         <section>
-            <h3 class="mytitle">장바구니</h3>
-            <div class="myToptext">
-                <input type="checkbox" name="mychecker" id="mycheckerAll" class="mychecker"><label for="mycheckerAll">전체선택</label>
-            </div>
-            <div class="myAllBox">
-                <!-- 왼쪽 장바구니 리스트-->
-                <div class="myList">
-                    <table>
-                        <tr class="mytr">
-                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker1" value="" class="mychecker"><label for="mychecker1"></label></td>
-                            <td class="mytd2"><img src="../img/galbitang.png" alt="음식사진"></td>
-                            <td class="mytd3"><a href="#"><div class="myProductName"> [사미헌] 갈비탕 </div></a></td>
-                            <td class="mytd4">
-                                <div class="myCounter myCounter1">
-                                    <button class="myCounter-minus">-</button>
-                                    <span class="myCounter-quantity">1</span>
-                                    <button class="myCounter-plus">+</button>
-                                </div>
-                            </td>
-                            <td class="mytd5"><div class="myProductPrice"> 12,000원 </div></td>
-                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
-                        </tr>
-                        <tr class="mytr">
-                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker2" value="" class="mychecker"><label for="mychecker2"></label></td>
-                            <td class="mytd2"><img src="../img/galbitang.png" alt="음식사진"></td>
-                            <td class="mytd3"><a href="#"><div class="myProductName"> [사미헌] 갈비탕 </div></a></td>
-                            <td class="mytd4">
-                                <div class="myCounter myCounter1">
-                                    <button class="myCounter-minus">-</button>
-                                    <span class="myCounter-quantity">1</span>
-                                    <button class="myCounter-plus">+</button>
-                                </div>
-                            </td>
-                            <td class="mytd5"><div class="myProductPrice"> 12,000원 </div></td>
-                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
-                        </tr>
-                    </table>
-                </div>
-                <!-- 오른쪽 주소, 합계 박스 -->
-                <div class="myRightBox">
-                    <div class="myRightBoxIn">
-                        <div class="myboxInTitle">
-                            <img src="../img/all/location.png" alt="location">
-                            <div>서울특별시 중구 남대문로 120</div>
-                        </div>
-                        <div class="myDetailAdress">대일빌딩 2층, 3층</div>
-                        <button class="myAdressBtn">배송지 변경</button>
-                        <div class="myPrice">
-                            <div class="myPriceleft">상품금액</div>
-                            <div class="myPriceright">12,000원</div>
-                        </div>
-                        <div class="mydelivery">
-                            <div class="mydeliveryleft">배송비</div>
-                            <div class="mydeliveryright">3,500원</div>
-                        </div>
-
-                        <hr>
-
-                        <div class="myAllprice">
-                            <div class="myAllpriceleft">결제예상금액</div>
-                            <div class="myAllpriceright">27,000원</div>
-                        </div>
-
-                        <button class="myOrder" type="submit">주문하기</button>
-
-                    </div>
-                    <div class="mytext"> - [주문완료] 상태일 경우에만 주문 취소 가능합니다. </div>
-                    <div class="mytext"> - 마이페이지 > 주문내역에서 직접 취소할 수 있습니다.</div>
-                </div>
-            </div>
+        	<form action="" method="get">
+	            <h3 class="mytitle">장바구니</h3>
+	            <div class="myToptext">
+	                <input type="checkbox" name="mychecker" id="mycheckerAll" class="mychecker"><label for="mycheckerAll">전체선택</label>
+	            </div>
+	            <div class="myAllBox">
+	                <!-- 왼쪽 장바구니 리스트-->
+	                <div class="myList">
+	                    <table>
+	                        <tr class="mytr">
+	                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker1" value="" class="mychecker"><label for="mychecker1"></label></td>
+	                            <td class="mytd2"><img src="../img/galbitang.png" alt="음식사진"></td>
+	                            <td class="mytd3"><a href="#"><div class="myProductName"> [사미헌] 갈비탕 </div></a></td>
+	                            <td class="mytd4">
+	                                <div class="myCounter myCounter1">
+	                                    <button class="myCounter-minus" id="my-view-quantity-minus1">-</button>
+	                                    <input type="number" class="myCounter-quantity" id="my-view-quantity1"
+	                                        value="1" dir="rtl" min="1" max="99" readonly>
+	                                    <button class="myCounter-plus" id="my-view-quantity-plus1">+</button>
+	                                </div>
+	                            </td>
+	                            <td class="mytd5"><div class="myProductPrice" id="my-view-totalPrice1" > 12,000원 </div></td>
+	                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
+	                        </tr>
+	                        <tr class="mytr">
+	                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker2" value="" class="mychecker"><label for="mychecker2"></label></td>
+	                            <td class="mytd2"><img src="../img/galbitang.png" alt="음식사진"></td>
+	                            <td class="mytd3"><a href="#"><div class="myProductName"> [사미헌] 갈비탕 </div></a></td>
+	                            <td class="mytd4">
+	                                <div class="myCounter myCounter1">
+	                                    <button class="myCounter-minus" id="my-view-quantity-minus2">-</button>
+	                                    <input type="number" class="myCounter-quantity" id="my-view-quantity2"
+	                                            value="1" dir="rtl" min="1" max="99" readonly>
+	                                    <button class="myCounter-plus" id="my-view-quantity-plus2">+</button>
+	                                </div>
+	                            </td>
+	                            <td class="mytd5"><div class="myProductPrice" id="my-view-totalPrice2"> 12,000원 </div></td>
+	                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
+	                        </tr>
+	                    </table>
+	                </div>
+	                <div class="myAllPriceDiv">
+	                    <div class="myAllPriceText">결제예상금액</div>
+	                    <div class="myAllPrice">24,000원</div>
+	                </div>
+	            </div>
+	            <div class="finalbtnDiv">
+	            	<button type="submit" class="finalbtn">주문하기</button>
+	            </div>
+        	</form>
         </section>
     </main>
     
