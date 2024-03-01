@@ -10,7 +10,8 @@ public interface MemberService {
 
 	int save(Member member);
 
-	Member getMemberByNo(int i);
+
+	Member MemberByOrderInfo(String id);
 
 	
 

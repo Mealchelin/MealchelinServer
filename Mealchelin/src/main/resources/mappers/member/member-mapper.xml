@@ -55,12 +55,13 @@
 	</select>
 	
 	
-	<select id="selectMemberByNo" resultMap="memberResultMap">
+	<select id="selectMemberByOrderInfo" resultMap="memberResultMap" parameterType="String">
 	SELECT MEMBER_NO,
 			      NAME,
 			      PHONE,
 			      EMAIL
 			FROM MEMBER
+			WHERE STATUS = 'Y' AND ID = #{id}
 	</select>
 	
 	<insert id="insertMember" parameterType="member"

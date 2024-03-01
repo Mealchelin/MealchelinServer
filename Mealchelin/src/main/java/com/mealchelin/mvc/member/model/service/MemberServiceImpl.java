@@ -37,10 +37,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member getMemberByNo(int i) {
+	public Member MemberByOrderInfo(String id) {
 		
 
-		return mapper.selectMemberByNo(i);
+		return mapper.selectMemberByOrderInfo(id);
 				
 				
 	}
@@ -64,6 +64,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
+
 
 }
 
