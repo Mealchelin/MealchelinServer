@@ -9,20 +9,13 @@ import com.siot.IamportRestClient.response.Payment;
 @Service
 public class PaymentServicelmpl implements PaymentService {
 
+	@Override
+	public void processPayment(Payment payment) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
-	 private PaymentMapper paymentMapper;
-	 
-	 
-
-	    @Autowired
-	    public void PaymentServiceImpl(PaymentMapper paymentMapper) {
-	        this.paymentMapper = paymentMapper;
-	    }
-
-	    @Override
-	    public void processPayment(Payment payment) {
-	        paymentMapper.insertPayment(payment);
-	    }
 	
 	
 }

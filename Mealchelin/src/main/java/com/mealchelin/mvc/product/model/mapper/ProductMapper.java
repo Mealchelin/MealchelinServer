@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 import com.mealchelin.mvc.product.model.vo.Product;
 
@@ -14,12 +15,15 @@ public interface ProductMapper {
 
 	int selectProductCountByCategory(@Param("category") String category);
 	
-	List<Product> selectProductList();
+	List<Product> selectProductList(RowBounds rowBounds);
 
-	List<Product> selectProductListByCategory(@Param("category") String category);
+	List<Product> selectProductListByCategory(@Param("category") String category, RowBounds rowBounds);
 	
-	List<Product> selectProductList(@Param("sort") String sort);
+	List<Product> selectProductListBySort(@Param("sort") String sort, RowBounds rowBounds);
 
-	List<Product> selectProductListByCategory(@Param("category") String category, @Param("param1") String sort);
+	List<Product> selectProductListByCategoryAndSort(@Param("category") String category, @Param("sort") String sort, RowBounds rowBounds);
+
+	
+	Product selectProductByNo(@Param("no") int no);
 
 }

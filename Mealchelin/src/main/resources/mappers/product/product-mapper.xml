@@ -20,7 +20,8 @@
 			   TOTAL_SALES,
 			   VIEWS,
 			   RATING,
-			   STATUS
+			   STATUS,
+			   WEIGHT
 		FROM PRODUCT
 		WHERE STATUS = 'Y' AND DISPLAY = 'Y'
 	</sql>
@@ -40,6 +41,7 @@
 		<result property="views" column="VIEWS"/>
 		<result property="rating" column="RATING"/>
 		<result property="status" column="STATUS"/>
+		<result property="weight" column="WEIGHT"/>
 	</resultMap>
 
 	<select id="selectProductCount" resultType="_int">
@@ -51,6 +53,11 @@
 	</select>
 	
 	<select id="selectProductList" resultMap="productResultMap">
+		<include refid="selectProductSql"/>
+		ORDER BY TOTAL_SALES DESC
+	</select>
+	
+	<select id="selectProductListBySort" resultMap="productResultMap">
 		<include refid="selectProductSql"/>
 		ORDER BY 
 		<choose>
@@ -69,12 +76,18 @@
 	<select id="selectProductListByCategory" resultMap="productResultMap">
 		<include refid="selectProductSql"/>
 		AND CATEGORY = #{category}
+		ORDER BY TOTAL_SALES DESC
+	</select>
+	
+	<select id="selectProductListByCategoryAndSort" resultMap="productResultMap">
+		<include refid="selectProductSql"/>
+		AND CATEGORY = #{category}
 		ORDER BY 
 		<choose>
-			<when test="param1 == 'lowest'">
+			<when test="sort == 'lowest'">
 				PRICE ASC
 			</when>
-			<when test="param1 == 'highest'">
+			<when test="sort == 'highest'">
 				PRICE DESC
 			</when>
 			<otherwise>
@@ -83,6 +96,10 @@
 		</choose>
 	</select>
 	
+	<select id="selectProductByNo" resultMap="productResultMap">
+		<include refid="selectProductSql"/>
+		AND PRD_NO = #{no}
+	</select>
 	
 	
 	

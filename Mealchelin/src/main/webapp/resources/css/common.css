@@ -126,6 +126,7 @@ input::-webkit-search-cancel-button {
     z-index: 1000;
     border-bottom: 1px solid #E8E8E8;
     min-width: 1100px;;
+    transition: height 0.3s ease;
 }
 
 
@@ -159,17 +160,52 @@ input::-webkit-search-cancel-button {
 
 .main_nav{
     width: 55%;
+    height: 20px;
     float:left;
     text-align: left;
+    margin-bottom: 12.5px;
 }
 
-.main_nav li{
-    padding:0 20px;
+.main_nav>li{
+    padding:0 20px 10px 20px;
+    display:inline-block;
+    float:left;
+    position:relative;
 }
 
-.main_nav li:hover>a{
+.main_nav>li:hover>a{
     color: #559D50;
     cursor: pointer;
+}
+
+.main_nav>li>ul>li{
+	display:block;
+	padding: 6px 10px;
+	text-align:center;
+}
+
+.main_nav_hover{
+	display:none;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 7px;
+    position: absolute;
+    width: 100px;
+    left: -10px;
+}
+
+.main_nav_hover2{
+	display:none;
+	background-color: #fff;
+    border: 1px solid #ddd;
+    margin-top: 7px;
+    position: absolute;
+    width: 150px;
+    left: -25px;
+}
+
+.main_nav>li:hover>ul{
+	display:block;
 }
 
 .right_nav{
@@ -178,6 +214,10 @@ input::-webkit-search-cancel-button {
     font-size: 12px;
     position: relative;
     vertical-align: middle;
+}
+
+.right_nav>li{
+	display:inline-block;
 }
 
 #nav_search{
@@ -206,6 +246,35 @@ input::-webkit-search-cancel-button {
     width: 20px; height: 20px;
     background: url('../img/main-sprite.png') -295px -247px;
     margin: -3px 19px -3px 24px;
+    position:relative;
+}
+
+.nav_login_hover{
+	width:90px;
+	text-align:center;
+	display:none;
+	position:absolute;
+	bottom: -70px;
+    left: -35px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.nav_login_hover>li{
+	padding: 6px;
+}
+
+.nav_login>a{
+	display:block;
+	height:50px;
+}
+.nav_login:hover>ul{
+	display:block;
+}
+
+
+.nav_login>ul:hover>li{
+	display:block;
 }
 
 .nav_cart{
@@ -233,15 +302,15 @@ input::-webkit-search-cancel-button {
 
 }
 
-#header.active .main_nav li{
+#header.active .main_nav>li{
     padding:25px 20px 13px 20px;
 }
 
-#header.active .main_nav li:first-child{
+#header.active .main_nav>li:first-child{
     padding:25px 20px 13px 30px;
 }
 
-#header.active .right_nav li{
+#header.active .right_nav>li{
     padding-top:25px;
 }
 

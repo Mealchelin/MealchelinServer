@@ -38,5 +38,7 @@ public class Product {
 	
 	private String status;
 	
+	private String weight;
+	
 
 }
