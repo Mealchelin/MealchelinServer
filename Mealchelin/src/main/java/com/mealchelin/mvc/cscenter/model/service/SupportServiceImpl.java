@@ -32,9 +32,9 @@ public class SupportServiceImpl implements SupportService {
 	}
 
 	@Override
-	public Support getNoticeByNo(int supportNo) {
+	public Support getNoticeByNo(int no) {
 		
-		return mapper.selectNoticeByNo(supportNo);
+		return mapper.selectNoticeByNo(no);
 	}
 	
 	@Override

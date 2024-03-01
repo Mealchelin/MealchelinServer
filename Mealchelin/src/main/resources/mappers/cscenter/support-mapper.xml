@@ -12,6 +12,7 @@
 			SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
 			FROM(
 			    SELECT S.SUPPORT_NO AS SUPPORT_NO,
+			    	   M.MEMBER_NO AS MEMBER_NO,
 			           S.CATEGORY AS CATEGORY,
 			           S.NAME AS S_NAME,
 			           S.CONTENT AS CONTENT,
@@ -20,7 +21,7 @@
 			           M.NAME AS M_NAME
 			    FROM SUPPORT S
 			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-			    WHERE CATEGORY LIKE '고객센터'
+			    WHERE CATEGORY LIKE '고객센터' AND M.MEMBER_NO = 1
 			    ORDER BY SUPPORT_NO
 			    )
 			)
@@ -35,15 +36,9 @@
 		<result property="mname" column="M_NAME"/>
 	</resultMap>
 	
-	<resultMap id="noticeViewResultMap" type="Support">
-		<id property="supportNo" column="SUPPORT_NO"/>
-		<result property="rnum" column="RNUM"/>
+	<resultMap id="noticeViewResultMap" type="Support" extends="noticeListResultMap">
 		<result property="category" column="CATEGORY"/>
-		<result property="sname" column="S_NAME"/>
 		<result property="content" column="CONTENT"/>
-		<result property="rgstrDate" column="RGSTR_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="mname" column="M_NAME"/>
 	</resultMap>
 	
 	<!-- 고객센터 게시글 목록 조회(전체 목록) -->
@@ -68,7 +63,7 @@
 			           M.NAME AS M_NAME
 			    FROM SUPPORT S
 			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-			    WHERE STATUS = 'Y' AND SUPPORT_NO = #{supportNo}
+			    WHERE S.STATUS = 'Y' AND SUPPORT_NO = #{supportNo} AND M.MEMBER_NO = 1
 	</select>
 	
 	<!-- 자주 묻는 질문 -->
@@ -78,6 +73,7 @@
 			SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, SUB_CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
 			FROM(
 			    SELECT S.SUPPORT_NO AS SUPPORT_NO,
+			    	   M.MEMBER_NO AS MEMBER_NO,
 			           S.CATEGORY AS CATEGORY,
 			           S.SUB_CATEGORY AS SUB_CATEGORY,
 			           S.NAME AS S_NAME,
@@ -87,7 +83,7 @@
 			           M.NAME AS M_NAME
 			    FROM SUPPORT S
 			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-			    WHERE CATEGORY LIKE '자주묻는질문'
+			    WHERE CATEGORY LIKE '자주묻는질문' AND M.MEMBER_NO = 1
 			    ORDER BY SUPPORT_NO
 			    )
 			)
@@ -107,7 +103,7 @@
 	
 	<!-- 고객센터 게시글 목록 조회(전체 목록) -->
 	<select id="selectFaqCount" resultType="_int">
-		SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '자주묻는질문'
+		SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '자주묻는질문' AND MEMBER_NO = 1
 	</select>
 	
 	<select id="selectFaqAll" resultMap="faqListResultMap">

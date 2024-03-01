@@ -15,6 +15,6 @@ public interface SupportService {
 
 	List<Support> getFaqList(PageInfo pageInfo);
 
-	Support getNoticeByNo(int supportNo);
+	Support getNoticeByNo(int no);
 	
 }

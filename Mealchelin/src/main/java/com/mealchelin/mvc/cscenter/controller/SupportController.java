@@ -60,12 +60,12 @@ public class SupportController {
 	}
 	
 	@GetMapping("/noticeView")
-	public ModelAndView csNoticeView(ModelAndView modelAndView, @RequestParam int supportNo) {
+	public ModelAndView csNoticeView(ModelAndView modelAndView, @RequestParam int no) {
 		Support support = null;
 		
-		log.info("view() 호출 - {}", supportNo);
+		log.info("view() 호출 - {}", no);
 		
-		support = service.getNoticeByNo(supportNo);
+		support = service.getNoticeByNo(no);
 		
 		modelAndView.addObject("support", support);
 		modelAndView.setViewName("cscenter/noticeView");
