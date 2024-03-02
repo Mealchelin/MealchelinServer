@@ -51,5 +51,19 @@ public class SupportServiceImpl implements SupportService {
 		return mapper.selectFaqAll(rowBounds);
 	}
 
+	@Override
+	public int getadNoticeCount() {
+		return mapper.selectadNoticeCount();
+	}
+
+	@Override
+	public List<Support> getadNoticeList(PageInfo pageInfo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectadNoticeAll(rowBounds);
+	}
+
 	
 }

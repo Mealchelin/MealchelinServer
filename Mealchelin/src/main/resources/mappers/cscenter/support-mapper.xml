@@ -52,6 +52,17 @@
         ORDER BY RNUM DESC
 	</select>
 	
+	<select id="selectadNoticeCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPORT WHERE CATEGORY LIKE '고객센터'
+	</select>
+	
+	<select id="selectadNoticeAll" resultMap="noticeListResultMap">
+		<include refid="noticeListSql" />
+        ORDER BY RNUM DESC
+	</select>
+	
+	
+	
 	<select id="selectNoticeByNo" parameterType="_int"
 		resultMap="noticeViewResultMap">
 		SELECT S.SUPPORT_NO AS SUPPORT_NO,
@@ -63,7 +74,7 @@
 			           M.NAME AS M_NAME
 			    FROM SUPPORT S
 			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-			    WHERE S.STATUS = 'Y' AND SUPPORT_NO = #{supportNo} AND M.MEMBER_NO = 1
+			    WHERE SUPPORT_NO = #{supportNo} AND M.MEMBER_NO = 1
 	</select>
 	
 	<!-- 자주 묻는 질문 -->

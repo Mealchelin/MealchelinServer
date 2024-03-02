@@ -78,9 +78,9 @@ public class AdminPostController {
 		PageInfo pageInfo = null;
 		List<Support> list = null;
 		
-		listCount = serviceS.getNoticeCount();
+		listCount = serviceS.getadNoticeCount();
 		pageInfo = new PageInfo(page, 5, listCount, 10);
-		list = serviceS.getNoticeList(pageInfo);
+		list = serviceS.getadNoticeList(pageInfo);
 		
 //		log.info("Page Number: {}", page);
 //		log.info("List Count : {}", listCount);

@@ -20,4 +20,8 @@ public interface SupportMapper {
 	List<Support> selectFaqAll(RowBounds rowBounds);
 
 	Support selectNoticeByNo(@Param("supportNo") int no);
+
+	int selectadNoticeCount();
+
+	List<Support> selectadNoticeAll(RowBounds rowBounds);
 }

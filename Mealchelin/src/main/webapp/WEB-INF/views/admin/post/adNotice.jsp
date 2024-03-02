@@ -126,18 +126,29 @@
 						                    	<td colspan="6">조회된 게시글이 없습니다.</td>
 						                	</tr>	
 										</c:if>
-										<c:if test="${ not empty list }">
-											<c:forEach var="support" items="${ list }">
-											<tr>
-												<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-												<td><input type="checkbox" class="ad_notice_chk" name="ad_notice_chk" value="${ support.rnum }"></td>
-	                                            <td>${ support.rnum }</td>
-	                                            <td style="cursor: pointer;" onclick="location.href='${ path }/admin/post/adNoticeDetail?no=${ support.supportNo }'">${ support.sname }</td>
-												<td><fmt:formatDate value="${ support.rgstrDate }" pattern="yyyy.MM.dd"/></td>
-												<td class="d-none d-xl-table-cell">${ support.mname }</td>
-												<td class="d-none d-xl-table-cell" id="notice_status">${ support.status }</td>
-											</tr>
-											</c:forEach>
+										<c:if test="${not empty list}">
+										    <c:forEach var="support" items="${list}">
+										        <tr>
+										            <!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+										            <td><input type="checkbox" class="ad_notice_chk" name="ad_notice_chk" value="${support.rnum}"></td>
+										            <td>${support.rnum}</td>
+										            <td style="cursor: pointer;" onclick="location.href='${path}/admin/post/adNoticeDetail?no=${support.supportNo}'">${support.sname}</td>
+										            <td><fmt:formatDate value="${support.rgstrDate}" pattern="yyyy.MM.dd"/></td>
+										            <td class="d-none d-xl-table-cell">${support.mname}</td>
+										            <c:set var="status" value="${ support.status }" scope="session"/> 
+										            <c:choose>
+														<c:when test='${ status == "Y" }'>
+															<td class="d-none d-xl-table-cell">노출</td>
+														</c:when>
+													    <c:when test='${ status == "N" }'>
+															<td class="d-none d-xl-table-cell">비노출</td>
+														</c:when>
+														<c:otherwise>
+															<td class="d-none d-xl-table-cell"> </td>		
+														</c:otherwise>
+													</c:choose>
+										        </tr>
+										    </c:forEach>
 										</c:if>
 									</tbody>
 								</table>
@@ -212,18 +223,6 @@
 			})
 		};
 		
-		window.onload = function() {
-			let noticeStatusElements = document.querySelectorAll('.notice_status');
-			noticeStatusElements.forEach(function(element) {
-				let supportStatus = '${support.status}'
-				
-				if(supportStatus = 'Y'){
-					noticeStatus.innerText = '노출'
-				} else{
-					noticeStatus.innerText = '비노출'
-				};
-			}
-		}
 	</script>
 </body>
 
