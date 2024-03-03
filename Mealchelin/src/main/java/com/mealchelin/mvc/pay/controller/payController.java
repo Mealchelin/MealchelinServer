@@ -27,6 +27,9 @@ public class payController {
 		
 		Member userinfo = service.MemberByOrderInfo(loginMember.getId());
 		
+		
+		
+		
 		log.info("userinfo = {}",userinfo);
 		
 	    if ( member.getId() != null) {
