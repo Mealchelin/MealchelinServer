@@ -1,9 +1,9 @@
 package com.mealchelin.mvc.pay.model.service;
 
-import com.siot.IamportRestClient.response.Payment;
+import com.mealchelin.mvc.pay.model.vo.PayMent;
 
 public interface PaymentService {
 
-	void processPayment(Payment payment);
+	void processPayment(PayMent payment);
 
 }

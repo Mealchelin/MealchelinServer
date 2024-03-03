@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mealchelin.mvc.pay.model.mapper.PaymentMapper;
-import com.siot.IamportRestClient.response.Payment;
+import com.mealchelin.mvc.pay.model.vo.PayMent;
 
 @Service
 public class PaymentServicelmpl implements PaymentService {
@@ -20,7 +20,7 @@ public class PaymentServicelmpl implements PaymentService {
 	    }
 
 	    @Override
-	    public void processPayment(Payment payment) {
+	    public void processPayment(PayMent payment) {
 	        paymentMapper.insertPayment(payment);
 	    }
 	

@@ -10,6 +10,7 @@ public interface MemberService {
 
 	int save(Member member);
 
+	// 주문정보
 	Member getMemberByNo(int i);
 
 	

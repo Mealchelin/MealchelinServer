@@ -37,11 +37,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public Member getMemberByNo(int i) {
 		
-		return mapper.selectMemberByNo(i);
-=======
+	return mapper.selectMemberByNo(i);
+	}
+		
 	@Transactional  //  자동 롤백& 커밋
 	public int save(Member member) {
 		int result = 0;
@@ -60,7 +60,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		return result;
->>>>>>> 22dac7624b60805944a0f50bc9fa8efa8d3ff57b
 	}
 
 }
