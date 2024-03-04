@@ -22,5 +22,9 @@ public interface SupportService {
 
 	List<Support> getadNoticeList(PageInfo pageInfo);
 
+	int getadFaqCount();
+
+	List<Support> getadFaqList(PageInfo pageInfo);
 	
+	Support getFaqByNo(int no);
 }

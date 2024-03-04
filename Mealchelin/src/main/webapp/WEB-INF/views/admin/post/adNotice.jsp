@@ -161,18 +161,18 @@
                             </div>
                             <section id="cs-section3">
 					            <div class="cs-paging">
-						            <button onclick="location.href='${ path }/cscenter/notice?page=${ pageInfo.prevPage }'">&lt;</button>
+						            <button onclick="location.href='${ path }/admin/post/adNotice?page=${ pageInfo.prevPage }'">&lt;</button>
 							        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
 											<c:choose>
 												<c:when test="${ current == pageInfo.currentPage }">
 													<button disabled>${ current }</button>
 												</c:when>
 												<c:otherwise>
-													<button onclick="location.href='${ path }/cscenter/notice?page=${ current }'">${ current }</button>
+													<button onclick="location.href='${ path }/admin/post/adNotice?page=${ current }'">${ current }</button>
 												</c:otherwise>
 											</c:choose>
 									</c:forEach>
-									<button onclick="location.href='${ path }/cscenter/notice?page=${ pageInfo.nextPage }'">&gt;</button>
+									<button onclick="location.href='${ path }/admin/post/adNotice?page=${ pageInfo.nextPage }'">&gt;</button>
 					            </div>
 					        </section>
 						</div>

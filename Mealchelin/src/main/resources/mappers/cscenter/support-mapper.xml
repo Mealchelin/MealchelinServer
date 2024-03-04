@@ -74,7 +74,8 @@
                     M.NAME AS M_NAME
              FROM SUPPORT S
              LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-             WHERE SUPPORT_NO = #{supportNo} AND M.MEMBER_NO = 1
+             WHERE SUPPORT_NO = #{supportNo}
+             <!-- AND M.MEMBER_NO = 1 -->
    </select>
    
    <!-- 자주 묻는 질문 -->
@@ -121,6 +122,32 @@
       <include refid="faqListSql" />
       WHERE STATUS = 'Y'
         ORDER BY RNUM DESC
+   </select>
+   
+   <select id="selectadFaqCount" resultType="_int">
+      SELECT COUNT(*) FROM SUPPORT WHERE CATEGORY LIKE '자주묻는질문'
+   </select>
+   
+   <select id="selectadFaqAll" resultMap="faqListResultMap">
+      <include refid="faqListSql" />
+        ORDER BY RNUM DESC
+   </select>
+   
+   <select id="selectFaqByNo" parameterType="_int"
+      resultMap="faqListResultMap">
+      SELECT S.SUPPORT_NO AS SUPPORT_NO,
+                   M.MEMBER_NO AS MEMBER_NO,
+                    S.CATEGORY AS CATEGORY,
+                    S.SUB_CATEGORY AS SUB_CATEGORY,
+                    S.NAME AS S_NAME,
+                    S.CONTENT AS CONTENT,
+                    S.RGSTR_DATE AS RGSTR_DATE,
+                    S.STATUS AS STATUS,
+                    M.NAME AS M_NAME
+             FROM SUPPORT S
+             LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
+             WHERE SUPPORT_NO = #{supportNo}
+             <!-- AND M.MEMBER_NO = 1 -->
    </select>
       
 </mapper>

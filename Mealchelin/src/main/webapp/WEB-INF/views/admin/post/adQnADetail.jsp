@@ -120,34 +120,42 @@
 								<table class="table my-4" style="width: 95%; margin:0 auto;">
 									<tr>
                                         <td class="ad_th" width="25%">게시글 번호</td>
-                                        <td width="25%">1</td>
+                                        <td width="25%">${ support.supportNo }</td>
                                         <td class="ad_th" width="25%">게시글 작성 날짜</td>
-                                        <td width="25%">20204.02.21</td>
+                                        <td width="25%"><fmt:formatDate value="${support.rgstrDate}" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">작성자</td>
-                                        <td>관리자</td>
+                                        <td>${ support.mname }</td>
                                         <td class="ad_th" id="adCSWrite">카테고리</td>
                                         <td>
-											자주묻는질문
-											<span style="margin:0 3px;">|</span> 배송
+											${ support.category }
+											<span style="margin:0 3px;">|</span> ${ support.subCategory }
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" id="adCSWriteTitle">제목</td>
-										<td colspan="3">배송기간은 얼마나 걸리나요?</td>
+										<td colspan="3">${ support.sname }</td>
                                     </tr>
 									<tr>
 										<td colspan="4" style="padding: 20px;">
-											모든 지역 하루면 배송이 완료됩니다.<br>
-											도서산간지역, 제주도를 제외한 지역에는 다음날 오전 7시 전에 배송이 완료됩니다.
+											${ support.content }
 										</td>
 									</tr>
 									<tr>
 										<td class="ad_th"  id="adCSWriteShow">노출 여부</label></td>
-										<td colspan="3">
-											노출
-										</td>
+										<c:set var="status" value="${ support.status }" scope="session"/> 
+										    <c:choose>
+												<c:when test='${ status == "Y" }'>
+													<td colspan="3">노출</td>
+												</c:when>
+												<c:when test='${ status == "N" }'>
+													<td colspan="3">비노출</td>
+												</c:when>
+												<c:otherwise>
+													<td colspan="3"> </td>		
+												</c:otherwise>
+											</c:choose>
 									</tr>
 								</table>
 								<div style="margin:0 auto; width: 312px; margin-bottom:30px;">
