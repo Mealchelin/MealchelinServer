@@ -23,7 +23,10 @@ h3 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+<<<<<<< HEAD
     float:left;
+=======
+>>>>>>> origin/feature/pay_sy
 }
 
 .re_img {
@@ -64,6 +67,7 @@ h3 {
     font-size: 19px;
 }
 
+<<<<<<< HEAD
 .re_reviewContent{
 	height: 140px;
     overflow: hidden;
@@ -75,3 +79,5 @@ h3 {
     
 }
 
+=======
+>>>>>>> origin/feature/pay_sy

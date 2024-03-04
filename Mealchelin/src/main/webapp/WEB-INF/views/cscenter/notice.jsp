@@ -62,7 +62,11 @@
 					<c:forEach var="support" items="${ list }">
 		                <li class="cs-list-content">
 		                    <div class="cs-notice-number">${ support.rnum }</div>
+<<<<<<< HEAD
 		                    <div class="cs-notice-title cs-list-ul-title"><a href="${ path }/cscenter/noticeView?no=${ support.supportNo }">${ support.sname }</a></div>
+=======
+		                    <div class="cs-notice-title cs-list-ul-title"><a href="${ path }/cscenter/noticeView?no=${ support.supportNo }"></a>${ support.sname }</div>
+>>>>>>> origin/feature/pay_sy
 		                    <div class="cs-notice-writeMem">${ support.mname }</div>
 		                    <div class="cs-notice-date"><fmt:formatDate value="${ support.rgstrDate }" pattern="yyyy.MM.dd"/></div>
 		                </li>

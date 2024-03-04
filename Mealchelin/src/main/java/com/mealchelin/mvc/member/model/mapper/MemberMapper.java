@@ -12,6 +12,11 @@ public interface MemberMapper {
 
 	int insertMember(Member member);
 	
+<<<<<<< HEAD
 	Member selectMemberByNo(@Param("No") int memberNo);
+=======
+	Member selectMemberByOrderInfo(
+			@Param("id") String id);
+>>>>>>> origin/feature/pay_sy
 
 }

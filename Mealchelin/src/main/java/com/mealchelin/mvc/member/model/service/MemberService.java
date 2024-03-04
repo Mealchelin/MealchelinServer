@@ -10,8 +10,13 @@ public interface MemberService {
 
 	int save(Member member);
 
+<<<<<<< HEAD
 	// 주문정보
 	Member getMemberByNo(int i);
+=======
+
+	Member MemberByOrderInfo(String id);
+>>>>>>> origin/feature/pay_sy
 
 	
 
