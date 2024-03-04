@@ -56,24 +56,22 @@
                 <div class="cs-inquiry-answer">답변상태</div>
             </div>
             <ul class="cs-list-ul">
-                <li class="cs-list-content">
-                    <div class="cs-inquiry-number">205</div>
-                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-inquiry-date">2024.11.09</div>
-                    <div class="cs-inquiry-answer">대기중</div>
-                </li>
-                <li class="cs-list-content">
-                    <div class="cs-inquiry-number">205</div>
-                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-inquiry-date">2024.02.09</div>
-                    <div class="cs-inquiry-answer">대기중</div>
-                </li>
-                <li class="cs-list-content">
-                    <div class="cs-inquiry-number">205</div>
-                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-                    <div class="cs-inquiry-date">2024.02.09</div>
-                    <div class="cs-inquiry-answer">대기중</div>
-                </li>
+            	<c:if test="${ empty loginMember }">
+            		<li>로그인 후 이용해주세요.</li>
+            	</c:if>
+            	<c:if test="${ not empty loginMember }">
+            		<c:if test="${ empty list }">
+            			<li>작성한 게시글이 없습니다.</li>
+            		</c:if>
+            		<c:if test="${ not empty list }">
+		                <li class="cs-list-content">
+		                    <div class="cs-inquiry-number">205</div>
+		                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
+		                    <div class="cs-inquiry-date">2024.11.09</div>
+		                    <div class="cs-inquiry-answer">대기중</div>
+		                </li>
+            		</c:if>
+            	</c:if>
             </ul>
             <!-- 게시글 없을 시 -->
             <!-- <div class="cs-inquiry-not">
