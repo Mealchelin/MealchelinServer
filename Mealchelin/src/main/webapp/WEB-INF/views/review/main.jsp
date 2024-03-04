@@ -35,7 +35,7 @@
 		<section>
 			<h3>밀슐랭 상품 리뷰</h3>
 			<div id="re_reviewBtnDiv">
-				<a href="${ path }/review/mypageWritableReview"><input
+				<a href="${ path }/mypage/writableReview"><input
 					id="re_reviewBtn" type="button" value="리뷰 작성" /></a>
 			</div>
 		

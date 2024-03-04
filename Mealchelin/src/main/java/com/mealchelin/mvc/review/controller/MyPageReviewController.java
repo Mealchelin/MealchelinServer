@@ -25,7 +25,7 @@ public class MyPageReviewController {
 	
 	private final ReviewService service;
 	
-	@GetMapping("/mypageProductReview")
+	@GetMapping("/productReview")
 	public ModelAndView list(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
 
 		int reviewCount = 0;
@@ -48,7 +48,7 @@ public class MyPageReviewController {
 
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
-		modelAndView.setViewName("review/MypageProductReview");
+		modelAndView.setViewName("mypage/productReview");
 
 		return modelAndView;
 	}

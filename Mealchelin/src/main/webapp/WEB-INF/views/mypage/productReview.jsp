@@ -42,10 +42,9 @@
 		<jsp:include page="./../mypage/mypageHeaderBox.jsp" />
 		<section>
 			<h3>나의 리뷰</h3>
-			<a href="${ path }/review/mypageProductReview"><span
-				id="re_writtenReview">작성한 리뷰</span></a> <a
-				href="${ path }/review/mypageWritableReview"><span
-				id="re_writableReview">작성 가능한 리뷰</span></a> <select name="period"
+			<a href="${ path }/mypage/productReview"><span id="re_writtenReview">작성한 리뷰</span></a>
+            <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
+			<select name="period"
 				id="re_periodDropBox">
 				<option value="">기간</option>
 				<option value="3">3개월</option>
@@ -72,15 +71,25 @@
 									<p id="re_reviewContent">${ review.content }</p>
 
 									<c:choose>
-										<c:when test="${ review.rated == 1}"> <p id="re_star">★</p></c:when>
-										<c:when test="${ review.rated  == 2 }"> <p id="re_star">★★</p></c:when>
-										<c:when test="${ review.rated  == 3}"> <p id="re_star">★★★</p></c:when>
-										<c:when test="${ review.rated  == 4}"> <p id="re_star">★★★★</p></c:when>
-										<c:when test="${ review.rated  == 5}"> <p id="re_star">★★★★★</p></c:when>
+										<c:when test="${ review.rated == 1}">
+											<p id="re_star">★</p>
+										</c:when>
+										<c:when test="${ review.rated  == 2 }">
+											<p id="re_star">★★</p>
+										</c:when>
+										<c:when test="${ review.rated  == 3}">
+											<p id="re_star">★★★</p>
+										</c:when>
+										<c:when test="${ review.rated  == 4}">
+											<p id="re_star">★★★★</p>
+										</c:when>
+										<c:when test="${ review.rated  == 5}">
+											<p id="re_star">★★★★★</p>
+										</c:when>
 										<c:otherwise> 없음 </c:otherwise>
 									</c:choose>
 
-<%-- 									<p id="re_star">★★★★★${ review.rated }</p> --%>
+									<%-- 									<p id="re_star">★★★★★${ review.rated }</p> --%>
 								</div>
 							</a>
 							<div id="re_editDeleteBtn">

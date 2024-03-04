@@ -39,9 +39,6 @@ public class ReviewController {
 		return "review/reviewAddComplete";
     }
 	
-	
-
-	
 	@GetMapping("/main")
 	public ModelAndView home(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
 		int reviewCount = 0;
