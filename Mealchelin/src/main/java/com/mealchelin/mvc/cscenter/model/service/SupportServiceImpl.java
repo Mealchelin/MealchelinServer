@@ -3,16 +3,9 @@ package com.mealchelin.mvc.cscenter.model.service;
 
 import java.util.List;
 
-<<<<<<< HEAD
 
 import org.apache.ibatis.session.RowBounds;
 
-=======
-<<<<<<< HEAD
-import org.apache.ibatis.session.RowBounds;
-=======
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 import org.springframework.stereotype.Service;
 
 import com.mealchelin.mvc.common.util.PageInfo;
@@ -33,11 +26,7 @@ public class SupportServiceImpl implements SupportService {
 
 	@Override
 	public List<Support> getNoticeList(PageInfo pageInfo) {
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
->>>>>>> parent of ff83659 (성연 240304)
 		int limit = pageInfo.getListLimit();
 		int offset = (pageInfo.getCurrentPage() - 1) * limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
@@ -79,13 +68,6 @@ public class SupportServiceImpl implements SupportService {
 		return mapper.selectadNoticeAll(rowBounds);
 	}
 
-<<<<<<< HEAD
 
-=======
-=======
-		return mapper.selectNoticeAll();
-	}
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 	
 }

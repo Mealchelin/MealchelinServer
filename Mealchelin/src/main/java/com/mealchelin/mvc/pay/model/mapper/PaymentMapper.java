@@ -8,14 +8,7 @@ import com.mealchelin.mvc.pay.model.vo.PayMent;
 @Mapper
 public interface PaymentMapper {
 
-<<<<<<< HEAD
-	
-	public interface PaymentService {
-	    void processPayment(PayMent payment);
-	
-	}
 
-<<<<<<< HEAD
 	
 	public interface PaymentService {
 	    void processPayment(PayMent payment);
@@ -26,10 +19,4 @@ public interface PaymentMapper {
 
 
 
-=======
-	public void insertPayment(PayMent payment);
-=======
-
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 }

@@ -55,32 +55,17 @@
 		WHERE STATUS = 'Y' AND ID = #{id}
 	</select>
 	
-<<<<<<< HEAD
 
 	
 	<select id="selectMemberByOrderInfo" resultMap="memberResultMap" parameterType="String">
 
-=======
-<<<<<<< HEAD
-	<select id="selectMemberByNo" resultMap="memberResultMap">
-=======
-	
-	<select id="selectMemberByOrderInfo" resultMap="memberResultMap" parameterType="String">
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 	SELECT MEMBER_NO,
 			      NAME,
 			      PHONE,
 			      EMAIL
 			FROM MEMBER
-<<<<<<< HEAD
-=======
 			WHERE STATUS = 'Y' AND ID = #{id}
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 	</select>
 	
 	<insert id="insertMember" parameterType="member"

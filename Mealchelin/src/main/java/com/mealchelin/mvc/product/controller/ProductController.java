@@ -13,15 +13,7 @@ import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.product.model.service.ProductService;
 import com.mealchelin.mvc.product.model.vo.Product;
 import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketProductService;
-<<<<<<< HEAD
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
-=======
-<<<<<<< HEAD
-import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
-=======
-import com.mealchelin.mvc.shoppingBasketProduct.model.vo.ShoppingBasketProduct;
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -111,11 +103,7 @@ public class ProductController {
 		int totalPrice = product.getPrice() * quantity;
 		
 		sbp.setPrdNo(product.getNo());
-<<<<<<< HEAD
-		sbp.setMemNo(1);
-=======
 		sbp.setPrdNo(1);
->>>>>>> origin/feature/pay_sy
 		sbp.setQuantity(quantity);
 		sbp.setTotalPrice(totalPrice);
 		

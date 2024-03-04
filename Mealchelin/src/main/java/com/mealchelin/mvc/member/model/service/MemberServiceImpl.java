@@ -37,20 +37,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> parent of ff83659 (성연 240304)
 	public Member getMemberByNo(int i) {
 		
 	return mapper.selectMemberByNo(i);
 	}
 		
-<<<<<<< HEAD
 	
-=======
-=======
->>>>>>> parent of ff83659 (성연 240304)
 	public Member MemberByOrderInfo(String id) {
 		
 
@@ -58,12 +50,7 @@ public class MemberServiceImpl implements MemberService {
 				
 				
 	}
-<<<<<<< HEAD
 
-=======
-				
->>>>>>> origin/feature/pay_sy
->>>>>>> parent of ff83659 (성연 240304)
 	@Transactional  //  자동 롤백& 커밋
 	public int save(Member member) {
 		int result = 0;
@@ -84,10 +71,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/feature/pay_sy
 }
 
 
