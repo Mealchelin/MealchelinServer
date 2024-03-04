@@ -1,180 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-	
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+   
 <mapper namespace="com.mealchelin.mvc.cscenter.model.mapper.SupportMapper">
-	<!-- 공지사항 -->
-	<sql id="noticeListSql">
-		SELECT RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
-			FROM(
-			SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
-			FROM(
-			    SELECT S.SUPPORT_NO AS SUPPORT_NO,
-<<<<<<< HEAD
-			    	   M.MEMBER_NO AS MEMBER_NO,
-=======
->>>>>>> origin/feature/pay_sy
-			           S.CATEGORY AS CATEGORY,
-			           S.NAME AS S_NAME,
-			           S.CONTENT AS CONTENT,
-			           S.RGSTR_DATE AS RGSTR_DATE,
-			           S.STATUS AS STATUS,
-			           M.NAME AS M_NAME
-			    FROM SUPPORT S
-			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-<<<<<<< HEAD
-			    WHERE CATEGORY LIKE '고객센터' AND M.MEMBER_NO = 1
-=======
-			    WHERE CATEGORY LIKE '고객센터'
->>>>>>> origin/feature/pay_sy
-			    ORDER BY SUPPORT_NO
-			    )
-			)
-	</sql>
+   <!-- 공지사항 -->
+   <sql id="noticeListSql">
+      SELECT RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
+         FROM(
+         SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
+         FROM(
+             SELECT S.SUPPORT_NO AS SUPPORT_NO,
+                   M.MEMBER_NO AS MEMBER_NO,
+                    S.CATEGORY AS CATEGORY,
+                    S.NAME AS S_NAME,
+                    S.CONTENT AS CONTENT,
+                    S.RGSTR_DATE AS RGSTR_DATE,
+                    S.STATUS AS STATUS,
+                    M.NAME AS M_NAME
+             FROM SUPPORT S
+             LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
+             WHERE CATEGORY LIKE '고객센터' AND M.MEMBER_NO = 1
+             ORDER BY SUPPORT_NO
+             )
+         )
+   </sql>
 
-	<resultMap id="noticeListResultMap" type="Support">
-		<id property="supportNo" column="SUPPORT_NO"/>
-		<result property="rnum" column="RNUM"/>
-		<result property="sname" column="S_NAME"/>
-		<result property="rgstrDate" column="RGSTR_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="mname" column="M_NAME"/>
-	</resultMap>
-	
-<<<<<<< HEAD
-	<resultMap id="noticeViewResultMap" type="Support" extends="noticeListResultMap">
-		<result property="category" column="CATEGORY"/>
-		<result property="content" column="CONTENT"/>
-=======
-	<resultMap id="noticeViewResultMap" type="Support">
-		<id property="supportNo" column="SUPPORT_NO"/>
-		<result property="rnum" column="RNUM"/>
-		<result property="category" column="CATEGORY"/>
-		<result property="sname" column="S_NAME"/>
-		<result property="content" column="CONTENT"/>
-		<result property="rgstrDate" column="RGSTR_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="mname" column="M_NAME"/>
->>>>>>> origin/feature/pay_sy
-	</resultMap>
-	
-	<!-- 고객센터 게시글 목록 조회(전체 목록) -->
-	<select id="selectNoticeCount" resultType="_int">
-		SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '고객센터'
-	</select>
-	
-	<select id="selectNoticeAll" resultMap="noticeListResultMap">
-		<include refid="noticeListSql" />
-		WHERE STATUS = 'Y'
+   <resultMap id="noticeListResultMap" type="Support">
+      <id property="supportNo" column="SUPPORT_NO"/>
+      <result property="rnum" column="RNUM"/>
+      <result property="sname" column="S_NAME"/>
+      <result property="rgstrDate" column="RGSTR_DATE"/>
+      <result property="status" column="STATUS"/>
+      <result property="mname" column="M_NAME"/>
+   </resultMap>
+   
+   <resultMap id="noticeViewResultMap" type="Support" extends="noticeListResultMap">
+      <result property="category" column="CATEGORY"/>
+      <result property="content" column="CONTENT"/>
+   </resultMap>
+   
+   <!-- 고객센터 게시글 목록 조회(전체 목록) -->
+   <select id="selectNoticeCount" resultType="_int">
+      SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '고객센터'
+   </select>
+   
+   <select id="selectNoticeAll" resultMap="noticeListResultMap">
+      <include refid="noticeListSql" />
+      WHERE STATUS = 'Y'
         ORDER BY RNUM DESC
-	</select>
-	
-<<<<<<< HEAD
-	<select id="selectadNoticeCount" resultType="_int">
-		SELECT COUNT(*) FROM SUPPORT WHERE CATEGORY LIKE '고객센터'
-	</select>
-	
-	<select id="selectadNoticeAll" resultMap="noticeListResultMap">
-		<include refid="noticeListSql" />
+   </select>
+   
+   <select id="selectadNoticeCount" resultType="_int">
+      SELECT COUNT(*) FROM SUPPORT WHERE CATEGORY LIKE '고객센터'
+   </select>
+   
+   <select id="selectadNoticeAll" resultMap="noticeListResultMap">
+      <include refid="noticeListSql" />
         ORDER BY RNUM DESC
-	</select>
-	
-	
-	
-	<select id="selectNoticeByNo" parameterType="_int"
-		resultMap="noticeViewResultMap">
-		SELECT S.SUPPORT_NO AS SUPPORT_NO,
-			           S.CATEGORY AS CATEGORY,
-			           S.NAME AS S_NAME,
-			           S.CONTENT AS CONTENT,
-			           S.RGSTR_DATE AS RGSTR_DATE,
-			           S.STATUS AS STATUS,
-			           M.NAME AS M_NAME
-			    FROM SUPPORT S
-			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-			    WHERE SUPPORT_NO = #{supportNo} AND M.MEMBER_NO = 1
-	</select>
-	
-	<!-- 자주 묻는 질문 -->
-	<sql id="faqListSql">
-		SELECT RNUM, SUPPORT_NO, CATEGORY, SUB_CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
-			FROM(
-			SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, SUB_CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
-			FROM(
-			    SELECT S.SUPPORT_NO AS SUPPORT_NO,
-			    	   M.MEMBER_NO AS MEMBER_NO,
-			           S.CATEGORY AS CATEGORY,
-			           S.SUB_CATEGORY AS SUB_CATEGORY,
-=======
-	
-	
-	<!-- 자주 묻는 질문 -->
-	<sql id="faqListSql">
-		SELECT RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
-			FROM(
-			SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
-			FROM(
-			    SELECT S.SUPPORT_NO AS SUPPORT_NO,
-			           S.CATEGORY AS CATEGORY,
-			           S.SUB
->>>>>>> origin/feature/pay_sy
-			           S.NAME AS S_NAME,
-			           S.CONTENT AS CONTENT,
-			           S.RGSTR_DATE AS RGSTR_DATE,
-			           S.STATUS AS STATUS,
-			           M.NAME AS M_NAME
-			    FROM SUPPORT S
-			    LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
-<<<<<<< HEAD
-			    WHERE CATEGORY LIKE '자주묻는질문' AND M.MEMBER_NO = 1
-=======
-			    WHERE CATEGORY LIKE '자주묻는질문'
->>>>>>> origin/feature/pay_sy
-			    ORDER BY SUPPORT_NO
-			    )
-			)
-	</sql>
+   </select>
+   
+   
+   
+   <select id="selectNoticeByNo" parameterType="_int"
+      resultMap="noticeViewResultMap">
+      SELECT S.SUPPORT_NO AS SUPPORT_NO,
+                    S.CATEGORY AS CATEGORY,
+                    S.NAME AS S_NAME,
+                    S.CONTENT AS CONTENT,
+                    S.RGSTR_DATE AS RGSTR_DATE,
+                    S.STATUS AS STATUS,
+                    M.NAME AS M_NAME
+             FROM SUPPORT S
+             LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
+             WHERE SUPPORT_NO = #{supportNo} AND M.MEMBER_NO = 1
+   </select>
+   
+   <!-- 자주 묻는 질문 -->
+   <sql id="faqListSql">
+      SELECT RNUM, SUPPORT_NO, CATEGORY, SUB_CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
+         FROM(
+         SELECT ROWNUM AS RNUM, SUPPORT_NO, CATEGORY, SUB_CATEGORY, S_NAME, CONTENT, RGSTR_DATE, STATUS, M_NAME
+         FROM(
+             SELECT S.SUPPORT_NO AS SUPPORT_NO,
+                   M.MEMBER_NO AS MEMBER_NO,
+                    S.CATEGORY AS CATEGORY,
+                    S.SUB_CATEGORY AS SUB_CATEGORY,
+                    S.NAME AS S_NAME,
+                    S.CONTENT AS CONTENT,
+                    S.RGSTR_DATE AS RGSTR_DATE,
+                    S.STATUS AS STATUS,
+                    M.NAME AS M_NAME
+             FROM SUPPORT S
+             LEFT JOIN MEMBER M ON S.MEMBER_NO = M.MEMBER_NO
+             WHERE CATEGORY LIKE '자주묻는질문' AND M.MEMBER_NO = 1
+             ORDER BY SUPPORT_NO
+             )
+         )
+   </sql>
 
-	<resultMap id="faqListResultMap" type="Support">
-		<id property="supportNo" column="SUPPORT_NO"/>
-		<result property="rnum" column="RNUM"/>
-<<<<<<< HEAD
-=======
-		<result property="subCategory" column="SUB_CATEGORY"/>
-		<result property="sname" column="S_NAME"/>
-		<result property="rgstrDate" column="RGSTR_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="mname" column="M_NAME"/>
-	</resultMap>
-	
-	<resultMap id="faqViewResultMap" type="Support">
-		<id property="supportNo" column="SUPPORT_NO"/>
-		<result property="rnum" column="RNUM"/>
->>>>>>> origin/feature/pay_sy
-		<result property="category" column="CATEGORY"/>
-		<result property="subCategory" column="SUB_CATEGORY"/>
-		<result property="sname" column="S_NAME"/>
-		<result property="content" column="CONTENT"/>
-		<result property="rgstrDate" column="RGSTR_DATE"/>
-		<result property="status" column="STATUS"/>
-		<result property="mname" column="M_NAME"/>
-	</resultMap>
-	
-	<!-- 고객센터 게시글 목록 조회(전체 목록) -->
-	<select id="selectFaqCount" resultType="_int">
-<<<<<<< HEAD
-		SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '자주묻는질문' AND MEMBER_NO = 1
-=======
-		SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '자주묻는질문'
->>>>>>> origin/feature/pay_sy
-	</select>
-	
-	<select id="selectFaqAll" resultMap="faqListResultMap">
-		<include refid="faqListSql" />
-		WHERE STATUS = 'Y'
+   <resultMap id="faqListResultMap" type="Support">
+      <id property="supportNo" column="SUPPORT_NO"/>
+      <result property="rnum" column="RNUM"/>
+      <result property="category" column="CATEGORY"/>
+      <result property="subCategory" column="SUB_CATEGORY"/>
+      <result property="sname" column="S_NAME"/>
+      <result property="content" column="CONTENT"/>
+      <result property="rgstrDate" column="RGSTR_DATE"/>
+      <result property="status" column="STATUS"/>
+      <result property="mname" column="M_NAME"/>
+   </resultMap>
+   
+   <!-- 고객센터 게시글 목록 조회(전체 목록) -->
+   <select id="selectFaqCount" resultType="_int">
+      SELECT COUNT(*) FROM SUPPORT WHERE STATUS='Y' AND CATEGORY LIKE '자주묻는질문' AND MEMBER_NO = 1
+   </select>
+   
+   <select id="selectFaqAll" resultMap="faqListResultMap">
+      <include refid="faqListSql" />
+      WHERE STATUS = 'Y'
         ORDER BY RNUM DESC
-	</select>
-		
+   </select>
+      
 </mapper>

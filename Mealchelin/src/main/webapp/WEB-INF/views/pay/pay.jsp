@@ -77,28 +77,17 @@
 					</div>
 					<div class="pay_userInfo">
 						<div class="pay_Sender">
-<<<<<<< HEAD
-							<span class="pay_username">이름</span> <span class="pay_usernames">${member.name}</span>
-						</div>
-						<div class="pay_Sender">
-							<span class="pay_userPhone">연락처</span> <span
-								class="pay_userPhones">${member.phone}</span>
-=======
 							<span class="pay_username">이름</span> <span class="pay_usernames">${userinfo.name}</span>
 						</div>
 						<div class="pay_Sender">
 							<span class="pay_userPhone">연락처</span> <span
 								class="pay_userPhones">${userinfo.phone}</span>
->>>>>>> origin/feature/pay_sy
 						</div>
 					</div>
 					<div class="pay_Sender">
-						<span class="pay_userEmail">이메일</span> <span
-<<<<<<< HEAD
-							class="pay_userEmails">${member.email}
-=======
-							class="pay_userEmails">${userinfo.email}
->>>>>>> origin/feature/pay_sy
+						<span class="pay_userEmail">이메일</span> 
+						<span class="pay_userEmails">
+							${userinfo.email}
 							<p>
 								이메일을 통해 주문처리과정을 보내드립니다 <br> 정보변경은 맛슐랭>개인정보 수정 메뉴에서 가능합니다
 							</p>

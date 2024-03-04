@@ -10,7 +10,7 @@ public interface SupportService {
 	int getNoticeCount();
 
 	List<Support> getNoticeList(PageInfo pageInfo);
-<<<<<<< HEAD
+
 
 	int getFaqCount();
 
@@ -21,7 +21,6 @@ public interface SupportService {
 	int getadNoticeCount();
 
 	List<Support> getadNoticeList(PageInfo pageInfo);
-=======
->>>>>>> origin/feature/pay_sy
+
 	
 }

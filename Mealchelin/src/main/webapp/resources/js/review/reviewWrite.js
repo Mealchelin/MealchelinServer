@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
 // $('.re_star a').click(function(){
 //     $(this).parent().children('a').removeClass('on');
 //     $(this).addClass('on').prevAll('a').addClass('on');
 //     return false;
 //   });
->>>>>>> origin/feature/pay_sy
 
 // 별점 주는 코드
 $('.re_star > .starR').click(function() {
@@ -23,20 +20,6 @@ $('.starR').click(function() {
 
 });
 
-<<<<<<< HEAD
-// 리뷰 수정 페이지 제목 글자 수 출력하는 코드
-$('#re_titleContent').keyup(function (e) {
-	let content = $(this).val();
-    // console.log(content);
-    if(content.length == 0 || content == ''){
-        $('#re_nowTextCount1').text('0');
-    } else{
-        $('#re_nowTextCount1').text(content.length);
-    }
-})
-
-// 리뷰 수정 페이지 상세리뷰 글자 수 출력하는 코드
-=======
 // 별점 Jquery로 DB에 넘기는 코드
 {/* <script>
 $(document).ready(function() {
@@ -71,32 +54,10 @@ $(document).ready(function() {
 
 
 // 리뷰 수정 페이지 글자 수 출력하는 코드
->>>>>>> origin/feature/pay_sy
 $('#re_detailReviewContent').keyup(function (e) {
-	let content = $(this).val();
+   let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
-<<<<<<< HEAD
-        $('#re_nowTextCount2').text('0');
-    } else{
-        $('#re_nowTextCount2').text(content.length);
-    }
-}) 
-
-
-// 리뷰 작성 페이지 제목 글자 수 출력하는 코드
-$('#re_inputTitle').keyup(function (e) {
-	let content = $(this).val();
-    // console.log(content);
-    if(content.length == 0 || content == ''){
-        $('#re_nowTextCount1').text('0');
-    } else{
-        $('#re_nowTextCount1').text(content.length);
-    }
-}) 
-
-// 리뷰 작성 페이지 상세리뷰 글자 수 출력하는 코드
-=======
         $('#re_nowTextCount').text('0');
     } else{
         $('#re_nowTextCount').text(content.length);
@@ -104,27 +65,16 @@ $('#re_inputTitle').keyup(function (e) {
 }) 
 
 // 리뷰 작성 페이지 글자 수 출력하는 코드
->>>>>>> origin/feature/pay_sy
 $('#re_detailReview').keyup(function (e) {
-	let content = $(this).val();
+   let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
-<<<<<<< HEAD
-        $('#re_nowTextCount2').text('0');
-    } else{
-        $('#re_nowTextCount2').text(content.length);
-    }
-}) 
-
-
-=======
         $('#re_nowTextCount').text('0');
     } else{
         $('#re_nowTextCount').text(content.length);
     }
 }) 
 
->>>>>>> origin/feature/pay_sy
 // 첨부 파일 선택시 사진 첨부 버튼 옆에 첨부 파일명 기재되게 하는 코드.
 $('#re_imgadd').change(function() {
     $('#re_imgSizeMsg').empty();
@@ -145,5 +95,4 @@ $('#re_periodDropBox').change(function(){
 
     console.log(period);
 });
-
 
