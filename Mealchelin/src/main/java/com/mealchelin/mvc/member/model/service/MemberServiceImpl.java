@@ -37,13 +37,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-<<<<<<< HEAD
-	public Member getMemberByNo(int i) {
-		
-	return mapper.selectMemberByNo(i);
-	}
-		
-=======
 	public Member MemberByOrderInfo(String id) {
 		
 
@@ -52,7 +45,6 @@ public class MemberServiceImpl implements MemberService {
 				
 	}
 				
->>>>>>> origin/feature/pay_sy
 	@Transactional  //  자동 롤백& 커밋
 	public int save(Member member) {
 		int result = 0;
@@ -73,10 +65,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/feature/pay_sy
 }
 
 

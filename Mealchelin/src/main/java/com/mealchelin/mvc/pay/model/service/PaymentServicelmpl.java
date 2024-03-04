@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mealchelin.mvc.pay.model.mapper.PaymentMapper;
-import com.mealchelin.mvc.pay.model.vo.PayMent;
+import com.siot.IamportRestClient.response.Payment;
 
 @Service
 public class PaymentServicelmpl implements PaymentService {
@@ -16,22 +16,6 @@ public class PaymentServicelmpl implements PaymentService {
 	}
 
 	
-<<<<<<< HEAD
-	 private PaymentMapper paymentMapper;
-	 
-	 
-
-	    @Autowired
-	    public void PaymentServiceImpl(PaymentMapper paymentMapper) {
-	        this.paymentMapper = paymentMapper;
-	    }
-
-	    @Override
-	    public void processPayment(PayMent payment) {
-	        paymentMapper.insertPayment(payment);
-	    }
-=======
->>>>>>> origin/feature/pay_sy
 	
 	
 }

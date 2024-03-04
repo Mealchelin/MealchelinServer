@@ -69,48 +69,23 @@ hr {
 #re_foodName {
     font-size: 18px;
     font-weight: bold;
-<<<<<<< HEAD
-    margin-bottom: 10px;
-=======
     margin-bottom: 20px;
->>>>>>> origin/feature/pay_sy
 }
 
 #re_reviewTitle {
     font-size: 16px;
     margin-bottom: 5px;
-<<<<<<< HEAD
-    overflow: hidden;
-    width: 600px;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-=======
->>>>>>> origin/feature/pay_sy
 }
 
 #re_reviewContent{
     font-size: 14px;
     color: #B4B4B4;
-<<<<<<< HEAD
-    overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	width: 700px;
-=======
->>>>>>> origin/feature/pay_sy
 }
 
 #re_star {
     color: #86BC66;
     font-size: 30px;
-<<<<<<< HEAD
-=======
     margin-top: 15px;
->>>>>>> origin/feature/pay_sy
 }
 
 #re_companyName {

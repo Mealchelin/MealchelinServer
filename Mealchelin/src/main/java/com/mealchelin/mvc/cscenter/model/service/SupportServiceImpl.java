@@ -3,10 +3,6 @@ package com.mealchelin.mvc.cscenter.model.service;
 
 import java.util.List;
 
-<<<<<<< HEAD
-import org.apache.ibatis.session.RowBounds;
-=======
->>>>>>> origin/feature/pay_sy
 import org.springframework.stereotype.Service;
 
 import com.mealchelin.mvc.common.util.PageInfo;
@@ -27,51 +23,7 @@ public class SupportServiceImpl implements SupportService {
 
 	@Override
 	public List<Support> getNoticeList(PageInfo pageInfo) {
-<<<<<<< HEAD
-		int limit = pageInfo.getListLimit();
-		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return mapper.selectNoticeAll(rowBounds);
-	}
-
-	@Override
-	public Support getNoticeByNo(int no) {
-		
-		return mapper.selectNoticeByNo(no);
-	}
-	
-	@Override
-	public int getFaqCount() {
-		return mapper.selectFaqCount();
-	}
-
-	@Override
-	public List<Support> getFaqList(PageInfo pageInfo) {
-		int limit = pageInfo.getListLimit();
-		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return mapper.selectFaqAll(rowBounds);
-	}
-
-	@Override
-	public int getadNoticeCount() {
-		return mapper.selectadNoticeCount();
-	}
-
-	@Override
-	public List<Support> getadNoticeList(PageInfo pageInfo) {
-		int limit = pageInfo.getListLimit();
-		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return mapper.selectadNoticeAll(rowBounds);
-	}
-
-=======
 		return mapper.selectNoticeAll();
 	}
->>>>>>> origin/feature/pay_sy
 	
 }

@@ -38,17 +38,6 @@
             <div class="cs-notice-head">
                 <div class="cs-notice-top">
                     <div class="cs-notice-column">제목</div>
-<<<<<<< HEAD
-                    <div class="cs-notice-data">${ support.sname }</div>
-                </div>
-                <div class="cs-notice-top">
-                    <div class="cs-notice-column">작성자</div>
-                    <div class="cs-notice-data">${ support.mname }</div>
-                </div>
-                <div class="cs-notice-top">
-                    <div class="cs-notice-column">작성일</div>
-                    <div class="cs-notice-data"><fmt:formatDate value="${ support.rgstrDate }" pattern="yyyy.MM.dd"/></div>
-=======
                     <div class="cs-notice-data">밀슐랭 회원님들에게</div>
                 </div>
                 <div class="cs-notice-top">
@@ -58,7 +47,6 @@
                 <div class="cs-notice-top">
                     <div class="cs-notice-column">작성일</div>
                     <div class="cs-notice-data">2024.02.09</div>
->>>>>>> origin/feature/pay_sy
                 </div>
             </div>
         </section>
@@ -66,9 +54,6 @@
         <!-- 내용 -->
         <section id="cs-section2">
             <div class="cs-notice-content">
-<<<<<<< HEAD
-                ${ support.content }
-=======
                 안녕하세요, 밀슐랭 회원 여러분!
                 <br><br>
                 우리 사이트에 오신 것을 환영합니다. 이 공지사항을 통해 여러분께 중요한 소식과 정보를 알려드리고자 합니다.
@@ -86,7 +71,6 @@
                 감사합니다. 여러분의 많은 이용과 관심 부탁드립니다.
                 <br><br>
                 밀슐랭 운영자 일동
->>>>>>> origin/feature/pay_sy
             </div>
         </section>
 

@@ -52,44 +52,6 @@
                 <div class="cs-faq-title">제목</div>
             </div>
             <ul class="cs-list-ul">
-<<<<<<< HEAD
-            
-            	<c:if test="${ empty list }">
-	                <li class="cs-list-content cs-faq-list">
-	                    <div>조회된 게시글이 없습니다.</div>
-	                </li>
-                </c:if>
-				<c:if test="${ not empty list }">
-					<c:forEach var="support" items="${ list }">
-		                <li class="cs-list-content cs-faq-list">
-		                    <div class="cs-faq-number">${ support.rnum }</div>
-		                    <div class="cs-faq-category">${ support.subCategory }</div>
-		                    <div class="cs-faq-title cs-list-ul-title">${ support.sname }</div>
-		                </li>
-		                <div class="cs-faq-detail" hidden>
-							${ support.content }
-		                </div>
-		             </c:forEach>
-		         </c:if>
-          
-            </ul>
-        </section>
-       <!-- 페이징 버튼 섹션 -->
-        <section id="cs-section3">
-            <div class="cs-paging">
-	            <button onclick="location.href='${ path }/cscenter/faq?page=${ pageInfo.prevPage }'">&lt;</button>
-		        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
-						<c:choose>
-							<c:when test="${ current == pageInfo.currentPage }">
-								<button disabled>${ current }</button>
-							</c:when>
-							<c:otherwise>
-								<button onclick="location.href='${ path }/cscenter/faq?page=${ current }'">${ current }</button>
-							</c:otherwise>
-						</c:choose>
-				</c:forEach>
-				<button onclick="location.href='${ path }/cscenter/faq?page=${ pageInfo.nextPage }'">&gt;</button>
-=======
                 <li class="cs-list-content cs-faq-list">
                     <div class="cs-faq-number">205</div>
                     <div class="cs-faq-category">취소/교환/환불</div>
@@ -162,7 +124,6 @@
                 <button>4</button>
                 <button>5</button>
                 <button>&gt;</button>
->>>>>>> origin/feature/pay_sy
             </div>
         </section>
     </main>
