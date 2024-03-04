@@ -50,27 +50,17 @@
 				<div class="pay_FirstContent">
 					<span class="pay_FirstContentTitle">주문 상품</span>
 				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_01.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">안동식
-							순살 찜닭 </span>
-						<p class="pay_subFirstName">마이 셰프</p>
-					</span> <span class="pay_number">1개</span> <span class="pay_paynumber">15,800원</span>
-				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_02.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">기사
-							식당 돼지 불백(2-3인)</span>
-						<p class="pay_subFirstName">마이 셰프</p>
-					</span> <span class="pay_number">1개</span> <span class="pay_paynumber">14,900원</span>
-				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_03.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">소고기뭇국</span>
-						<p class="pay_subFirstName">쿳킷</p>
-					</span> <span class="pay_number">1개</span> <span class="pay_paynumber">16,800원</span>
-				</div>
-
+				<c:forEach items="${shippingBaketInfoList}" var="item">
+					<div class="pay_FirstContentArea">
+						<img src="${item.image}" class="pay_menuPhoto"> <span
+							class="pay_FirstMemu"> <span class="pay_FirstName">${item.name}</span>
+							<p class="pay_subFirstName">${item.brand}</p>
+						</span> <span class="pay_number">${item.quantity}개</span> <span
+							class="pay_paynumber"> <fmt:formatNumber
+								value="${item.price}" pattern="#,##0" /> 원
+						</span>
+					</div>
+				</c:forEach>
 				<div class="pay_SecondContentArea">
 					<div class="pay_SecondContent">
 						<span class="pay_secondContentTitle">주문자 정보</span>
@@ -116,7 +106,9 @@
 				</div>
 				<div class="pay_DeliveryRequestInfoArea">
 					<div class="pay_DeliveryRequestInfo">
-						<span class="pay_DeliveryRequest">배송요청사항</span> <input class="pay_DeliveryUserRequest" type="text" placeholder="예) 문 앞에 놔주세요">
+						<span class="pay_DeliveryRequest">배송요청사항</span> <input
+							class="pay_DeliveryUserRequest" type="text"
+							placeholder="예) 문 앞에 놔주세요">
 						<p class="pay_UserRequest">배송 요청사항을 입력해주세요</p>
 					</div>
 				</div>
@@ -150,17 +142,17 @@
 				<div class="pay_payResultArea">
 					<div class="pay_payResult">
 						<span class="pay_paymentInfo">결제금액</span> <span
-							class="pay_payment">결제 금액</span> <span class="pay_pay">47,500원</span>
+							class="pay_payment">결제 금액</span> <span class="pay_pay">${payInfo.totalPrice}</span>
 					</div>
 					<div class="pay_paymentInfo">
-						<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney">47,500원</span>
+						<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney">${payInfo.payment}원</span>
 					</div>
 					<div class="pay_paymentInfo">
-						<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay">0원</span>
+						<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay">${payInfo.price}원</span>
 					</div>
 					<div class="pay_finalResult">
 						<span class="pay_Delivery">최종 결제 금액</span> <span
-							class="pay_Finalpay">47,500원</span>
+							class="pay_Finalpay">${payInfo.totalPrice}</span>
 					</div>
 					<div class="pay_line"></div>
 				</div>

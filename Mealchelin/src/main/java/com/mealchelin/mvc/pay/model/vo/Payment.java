@@ -7,12 +7,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PayMent {
+public class Payment {
 
-	private int payMent;
+	private int prdNo;
 	
-	private int price;
-	
-	private int totalPrice;
+    private int memberNo;
+    
+    private int totalPrice;
+    
+    private int price;
+    
+    private int payment;
 	
 }
