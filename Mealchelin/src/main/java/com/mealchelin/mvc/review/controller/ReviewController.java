@@ -39,7 +39,7 @@ public class ReviewController {
 	public String home() {
 		
 		
-		return "/review/main";
+		return "review/main";
 	}
 	
 	@GetMapping("/reviewWrite")
