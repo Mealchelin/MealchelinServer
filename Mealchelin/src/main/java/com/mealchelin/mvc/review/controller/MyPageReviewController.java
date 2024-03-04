@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/mypage")
-public class myPageReviewController {
+public class MyPageReviewController {
 	@GetMapping("/productReview")
 	public String mypageProductReview() {
 		
