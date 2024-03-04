@@ -24,7 +24,16 @@ public class SupportController {
 	
 	@GetMapping("/faq")
 	public ModelAndView csFaq(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
+		int listCount = 0;
+		PageInfo pageInfo = null;
+		List<Support> list = null;
 		
+		listCount = service.getFaqCount();
+		pageInfo = new PageInfo(page, 5, listCount, 10);
+		list = service.getFaqList(pageInfo);
+		
+		modelAndView.addObject("pageInfo", pageInfo);
+		modelAndView.addObject("list", list);
 		modelAndView.setViewName("cscenter/faq");
 		
 		return modelAndView;
@@ -51,8 +60,14 @@ public class SupportController {
 	}
 	
 	@GetMapping("/noticeView")
-	public ModelAndView csNoticeView(ModelAndView modelAndView) {
+	public ModelAndView csNoticeView(ModelAndView modelAndView, @RequestParam int no) {
+		Support support = null;
 		
+		log.info("view() 호출 - {}", no);
+		
+		support = service.getNoticeByNo(no);
+		
+		modelAndView.addObject("support", support);
 		modelAndView.setViewName("cscenter/noticeView");
 		
 		return modelAndView;

@@ -26,7 +26,7 @@
     <link href="${ path }/css/admin/app.css" rel="stylesheet">
     <link href="${ path }/css/admin/admin_add.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="${ path }/css/cscenter/cscenterListCommon.css">
 </head>
 
 <body>
@@ -121,15 +121,35 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-											<td><input type="checkbox" class="ad_notice_chk" name="ad_notice_chk" value=""></td>
-                                            <td>60</td>
-                                            <td style="cursor: pointer;" onclick="location.href='${ path }/admin/post/adNoticeDetail'">배송 기간은 얼마나 걸리나요?</td>
-											<td>2024.02.21</td>
-											<td class="d-none d-xl-table-cell">관리자</td>
-											<td class="d-none d-xl-table-cell">노출</td>
-										</tr>
+										<c:if test="${ empty list }">
+											<tr>
+						                    	<td colspan="6">조회된 게시글이 없습니다.</td>
+						                	</tr>	
+										</c:if>
+										<c:if test="${not empty list}">
+										    <c:forEach var="support" items="${list}">
+										        <tr>
+										            <!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+										            <td><input type="checkbox" class="ad_notice_chk" name="ad_notice_chk" value="${support.rnum}"></td>
+										            <td>${support.rnum}</td>
+										            <td style="cursor: pointer;" onclick="location.href='${path}/admin/post/adNoticeDetail?no=${support.supportNo}'">${support.sname}</td>
+										            <td><fmt:formatDate value="${support.rgstrDate}" pattern="yyyy.MM.dd"/></td>
+										            <td class="d-none d-xl-table-cell">${support.mname}</td>
+										            <c:set var="status" value="${ support.status }" scope="session"/> 
+										            <c:choose>
+														<c:when test='${ status == "Y" }'>
+															<td class="d-none d-xl-table-cell">노출</td>
+														</c:when>
+													    <c:when test='${ status == "N" }'>
+															<td class="d-none d-xl-table-cell">비노출</td>
+														</c:when>
+														<c:otherwise>
+															<td class="d-none d-xl-table-cell"> </td>		
+														</c:otherwise>
+													</c:choose>
+										        </tr>
+										    </c:forEach>
+										</c:if>
 									</tbody>
 								</table>
                             </div>
@@ -139,6 +159,22 @@
                                 <button class="ad_sub_button_gy">노출</button>
                                 <button class="ad_sub_button_gy">비노출</button>
                             </div>
+                            <section id="cs-section3">
+					            <div class="cs-paging">
+						            <button onclick="location.href='${ path }/cscenter/notice?page=${ pageInfo.prevPage }'">&lt;</button>
+							        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+											<c:choose>
+												<c:when test="${ current == pageInfo.currentPage }">
+													<button disabled>${ current }</button>
+												</c:when>
+												<c:otherwise>
+													<button onclick="location.href='${ path }/cscenter/notice?page=${ current }'">${ current }</button>
+												</c:otherwise>
+											</c:choose>
+									</c:forEach>
+									<button onclick="location.href='${ path }/cscenter/notice?page=${ pageInfo.nextPage }'">&gt;</button>
+					            </div>
+					        </section>
 						</div>
 					</div>
 
@@ -185,7 +221,8 @@
 			checkboxes.forEach((checkbox) => {
 				checkbox.checked = selectNoticeAll.checked;
 			})
-		}
+		};
+		
 	</script>
 </body>
 

@@ -10,5 +10,15 @@ public interface SupportService {
 	int getNoticeCount();
 
 	List<Support> getNoticeList(PageInfo pageInfo);
+
+	int getFaqCount();
+
+	List<Support> getFaqList(PageInfo pageInfo);
+
+	Support getNoticeByNo(int no);
+
+	int getadNoticeCount();
+
+	List<Support> getadNoticeList(PageInfo pageInfo);
 	
 }
