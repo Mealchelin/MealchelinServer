@@ -52,7 +52,6 @@
                 <div class="cs-faq-title">제목</div>
             </div>
             <ul class="cs-list-ul">
-<<<<<<< HEAD
             
             	<c:if test="${ empty list }">
 	                <li class="cs-list-content cs-faq-list">
@@ -89,80 +88,7 @@
 						</c:choose>
 				</c:forEach>
 				<button onclick="location.href='${ path }/cscenter/faq?page=${ pageInfo.nextPage }'">&gt;</button>
-=======
-                <li class="cs-list-content cs-faq-list">
-                    <div class="cs-faq-number">205</div>
-                    <div class="cs-faq-category">취소/교환/환불</div>
-                    <div class="cs-faq-title cs-list-ul-title">교환(반품) 진행 시 배송비가 부과 되나요?</div>
-                </li>
-                <div class="cs-faq-detail" hidden>
-                    ■ 교환(반품) 진행 시, 배송비 안내
-                    <br>
-                    - 단순변심에 의한 교환/반품 시 배송비 6,000원 (주문건 배송비를 낸 경우 3,000원)을 고객님께서 부담하셔야합니다.
-                    <br>
-                    - 파트너사 판매상품의 경우, 상품의 상세페이지 내 안내 정책을 참고 부탁드립니다.
-                </div>
-                <li class="cs-list-content cs-faq-list">
-                    <div class="cs-faq-number">205</div>
-                    <div class="cs-faq-category">취소/교환/환불</div>
-                    <div class="cs-faq-title cs-list-ul-title">교환(반품) 진행 시 배송비가 부과 되나요?</div>
-                </li>
-                <div class="cs-faq-detail" hidden>
-                    ■ 교환(반품) 진행 시, 배송비 안내
-                    <br>
-                    - 단순변심에 의한 교환/반품 시 배송비 6,000원 (주문건 배송비를 낸 경우 3,000원)을 고객님께서 부담하셔야합니다.
-                    <br>
-                    - 파트너사 판매상품의 경우, 상품의 상세페이지 내 안내 정책을 참고 부탁드립니다.
-                </div>
-                <li class="cs-list-content cs-faq-list">
-                    <div class="cs-faq-number">205</div>
-                    <div class="cs-faq-category">취소/교환/환불</div>
-                    <div class="cs-faq-title cs-list-ul-title">dtd교환(반품) 진행 시 배송비가 부과 되나요?</div>
-                </li>
-                <div class="cs-faq-detail" hidden>
-                    ■ 교환(반품) 진행 시, 배송비 안내
-                    <br>
-                    - 단순변심에 의한 교환/반품 시 배송비 6,000원 (주문건 배송비를 낸 경우 3,000원)을 고객님께서 부담하셔야합니다.
-                    <br>
-                    - 파트너사 판매상품의 경우, 상품의 상세페이지 내 안내 정책을 참고 부탁드립니다.
-                </div>
-                <li class="cs-list-content cs-faq-list">
-                    <div class="cs-faq-number">205</div>
-                    <div class="cs-faq-category">취소/교환/환불</div>
-                    <div class="cs-faq-title cs-list-ul-title">asdfasdf교환(반품) 진행 시 배송비가 부과 되나요?</div>
-                </li>
-                <div class="cs-faq-detail" hidden>
-                    ■ 교환(반품) 진행 시, 배송비 안내
-                    <br>
-                    - 단순변심에 의한 교환/반품 시 배송비 6,000원 (주문건 배송비를 낸 경우 3,000원)을 고객님께서 부담하셔야합니다.
-                    <br>
-                    - 파트너사 판매상품의 경우, 상품의 상세페이지 내 안내 정책을 참고 부탁드립니다.
-                </div>
-                <li class="cs-list-content cs-faq-list">
-                    <div class="cs-faq-number">205</div>
-                    <div class="cs-faq-category">취소/교환/환불</div>
-                    <div class="cs-faq-title cs-list-ul-title">123qwdasdazdfc교환(반품) 진행 시 배송비가 부과 되나요?</div>
-                </li>
-                <div class="cs-faq-detail" hidden>
-                    ■ 교환(반품) 진행 시, 배송비 안내
-                    <br>
-                    - 단순변심에 의한 교환/반품 시 배송비 6,000원 (주문건 배송비를 낸 경우 3,000원)을 고객님께서 부담하셔야합니다.
-                    <br>
-                    - 파트너사 판매상품의 경우, 상품의 상세페이지 내 안내 정책을 참고 부탁드립니다.
-                </div>
-            </ul>
-        </section>
-        <!-- 페이징 버튼 섹션 -->
-        <section id="cs-section3">
-            <div class="cs-paging">
-                <button>&lt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>&gt;</button>
->>>>>>> origin/feature/pay_sy
+
             </div>
         </section>
     </main>
