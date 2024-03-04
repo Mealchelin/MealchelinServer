@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class payController {
 	private final MemberService service;
+	
+	
 
 	@GetMapping("/pay/pay")
 	public ModelAndView payment(
@@ -26,7 +28,6 @@ public class payController {
 		Member member = service.findMemberById(loginMember.getId());
 		
 		Member userinfo = service.MemberByOrderInfo(loginMember.getId());
-		
 		
 		
 		
