@@ -24,7 +24,11 @@ public class SupportController {
 	
 	@GetMapping("/faq")
 	public ModelAndView csFaq(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> parent of ff83659 (성연 240304)
 		int listCount = 0;
 		PageInfo pageInfo = null;
 		List<Support> list = null;
@@ -35,7 +39,13 @@ public class SupportController {
 		
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
+<<<<<<< HEAD
 
+=======
+=======
+		
+>>>>>>> origin/feature/pay_sy
+>>>>>>> parent of ff83659 (성연 240304)
 		modelAndView.setViewName("cscenter/faq");
 		
 		return modelAndView;
@@ -62,6 +72,7 @@ public class SupportController {
 	}
 	
 	@GetMapping("/noticeView")
+<<<<<<< HEAD
 
 	public ModelAndView csNoticeView(ModelAndView modelAndView, @RequestParam int no) {
 		Support support = null;
@@ -72,6 +83,21 @@ public class SupportController {
 		
 		modelAndView.addObject("support", support);
 
+=======
+<<<<<<< HEAD
+	public ModelAndView csNoticeView(ModelAndView modelAndView, @RequestParam int no) {
+		Support support = null;
+		
+		log.info("view() 호출 - {}", no);
+		
+		support = service.getNoticeByNo(no);
+		
+		modelAndView.addObject("support", support);
+=======
+	public ModelAndView csNoticeView(ModelAndView modelAndView) {
+		
+>>>>>>> origin/feature/pay_sy
+>>>>>>> parent of ff83659 (성연 240304)
 		modelAndView.setViewName("cscenter/noticeView");
 		
 		return modelAndView;

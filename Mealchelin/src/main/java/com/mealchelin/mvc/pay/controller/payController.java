@@ -3,7 +3,10 @@ package com.mealchelin.mvc.pay.controller;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
+=======
 import org.springframework.web.bind.annotation.SessionAttribute;
+>>>>>>> origin/feature/pay_sy
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.member.model.service.MemberService;
@@ -16,7 +19,40 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequiredArgsConstructor
 public class payController {
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+	
+	private final MemberService service;
+
+	@GetMapping("/pay/pay")
+	public ModelAndView payment(ModelAndView modelAndView
+	) {
+
+		Member member = service.getMemberByNo(1);
+		
+		
+		
+		log.info("member() 호출 - {}",member);
+		
+		System.out.println(member);
+		
+		
+		modelAndView.addObject("member", member);	
+		modelAndView.setViewName("pay/pay");
+
+		return modelAndView;
+	}
+	
+	
+	
+	
+	
+	
+	
+=======
+>>>>>>> parent of ff83659 (성연 240304)
 	private final MemberService service;
 
 	@GetMapping("/pay/pay")
@@ -39,6 +75,12 @@ public class payController {
 
 		return modelAndView;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> origin/feature/pay_sy
+	
+>>>>>>> parent of ff83659 (성연 240304)
 
 	@GetMapping("/pay/lnquiry")
 	public ModelAndView paylnquiry(ModelAndView modelAndView) {

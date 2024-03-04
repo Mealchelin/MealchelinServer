@@ -10,7 +10,11 @@ public interface SupportService {
 	int getNoticeCount();
 
 	List<Support> getNoticeList(PageInfo pageInfo);
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> parent of ff83659 (성연 240304)
 
 	int getFaqCount();
 
@@ -21,6 +25,11 @@ public interface SupportService {
 	int getadNoticeCount();
 
 	List<Support> getadNoticeList(PageInfo pageInfo);
+<<<<<<< HEAD
 
+=======
+=======
+>>>>>>> origin/feature/pay_sy
+>>>>>>> parent of ff83659 (성연 240304)
 	
 }

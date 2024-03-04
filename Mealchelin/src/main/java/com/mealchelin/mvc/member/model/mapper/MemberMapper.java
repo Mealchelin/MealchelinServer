@@ -12,11 +12,18 @@ public interface MemberMapper {
 
 	int insertMember(Member member);
 	
+<<<<<<< HEAD
 
 	Member selectMemberByNo(@Param("No") int memberNo);
 
+=======
+<<<<<<< HEAD
+	Member selectMemberByNo(@Param("No") int memberNo);
+=======
+>>>>>>> parent of ff83659 (성연 240304)
 	Member selectMemberByOrderInfo(
 			@Param("id") String id);
+>>>>>>> origin/feature/pay_sy
 
 
 }

@@ -3,6 +3,11 @@ package com.mealchelin.mvc.cscenter.model.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+<<<<<<< HEAD
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+=======
+>>>>>>> origin/feature/pay_sy
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
@@ -15,7 +20,11 @@ import com.mealchelin.mvc.cscenter.model.vo.Support;
 public interface SupportMapper {
 	int selectNoticeCount();
 	
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+>>>>>>> parent of ff83659 (성연 240304)
 	List<Support> selectNoticeAll(RowBounds rowBounds);
 	
 	int selectFaqCount();
@@ -27,5 +36,11 @@ public interface SupportMapper {
 	int selectadNoticeCount();
 
 	List<Support> selectadNoticeAll(RowBounds rowBounds);
+<<<<<<< HEAD
 
+=======
+=======
+	List<Support> selectNoticeAll();
+>>>>>>> origin/feature/pay_sy
+>>>>>>> parent of ff83659 (성연 240304)
 }
