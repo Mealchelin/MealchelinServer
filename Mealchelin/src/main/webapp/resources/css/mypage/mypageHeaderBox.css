@@ -65,6 +65,7 @@ input::-webkit-search-cancel-button {
     height: 306px;
     min-width: 1100px;
     background-color: #eee;
+    clear:both;
 }
 
 .myGrayboxIn{
