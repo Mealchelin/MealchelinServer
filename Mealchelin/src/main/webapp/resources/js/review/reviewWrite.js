@@ -1,8 +1,3 @@
-// $('.re_star a').click(function(){
-//     $(this).parent().children('a').removeClass('on');
-//     $(this).addClass('on').prevAll('a').addClass('on');
-//     return false;
-//   });
 
 // 별점 주는 코드
 $('.re_star > .starR').click(function() {
@@ -20,60 +15,51 @@ $('.starR').click(function() {
 
 });
 
-// 별점 Jquery로 DB에 넘기는 코드
-{/* <script>
-$(document).ready(function() {
-  // 별 클릭 이벤트 처리
-  $(".starR").click(function() {
-    // 선택된 별의 data-value 값 가져오기
-    var starValue = $(this).data("value");
+// 리뷰 수정 페이지 제목 글자 수 출력하는 코드
+$('#re_titleContent').keyup(function (e) {
+	let content = $(this).val();
+    // console.log(content);
+    if(content.length == 0 || content == ''){
+        $('#re_nowTextCount1').text('0');
+    } else{
+        $('#re_nowTextCount1').text(content.length);
+    }
+})
 
-    // 선택된 별만 'on' 클래스 추가
-    $(".starR").removeClass("on");
-    $(this).addClass("on");
-
-    // 별점 값을 서버로 전송 (예: Ajax 사용)
-    $.ajax({
-      url: "/review/rating",
-      method: "POST",
-      data: {
-        starRating: starValue
-      },
-      success: function(response) {
-        // 성공 처리
-      },
-      error: function(error) {
-        // 실패 처리
-      }
-    });
-  });
-});
-</script> */}
-
-
-
-
-// 리뷰 수정 페이지 글자 수 출력하는 코드
+// 리뷰 수정 페이지 상세리뷰 글자 수 출력하는 코드
 $('#re_detailReviewContent').keyup(function (e) {
 	let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
-        $('#re_nowTextCount').text('0');
+        $('#re_nowTextCount2').text('0');
     } else{
-        $('#re_nowTextCount').text(content.length);
+        $('#re_nowTextCount2').text(content.length);
     }
 }) 
 
-// 리뷰 작성 페이지 글자 수 출력하는 코드
+
+// 리뷰 작성 페이지 제목 글자 수 출력하는 코드
+$('#re_inputTitle').keyup(function (e) {
+	let content = $(this).val();
+    // console.log(content);
+    if(content.length == 0 || content == ''){
+        $('#re_nowTextCount1').text('0');
+    } else{
+        $('#re_nowTextCount1').text(content.length);
+    }
+}) 
+
+// 리뷰 작성 페이지 상세리뷰 글자 수 출력하는 코드
 $('#re_detailReview').keyup(function (e) {
 	let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
-        $('#re_nowTextCount').text('0');
+        $('#re_nowTextCount2').text('0');
     } else{
-        $('#re_nowTextCount').text(content.length);
+        $('#re_nowTextCount2').text(content.length);
     }
 }) 
+
 
 // 첨부 파일 선택시 사진 첨부 버튼 옆에 첨부 파일명 기재되게 하는 코드.
 $('#re_imgadd').change(function() {

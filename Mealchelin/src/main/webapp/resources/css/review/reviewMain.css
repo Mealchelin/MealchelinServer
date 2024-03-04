@@ -23,6 +23,7 @@ h3 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    float:left;
 }
 
 .re_img {
@@ -61,5 +62,16 @@ h3 {
 .re_foodName{
     float: left;
     font-size: 19px;
+}
+
+.re_reviewContent{
+	height: 140px;
+    overflow: hidden;
+}
+
+.re_reviewTitle{
+	height: 20px;
+    overflow: hidden;
+    
 }
 
