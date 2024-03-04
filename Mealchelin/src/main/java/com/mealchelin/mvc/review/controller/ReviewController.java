@@ -39,13 +39,13 @@ public class ReviewController {
 	public String home() {
 		
 		
-		return "/review/Main";
+		return "/review/main";
 	}
 	
 	@GetMapping("/reviewWrite")
 	public String reviewWrite() {
 		
-        return "/review/reviewWrite";
+        return "review/reviewWrite";
     }
 	
 	
@@ -54,45 +54,15 @@ public class ReviewController {
 	public String footSearchBox() {
 		
 		
-        return "/review/FootSearchBox";
+        return "review/FootSearchBox";
     }
 
-	@GetMapping("/mypageProductReview")
-	public String mypageProductReview() {
-		
-		
-        return "/review/MypageProductReview";
-    }
-
-	
-	
-	@GetMapping("/mypageWritableReview")
-	public String mypageWritableReview() {
-		
-		
-        return "/review/MypageWritableReview";
-    }
-	
-	
-	@GetMapping("/mypageWritableReviewEmpty")
-	public String mypageWritableReviewEmpty() {
-		
-		
-        return "/review/MypageWritableReviewEmpty";
-    }
-	
-	@GetMapping("/mypageWrittenReviewEmpty")
-	public String mypageWrittenReviewEmpty() {
-		
-		
-        return "/review/MypageWrittenReviewEmpty";
-    }
 	
 	@GetMapping("/reviewDetail")
 	public String reviewDetail() {
 		
 		
-        return "/review/reviewDetail";
+        return "review/reviewDetail";
     }
 	
 	
@@ -100,14 +70,14 @@ public class ReviewController {
 	public String reviewEdit() {
 		
 		
-        return "/review/reviewEdit";
+        return "review/reviewEdit";
     }
 	
 	@GetMapping("/reviewEmpty")
 	public String reviewEmpty() {
 		
 		
-        return "/review/reviewEmpty";
+        return "review/reviewEmpty";
     }
 	
 	

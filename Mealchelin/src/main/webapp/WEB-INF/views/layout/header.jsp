@@ -7,25 +7,25 @@
 
 <nav class="header_nav">
     <ul class="left_nav">
-        <a href=""><li class="logo1_nav"></li></a>
+        <a href="${ path }/"><li class="logo1_nav"></li></a>
     </ul>
     <ul class="main_nav">
         <li><a href="${ path }/brand/information">브랜드</a></li>
+        <li><a href="${ path }/product/best">베스트</a></li>
+        <li><a href="${ path }/product/new">신상품</a></li>
         <li>
-        	<a href="">베스트
+        	<a href="${ path }/product/list">전체상품
         		<ul class="main_nav_hover">
-	        		<li><a href="">한식</a></li>
-	        		<li><a href="">분식</a></li>
-	        		<li><a href="">중식</a></li>
-	        		<li><a href="">일식</a></li>
-	        		<li><a href="">양식</a></li>
-	        		<li><a href="">동남아</a></li>
+	        		<li><a href="${ path }/product/list?category=korean">한식</a></li>
+	        		<li><a href="${ path }/product/list?category=bunsik">분식</a></li>
+	        		<li><a href="${ path }/product/list?category=chinese">중식</a></li>
+	        		<li><a href="${ path }/product/list?category=japanese">일식</a></li>
+	        		<li><a href="${ path }/product/list?category=western">양식</a></li>
+	        		<li><a href="${ path }/product/list?category=southeast">동남아</a></li>
 	        	</ul>
         	</a>
         </li>
-        <li><a href="">신상품</a></li>
-        <li><a href="">전체상품</a></li>
-        <li><a href="">밀슐랭 리뷰</a></li>
+        <li><a href="${ path }/review/main">밀슐랭 리뷰</a></li>
         <li style="padding-right:0;">
 	        <a href="${ path }/cscenter/notice">고객센터
 	        	<ul class="main_nav_hover2">

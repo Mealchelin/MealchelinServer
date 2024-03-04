@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class payController {
+public class PayController {
 
 	private final MemberService service;
 
@@ -39,28 +39,28 @@ public class payController {
 
 		return modelAndView;
 	}
-
-	@GetMapping("/pay/lnquiry")
+	
+	@GetMapping("/mypage/payInquiry")
 	public ModelAndView paylnquiry(ModelAndView modelAndView) {
 
-		modelAndView.setViewName("pay/lnquiry");
+		modelAndView.setViewName("mypage/payInquiry");
 
 		return modelAndView;
 
 	}
 
-	@GetMapping("/pay/Details")
+	@GetMapping("/mypage/payDetails")
 	public ModelAndView payDetails(ModelAndView modelAndView) {
 
-		modelAndView.setViewName("pay/Details");
+		modelAndView.setViewName("mypage/payDetails");
 
 		return modelAndView;
 	}
 
-	@GetMapping("/pay/Delete")
+	@GetMapping("/mypage/payDelete")
 	public ModelAndView payDelete(ModelAndView modelAndView) {
 
-		modelAndView.setViewName("pay/Delete");
+		modelAndView.setViewName("mypage/payDelete");
 
 		return modelAndView;
 	}
