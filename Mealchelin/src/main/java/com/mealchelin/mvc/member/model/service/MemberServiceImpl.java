@@ -71,6 +71,18 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public Boolean isDuplicateId(String userId) {
+		
+		return this.findMemberById(userId) != null;
+	}
+
+	@Override
+	public Boolean isDuplicatePwd(String userPwd) {
+		
+		return null;
+	}
+
 
 }
 

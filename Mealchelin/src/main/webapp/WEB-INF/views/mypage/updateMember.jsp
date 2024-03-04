@@ -70,6 +70,44 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="${ path }/js/main.js"></script>
     <script type="text/javascript" src="${ path }/js/index.js"></script>
+     <script>
+	 // 비밀번호 체크 
+	    $('.myInputBtn').on('click',()=>{
+	        let userPwd = $('#mymemberPwd').val().trim();
+	    	
+	    	
+	        if (userPwd === ''){
+	            alert('비밀번호를 입력해주세요.');
+	        } else {
+	            $.ajax({
+	                type:'post',
+	                url: '${ path }/member/update',
+	                dataType: 'json',
+	                data : {
+	                    userPwd
+	                },
+	                success : (obj) => {
+	                    console.log(obj);
+	
+	                    if(obj.duplicate){
+	                    } else {
+	                        alert('비밀번호가 일치하지 않습니다.');
+	                    }
+	                },
+	                error: (error) => {
+	                    console.log(error);
+	                }
+	            });
+	
+	        }
+	    	
+	
+	    }) ;
+	
+
+
+  
+    </script>
 </body>
 
 </html>

@@ -1,6 +1,12 @@
 package com.mealchelin.mvc.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +33,8 @@ public class MemberController {
 		return "/member/login";
 	}
 	
-
+	
+	// 로그인
 	@PostMapping("/member/login")
 	public ModelAndView login(ModelAndView modelAndView,
 							  @RequestParam("userId") String id,
@@ -49,6 +56,8 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	
+	//로그아웃
 	@GetMapping("/member/logout")
 	public String logout(SessionStatus status) {
 		
@@ -65,6 +74,8 @@ public class MemberController {
 				
 	}
 	
+	
+	//회원가입
 	@PostMapping("/member/enroll")
 	public ModelAndView enroll(ModelAndView modelAndView,
 							   Member member) {
@@ -84,13 +95,39 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	
+	
+	// 아이디 중복체크 
+	@GetMapping("/member/idCheck")
+	public ResponseEntity< Map<String, Boolean>> idCheck(@RequestParam("userId") String userId) {
+		Map<String, Boolean> map = new HashMap<>();
+		
+		log.info("UserId : {}", userId);
+		
+		map.put("duplicate", service.isDuplicateId(userId));
+		
+		
+	      return ResponseEntity.ok()
+	    		 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).body(map);
+	}
+	
 
 	@GetMapping("/mypage/updateMember")
-	public ModelAndView updateMember(ModelAndView modelAndView) {
+	public String updateMember() {
 		
-		modelAndView.setViewName("mypage/updateMember");
+		return "mypage/updateMember";
 		
-		return modelAndView;
+	}
+	
+	
+	@PostMapping("/mypage/updateMember")
+	public ResponseEntity< Map<String, Boolean>> updateMember(@RequestParam("userPwd") String userPwd) {
+		Map<String, Boolean> map = new HashMap<>();
+		
+		map.put("duplicate", service.isDuplicatePwd(userPwd));
+		
+		  return ResponseEntity.ok()
+				 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).body(map);
 		
 	}
 	

@@ -450,6 +450,46 @@
     <script type="text/javascript" src="${ path }/js/main.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ path }/js/member/enroll.js"></script>
+    <script>
+	 // 아이디 중복 체크 
+	    $('.memIdcheck').on('click',()=>{
+	        let userId = $('#memID').val().trim();
+	    	
+	    	
+	        if (userId === ''){
+	            alert('아이디를 입력해주세요.');
+	        } else {
+	            $.ajax({
+	                type:'get',
+	                url: '${ path }/member/idCheck',
+	                dataType: 'json',
+	                data : {
+	                    userId
+	                },
+	                success : (obj) => {
+	                    console.log(obj);
+	
+	                    if(obj.duplicate){
+	                        alert('이미 사용중인 아이디 입니다.');
+	                    } else {
+	                        alert('사용 가능한 아이디 입니다.');
+	                    }
+	                },
+	                error: (error) => {
+	                    console.log(error);
+	                }
+	            });
+	
+	        }
+	    	
+	
+	    }) ;
+	
+	
+	
+	    
+    </script>
 </body>
+
 
 </html>
