@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 public class ShippingLocation {
 
 	//배송지 번호
-	private int ship_no;
+	private int shipNo;
 	
 	//배송지명 
-	private String ship_name;
+	private String shipName;
 	
 	//수취인명 
 	private String recipient;
@@ -31,9 +31,30 @@ public class ShippingLocation {
 	private String shipAddressDetail;
 	
 	//도서산간 지역여부(Y/N)
+	private String mountain;
 	
+	//배송비 
+	private int price;
+	
+	//기본 배송지 유무(Y/N)
+	private String defaultCheck;
+	
+	//상태(Y/N)
+	private String status;
+	
+	//회원 번호 
+	private int memberNo;
 	
 	
 	
 	
 }
+
+
+
+
+
+
+
+
+

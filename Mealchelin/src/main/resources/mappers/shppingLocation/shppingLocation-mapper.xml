@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper
+	namespace="com.mealchelin.mvc.shippingLocation.model.mapper.ShippingLocationMapper">
+
+	<resultMap id="shippingLocationResultMap" type="ShippingLocation">
+	
+	<id property="shipNo" column="SHIP_NO"/>
+	<result property="shipName" column="SHIP_NAME"/>
+	<result property="recipient" column="RECIPIENT"/>
+	<result property="phone" column="PHONE"/>
+	<result property="postalCode" column="POSTAL_CODE"/>
+	<result property="shipAddress" column="SHIP_ADDRESS"/>
+	<result property="shipAddressDetail" column="SHIP_ADDRESS_DETAIL"/>
+	<result property="mountain" column="MOUNTAIN"/>
+	<result property="price" column="PRICE"/>
+	<result property="defaultCheck" column="DEFAULT_CHECK"/>
+	<result property="status" column="STATUS"/>
+	<result property="memberNo" column="MEMBER_NO"/>
+	
+	</resultMap>
+
+	<select id="selectFindByNo" parameterType="_int" resultMap="shippingLocationResultMap">
+		SELECT  SHIP_NO,
+				SHIP_NAME,
+				PHONE,
+				SHIP_ADDRESS,
+				SHIP_ADDRESS_DETAIL
+		FROM SHIPPING_LOCATION
+		WHERE MEMBER_NO = #{memberNo}
+
+	</select>
+
+
+
+</mapper>

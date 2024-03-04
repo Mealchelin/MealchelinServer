@@ -85,9 +85,8 @@
 						</div>
 					</div>
 					<div class="pay_Sender">
-						<span class="pay_userEmail">이메일</span> 
-						<span class="pay_userEmails">
-							${userinfo.email}
+						<span class="pay_userEmail">이메일</span> <span
+							class="pay_userEmails"> ${userinfo.email}
 							<p>
 								이메일을 통해 주문처리과정을 보내드립니다 <br> 정보변경은 맛슐랭>개인정보 수정 메뉴에서 가능합니다
 							</p>
@@ -99,27 +98,25 @@
 				</div>
 				<div class="pay_ShippingInfo">
 					<div class="pay_SenderInfo">
-						<span class="pay_username">이름</span> <span class="pay_usernames">백성연</span>
+						<span class="pay_username">이름</span> <span class="pay_usernames">${shippingInfo.shipName}</span>
 					</div>
 					<div class="pay_Sender">
 						<span class="pay_userPhone">연락처</span> <span
-							class="pay_userPhones">010-0000-0000</span>
+							class="pay_userPhones">${shippingInfo.phone}</span>
 					</div>
 					<div class="pay_Sender">
 						<span class="pay_useraddress">배송지</span> <span
 							class="pay_defaultPoint">기본배송지</span>
 					</div>
-					<span class="pay_useraddresss">서울 동작구 가로수길 109</span>
-					<p class="pay_addressInfo">172-43 2층동 문화아파트 1동 5층 501호</p>
+					<span class="pay_useraddresss">${shippingInfo.shipAddress}</span>
+					<p class="pay_addressInfo">${shippingInfo.shipAddressDetail}</p>
 					<div class="pay_addresschangeArea">
 						<a class="pay_addresschange">변경</a>
 					</div>
 				</div>
 				<div class="pay_DeliveryRequestInfoArea">
 					<div class="pay_DeliveryRequestInfo">
-						<span class="pay_DeliveryRequest">배송요청사항</span> <input
-							class="pay_DeliveryUserRequest" type="text"
-							placeholder="예)문앞에놔주세요">
+						<span class="pay_DeliveryRequest">배송요청사항</span> <input class="pay_DeliveryUserRequest" type="text" placeholder="예) 문 앞에 놔주세요">
 						<p class="pay_UserRequest">배송 요청사항을 입력해주세요</p>
 					</div>
 				</div>
@@ -131,9 +128,9 @@
 					<div class="pay_payList">
 						<div class="pay_Info">
 							<div class="pay_kakaoArea">
-									<input type="checkbox" id="pay_kakao" name="pay_check"
-										value="pay_kakao"> <label for="pay_kakao"><img
-										src="../img/all/kakao-pay.png"></label>
+								<input type="checkbox" id="pay_kakao" name="pay_check"
+									value="pay_kakao"> <label for="pay_kakao"><img
+									src="../img/all/kakao-pay.png"></label>
 							</div>
 							<div class="pay_cardArea">
 								<input type="checkbox" id="pay_card" name="pay_check"
