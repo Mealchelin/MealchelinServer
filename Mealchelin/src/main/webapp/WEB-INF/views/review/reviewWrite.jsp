@@ -53,10 +53,9 @@
                         <br>
                         <p id="re_titleAndDetailReview" >제목</p>
                         <textarea maxlength="30" name="name" id="re_inputTitle" cols="3" rows="1" placeholder="다른 고객님에게 도움이 되도록 상품에 대한 솔직한 평가를 남겨주세요."></textarea>
-                        <p id="re_textCount"><span id="re_nowTextCount1">0</span>/30</p>
                         <p id="re_titleAndDetailReview">상세리뷰</p>
                         <textarea maxlength="300" name="content" id="re_detailReview" cols="30" rows="10"></textarea>
-                        <p id="re_textCount"><span id="re_nowTextCount2">0</span>/300</p>
+                        <p id="re_textCount"><span id="re_nowTextCount">0</span>/300</p>
                         <input id="re_imgadd" name="image" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
                         <label id="re_imgAttachBtn" for="re_imgadd">사진 첨부</label>
                         <span id="re_imgSizeMsg">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 1장까지 첨부 가능합니다.</span>

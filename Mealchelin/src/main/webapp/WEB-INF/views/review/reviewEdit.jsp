@@ -42,22 +42,24 @@
                         <img id="re_img" src="../img/new_01.jpg" alt="">
                         <div id="re_foodInfo">
                             <p id="re_foodName">안동식 순살 찜닭</p>
-                            <div name="rated" class="re_star">
-                                <span name="rated" data-value="1" class="starR">★</span>
-                                <span name="rated" data-value="2" class="starR">★</span>
-                                <span name="rated" data-value="3" class="starR">★</span>
-                                <span name="rated" data-value="4" class="starR">★</span>
-                                <span name="rated" data-value="5" class="starR">★</span>
-                                <input id="ratedInput" type="hidden" name="rated" value="0" />
+                            <!-- 하기 re_emptySpace는 상품선택 버튼이 사라진 공간을 채우기 위해 사용함. -->
+                            <p id="re_emptySpace" ></p>
+                            <!-- <input id="re_productSelectBtn" type="button" value="상품 선택"> -->
+                            <div class="re_star">
+                                <!-- 편의 상 가장 첫번째의 별은 기본으로 class="on"이 되게 설정해주었습니다. -->
+                                <span data-value="1" class="starR on">★</span>
+                                <span data-value="2" class="starR">★</span>
+                                <span data-value="3" class="starR">★</span>
+                                <span data-value="4" class="starR">★</span>
+                                <span data-value="5" class="starR">★</span>
                             </div>
                         </div>
                         <br>
                         <p id="re_titleAndDetailReview" >제목</p>
                         <textarea maxlength="30" id="re_titleContent" >제품 2번째 구매인데... 만족스럽네요</textarea>
-                        <p id="re_textCount"><span id="re_nowTextCount1">0</span>/30</p>
                         <p id="re_titleAndDetailReview">상세리뷰</p>
                         <textarea maxlength="300" id="re_detailReviewContent" >정말 빠른 배송, 포장상태, 맛 다 만족입니다. 식감, 퀄리티 모두 좋아요</textarea>
-                        <p id="re_textCount"><span id="re_nowTextCount2">0</span>/300</p>
+                        <p id="re_textCount"><span id="re_nowTextCount">0</span>/300</p>
                         <!-- <input id="re_imgAttachBtn" type="button" value="사진 첨부"> -->
                         <input id="re_imgadd" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
                         <label id="re_imgAttachBtn" for="re_imgadd">사진 첨부</label>
@@ -80,7 +82,7 @@
 	<!-- 필요한 js 밑에 추가-->
 	<script type="text/javascript" src="${ path }/js/index.js"></script>
 	
- 	<script type="text/javascript" src="${ path }/js/review/reviewWrite.js"></script>
+ 	<script type="text/javascript" src="../js/review/reviewWrite.js"></script>
 </body>
 
 </html>

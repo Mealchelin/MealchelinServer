@@ -1,12 +1,8 @@
 package com.mealchelin.mvc.review.model.service;
 
-import java.util.List;
-
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.vo.Review;
 
@@ -25,23 +21,6 @@ public class ReviewServiceImpl implements ReviewService {
 		result = mapper.insertReview(review);
 		
 		return result;
-	}
-
-	@Override
-	public int getReviewCount() {
-		
-		
-		return mapper.getReviewCount();
-	}
-
-	@Override
-	public List<Review> getReviewList(PageInfo pageInfo) {
-		int limit = pageInfo.getListLimit();
-		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		
-		return mapper.selectAll(rowBounds);
 	}
 
 }

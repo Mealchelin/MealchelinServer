@@ -35,65 +35,196 @@
 		<section>
 			<h3>밀슐랭 상품 리뷰</h3>
 			<div id="re_reviewBtnDiv">
-				<a href="${ path }/review/mypageWritableReview"><input
-					id="re_reviewBtn" type="button" value="리뷰 작성" /></a>
+				<a href="${ path }/review/mypageWritableReview"><input id="re_reviewBtn"
+					type="button" value="리뷰 작성" /></a>
 			</div>
-		
-				<div class="mainDiv">
-			<c:forEach var="review" items="${ list }">
-					<a href="${ path }/review/reviewDetail">
-						<div class="re_imgDiv">
-							<img class="re_img" src="../img/new_01.jpg" alt="" />
-							<div class="re_innerimgDiv">
-								<p class="re_foodName">안동식 순살 찜닭</p>
-								<p class="re_brandName">마이셰프</p>
-								<br> <br>
-								<p class="re_reviewTitle">${ review.name }</p>
-								<br>
-								<p class="re_reviewContent">${ review.content }</p>
-								<br>
-								<p class="re_star">★★★★★</p>
-							</div>
+			<div class="mainDiv">
+				<a href="${ path }/review/reviewDetail">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
 						</div>
-					</a>
-			</c:forEach>
-				</div>
-			
-
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a> <a href="../review/reviewDetail.html">
+					<div class="re_imgDiv">
+						<img class="re_img" src="../img/new_01.jpg" alt="" />
+						<div class="re_innerimgDiv">
+							<p class="re_foodName">안동식 순살 찜닭</p>
+							<p class="re_brandName">마이셰프</p>
+							<br>
+							<br>
+							<p class="re_reviewTitle">리뷰 제목이 들어갑니다.</p>
+							<br>
+							<p>제품 2번째 구매인데,만족스럽네요.정말 빠른 배송, 포장상태 모두 만족스럽습니다.</p>
+							<br>
+							<p class="re_star">★★★★★</p>
+						</div>
+					</div>
+				</a>
+			</div>
 
 			<!-- 하단 검색창 -->
 			<jsp:include page="FootSearchBox.jsp" />
-
-			<div id="pageBar">
-				<!-- 맨 처음으로 -->
-				<button onclick="location.href='${ path }/board/list?page=1'">&lt;&lt;</button>
-
-				<!-- 이전 페이지로 -->
-				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.prevPage }'">&lt;</button>
-
-				<!--  10개 페이지 목록 -->
-				<c:forEach var="current" begin="${ pageInfo.startPage }"
-					end="${ pageInfo.endPage }">
-					<c:choose>
-						<c:when test="${ current == pageInfo.currentPage }">
-							<button disabled>${ current }</button>
-						</c:when>
-						<c:otherwise>
-							<button
-								onclick="location.href='${ path }/board/list?page=${ current }'">${ current }</button>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-
-				<!-- 다음 페이지로 -->
-				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.nextPage }'">&gt;</button>
-
-				<!-- 맨 끝으로 -->
-				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
-			</div>
+			
 
 			<div id="re_bottomPageNumbers">
 				<span>&lt;</span> <span>1</span> <span>2</span> <span>3</span> <span>4</span>
