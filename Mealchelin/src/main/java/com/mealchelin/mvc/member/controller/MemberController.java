@@ -114,20 +114,20 @@ public class MemberController {
 
 	@GetMapping("/mypage/updateMember")
 	public String updateMember() {
-		
+
 		return "mypage/updateMember";
 		
 	}
 	
 	
 	@PostMapping("/mypage/updateMember")
-	public ResponseEntity< Map<String, Boolean>> updateMember(@RequestParam("userPwd") String userPwd) {
-		Map<String, Boolean> map = new HashMap<>();
+	public ModelAndView updateMember(ModelAndView modelAndView,
+			 						 @RequestParam("mymemberId") String id,
+			 						 @RequestParam("mymemberPwd") String password) {
+	
+		Member loginMember = service.update(id,password);
 		
-		map.put("duplicate", service.isDuplicatePwd(userPwd));
-		
-		  return ResponseEntity.ok()
-				 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).body(map);
+		  return modelAndView;
 		
 	}
 	
