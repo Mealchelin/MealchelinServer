@@ -26,4 +26,8 @@ public interface ProductMapper {
 	
 	Product selectProductByNo(@Param("no") int no);
 
+	List<Product> selectProductNewList();
+
+	List<Product> selectProductBestList();
+
 }

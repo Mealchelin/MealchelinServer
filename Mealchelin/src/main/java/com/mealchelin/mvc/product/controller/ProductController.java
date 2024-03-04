@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.product.model.service.ProductService;
 import com.mealchelin.mvc.product.model.vo.Product;
@@ -75,6 +77,32 @@ public class ProductController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/new")
+	public ModelAndView	newList(
+			ModelAndView modelAndView) {
+		
+		List<Product> list = null;
+		list = productService.getProductNewList();
+		String newList = "1";
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("newList", newList);
+		modelAndView.setViewName("product/newBest");
+		return modelAndView;
+	}
+	
+	@GetMapping("/best")
+	public ModelAndView	bestList(
+			ModelAndView modelAndView) {
+		
+		List<Product> list = null;
+		list = productService.getProductBestList();
+		String bestList = "1";
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("bestList", bestList);
+		modelAndView.setViewName("product/newBest");
+		return modelAndView;
+	}
+	
 	@GetMapping("/view")
 	public ModelAndView view(
 			ModelAndView modelAndView,
@@ -92,6 +120,7 @@ public class ProductController {
 	// 장바구니에 추가
 	@PostMapping("/shoppingBasket")
 	public String shop(
+			@SessionAttribute("loginMember") Member loginMember,
 			@RequestParam int no,
 			@RequestParam int quantity) {
 		
@@ -103,7 +132,7 @@ public class ProductController {
 		int totalPrice = product.getPrice() * quantity;
 		
 		sbp.setPrdNo(product.getNo());
-		sbp.setPrdNo(1);
+		sbp.setMemNo(1);
 		sbp.setQuantity(quantity);
 		sbp.setTotalPrice(totalPrice);
 		
@@ -130,13 +159,21 @@ public class ProductController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/purchase2")
-	public ModelAndView	purchase2(
+//	@GetMapping("/purchase2")
+//	public ModelAndView	purchase2(
+//			ModelAndView modelAndView,
+//			Product product) {
+//		
+//		log.info("{}", product);
+//		modelAndView.addObject("product", product);
+//		
+//		return modelAndView;
+//	}
+	
+	@PostMapping("/add")
+	public ModelAndView add(
 			ModelAndView modelAndView,
 			Product product) {
-		
-		log.info("{}", product);
-		modelAndView.addObject("product", product);
 		
 		return modelAndView;
 	}

@@ -73,4 +73,14 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.selectProductByNo(no);
 	}
 
+	@Override
+	public List<Product> getProductNewList() {
+		return productMapper.selectProductNewList();
+	}
+
+	@Override
+	public List<Product> getProductBestList() {
+		return productMapper.selectProductBestList();
+	}
+
 }
