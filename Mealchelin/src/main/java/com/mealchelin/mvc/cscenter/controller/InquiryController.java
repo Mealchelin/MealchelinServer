@@ -1,11 +1,19 @@
 package com.mealchelin.mvc.cscenter.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.service.InquiryService;
+import com.mealchelin.mvc.cscenter.model.vo.Inquiry;
+import com.mealchelin.mvc.cscenter.model.vo.Support;
+import com.mealchelin.mvc.member.model.vo.Member;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,14 +23,26 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RequestMapping("/cscenter")
 public class InquiryController {
-//	private final InquiryService service;
+	private final InquiryService service;
 	
 	@GetMapping("/inquiry")
-	public ModelAndView csinquiry(ModelAndView modelAndView) {
+	public ModelAndView csinquiry(ModelAndView modelAndView, Inquiry inquiry,@SessionAttribute("loginMember") Member loginMember, @RequestParam(defaultValue = "1") int page) {
+		inquiry.setMemberNo(loginMember.getMemberNo());
 		
+		int listCount = 0;
+		PageInfo pageInfo = null;
+		List<Support> list = null;
+		
+		listCount = service.getInquiryCount(inquiry);
+		pageInfo = new PageInfo(page, 5, listCount, 10);
+		list = service.getInquiryList(inquiry, pageInfo);
+		
+		modelAndView.addObject("pageInfo", pageInfo);
+		modelAndView.addObject("list", list);
 		modelAndView.setViewName("cscenter/inquiry");
 		
 		return modelAndView;
+
 	}
 	
 	@GetMapping("/inquiryView")

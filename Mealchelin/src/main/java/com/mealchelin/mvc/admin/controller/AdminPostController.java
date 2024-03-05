@@ -53,9 +53,9 @@ public class AdminPostController {
 		PageInfo pageInfo = null;
 		List<Support> list = null;
 		
-		listCount = serviceS.getFaqCount();
+		listCount = serviceS.getadFaqCount();
 		pageInfo = new PageInfo(page, 5, listCount, 10);
-		list = serviceS.getFaqList(pageInfo);
+		list = serviceS.getadFaqList(pageInfo);
 		
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
@@ -65,8 +65,14 @@ public class AdminPostController {
 	}
 	
 	@GetMapping("/adQnADetail")
-	public ModelAndView adQnADetail(ModelAndView modelAndView) {
+	public ModelAndView adQnADetail(ModelAndView modelAndView, @RequestParam int no) {
+		Support support = null;
 		
+		log.info("view() 호출 - {}", no);
+		
+		support = serviceS.getFaqByNo(no);
+		
+		modelAndView.addObject("support", support);
 		modelAndView.setViewName("admin/post/adQnADetail");
 		
 		return modelAndView;

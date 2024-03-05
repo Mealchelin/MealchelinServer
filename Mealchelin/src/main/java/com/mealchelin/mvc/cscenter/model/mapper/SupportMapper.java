@@ -15,7 +15,6 @@ import com.mealchelin.mvc.cscenter.model.vo.Support;
 public interface SupportMapper {
 	int selectNoticeCount();
 	
-
 	List<Support> selectNoticeAll(RowBounds rowBounds);
 	
 	int selectFaqCount();
@@ -27,5 +26,11 @@ public interface SupportMapper {
 	int selectadNoticeCount();
 
 	List<Support> selectadNoticeAll(RowBounds rowBounds);
+
+	int selectadFaqCount();
+
+	List<Support> selectadFaqAll(RowBounds rowBounds);
+
+	Support selectFaqByNo(@Param("supportNo") int no);
 
 }

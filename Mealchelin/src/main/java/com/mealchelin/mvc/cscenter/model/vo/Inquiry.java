@@ -10,15 +10,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Inquiry {
+	private int rnum;
+	
 	private int inquiryNo;
 	
-	private String name;
+	private String iname;
 	
 	private String inquiryContent;
 	
 	private Date rgstrDate;
 	
+	private String answerState;
+	
 	private String answerContent;
 	
 	private int memberNo;
+	
+	private String mname;
 }

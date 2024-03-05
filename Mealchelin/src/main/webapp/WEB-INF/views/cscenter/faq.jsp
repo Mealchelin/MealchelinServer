@@ -55,7 +55,7 @@
             
             	<c:if test="${ empty list }">
 	                <li class="cs-list-content cs-faq-list">
-	                    <div>조회된 게시글이 없습니다.</div>
+	                    <div style ="text-align:center; margin-top:10px;">조회된 게시글이 없습니다.</div>
 	                </li>
                 </c:if>
 				<c:if test="${ not empty list }">
