@@ -2,22 +2,58 @@
 <!DOCTYPE mapper 
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-	
-<mapper namespace="com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketProductMapper">
+
+<mapper
+	namespace="com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketProductMapper">
 
 	<insert id="insertSbp" parameterType="ShoppingBasketProduct">
-		INSERT INTO SHOPPING_BASKET_PRODUCT (
-			PRD_NO,
-			MEMBER_NO,
-			QUANTITY,
-			TOTAL_PRICE
-		) VALUES (
-			#{prdNo}, 
-			#{memNo}, 
-			#{quantity}, 
-			#{totalPrice}
+		INSERT INTO
+		SHOPPING_BASKET_PRODUCT (
+		PRD_NO,
+		MEMBER_NO,
+		QUANTITY,
+		TOTAL_PRICE
+		) VALUES
+		(
+		#{prdNo},
+		#{memNo},
+		#{quantity},
+		#{totalPrice}
 		)
 	</insert>
+
+	<resultMap id="shoppingBasketResultMap"
+		type="ShoppingBasketProduct">
+		<id property="memberNo" column="MEMBER_NO" />
+		<result property="prdNo" column="PRD_NO" />
+		<result property="name" column="NAME" />
+		<result property="price" column="PRICE" />
+		<result property="image" column="IMAGE" />
+		<result property="brand" column="BRAND" />
+		<result property="quantity" column="QUANTITY" />
+	</resultMap>
+
+
+
+	<select id="selectByProduct" resultMap="shoppingBasketResultMap"
+		parameterType="_int">
+		SELECT s.MEMBER_NO,
+		s.PRD_NO,
+		p.NAME,
+		p.PRICE,
+		p.IMAGE,
+		p.BRAND,
+		s.QUANTITY
+		FROM SHOPPING_BASKET_PRODUCT s
+		JOIN PRODUCT p ON
+		s.PRD_NO = p.PRD_NO
+		WHERE s.MEMBER_NO = #{memberNo}
+
+	</select>
+	
+	
+
+
 
 
 

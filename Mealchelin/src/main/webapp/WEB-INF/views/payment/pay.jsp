@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -50,26 +51,20 @@
 				<div class="pay_FirstContent">
 					<span class="pay_FirstContentTitle">주문 상품</span>
 				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_01.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">안동식
-							순살 찜닭 </span>
-						<p class="pay_subFirstName">마이 셰프</p>
-					</span> <span class="pay_number">1개</span> <span class="pay_paynumber">15,800원</span>
-				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_02.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">기사
-							식당 돼지 불백(2-3인)</span>
-						<p class="pay_subFirstName">마이 셰프</p>
-					</span> <span class="pay_number">1개</span> <span class="pay_paynumber">14,900원</span>
-				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_03.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">소고기뭇국</span>
-						<p class="pay_subFirstName">쿳킷</p>
-					</span> <span class="pay_number">1개</span> <span class="pay_paynumber">16,800원</span>
-				</div>
+				<c:forEach items="${shippingBaketInfoList}" var="item">
+					<div class="pay_FirstContentArea">
+						<img src="${item.image}" class="pay_menuPhoto"> <span
+							class="pay_FirstMemu"> <span class="pay_FirstName">${item.name}</span>
+							<p class="pay_subFirstName">${item.brand}</p>
+						</span> <span class="pay_number">${item.quantity}개</span> <span
+							class="pay_paynumber"> <fmt:formatNumber
+								value="${item.price}" pattern="#,##0" /> 원
+						</span>
+					</div>
+					<c:set var="totalPrice" value="${item.quantity * item.price}" />
+				</c:forEach>
+
+
 
 				<div class="pay_SecondContentArea">
 					<div class="pay_SecondContent">
@@ -85,9 +80,8 @@
 						</div>
 					</div>
 					<div class="pay_Sender">
-						<span class="pay_userEmail">이메일</span> 
-						<span class="pay_userEmails">
-							${userinfo.email}
+						<span class="pay_userEmail">이메일</span> <span
+							class="pay_userEmails"> ${userinfo.email}
 							<p>
 								이메일을 통해 주문처리과정을 보내드립니다 <br> 정보변경은 맛슐랭>개인정보 수정 메뉴에서 가능합니다
 							</p>
@@ -99,18 +93,18 @@
 				</div>
 				<div class="pay_ShippingInfo">
 					<div class="pay_SenderInfo">
-						<span class="pay_username">이름</span> <span class="pay_usernames">백성연</span>
+						<span class="pay_username">이름</span> <span class="pay_usernames">${shippingInfo.shipName}</span>
 					</div>
 					<div class="pay_Sender">
 						<span class="pay_userPhone">연락처</span> <span
-							class="pay_userPhones">010-0000-0000</span>
+							class="pay_userPhones">${shippingInfo.phone}</span>
 					</div>
 					<div class="pay_Sender">
 						<span class="pay_useraddress">배송지</span> <span
 							class="pay_defaultPoint">기본배송지</span>
 					</div>
-					<span class="pay_useraddresss">서울 동작구 가로수길 109</span>
-					<p class="pay_addressInfo">172-43 2층동 문화아파트 1동 5층 501호</p>
+					<span class="pay_useraddresss">${shippingInfo.shipAddress}</span>
+					<p class="pay_addressInfo">${shippingInfo.shipAddressDetail}</p>
 					<div class="pay_addresschangeArea">
 						<a class="pay_addresschange">변경</a>
 					</div>
@@ -119,7 +113,7 @@
 					<div class="pay_DeliveryRequestInfo">
 						<span class="pay_DeliveryRequest">배송요청사항</span> <input
 							class="pay_DeliveryUserRequest" type="text"
-							placeholder="예)문앞에놔주세요">
+							placeholder="예) 문 앞에 놔주세요">
 						<p class="pay_UserRequest">배송 요청사항을 입력해주세요</p>
 					</div>
 				</div>
@@ -131,9 +125,9 @@
 					<div class="pay_payList">
 						<div class="pay_Info">
 							<div class="pay_kakaoArea">
-									<input type="checkbox" id="pay_kakao" name="pay_check"
-										value="pay_kakao"> <label for="pay_kakao"><img
-										src="../img/all/kakao-pay.png"></label>
+								<input type="checkbox" id="pay_kakao" name="pay_check"
+									value="pay_kakao"> <label for="pay_kakao"><img
+									src="../img/all/kakao-pay.png"></label>
 							</div>
 							<div class="pay_cardArea">
 								<input type="checkbox" id="pay_card" name="pay_check"
@@ -153,17 +147,21 @@
 				<div class="pay_payResultArea">
 					<div class="pay_payResult">
 						<span class="pay_paymentInfo">결제금액</span> <span
-							class="pay_payment">결제 금액</span> <span class="pay_pay">47,500원</span>
+							class="pay_payment">결제 금액</span> <span class="pay_pay"> <fmt:formatNumber
+								value="${totalPrice}" pattern="#,##0" /> 원
+						</span>
 					</div>
 					<div class="pay_paymentInfo">
-						<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney">47,500원</span>
+						<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney"> <fmt:formatNumber
+								value="${item}" pattern="#,##0" /> 원</span>
 					</div>
 					<div class="pay_paymentInfo">
-						<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay">0원</span>
+						<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay"> <fmt:formatNumber
+								value="${shippingInfo.price}" pattern="#,##0" /> 원</span>
 					</div>
 					<div class="pay_finalResult">
 						<span class="pay_Delivery">최종 결제 금액</span> <span
-							class="pay_Finalpay">47,500원</span>
+							class="pay_Finalpay">${totalPrice}원</span>
 					</div>
 					<div class="pay_line"></div>
 				</div>
