@@ -70,6 +70,7 @@
 									<p id="re_reviewTitle">${ review.name }</p>
 									<p id="re_reviewContent">${ review.content }</p>
 
+
 									<c:choose>
 										<c:when test="${ review.rated == 0}">
 											<span class="starR">★★★★★</span>
