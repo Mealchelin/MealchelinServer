@@ -133,7 +133,7 @@ public class ProductController {
 		int totalPrice = product.getPrice() * quantity;
 		
 		sbp.setPrdNo(product.getNo());
-		sbp.setMemberNo(1);
+		sbp.setMemberNo(loginMember.getMemberNo());
 		sbp.setQuantity(quantity);
 		sbp.setTotalPrice(totalPrice);
 		
@@ -166,7 +166,7 @@ public class ProductController {
 		modelAndView.addObject("product", product);
 		modelAndView.addObject("no", no);
 		modelAndView.addObject("quantity", quantity);
-		modelAndView.setViewName("/pay/pay");
+		modelAndView.setViewName("/payment/pay");
 		
 		return modelAndView;
 	}

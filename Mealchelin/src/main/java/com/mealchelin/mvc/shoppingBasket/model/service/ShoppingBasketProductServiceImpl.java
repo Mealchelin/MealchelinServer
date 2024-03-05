@@ -16,8 +16,8 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 	private final ShoppingBasketProductMapper sbpMapper;
 
 	@Override
-	public ShoppingBasketProduct findSbpByNo(int prdNo, int memNo) {
-		return sbpMapper.selectSbpByNo(prdNo, memNo);
+	public ShoppingBasketProduct findSbpByNo(int prdNo, int memberNo) {
+		return sbpMapper.selectSbpByNo(prdNo, memberNo);
 	}
 	
 	@Override
@@ -25,8 +25,8 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 	public int save(ShoppingBasketProduct sbp) {
 		int result = 0;
 		int prdNo = sbp.getPrdNo();
-		int memNo = sbp.getMemberNo();
-		ShoppingBasketProduct sbp2 = this.findSbpByNo(prdNo, memNo);
+		int memberNo = sbp.getMemberNo();
+		ShoppingBasketProduct sbp2 = this.findSbpByNo(prdNo, memberNo);
 		
 		
 		// 멤버 번호가 같으면서 상품 번호가 같은것이 있으면

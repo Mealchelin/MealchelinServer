@@ -11,6 +11,8 @@ public interface PaymentMapper {
 
 	 List<Payment> selectByProductPay(int memberNo);
 
+	void insertPayment(Payment payment);
+
 	
 
 }

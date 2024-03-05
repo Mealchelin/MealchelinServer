@@ -14,18 +14,16 @@
 	</resultMap>
 
 	<insert id="insertSbp" parameterType="ShoppingBasketProduct">
-		INSERT INTO
-		SHOPPING_BASKET_PRODUCT (
-		PRD_NO,
-		MEMBER_NO,
-		QUANTITY,
-		TOTAL_PRICE
-		) VALUES
-		(
-		#{prdNo},
-		#{memNo},
-		#{quantity},
-		#{totalPrice}
+		INSERT INTO SHOPPING_BASKET_PRODUCT (
+			PRD_NO,
+			MEMBER_NO,
+			QUANTITY,
+			TOTAL_PRICE
+		) VALUES (
+			#{prdNo},
+			#{memberNo},
+			#{quantity},
+			#{totalPrice}
 		)
 	</insert>
 
