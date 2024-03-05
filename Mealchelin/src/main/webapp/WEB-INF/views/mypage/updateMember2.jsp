@@ -138,6 +138,7 @@
     <script type="text/javascript" src="../js/main.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ path }/js/mypage/updateMember2.js"></script>
+   
 </body>
 
 </html>

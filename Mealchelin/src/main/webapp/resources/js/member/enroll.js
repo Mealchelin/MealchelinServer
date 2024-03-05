@@ -1,21 +1,18 @@
 $(document).ready(()=>{
 
 // 아이디 체크 
-    $('.memIdcheck').on('click',()=>{
+    $('#memID').keyup(function(){
         let id = $('#memID').val();
         let regex = /^[a-zA-Z0-9]{6,16}$/;
-
-        if (id == ""){
-            alert('아이디를 입력해주세요.')
-        } else if (id != "") {     
-            if(regex.exec(id)){
-                alert('사용 가능한 아이디 입니다!'); 
-                $('#memregId').html("");            
-            } else{
-                $('#memregId').html("6자 이상 16자 이하 영문/숫자 조합");
-            }
+    
+        if(regex.exec(id)){
+            $('#memregId').html("사용 가능한 아이디 입니다");            
+        } else{
+            $('#memregId').html("6자 이상 16자 이하 영문/숫자 조합");
         }
+
     });
+    
 
 // 비밀번호 정규식 체크 
     $('#memPwd').keyup(function(){
@@ -42,7 +39,9 @@ $(document).ready(()=>{
 
     });
     
-        
+
+
+ 
 
 //  모달창 
     $('.memview1').on('click',()=>{

@@ -1,10 +1,17 @@
 package com.mealchelin.mvc.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +34,8 @@ public class MemberController {
 		return "/member/login";
 	}
 	
-
+	
+	// 로그인
 	@PostMapping("/member/login")
 	public ModelAndView login(ModelAndView modelAndView,
 							  @RequestParam("userId") String id,
@@ -49,13 +57,19 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	
+	//로그아웃
 	@GetMapping("/member/logout")
-	public String logout(SessionStatus status) {
+	public ModelAndView logout(ModelAndView modelAndView,SessionStatus status) {
 		
 		// 세션 영역으로 확장된 Attribute를 지워준다.
 		status.setComplete();
 		
-		return "redirect:/";
+		modelAndView.addObject("msg", "로그아웃이 완료되었습니다. ");
+		modelAndView.addObject("location", "/");
+		modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
 	}
 	
 	@GetMapping("/member/enroll")
@@ -65,6 +79,8 @@ public class MemberController {
 				
 	}
 	
+	
+	//회원가입
 	@PostMapping("/member/enroll")
 	public ModelAndView enroll(ModelAndView modelAndView,
 							   Member member) {
@@ -72,10 +88,10 @@ public class MemberController {
 		int result = service.save(member);
 		
 		if(result > 0) {
-			modelAndView.addObject("msg", "회원 가입 성공");
+			modelAndView.addObject("msg", "회원 가입에 성공했습니다.");
 			modelAndView.addObject("location", "/");
 		} else {
-			modelAndView.addObject("msg", "회원 가입 실패");
+			modelAndView.addObject("msg", "회원 가입에 실패했습니다.");
 			modelAndView.addObject("location", "/member/enroll");
 		}
 		
@@ -84,13 +100,49 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	
+	
+	// 아이디 중복체크 
+	@GetMapping("/member/idCheck")
+	public ResponseEntity< Map<String, Boolean>> idCheck(@RequestParam("userId") String userId) {
+		Map<String, Boolean> map = new HashMap<>();
+		
+		log.info("UserId : {}", userId);
+		
+		map.put("duplicate", service.isDuplicateId(userId));
+		
+		
+	      return ResponseEntity.ok()
+	    		 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).body(map);
+	}
+	
 
 	@GetMapping("/mypage/updateMember")
-	public ModelAndView updateMember(ModelAndView modelAndView) {
+	public String updateMember() {
+
+		return "mypage/updateMember";
 		
-		modelAndView.setViewName("mypage/updateMember");
+	}
+	
+	
+	@PostMapping("/mypage/updateMember")
+	public ModelAndView updateMember(ModelAndView modelAndView,
+			 						 @RequestParam("mymemberId") String id,   
+			 						 @RequestParam("mymemberPwd") String password,
+			 						 @SessionAttribute("loginMember") Member loginMember) {
+	
+		loginMember = service.updateBefore(id,password);
 		
-		return modelAndView;
+		if(loginMember != null) {
+			modelAndView.addObject("loginMember", loginMember); 
+			modelAndView.setViewName("redirect:/mypage/updateMember2"); 
+		} else {
+			modelAndView.addObject("msg", "비밀번호가 일치하지 않습니다.");
+			modelAndView.addObject("location", "/mypage/updateMember");
+			modelAndView.setViewName("common/msg");
+		}
+		
+		  return modelAndView;
 		
 	}
 	

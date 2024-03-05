@@ -10,11 +10,13 @@ public interface MemberService {
 
 	int save(Member member);
 
-
 	Member getMemberByNo(int i);
-
-
+	
 	Member MemberByOrderInfo(String id);
+
+	Boolean isDuplicateId(String userId);
+
+	Member updateBefore(String id, String password);
 
 
 	

@@ -71,6 +71,27 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public Boolean isDuplicateId(String userId) {
+		
+		return this.findMemberById(userId) != null;
+	}
+
+	@Override
+	public Member updateBefore(String id, String password) {
+		Member member = this.findMemberById(id);
+		
+		member = mapper.selectMemberById(id);
+		
+		if (member == null || !encoder.matches(password, member.getPassword())) {
+			return null;
+		}
+		
+		return member;
+	
+	}
+
+
 
 }
 

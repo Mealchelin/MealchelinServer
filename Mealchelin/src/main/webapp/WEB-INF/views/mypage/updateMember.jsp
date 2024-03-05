@@ -45,7 +45,7 @@
                         <label for="mymemberId" class="mymemberLb">아이디</label>
                     </div>
                     <div class="myInputDiv myInputDiv2">
-                        <input type="text" id="mymemberId" name="mymemberId" value="juyeon1234" class="mymemberIp"> 
+                        <input type="text" id="mymemberId" name="mymemberId" value="${ loginMember.id }" class="mymemberIp"> 
                     </div>
                     <br><br>
                     <div class="myInputDiv myInputDiv3">
@@ -70,6 +70,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="${ path }/js/main.js"></script>
     <script type="text/javascript" src="${ path }/js/index.js"></script>
+   
 </body>
 
 </html>
