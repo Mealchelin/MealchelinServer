@@ -54,11 +54,16 @@ public class PayController {
 			modelAndView.addObject("userinfo", loginMember); // 추가 정보를 모델에 추가
 			modelAndView.addObject("shippingInfo", shippinginfo); // 배송 정보를 모델에 추가
 			modelAndView.addObject("shippingBaketInfoList", shippingProductList); // 배송 정보를 모델에 추가
-			modelAndView.addObject("payInfo", payinfoList.get(0)); // 배송 정보를 모델에 추가
 
 		}
 		return modelAndView;
 	}
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/mypage/payInquiry")
 	public ModelAndView paylnquiry(ModelAndView modelAndView) {
