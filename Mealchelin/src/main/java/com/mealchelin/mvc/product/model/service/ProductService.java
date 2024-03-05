@@ -22,7 +22,8 @@ public interface ProductService {
 	
 	Product getProductByNo(int no);
 
+	List<Product> getProductNewList();
 
-
+	List<Product> getProductBestList();
 
 }
