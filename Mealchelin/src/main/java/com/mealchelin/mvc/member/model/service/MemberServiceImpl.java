@@ -78,10 +78,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Boolean isDuplicatePwd(String userPwd) {
+	public Member updateBefore(String id, String password) {
+		Member member = this.findMemberById(id);
 		
-		return null;
+		member = mapper.selectMemberById(id);
+		
+		if (member == null || !encoder.matches(password, member.getPassword())) {
+			return null;
+		}
+		
+		return member;
+	
 	}
+
 
 
 }

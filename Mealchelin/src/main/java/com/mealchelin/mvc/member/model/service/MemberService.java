@@ -15,8 +15,8 @@ public interface MemberService {
 	Member MemberByOrderInfo(String id);
 
 	Boolean isDuplicateId(String userId);
-	
-	Boolean isDuplicatePwd(String userPwd);
+
+	Member updateBefore(String id, String password);
 
 
 	
