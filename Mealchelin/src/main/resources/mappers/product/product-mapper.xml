@@ -101,6 +101,53 @@
 		AND PRD_NO = #{no}
 	</select>
 	
+	<select id="selectProductNewList" resultMap="productResultMap">
+		SELECT PRD_NO,
+			   NAME,
+			   CATEGORY,
+			   PRICE,
+			   PRD_DESC,
+			   IMAGE,
+			   BRAND,
+			   DISPLAY,
+			   SALE,
+			   STOCK,
+			   RGSTR_DATE,
+			   TOTAL_SALES,
+			   VIEWS,
+			   RATING,
+			   STATUS,
+			   WEIGHT
+		FROM (
+			<include refid="selectProductSql"/>
+			ORDER BY RGSTR_DATE DESC 
+		)
+		WHERE ROWNUM BETWEEN 1 AND 16
+	</select>
+	
+	<select id="selectProductBestList" resultMap="productResultMap">
+		SELECT PRD_NO,
+			   NAME,
+			   CATEGORY,
+			   PRICE,
+			   PRD_DESC,
+			   IMAGE,
+			   BRAND,
+			   DISPLAY,
+			   SALE,
+			   STOCK,
+			   RGSTR_DATE,
+			   TOTAL_SALES,
+			   VIEWS,
+			   RATING,
+			   STATUS,
+			   WEIGHT
+		FROM (
+			<include refid="selectProductSql"/>
+			ORDER BY TOTAL_SALES DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 16
+	</select>
 	
 	
 	
