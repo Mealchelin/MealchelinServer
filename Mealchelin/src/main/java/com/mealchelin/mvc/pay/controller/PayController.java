@@ -1,16 +1,13 @@
 package com.mealchelin.mvc.pay.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mealchelin.mvc.member.model.service.MemberService;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.pay.model.service.PayInfoService;
 import com.mealchelin.mvc.pay.model.service.UserOrderPayService;
@@ -43,7 +40,6 @@ public class PayController {
 			modelAndView.setViewName("common/msg");
 		} else {
 
-			System.out.println(loginMember.getMemberNo());
 			
 			List<Payment> payinfoList = payInfoService.selectByProductPay(loginMember.getMemberNo());
 			
@@ -58,7 +54,7 @@ public class PayController {
 			modelAndView.addObject("userinfo", loginMember); // 추가 정보를 모델에 추가
 			modelAndView.addObject("shippingInfo", shippinginfo); // 배송 정보를 모델에 추가
 			modelAndView.addObject("shippingBaketInfoList", shippingProductList); // 배송 정보를 모델에 추가
-			modelAndView.addObject("payInfo", payinfoList); // 배송 정보를 모델에 추가
+			modelAndView.addObject("payInfo", payinfoList.get(0)); // 배송 정보를 모델에 추가
 
 		}
 		return modelAndView;

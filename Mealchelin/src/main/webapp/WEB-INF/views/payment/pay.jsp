@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -60,7 +61,11 @@
 								value="${item.price}" pattern="#,##0" /> 원
 						</span>
 					</div>
+					<c:set var="totalPrice" value="${item.quantity * item.price}" />
 				</c:forEach>
+
+
+
 				<div class="pay_SecondContentArea">
 					<div class="pay_SecondContent">
 						<span class="pay_secondContentTitle">주문자 정보</span>
@@ -142,17 +147,21 @@
 				<div class="pay_payResultArea">
 					<div class="pay_payResult">
 						<span class="pay_paymentInfo">결제금액</span> <span
-							class="pay_payment">결제 금액</span> <span class="pay_pay">${payInfo.totalPrice}</span>
+							class="pay_payment">결제 금액</span> <span class="pay_pay"> <fmt:formatNumber
+								value="${totalPrice}" pattern="#,##0" /> 원
+						</span>
 					</div>
 					<div class="pay_paymentInfo">
-						<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney">${payInfo.payment}원</span>
+						<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney"> <fmt:formatNumber
+								value="${item}" pattern="#,##0" /> 원</span>
 					</div>
 					<div class="pay_paymentInfo">
-						<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay">${payInfo.price}원</span>
+						<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay"> <fmt:formatNumber
+								value="${shippingInfo.price}" pattern="#,##0" /> 원</span>
 					</div>
 					<div class="pay_finalResult">
 						<span class="pay_Delivery">최종 결제 금액</span> <span
-							class="pay_Finalpay">${payInfo.totalPrice}</span>
+							class="pay_Finalpay">${totalPrice}원</span>
 					</div>
 					<div class="pay_line"></div>
 				</div>
