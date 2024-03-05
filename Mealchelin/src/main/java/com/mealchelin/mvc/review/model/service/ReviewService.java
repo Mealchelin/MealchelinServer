@@ -12,4 +12,6 @@ public interface ReviewService {
 	int getReviewCount();
 
 	List<Review> getReviewList(PageInfo pageInfo);
+
+	Review getReviewByNo(int reviewNo);
 }

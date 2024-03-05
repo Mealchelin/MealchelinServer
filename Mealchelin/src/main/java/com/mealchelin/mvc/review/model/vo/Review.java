@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Review {
-	    private Long reviewNo; // 리뷰 번호
+	    private int reviewNo; // 리뷰 번호
 	    
 	    private Double rated; // 별점
 	    

@@ -42,13 +42,36 @@
                     <img id="re_img" src="../img/new_01.jpg" alt="">
                     <div id="re_foodInfo">
                         <p id="re_foodName">안동식 순살 찜닭</p>
-                        <p class="re_star"><span id="re_star4" >★★★★★</span></p>
+                        
+                        <c:choose>
+                        	<c:when test="${ review.rated == 0}">
+								<p class="starR"><span id="re_star" ></span>★★★★★</p>
+							</c:when>
+							<c:when test="${ review.rated == 1}">
+								<p class="starR"><span id="re_star" >★</span>★★★★</p>
+							</c:when>
+							<c:when test="${ review.rated == 2}">
+								<p class="starR"><span id="re_star" >★★</span>★★★</p>
+							</c:when>
+							<c:when test="${ review.rated == 3}">
+								<p class="starR"><span id="re_star" >★★★</span>★★</p>
+							</c:when>
+							<c:when test="${ review.rated == 4}">
+								<p class="starR"><span id="re_star" >★★★★</span>★</p>
+							</c:when>
+							<c:when test="${ review.rated == 5}">
+								<p class="starR"><span id="re_star" >★★★★★</span></p>
+							</c:when>
+                        	<c:otherwise> 
+								<p class="re_star"><span id="re_star4" >실행되지 않을 코드</span></p>
+							</c:otherwise>
+                        </c:choose>
                     </div>
                     <br>
                     <p id="re_titleAndDetailReview" >제목</p>
-                    <p id="re_titleContent" >제품 2번째 구매인데... 만족스럽네요</p>
+                    <p id="re_titleContent" >${ review.name }</p>
                     <p id="re_titleAndDetailReview">상세리뷰</p>
-                    <p id="re_detailReviewContent" >정말 빠른 배송, 포장상태, 맛 다 만족입니다. 식감, 퀄리티 모두 좋아요</p>
+                    <p id="re_detailReviewContent" >${ review.content }</p>
                     <div id="re_SubmitAndCancelBtn">
                         <a href="${ path }/review/main"><input id="re_goToListBtn"  type="button" value="목록"></a>
                     </div>

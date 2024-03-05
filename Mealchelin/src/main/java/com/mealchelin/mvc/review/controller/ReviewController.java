@@ -62,20 +62,27 @@ public class ReviewController {
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
 		modelAndView.setViewName("review/main");
-
+		
 		return modelAndView;
 	}
 	
-//	@GetMapping("/main")
-//	public String home() {
-//		log.info("============================");
-//		log.info(modelAndView.toString());
-//		log.info("============================");
+	@GetMapping("/reviewDetail")
+	public ModelAndView reviewDetail(ModelAndView modelAndView, @RequestParam int reviewNo) {
+		Review review = null;
 
-		
-//		modelAndView.setViewName("review/main");
-//		return "/review/Main";
-//	}
+		review = service.getReviewByNo(reviewNo);
+
+		modelAndView.addObject("review", review);
+		modelAndView.setViewName("review/reviewDetail");
+
+		return modelAndView;
+    }
+	
+//	@GetMapping("/reviewDetail")
+//	public String reviewDetail() {
+//		
+//        return "/review/reviewDetail";
+//    }
 	
 	@GetMapping("/reviewWrite")
 	public String reviewWrite() {
@@ -92,22 +99,6 @@ public class ReviewController {
         return "/review/FootSearchBox";
     }
 
-//	@GetMapping("/mypageProductReview")
-//	public String mypageProductReview() {
-//		
-//		
-//        return "/review/MypageProductReview";
-//    }
-	
-	
-	@GetMapping("/reviewDetail")
-	public String reviewDetail() {
-		
-		
-        return "/review/reviewDetail";
-    }
-	
-	
 	@GetMapping("/reviewEdit")
 	public String reviewEdit() {
 		

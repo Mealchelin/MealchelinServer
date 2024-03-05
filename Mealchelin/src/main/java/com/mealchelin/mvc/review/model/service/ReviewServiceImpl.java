@@ -44,4 +44,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.selectAll(rowBounds);
 	}
 
+	@Override
+	public Review getReviewByNo(int reviewNo) {
+		
+		
+		return mapper.selectReviewByNo(reviewNo);
+	}
+
 }

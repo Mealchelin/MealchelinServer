@@ -16,4 +16,6 @@ public interface ReviewMapper {
 	
 	List<Review> selectAll(RowBounds rowBounds);
 
+	Review selectReviewByNo(int reviewNo);
+
 }

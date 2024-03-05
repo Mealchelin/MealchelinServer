@@ -31,6 +31,8 @@
 		<result property="userNo" column="USER_NO"/>
 		<result property="prdNo" column="PRD_NO"/>
 	</resultMap>
+	
+
 
 	<!-- 게시글 등록 -->
 	<insert id="insertReview" parameterType="Review"
@@ -63,6 +65,22 @@
         ORDER BY REVIEW_NO DESC
 	</select>
 
+	<!-- 리뷰 상세 보기 -->
+	<select id="selectReviewByNo" parameterType="_int"
+		resultMap="reviewListResultMap">
+		SELECT REVIEW_NO,
+		       RATED, 
+		       NAME, 
+		       CONTENT,
+		       IMAGE,
+		       RGSTR_DATE,
+		       VIEWS,
+		       STATUS,
+		       USER_NO,
+		       PRD_NO
+		FROM REVIEW
+		WHERE REVIEW_NO = #{reviewNo}
+	</select>
 
 
 </mapper>	

@@ -41,7 +41,7 @@
 		
 				<div class="mainDiv">
 			<c:forEach var="review" items="${ list }">
-					<a href="${ path }/review/reviewDetail">
+					<a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
 						<div class="re_imgDiv">
 							<img class="re_img" src="../img/new_01.jpg" alt="" />
 							<div class="re_innerimgDiv">
