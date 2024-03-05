@@ -6,14 +6,15 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import com.mealchelin.mvc.cscenter.model.vo.Inquiry;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 
 @Mapper
 public interface InquiryMapper {
 
-	int selectInquiryCount(Member loginMember);
+	int selectInquiryCount(Inquiry inquiry);
 
-	List<Support> selectInquiryAll(@Param("loginMember") Member loginMember, RowBounds rowBounds);
+	List<Support> selectInquiryAll(Inquiry inquiry, RowBounds rowBounds);
 
 }

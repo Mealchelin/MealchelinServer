@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.service.InquiryService;
+import com.mealchelin.mvc.cscenter.model.vo.Inquiry;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 
@@ -25,21 +26,23 @@ public class InquiryController {
 	private final InquiryService service;
 	
 	@GetMapping("/inquiry")
-	public ModelAndView csinquiry(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember, @RequestParam(defaultValue = "1") int page) {
+	public ModelAndView csinquiry(ModelAndView modelAndView, Inquiry inquiry,@SessionAttribute("loginMember") Member loginMember, @RequestParam(defaultValue = "1") int page) {
+		inquiry.setMemberNo(loginMember.getMemberNo());
 		
 		int listCount = 0;
 		PageInfo pageInfo = null;
 		List<Support> list = null;
 		
-		listCount = service.getInquiryCount(loginMember);
+		listCount = service.getInquiryCount(inquiry);
 		pageInfo = new PageInfo(page, 5, listCount, 10);
-		list = service.getInquiryList(loginMember, pageInfo);
+		list = service.getInquiryList(inquiry, pageInfo);
 		
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
 		modelAndView.setViewName("cscenter/inquiry");
 		
 		return modelAndView;
+
 	}
 	
 	@GetMapping("/inquiryView")

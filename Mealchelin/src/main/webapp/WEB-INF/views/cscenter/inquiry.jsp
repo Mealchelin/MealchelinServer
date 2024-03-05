@@ -61,15 +61,28 @@
             	</c:if>
             	<c:if test="${ not empty loginMember }">
             		<c:if test="${ empty list }">
-            			<li>작성한 게시글이 없습니다.</li>
+            			<li style ="text-align:center; margin-top:10px;">작성한 게시글이 없습니다.</li>
             		</c:if>
             		<c:if test="${ not empty list }">
-		                <li class="cs-list-content">
-		                    <div class="cs-inquiry-number">205</div>
-		                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView">교환(반품) 진행 시 배송비가 부과 되나요?</a></div>
-		                    <div class="cs-inquiry-date">2024.11.09</div>
-		                    <div class="cs-inquiry-answer">대기중</div>
-		                </li>
+	            		<c:forEach var="inquiry" items="${ list }">
+			                <li class="cs-list-content">
+			                    <div class="cs-inquiry-number">${ inquiry.rnum }</div>
+			                    <div class="cs-inquiry-title cs-list-ul-title"><a href="${ path }/cscenter/inquiryView?no=${ inquiry.inquiryNo }">${ inquiry.iname }</a></div>
+			                    <div class="cs-inquiry-date"><fmt:formatDate value="${ inquiry.rgstrDate }" pattern="yyyy.MM.dd"/></div>
+			                    <c:set var="status" value="${ inquiry.answerState }" scope="session"/> 
+								<c:choose>
+									<c:when test='${ status == "Y" }'>
+										<div class="cs-inquiry-answer">답변 완료</div>
+									</c:when>
+									<c:when test='${ status == "N" }'>
+										<div class="cs-inquiry-answer">미답변</div>
+									</c:when>
+									<c:otherwise>
+										<div class="cs-inquiry-answer"> </div>	
+									</c:otherwise>
+								</c:choose>
+			                </li>
+		                </c:forEach>
             		</c:if>
             	</c:if>
             </ul>
@@ -79,16 +92,20 @@
             </div> -->
         </section>
         <!-- 페이징 버튼 섹션 -->
-        <!-- 게시글 있을 때만 -->
         <section id="cs-section3">
             <div class="cs-paging">
-                <button>&lt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>&gt;</button>
+	            <button onclick="location.href='${ path }/cscenter/inquiry?page=${ pageInfo.prevPage }'">&lt;</button>
+		        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+						<c:choose>
+							<c:when test="${ current == pageInfo.currentPage }">
+								<button disabled>${ current }</button>
+							</c:when>
+							<c:otherwise>
+								<button onclick="location.href='${ path }/cscenter/inquiry?page=${ current }'">${ current }</button>
+							</c:otherwise>
+						</c:choose>
+				</c:forEach>
+				<button onclick="location.href='${ path }/cscenter/inquiry?page=${ pageInfo.nextPage }'">&gt;</button>
             </div>
         </section>
     </main>
