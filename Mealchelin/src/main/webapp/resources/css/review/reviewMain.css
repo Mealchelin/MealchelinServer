@@ -75,3 +75,13 @@ h3 {
     
 }
 
+.starR{
+    color: #D9D9D9;
+    font-size: 30px;
+    /* cursor: pointer; */
+}
+
+#re_star {
+    color: #86BC66;
+    font-size: 30px;
+}

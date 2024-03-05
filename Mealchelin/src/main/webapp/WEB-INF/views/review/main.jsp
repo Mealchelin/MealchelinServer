@@ -52,7 +52,26 @@
 								<br>
 								<p class="re_reviewContent">${ review.content }</p>
 								<br>
-								<p class="re_star">★★★★★</p>
+								<c:choose>
+										<c:when test="${ review.rated == 1}">
+											<span class="starR"><span id="re_star">★</span>★★★★</span>
+										</c:when>
+										<c:when test="${ review.rated  == 2 }">
+											<span class="starR"><span id="re_star">★★</span>★★★</span>
+										</c:when>
+										<c:when test="${ review.rated  == 3}">
+											<span class="starR"><span id="re_star">★★★</span>★★</span>
+										</c:when>
+										<c:when test="${ review.rated  == 4}">
+											<span class="starR"><span id="re_star">★★★★</span>★</span>
+										</c:when>
+										<c:when test="${ review.rated  == 5}">
+											<span class="starR"><span id="re_star">★★★★★</span></span>
+										</c:when>
+										<c:otherwise> 
+											<span class="starR"><span class="starR">★</span>★★★★</span>
+										</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</a>

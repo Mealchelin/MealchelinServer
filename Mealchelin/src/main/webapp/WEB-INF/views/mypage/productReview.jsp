@@ -71,25 +71,28 @@
 									<p id="re_reviewContent">${ review.content }</p>
 
 									<c:choose>
+										<c:when test="${ review.rated == 0}">
+											<span class="starR">★★★★★</span>
+										</c:when>
 										<c:when test="${ review.rated == 1}">
-											<p id="re_star">★</p>
+											<span class="starR"><span id="re_star">★</span>★★★★</span>
 										</c:when>
 										<c:when test="${ review.rated  == 2 }">
-											<p id="re_star">★★</p>
+											<span class="starR"><span id="re_star">★★</span>★★★</span>
 										</c:when>
 										<c:when test="${ review.rated  == 3}">
-											<p id="re_star">★★★</p>
+											<span class="starR"><span id="re_star">★★★</span>★★</span>
 										</c:when>
 										<c:when test="${ review.rated  == 4}">
-											<p id="re_star">★★★★</p>
+											<span class="starR"><span id="re_star">★★★★</span>★</span>
 										</c:when>
 										<c:when test="${ review.rated  == 5}">
-											<p id="re_star">★★★★★</p>
+											<span class="starR"><span id="re_star">★★★★★</span></span>
 										</c:when>
-										<c:otherwise> 없음 </c:otherwise>
+										<c:otherwise> 
+											<span class="starR">실행되지 않을 코드입니다.</span> 
+										</c:otherwise>
 									</c:choose>
-
-									<%-- 									<p id="re_star">★★★★★${ review.rated }</p> --%>
 								</div>
 							</a>
 							<div id="re_editDeleteBtn">

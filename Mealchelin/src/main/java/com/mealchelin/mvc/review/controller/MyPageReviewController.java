@@ -25,7 +25,7 @@ public class MyPageReviewController {
 	
 	private final ReviewService service;
 	
-	@GetMapping("/productReview")
+	@GetMapping("/mypageProductReview")
 	public ModelAndView list(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
 
 		int reviewCount = 0;
@@ -52,7 +52,6 @@ public class MyPageReviewController {
 
 		return modelAndView;
 	}
-	
 	
 	@GetMapping("/writableReview")
 	public String mypageWritableReview() {
