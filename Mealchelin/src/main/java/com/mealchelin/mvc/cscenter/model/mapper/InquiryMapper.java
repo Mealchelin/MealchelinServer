@@ -17,4 +17,12 @@ public interface InquiryMapper {
 
 	List<Support> selectInquiryAll(Inquiry inquiry, RowBounds rowBounds);
 
+	Inquiry selectInquiryByNo(@Param("inquiryNo") int no);
+
+	int insertInquiry(Inquiry inquiry);
+
+	List<Inquiry> selectadInquiryAll(RowBounds rowBounds);
+
+	int selectadInquiryCount();
+
 }

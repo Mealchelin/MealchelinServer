@@ -121,15 +121,35 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-											<td><input type="checkbox" class="ad_1by1_chk" name="ad_1by1_chk" value=""></td>
-                                            <td>60</td>
-                                            <td style="cursor: pointer;" onclick="location.href='${ path }/admin/post/ad1by1Detail'">물건이 파손되어서 도착했어요.</td>
-											<td class="d-none d-xl-table-cell">2024.02.21</td>
-											<td class="d-none d-xl-table-cell">Baeksee</td>
-											<td>미답변</td>
-										</tr>
+										<c:if test="${ empty list }">
+											<tr>
+						                    	<td colspan="6">조회된 게시글이 없습니다.</td>
+						                	</tr>	
+										</c:if>
+										<c:if test="${not empty list}">
+										    <c:forEach var="inquiry" items="${list}">
+											<tr>
+												<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+												<td><input type="checkbox" class="ad_1by1_chk" name="ad_1by1_chk" value="${inquiry.inquiryNo}"></td>
+	                                            <td>${inquiry.inquiryNo}</td>
+	                                            <td style="cursor: pointer;" onclick="location.href='${ path }/admin/post/ad1by1Detail?no=${ inquiry.inquiryNo }'">${inquiry.iname}</td>
+												<td class="d-none d-xl-table-cell"><fmt:formatDate value="${ inquiry.rgstrDate }" pattern="yyyy.MM.dd"/></td>
+												<td class="d-none d-xl-table-cell">${inquiry.mname}</td>
+												<c:set var="status" value="${ inquiry.answerState }" scope="session"/> 
+												<c:choose>
+													<c:when test='${ status == "Y" }'>
+														<td>답변 완료</td>
+													</c:when>
+													<c:when test='${ status == "N" }'>
+														<td>미답변</td>
+													</c:when>
+													<c:otherwise>
+														<td> </td>
+													</c:otherwise>
+												</c:choose>
+											</tr>
+											</c:forEach>
+										</c:if>
 									</tbody>
 								</table>
                             </div>

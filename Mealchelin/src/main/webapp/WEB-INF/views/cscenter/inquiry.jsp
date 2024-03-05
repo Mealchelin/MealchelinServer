@@ -61,7 +61,7 @@
             	</c:if>
             	<c:if test="${ not empty loginMember }">
             		<c:if test="${ empty list }">
-            			<li style ="text-align:center; margin-top:10px;">작성한 게시글이 없습니다.</li>
+            			<li style ="text-align:center; margin-top:30px;">작성한 게시글이 없습니다.</li>
             		</c:if>
             		<c:if test="${ not empty list }">
 	            		<c:forEach var="inquiry" items="${ list }">
@@ -92,22 +92,28 @@
             </div> -->
         </section>
         <!-- 페이징 버튼 섹션 -->
-        <section id="cs-section3">
-            <div class="cs-paging">
-	            <button onclick="location.href='${ path }/cscenter/inquiry?page=${ pageInfo.prevPage }'">&lt;</button>
-		        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
-						<c:choose>
-							<c:when test="${ current == pageInfo.currentPage }">
-								<button disabled>${ current }</button>
-							</c:when>
-							<c:otherwise>
-								<button onclick="location.href='${ path }/cscenter/inquiry?page=${ current }'">${ current }</button>
-							</c:otherwise>
-						</c:choose>
-				</c:forEach>
-				<button onclick="location.href='${ path }/cscenter/inquiry?page=${ pageInfo.nextPage }'">&gt;</button>
-            </div>
-        </section>
+        <c:if test="${ not empty list }">
+	        <section id="cs-section3">
+	            <div class="cs-paging">
+		            <button onclick="location.href='${ path }/cscenter/inquiry?page=${ pageInfo.prevPage }'">&lt;</button>
+			        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+							<c:choose>
+								<c:when test="${ current == pageInfo.currentPage }">
+									<button disabled>${ current }</button>
+								</c:when>
+								<c:otherwise>
+									<button onclick="location.href='${ path }/cscenter/inquiry?page=${ current }'">${ current }</button>
+								</c:otherwise>
+							</c:choose>
+					</c:forEach>
+					<button onclick="location.href='${ path }/cscenter/inquiry?page=${ pageInfo.nextPage }'">&gt;</button>
+	            </div>
+	        </section>
+        </c:if>
+        <c:if test="${ empty list }">
+        	<section id="cs-section3">
+        	</section>
+        </c:if>
     </main>
     
     <!-- 푸터 -->

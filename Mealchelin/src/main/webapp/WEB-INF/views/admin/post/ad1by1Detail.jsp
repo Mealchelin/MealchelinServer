@@ -120,27 +120,34 @@
 								<table class="table my-4" style="width: 95%; margin:0 auto;">
 									<tr>
                                         <td class="ad_th" width="25%">게시글 번호</td>
-                                        <td width="25%">40</td>
+                                        <td width="25%">${inquiry.inquiryNo}</td>
                                         <td class="ad_th" width="25%">게시글 작성 날짜</td>
-                                        <td width="25%">2024.02.21</td>
+                                        <td width="25%"><fmt:formatDate value="${ inquiry.rgstrDate }" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">작성자</td>
-                                        <td>Baeksee</td>
+                                        <td>${inquiry.mname}</td>
                                         <td class="ad_th" id="adCSWrite">답변 여부</td>
-                                        <td>
-											미답변
-                                        </td>
+                                        <c:set var="status" value="${ inquiry.answerState }" scope="session"/> 
+											<c:choose>
+												<c:when test='${ status == "Y" }'>
+													<td>답변 완료</td>
+												</c:when>
+												<c:when test='${ status == "N" }'>
+													<td>미답변</td>
+												</c:when>
+												<c:otherwise>
+													<td> </td>
+												</c:otherwise>
+											</c:choose>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" id="adCSWriteTitle">제목</td>
-										<td colspan="3">물건이 파손되어서 도착했어요.</td>
+										<td colspan="3">${inquiry.iname}</td>
                                     </tr>
 									<tr>
 										<td colspan="4" style="padding: 20px;">
-											패키지가 완전히 파손되어서 도착했어요.<br>
-											내일 밥 먹을 때 사용하려고 시켰는데, 이렇게 배송이 와서 당황스럽네요. 택배 상자도 찌그러져있고, 안에 패키지도 파손되어있어서, 안에 물건이 엉망진창이에요.<br>
-                                            배송을 왜 이런식으로 하는건가요? 환불 부탁 드립니다.
+											${inquiry.inquiryContent}
 										</td>
 									</tr>
 								</table>

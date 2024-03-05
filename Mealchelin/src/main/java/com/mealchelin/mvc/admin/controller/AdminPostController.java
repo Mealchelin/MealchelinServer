@@ -10,7 +10,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.controller.SupportController;
+import com.mealchelin.mvc.cscenter.model.vo.Inquiry;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
+import com.mealchelin.mvc.cscenter.model.service.InquiryService;
 import com.mealchelin.mvc.cscenter.model.service.SupportService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/admin/post")
 public class AdminPostController {
 	private final SupportService serviceS;
+	private final InquiryService serviceI;
 	
 	@GetMapping("/adPost")
 	public ModelAndView adPost(ModelAndView modelAndView) {
@@ -32,16 +35,29 @@ public class AdminPostController {
 	}
 	
 	@GetMapping("/ad1by1")
-	public ModelAndView ad1by1(ModelAndView modelAndView) {
+	public ModelAndView ad1by1(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
+		int listCount = 0;
+		PageInfo pageInfo = null;
+		List<Inquiry> list = null;
 		
+		listCount = serviceI.getadInquiryCount();
+		pageInfo = new PageInfo(page, 5, listCount, 10);
+		list = serviceI.getadInquiryList(pageInfo);
+		
+		modelAndView.addObject("pageInfo", pageInfo);
+		modelAndView.addObject("list", list);
 		modelAndView.setViewName("admin/post/ad1by1");
 		
 		return modelAndView;
 	}
 	
 	@GetMapping("/ad1by1Detail")
-	public ModelAndView ad1by1Detail(ModelAndView modelAndView) {
+	public ModelAndView ad1by1Detail(ModelAndView modelAndView, @RequestParam int no) {
+		Inquiry inquiry = null;
 		
+		inquiry = serviceI.getInquiryByNo(no);
+		
+		modelAndView.addObject("inquiry", inquiry);
 		modelAndView.setViewName("admin/post/ad1by1Detail");
 		
 		return modelAndView;

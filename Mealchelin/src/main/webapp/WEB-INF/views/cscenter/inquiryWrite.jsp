@@ -41,17 +41,17 @@
         <!-- textarea 개행문자: &#10;  -->
         <!-- 폼태그로 바꿔야 함 -->
         <section id="cs-section2">
-            <form class="cs-inquiry-wrap" action="" method="">
+            <form class="cs-inquiry-wrap" action="${ path }/cscenter/inquiryWrite" method="POST">
                 <!-- 내용 -->
                 <div class="cs-inquiry-content">
                     <div class="cs-inquiry-column">제목</div>
-                    <textarea class="cs-inquiry-data" name="name" cols="100" rows="1" placeholder="제목을 입력해주세요."></textarea>
+                    <textarea class="cs-inquiry-data" name="iname" cols="100" rows="1" placeholder="제목을 입력해주세요."></textarea>
                 </div>
                 <div class="cs-inquiry-content">
                     <div class="cs-inquiry-column">내용</div>
                     <!-- ck에디터 찾아보기 -->
                     <!-- <div id="classic" class="cs-inquiry-data" name="content"></div> -->
-                    <textarea class="cs-inquiry-data" name="content" id="classic" placeholder="내용을 입력해주세요."></textarea>
+                    <textarea class="cs-inquiry-data" name="inquiryContent" id="classic" placeholder="내용을 입력해주세요."></textarea>
                 </div>
                 <!-- 버튼 -->
                 <div class="cs-inquiryBtns">
