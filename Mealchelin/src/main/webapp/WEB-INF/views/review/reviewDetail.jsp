@@ -42,9 +42,6 @@
                     <img id="re_img" src="../img/new_01.jpg" alt="">
                     <div id="re_foodInfo">
                         <p id="re_foodName">안동식 순살 찜닭</p>
-                        <!-- 하기 re_emptySpace는 상품선택 버튼이 사라진 공간을 채우기 위해 사용함. -->
-                        <p id="re_emptySpace" ></p>
-                        <!-- <input id="re_productSelectBtn" type="button" value="상품 선택"> -->
                         <p class="re_star"><span id="re_star4" >★★★★★</span></p>
                     </div>
                     <br>
