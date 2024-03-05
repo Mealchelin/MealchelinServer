@@ -25,7 +25,7 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 	public int save(ShoppingBasketProduct sbp) {
 		int result = 0;
 		int prdNo = sbp.getPrdNo();
-		int memNo = sbp.getMemNo();
+		int memNo = sbp.getMemberNo();
 		ShoppingBasketProduct sbp2 = this.findSbpByNo(prdNo, memNo);
 		
 		

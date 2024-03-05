@@ -133,7 +133,7 @@ public class ProductController {
 		int totalPrice = product.getPrice() * quantity;
 		
 		sbp.setPrdNo(product.getNo());
-		sbp.setMemNo(1);
+		sbp.setMemberNo(1);
 		sbp.setQuantity(quantity);
 		sbp.setTotalPrice(totalPrice);
 		

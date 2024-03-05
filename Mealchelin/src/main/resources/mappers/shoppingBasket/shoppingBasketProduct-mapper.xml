@@ -8,7 +8,7 @@
 
 	<resultMap id="sbpResultMap" type="ShoppingBasketProduct">
 		<id property="prdNo" column="PRD_NO"/>
-		<id property="memNo" column="MEMBER_NO"/>
+		<id property="memberNo" column="MEMBER_NO"/>
 		<result property="quantity" column="QUANTITY"/>
 		<result property="totalPrice" column="TOTAL_PRICE"/>
 	</resultMap>
@@ -65,7 +65,7 @@
 			   TOTAL_PRICE
 		FROM SHOPPING_BASKET_PRODUCT
 		WHERE PRD_NO = #{prdNo} 
-		AND MEMBER_NO = #{memNo}
+		AND MEMBER_NO = #{memberNo}
 	</select>
 
 </mapper>
