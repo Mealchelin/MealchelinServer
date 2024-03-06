@@ -69,9 +69,9 @@
                     </div>
                     <br>
                     <p id="re_titleAndDetailReview" >제목</p>
-                    <p id="re_titleContent" >${ review.name }</p>
+                    <textarea maxlength="30" name="name" id="re_titleContent" cols="3" rows="1" readonly>${ review.name }</textarea>
                     <p id="re_titleAndDetailReview">상세리뷰</p>
-                    <p id="re_detailReviewContent" >${ review.content }</p>
+                    <textarea maxlength="300" name="content" id="re_detailReviewContent" cols="30" rows="10" readonly>${ review.content }</textarea>
                     <div id="re_SubmitAndCancelBtn">
                         <a href="${ path }/review/main"><input id="re_goToListBtn"  type="button" value="목록"></a>
                     </div>

@@ -43,25 +43,43 @@
 			NAME,
 			CONTENT,
 			RGSTR_DATE,
-			IMAGE
+			IMAGE,
+			USER_NO
 		) VALUES(
 			SEQ_REVIEW_NO.NEXTVAL,
 			#{rated},
 			#{name},
 			#{content},
             SYSDATE,
-			#{image}
+			#{image},
+			#{userNo}
+			
 		)
 	</insert>
+	
+	<!-- 게시글 목록 조회(회원 번호에 따라서) -->
+	<select id="getReviewCountByuserNo" resultType="_int" parameterType="_int">
+		SELECT COUNT(*) 
+		FROM REVIEW 
+		WHERE STATUS='Y' AND USER_NO = #{userNo}
+	</select>
 
 	<!-- 게시글 목록 조회(전체 목록) -->
 	<select id="getReviewCount" resultType="_int">
-		SELECT COUNT(*) FROM REVIEW WHERE STATUS='Y'
+		SELECT COUNT(*) 
+		FROM REVIEW 
+		WHERE STATUS='Y'
 	</select>
 
 	<select id="selectAll" resultMap="reviewListResultMap">
 		<include refid="reviewListSql" />
 		WHERE STATUS = 'Y'
+        ORDER BY REVIEW_NO DESC
+	</select>
+	
+	<select id="selectAllByuserNo" resultMap="reviewListResultMap" parameterType="_int">
+		<include refid="reviewListSql" />
+		WHERE STATUS = 'Y' AND USER_NO = #{userNo}
         ORDER BY REVIEW_NO DESC
 	</select>
 

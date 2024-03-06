@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.common.util.PageInfo;
+import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.service.ReviewService;
 import com.mealchelin.mvc.review.model.vo.Review;
@@ -30,11 +32,14 @@ public class ReviewController {
 	
 //	리뷰 등록하는 코드
 	@PostMapping("/reviewAddComplete")
-	public String reviewWrite(Review review) {
+	public String reviewWrite(Review review, @SessionAttribute("loginMember") Member loginMember) {
 		int result = 0;
 		log.info(review.toString());
+		log.info(loginMember.toString());
 		
+		review.setUserNo(loginMember.getMemberNo());
 		result = service.save(review);
+		
 		
 		return "review/reviewAddComplete";
     }
@@ -45,16 +50,13 @@ public class ReviewController {
 		PageInfo pageInfo = null;
 		List<Review> list = null;
 		
-		log.info("============================");
 		log.info(modelAndView.toString());
-		log.info("============================");
 
 		reviewCount = service.getReviewCount();
 		pageInfo = new PageInfo(page, 5, reviewCount, 12);
 		list = service.getReviewList(pageInfo);
 
 		
-		log.info("============================");
 		log.info("page Number : {}", page);
 		log.info("List Count : {}", reviewCount);
 		log.info("============================");
@@ -77,12 +79,6 @@ public class ReviewController {
 
 		return modelAndView;
     }
-	
-//	@GetMapping("/reviewDetail")
-//	public String reviewDetail() {
-//		
-//        return "/review/reviewDetail";
-//    }
 	
 	@GetMapping("/reviewWrite")
 	public String reviewWrite() {

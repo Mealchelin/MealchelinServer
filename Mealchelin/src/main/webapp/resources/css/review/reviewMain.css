@@ -41,6 +41,9 @@ h3 {
 #re_bottomPageNumbers{
     text-align: center;
     margin: 20px;
+    order: none;
+    background-color: transparent;
+    font-size: 16px;
 }
 
 .re_brandName{
