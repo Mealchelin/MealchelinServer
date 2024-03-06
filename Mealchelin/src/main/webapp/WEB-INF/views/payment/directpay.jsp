@@ -51,20 +51,18 @@
 				<div class="pay_FirstContent">
 					<span class="pay_FirstContentTitle">주문 상품</span>
 				</div>				
-				<c:forEach items="${shippingBaketInfoList}" var="item">
 					<div class="pay_FirstContentArea">
-						<img src="${ path }/img/product/${item.image}"
+						<img src="${ path }/img/product/${product.image}"
 							class="pay_menuPhoto"> <span class="pay_FirstMemu">
-							<span class="pay_FirstName">${item.name}</span>
-							<p class="pay_subFirstName">${item.brand}</p>
-						</span> <span class="pay_number">${item.quantity}개</span> <span
-							class="pay_paynumber"> <fmt:formatNumber
-								value="${item.price}" pattern="#,##0" /> 원
+							<span class="pay_FirstName">${product.name}</span>
+							<p class="pay_subFirstName">${product.brand}</p>
+						</span> <span class="pay_number">${quantity}개</span> <span
+							class="pay_paynumber"> ${price}
+<%-- 							<fmt:formatNumber value="${price}" pattern="#,##0" /> 원 --%>
 						</span>
 					</div>
 					<c:set var="totalPrice"
-						value="${totalPrice + (item.quantity * item.price)}" />
-				</c:forEach>
+						value="${totalPrice + (quantity * price)}" />
 				<div class="pay_SecondContentArea">
 					<div class="pay_SecondContent">
 						<span class="pay_secondContentTitle">주문자 정보</span>

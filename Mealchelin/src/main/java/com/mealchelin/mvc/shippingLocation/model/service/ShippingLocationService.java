@@ -5,7 +5,7 @@ import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
 public interface ShippingLocationService {
 
 
-	ShippingLocation getShippinginfoByInfo(int memberNo);
+	ShippingLocation getShippingInfoByInfo(int memberNo);
 
 	
 
