@@ -35,6 +35,24 @@
 
 	</select>
 
+	<insert id="insertShippingLocation" parameterType="ShippingLocation"
+			useGeneratedKeys="true" keyColumn="SHIP_NO" keyProperty="shipNo">
+		INSERT INTO SHIPPING_LOCATION (MEMBER_NO, 
+		                               SHIP_NO, 
+		                               SHIP_NAME, 
+		                               RECIPIENT, 
+		                               PHONE, 
+		                               POSTAL_CODE, 
+		                               SHIP_ADDRESS
+		                       ) VALUES (
+		                       		   #{memberNo}, 
+                                       #{shipNo}, 
+                    		           #{shipName}, 
+                    		           #{recipient}, 
+                    		           #{phone},
+                     		           #{postalCode}, 
+                     		           #{shipAddress})
+	</insert>
 
 
 </mapper>

@@ -23,6 +23,12 @@ public class ShippingLocationServiceImpl implements ShippingLocationService {
 		return mapper.selectFindByNo(memberNo);
 	}
 
+	@Override
+	public int save(ShippingLocation shippingLocation) {
+		
+		return mapper.insertShippingLocation(shippingLocation);
+	}
+
 
 	
 

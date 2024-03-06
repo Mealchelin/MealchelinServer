@@ -18,15 +18,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.member.model.service.MemberService;
 import com.mealchelin.mvc.member.model.vo.Member;
+import com.mealchelin.mvc.pay.model.vo.Payment;
+import com.mealchelin.mvc.shippingLocation.model.service.ShippingLocationService;
+import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketService;
+import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 @SessionAttributes("loginMember")
 public class MemberController {
-	@Autowired
-	private MemberService service;
+	
+	private final MemberService service;
+	
+	private final ShoppingBasketService shoppingBasketService;
+	
+	private final ShippingLocationService shippingLocationService;
 	
 	@GetMapping("/member/login")
 	public String login() {
@@ -86,13 +97,37 @@ public class MemberController {
 	//회원가입
 	@PostMapping("/member/enroll")
 	public ModelAndView enroll(ModelAndView modelAndView,
-							   Member member) {
+							   Member member,
+							   ShoppingBasket shoppingBasket,
+							   ShippingLocation shippingLocation) {
 		
 		int result = service.save(member);
+		int sbresult = 0;
+		int slresult = 0; 
+			
 		
 		if(result > 0) {
+			
 			modelAndView.addObject("msg", "회원 가입에 성공했습니다.");
 			modelAndView.addObject("location", "/");
+				
+			// 회원 가입 후 장바구니 만들기
+			shoppingBasket.setMemberNo(member.getMemberNo());
+			
+			sbresult = shoppingBasketService.save(shoppingBasket);
+			
+			// 회원 가입 후 배송지 관리 만들기
+			shippingLocation.setMemberNo(member.getMemberNo());
+			
+			shippingLocation.setShipName(member.getName());
+			shippingLocation.setRecipient(member.getName());
+			shippingLocation.setPhone(member.getPhone());
+			shippingLocation.setPostalCode(member.getPostalCode());
+			shippingLocation.setShipAddress(member.getAddress());
+			shippingLocation.setShipAddressDetail(member.getAddressDetail());
+			
+			slresult = shippingLocationService.save(shippingLocation);
+			
 		} else {
 			modelAndView.addObject("msg", "회원 가입에 실패했습니다.");
 			modelAndView.addObject("location", "/member/enroll");

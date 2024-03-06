@@ -49,7 +49,7 @@
                             <label for="myMemberId">아이디</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text" class="mymemberIp" name="myMemberId" id="myMemberId" value="juyeon123 ">
+                            <input type="text" class="mymemberIp" name="myMemberId" id="myMemberId" value="juyeon123" readonly>
                         </div>
                         
                         <br>
@@ -114,7 +114,7 @@
                             <label for="myMemberBdate">생년월일</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text"  class="mymemberIp"  name="myMemberBdate" id="myMemberBdate" value="990111">
+                            <input type="text"  class="mymemberIp"  name="myMemberBdate" id="myMemberBdate" value="990111" placeholder="ex 990101" >
                         </div>
                     </div>
                     <div class="myBtnGroup">
