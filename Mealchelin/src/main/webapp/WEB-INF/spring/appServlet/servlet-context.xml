@@ -54,6 +54,14 @@
 			<beans:bean id="LoginCheckInterceptor"
 						class="com.mealchelin.mvc.common.interceptor.LoginCheckInterceptor" />
 		</interceptor>
+		
+		<!-- 관리자페이지 전용 -->
+		<!-- <interceptor>
+			<mapping path="/admin/**"/>
+			
+			<beans:bean id="AdLoginCheckInterceptor"
+						class="com.mealchelin.mvc.common.interceptor.AdLoginCheckInterceptor" />
+		</interceptor> -->
 	</interceptors>
-	
+
 </beans:beans>

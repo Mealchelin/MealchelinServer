@@ -63,4 +63,9 @@ public class InquiryServiceImpl implements InquiryService {
 		return mapper.selectadInquiryCount();
 	}
 
+	@Override
+	public int inquiryadSave(Inquiry inquiry) {
+		return mapper.insertadInquiry(inquiry);
+	}
+
 }

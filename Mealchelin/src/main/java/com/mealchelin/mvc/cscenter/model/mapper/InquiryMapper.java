@@ -25,4 +25,6 @@ public interface InquiryMapper {
 
 	int selectadInquiryCount();
 
+	int insertadInquiry(Inquiry inquiry);
+
 }

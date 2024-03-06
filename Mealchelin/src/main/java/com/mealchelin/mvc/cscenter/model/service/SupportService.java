@@ -11,7 +11,6 @@ public interface SupportService {
 
 	List<Support> getNoticeList(PageInfo pageInfo);
 
-
 	int getFaqCount();
 
 	List<Support> getFaqList(PageInfo pageInfo);
@@ -27,4 +26,9 @@ public interface SupportService {
 	List<Support> getadFaqList(PageInfo pageInfo);
 	
 	Support getFaqByNo(int no);
+
+	int adSave(Support support);
+
+	Support getSupportByNo(int no);
+
 }

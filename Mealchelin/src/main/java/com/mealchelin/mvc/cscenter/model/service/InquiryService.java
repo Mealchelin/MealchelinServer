@@ -21,4 +21,6 @@ public interface InquiryService {
 
 	List<Inquiry> getadInquiryList(PageInfo pageInfo);
 
+	int inquiryadSave(Inquiry inquiry);
+
 }

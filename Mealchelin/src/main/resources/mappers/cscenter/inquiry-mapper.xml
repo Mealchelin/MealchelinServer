@@ -97,5 +97,15 @@
 		    #{memberNo}
 		)
 	</insert>
+	
+	<!-- 관리자 답변 등록 -->
+	<update id="insertadInquiry" parameterType="Inquiry">
+		UPDATE INQUIRY
+		SET
+		    ANSWER_STATE = 'Y',
+		    ANSWER_CONTENT = #{answerContent}
+		WHERE INQUIRY_NO = #{inquiryNo}
+	</update>
+	
 
 </mapper>

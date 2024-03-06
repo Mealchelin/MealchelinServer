@@ -33,4 +33,8 @@ public interface SupportMapper {
 
 	Support selectFaqByNo(@Param("supportNo") int no);
 
+	int insertAdSupport(Support support);
+
+	int updateAdSupport(Support support);
+
 }

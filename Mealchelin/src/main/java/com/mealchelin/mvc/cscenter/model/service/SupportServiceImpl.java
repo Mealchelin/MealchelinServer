@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.mapper.SupportMapper;
@@ -84,6 +85,27 @@ public class SupportServiceImpl implements SupportService {
 
 	@Override
 	public Support getFaqByNo(int no) {
+		return mapper.selectFaqByNo(no);
+	}
+
+	@Override
+	@Transactional
+	public int adSave(Support support) {
+		int result = 0;
+		
+		if (support.getSupportNo() > 0) {
+			// update
+			result = mapper.updateAdSupport(support);
+		} else {
+			// insert
+			result = mapper.insertAdSupport(support);
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Support getSupportByNo(int no) {
 		return mapper.selectFaqByNo(no);
 	}
 

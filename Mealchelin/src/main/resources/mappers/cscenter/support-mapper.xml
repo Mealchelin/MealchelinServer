@@ -149,5 +149,51 @@
              WHERE SUPPORT_NO = #{supportNo}
              <!-- AND M.MEMBER_NO = 1 -->
    </select>
-      
+   
+
+   <insert id="insertAdSupport" parameterType="Support"
+		useGeneratedKeys="true" keyProperty="supportNo" keyColumn="SUPPORT_NO">
+		INSERT INTO SUPPORT (
+			SUPPORT_NO,
+			CATEGORY,
+			NAME,
+			CONTENT,
+			RGSTR_DATE,
+			STATUS,
+			MEMBER_NO,
+			SUB_CATEGORY
+		) VALUES (
+			SEQ_SUPPORT_NO.NEXTVAL,
+			#{category},
+			#{sname},
+			#{content},
+			#{rgstrDate},
+			#{status},
+			#{memberNo},
+			#{subCategory}
+		)	
+	</insert>
+    
+    <!-- 게시글 수정 -->
+	<update id="updateAdSupport" parameterType="Support">
+		UPDATE SUPPORT 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="category != null">
+				CATEGORY = #{category},
+			</if>
+			<if test="sname != null">
+				NAME = #{sname},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content},
+			</if>
+			<if test="status != null">
+				STATUS = #{status},
+			</if>
+			<if test="subCategory != null">
+				SUB_CATEGORY = #{subCategory},
+			</if>
+		</trim>
+		WHERE SUPPORT_NO = #{supportNo}
+	</update>  
 </mapper>
