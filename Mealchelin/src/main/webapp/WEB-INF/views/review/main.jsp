@@ -79,7 +79,9 @@
 						</div>
 					</a>
 				</c:forEach>
+				<jsp:include page="./FootSearchBox.jsp" />
 			</div>
+			
 		</section>
 		<section id="cs-section3">
 			<div class="cs-paging">

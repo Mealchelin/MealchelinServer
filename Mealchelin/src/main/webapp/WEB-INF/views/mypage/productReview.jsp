@@ -67,8 +67,7 @@
 									<img src="../img/new_01.jpg" alt="" id="re_foodImg" />
 								</div>
 								<div id="re_reviewInfo">
-									<p id="re_foodName">안동식 순살 찜닭(제목을 이미지 밑에말고 이렇게 하는게 더 나은 거
-										같습니다.)</p>
+									<p id="re_foodName">안동식 순살 찜닭</p>
 									<p id="re_reviewTitle">${ review.name }</p>
 									<p id="re_reviewContent">${ review.content }</p>
 
