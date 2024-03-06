@@ -30,4 +30,6 @@ public interface ProductMapper {
 
 	List<Product> selectProductBestList();
 
+	List<Product> selectProductListOrderByNo(RowBounds rowBounds);
+
 }

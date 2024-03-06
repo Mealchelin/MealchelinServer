@@ -68,9 +68,9 @@ public class ProductController {
 		
 //		log.info("List: {}", list);
 		
-		modelAndView.addObject("listCount", listCount);   
-		modelAndView.addObject("list", list);   
-		modelAndView.addObject("pageInfo", pageInfo);   
+		modelAndView.addObject("listCount", listCount);
+		modelAndView.addObject("list", list);
+		modelAndView.addObject("pageInfo", pageInfo);
 		
 //		modelAndView.setViewName("redirect:/product/list");
 		modelAndView.setViewName("product/list");
@@ -125,10 +125,9 @@ public class ProductController {
 			@RequestParam int no,
 			@RequestParam int quantity) {
 		
-		int result = 0;
+		int resultCode = 0;
 		Product product = null;
 		ShoppingBasketProduct sbp = new ShoppingBasketProduct();
-		
 		product = productService.getProductByNo(no);
 		int totalPrice = product.getPrice() * quantity;
 		
@@ -137,13 +136,17 @@ public class ProductController {
 		sbp.setQuantity(quantity);
 		sbp.setTotalPrice(totalPrice);
 		
-		result = sbpService.save(sbp);
+		resultCode = sbpService.save(sbp);
 		
-		if (result > 0) {
+		if (resultCode == 1) {
 			modelAndView.setViewName("redirect:/mypage/shoppingBasket");
-		} else {
+		} else if (resultCode == 2) {
 			modelAndView.addObject("msg", "이미 장바구니에 담긴 상품입니다.");
 			modelAndView.addObject("location", "/product/view?no="+no);
+			modelAndView.setViewName("common/msg");
+		} else {
+			modelAndView.addObject("msg", "장바구니에 저장 가능한 최대 상품 개수는 5개입니다.");
+			modelAndView.addObject("location", "/product/view?no="+no);  
 			modelAndView.setViewName("common/msg");
 		}
 		
@@ -166,19 +169,11 @@ public class ProductController {
 		modelAndView.addObject("product", product);
 		modelAndView.addObject("no", no);
 		modelAndView.addObject("quantity", quantity);
-		modelAndView.setViewName("/payment/pay");
+		modelAndView.setViewName("redirect:/payment/pay");
 		
 		return modelAndView;
 	}
 	
-
 	
-	@PostMapping("/add")
-	public ModelAndView add(
-			ModelAndView modelAndView,
-			Product product) {
-		
-		return modelAndView;
-	}
 	
 }

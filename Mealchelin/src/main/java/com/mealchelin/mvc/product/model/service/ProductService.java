@@ -26,4 +26,6 @@ public interface ProductService {
 
 	List<Product> getProductBestList();
 
+	List<Product> getProductListOrderByNo(PageInfo pageInfo);
+
 }

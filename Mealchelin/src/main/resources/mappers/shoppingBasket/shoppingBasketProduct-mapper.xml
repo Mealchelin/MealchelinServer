@@ -65,5 +65,9 @@
 		WHERE PRD_NO = #{prdNo} 
 		AND MEMBER_NO = #{memberNo}
 	</select>
+	
+	<select id="selectSbpCountByMemberNo" resultType="_int" parameterType="int">
+		SELECT COUNT(*) FROM SHOPPING_BASKET_PRODUCT WHERE MEMBER_NO = #{memberNo}
+	</select>
 
 </mapper>

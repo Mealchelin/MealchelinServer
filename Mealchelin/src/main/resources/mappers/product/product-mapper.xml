@@ -149,6 +149,11 @@
 		WHERE ROWNUM BETWEEN 1 AND 16
 	</select>
 	
+	<select id="selectProductListOrderByNo" resultMap="productResultMap">
+		<include refid="selectProductSql"/>
+		ORDER BY PRD_NO DESC
+	</select>
+	
 	
 	
 	

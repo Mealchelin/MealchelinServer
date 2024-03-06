@@ -83,4 +83,14 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.selectProductBestList();
 	}
 
+	@Override
+	public List<Product> getProductListOrderByNo(PageInfo pageInfo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+		return productMapper.selectProductListOrderByNo(rowBounds);
+	}
+
 }

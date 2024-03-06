@@ -26,7 +26,7 @@
     <link href="${ path }/css/admin/app.css" rel="stylesheet">
     <link href="${ path }/css/admin/admin_add.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="${ path }/css/cscenter/cscenterListCommon.css">
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
 </head>
@@ -143,115 +143,18 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-										<tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
-                                        <tr>
-											<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-                                            <td class="d-none d-xl-table-cell">50</td>
-                                            <td  onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">바질 크림 빠네파스타 밀키트 2인분</td>
-											<td>18,900원</td>
-											<td class="d-none d-xl-table-cell">9999</td>
-											<td class="d-none d-xl-table-cell">판매중</td>
-											<td class="d-none d-xl-table-cell">노출중</td>
-										</tr>
+										<c:forEach var="product" items="${ list }">
+											<tr>
+												<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+												<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
+	                                            <td class="d-none d-xl-table-cell">${ product.no }</td>
+	                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">${ product.name }</td>
+												<td>18,900원</td>
+												<td class="d-none d-xl-table-cell">${ product.stock }</td>
+												<td class="d-none d-xl-table-cell">판매중</td>
+												<td class="d-none d-xl-table-cell">노출중</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
                             </div>
@@ -263,8 +166,23 @@
                             </div>
 						</div>
 					</div>
-
 				</div>
+				<section id="cs-section3">
+					<div class="cs-paging">
+						<button onclick="location.href='${ path }/admin/product/adProduct?page=${ pageInfo.prevPage }'">&lt;</button>
+							<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+								<c:choose>
+									<c:when test="${ current == pageInfo.currentPage }">
+		                            	<button disabled>${ current }</button>
+									</c:when>
+									<c:otherwise>
+										<button onclick="location.href='${ path }/admin/product/adProduct?page=${ current }'">${ current }</button>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						<button onclick="location.href='${ path }/admin/product/adProduct?page=${ pageInfo.nextPage }'">&gt;</button>
+					</div>
+				</section>
 			</main>
 
 			<footer class="footer">
