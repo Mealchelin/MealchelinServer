@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.member.model.vo.Member;
+import com.mealchelin.mvc.order.model.service.OrderService;
 import com.mealchelin.mvc.pay.model.service.PayInfoService;
 import com.mealchelin.mvc.pay.model.service.UserOrderPayService;
 import com.mealchelin.mvc.pay.model.vo.Payment;
@@ -32,19 +34,26 @@ public class PayController {
 	private final ShippingLocationService shippingService;
 	private final UserOrderPayService payService;
 	private final ProductService productService;
+	private final OrderService orderService;
 	
 
 	@GetMapping("/payment/directpay")
 	public ModelAndView directment(ModelAndView modelAndView,
 			@SessionAttribute("loginMember") Member loginMember,
 			@RequestParam int no,
-			@RequestParam int quantity,
-			@RequestParam String price
+			@RequestParam int quantity
 			){
 		Product product = null;
 		product = productService.getProductByNo(no);
 		ShippingLocation shippingInfo = null;
 		List<Payment> payInfoList = null;
+		
+		int price = 0;
+		price = product.getPrice()*quantity;
+		System.out.println(price);
+		int shipPrice = 0;
+		log.info("price {}",price);
+		
 		
 
 		//주문 상품	    	
@@ -52,6 +61,18 @@ public class PayController {
 		// 배송정보
 		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 		
+	
+		if (price > 50000) {
+		    shipPrice = 0;
+		}else {
+			
+			if (shippingInfo.getMountain() == "N") {
+				shipPrice = 3000;
+			}
+			else {
+				shipPrice = 5000;
+			}
+		}
 		// 결제수단 표시
 		payInfoList= payInfoService.selectByProductPay(loginMember.getMemberNo());
 
@@ -64,12 +85,53 @@ public class PayController {
 		modelAndView.addObject("no", no);
 		modelAndView.addObject("quantity", quantity);
 		modelAndView.addObject("price", price);		
+		modelAndView.addObject("shipPrice", shipPrice);		
 	    modelAndView.setViewName("payment/directpay");
 	    
 	    System.out.println("price : " + price);
 	    
 		return modelAndView;
 	}
+	
+	@PostMapping("/paysucces")
+	public ModelAndView paysucces(ModelAndView modelAndView) {
+		
+
+		modelAndView.setViewName("redirect:/paysucces");
+		
+		return modelAndView;
+	}
+	
+
+	@GetMapping("payment/paysucces")
+	public ModelAndView payresult(ModelAndView modelAndView) {
+		
+		
+		modelAndView.setViewName("payment/paysucces");
+	
+		return modelAndView;	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -101,8 +163,7 @@ public class PayController {
 	    
 		return modelAndView;
 	}
-	
-	
+
 
 	@GetMapping("/mypage/payInquiry")
 	public ModelAndView paylnquiry(ModelAndView modelAndView) {

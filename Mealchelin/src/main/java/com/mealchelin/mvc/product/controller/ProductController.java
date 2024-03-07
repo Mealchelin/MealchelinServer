@@ -156,8 +156,7 @@ public class ProductController {
 	public ModelAndView purchase(
 			ModelAndView modelAndView,
 			@RequestParam int no,
-			@RequestParam int quantity,
-			@RequestParam String price
+			@RequestParam int quantity
 			) {
 		
 		Product product = null;
@@ -168,7 +167,6 @@ public class ProductController {
 		modelAndView.addObject("product", product);
 		modelAndView.addObject("no", no);
 		modelAndView.addObject("quantity", quantity);
-		modelAndView.addObject("price", price);
 		modelAndView.setViewName("redirect:/payment/directpay");
 		
 		return modelAndView;

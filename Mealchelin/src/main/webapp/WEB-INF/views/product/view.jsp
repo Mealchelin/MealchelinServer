@@ -37,7 +37,6 @@
         <section id="pd-view-section1">
             <form>
             	<input type="hidden" name="no" value="${ product.no }">
-            	<input type="hidden" name="price" value="${ price }">
                 <div class="pd-view-image">
                     <img src="${path}/img/product/${product.image}" width="550px">
                 </div>
