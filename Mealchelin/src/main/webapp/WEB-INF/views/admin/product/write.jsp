@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,6 +30,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- jquery -->
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
 	<style>
         input{
@@ -55,7 +58,7 @@
 			<main class="content" style="background-color: #fff;">
 				<div class="container-fluid p-0">
 					<div class="row ad_mem_de">
-                        <form>
+                        <form id="meal_form">
                             <table class="col-12">
                                 <thead class="ad_mem_th">
                                     <th colspan="4">상품 등록</th>
@@ -77,7 +80,7 @@
                                         <td class="ad_th"><label for="adProName">상품명</label></td>
                                         <td><input type="text" name="adProName" id="adProName"></td>
                                         <td class="ad_th">등록 날짜</td>
-                                        <td>2024-02-20</td>
+                                        <td>${ date }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProCat">카테고리</label></td>
@@ -92,7 +95,7 @@
                                             </select>
                                         </td>
                                         <td class="ad_th"><label for="adProCode">상품 코드</label></td>
-                                        <td><input type="number" name="adProCode" id="adProCode"></td>
+                                        <td><input type="number" name="adProCode" id="adProCode" disabled></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProBrand">브랜드</label></td>
@@ -120,7 +123,7 @@
                                 </tbody>
                             </table>
                             <div style="margin:20px auto; width: 205px;">
-                                <button type="submit" class="meal_btn3">수정</button>
+                                <button type="submit" class="meal_btn3" id="meal_submit">등록</button>
                                 <button type="button" class="meal_btn4" style="margin-left:5px;" onClick="window.close();">취소</button>
                             </div>
                         </form>
@@ -139,6 +142,7 @@
             .catch( error => {
                 console.error( error );
             } );
+        
     </script> 
 </body>
 

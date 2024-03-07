@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<c:set var="category" value="${ not empty param.ad_product_se ? 'ad_product_se='+=param.ad_product_se+='&' : '' }"/>
+<c:set var="name" value="${ not empty param.ad_memberSearch ? 'ad_memberSearch='+=param.ad_memberSearch+='&' : '' }"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -93,11 +95,11 @@
 								<span class="text-dark"><i  class="align-middle me-2" data-feather="user"></i><b>관리자님</b> 어서오세요</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
-							</div>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
+		                        <div class="dropdown-divider"></div>
+		                        <a class="dropdown-item" href="${ path }/member/logout"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
+		                     </div>
 						</li>
 					</ul>
 				</div>
@@ -111,13 +113,13 @@
                     <form style="display: flex;">
                         <div>
                             <select name="ad_product_se" id="ad_product_se" class="adSe">
-                                <option selected>카테고리</option>
-                                <option value="">양식</option>
-                                <option value="">중식</option>
-                                <option value="">한식</option>
-                                <option value="">일식</option>
-                                <option value="">분식</option>
-                                <option value="">동남아</option>
+                                <option value="" selected>카테고리</option>
+                                <option value="western">양식</option>
+                                <option value="chinese">중식</option>
+                                <option value="korean">한식</option>
+                                <option value="japanese">일식</option>
+                                <option value="bunsik">분식</option>
+                                <option value="southeast">동남아</option>
                             </select>
                         </div>
                         <div class="col-12 col-lg-3">
@@ -143,18 +145,39 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="product" items="${ list }">
+										<c:if test="${ not empty list }">
+											<c:forEach var="product" items="${ list }">
+												<tr>
+													<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+													<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
+		                                            <td class="d-none d-xl-table-cell">${ product.no }</td>
+		                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">${ product.name }</td>
+													<td><fmt:formatNumber  value="${product.price}" type="number"/>원</td>
+													<td class="d-none d-xl-table-cell">${ product.stock }</td>
+													<td class="d-none d-xl-table-cell">
+														<c:if test="${ product.sale == 'Y' }">
+															판매중
+														</c:if>
+														<c:if test="${ product.sale == 'N' }">
+															판매 중지
+														</c:if>
+													</td>
+													<td class="d-none d-xl-table-cell">
+														<c:if test="${ product.sale == 'Y' }">
+															노출중
+														</c:if>
+														<c:if test="${ product.sale == 'N' }">
+															노출 중지
+														</c:if>
+													</td>
+												</tr>
+											</c:forEach>
+										</c:if>
+										<c:if test="${ empty list }">
 											<tr>
-												<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-												<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-	                                            <td class="d-none d-xl-table-cell">${ product.no }</td>
-	                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">${ product.name }</td>
-												<td>18,900원</td>
-												<td class="d-none d-xl-table-cell">${ product.stock }</td>
-												<td class="d-none d-xl-table-cell">판매중</td>
-												<td class="d-none d-xl-table-cell">노출중</td>
+												<td colspan="7">조회 결과가 없습니다.</td>
 											</tr>
-										</c:forEach>
+										</c:if>
 									</tbody>
 								</table>
                             </div>
@@ -167,22 +190,24 @@
 						</div>
 					</div>
 				</div>
-				<section id="cs-section3">
-					<div class="cs-paging">
-						<button onclick="location.href='${ path }/admin/product/adProduct?page=${ pageInfo.prevPage }'">&lt;</button>
-							<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
-								<c:choose>
-									<c:when test="${ current == pageInfo.currentPage }">
-		                            	<button disabled>${ current }</button>
-									</c:when>
-									<c:otherwise>
-										<button onclick="location.href='${ path }/admin/product/adProduct?page=${ current }'">${ current }</button>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-						<button onclick="location.href='${ path }/admin/product/adProduct?page=${ pageInfo.nextPage }'">&gt;</button>
-					</div>
-				</section>
+				<c:if test="${ not empty list }">
+					<section id="cs-section3">
+						<div class="cs-paging">
+							<button onclick="location.href='${ path }/admin/product/adProduct?${ category }${ name }page=${ pageInfo.prevPage }'">&lt;</button>
+								<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+									<c:choose>
+										<c:when test="${ current == pageInfo.currentPage }">
+			                            	<button disabled>${ current }</button>
+										</c:when>
+										<c:otherwise>
+											<button onclick="location.href='${ path }/admin/product/adProduct?${ category }${ name }page=${ current }'">${ current }</button>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<button onclick="location.href='${ path }/admin/product/adProduct?${ category }${ name }page=${ pageInfo.nextPage }'">&gt;</button>
+						</div>
+					</section>
+				</c:if>
 			</main>
 
 			<footer class="footer">

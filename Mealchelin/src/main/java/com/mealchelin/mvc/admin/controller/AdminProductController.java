@@ -26,16 +26,26 @@ public class AdminProductController {
 	@GetMapping("/adProduct")
 	public ModelAndView adProduct(
 			ModelAndView modelAndView,
-			@RequestParam(defaultValue="1") int page) {
+			@RequestParam(defaultValue="1") int page,
+			@RequestParam(defaultValue="", name = "ad_product_se") String category,
+			@RequestParam(defaultValue="", name = "ad_memberSearch") String name) {
 		
 		List<Product> list = null;
 		int listCount = 0;
 		PageInfo pageInfo = null; 
 		
-		listCount = productService.getProductCount();
+		// 1. 전체 검색
+		// 2. 카테고리 선택 후 검색
+		// 3. 상품명 검색
+		// 4. 카테고리 + 상품명 검색
+		
+		
+		listCount = productService.getProductSearchCount(category, name);
 		
 		pageInfo = new PageInfo(page, 5, listCount, 10);
-		list = productService.getProductListOrderByNo(pageInfo);
+		list = productService.getProductListOrderByNo(pageInfo, category, name);
+		
+		
 		modelAndView.addObject("list", list);
 		modelAndView.addObject("pageInfo", pageInfo);
 		

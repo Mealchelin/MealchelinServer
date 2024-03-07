@@ -25,6 +25,25 @@
 		FROM PRODUCT
 		WHERE STATUS = 'Y' AND DISPLAY = 'Y'
 	</sql>
+	<sql id="selectAllSql">
+		SELECT PRD_NO,
+			   NAME,
+			   CATEGORY,
+			   PRICE,
+			   PRD_DESC,
+			   IMAGE,
+			   BRAND,
+			   DISPLAY,
+			   SALE,
+			   STOCK,
+			   RGSTR_DATE,
+			   TOTAL_SALES,
+			   VIEWS,
+			   RATING,
+			   STATUS,
+			   WEIGHT
+		FROM PRODUCT
+	</sql>
 	
 	<resultMap id="productResultMap" type="Product">
 		<id property="no" column="PRD_NO"/>
@@ -150,10 +169,33 @@
 	</select>
 	
 	<select id="selectProductListOrderByNo" resultMap="productResultMap">
-		<include refid="selectProductSql"/>
+		<include refid="selectAllSql"/>
+		<if test="!(category.equals('') and name.equals(''))">
+			<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="!category.equals('')">
+					CATEGORY LIKE '%' || #{category} || '%'
+				</if>
+				<if test="!name.equals('')">
+					AND NAME LIKE '%' || #{name} || '%'
+				</if>
+			</trim>
+		</if>
 		ORDER BY PRD_NO DESC
 	</select>
 	
+	<select id="selectProductSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT
+		<if test="!(category.equals('') and name.equals(''))">
+			<trim prefix="WHERE" prefixOverrides="AND|OR">
+				<if test="!category.equals('')">
+					CATEGORY LIKE '%' || #{category} || '%'
+				</if>
+				<if test="!name.equals('')">
+					AND NAME LIKE '%' || #{name} || '%'
+				</if>
+			</trim>
+		</if>
+	</select>
 	
 	
 	

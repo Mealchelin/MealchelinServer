@@ -30,6 +30,8 @@ public interface ProductMapper {
 
 	List<Product> selectProductBestList();
 
-	List<Product> selectProductListOrderByNo(RowBounds rowBounds);
+	List<Product> selectProductListOrderByNo(RowBounds rowBounds, @Param("category") String category, @Param("name") String name);
+
+	int selectProductSearchCount(@Param("category") String category, @Param("name") String name);
 
 }
