@@ -62,7 +62,7 @@
 				<c:forEach var="review" items="${ list }">
 					<div id="re_mainDiv1">
 						<div id="re_review1">
-							<a href="./reviewDetail.html">
+<%-- 							<a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }"> --%>
 								<div id="re_foodImgAndName">
 									<img src="../img/new_01.jpg" alt="" id="re_foodImg" />
 								</div>
@@ -99,9 +99,15 @@
 							</a>
 							<div id="re_editDeleteBtn">
 								<p id="re_companyName">업체이름</p>
-								<input class="re_deleteAndEditBtn" type="button" value="삭제하기" />
-								<br /> <a href="${ path }/review/reviewEdit "><input
-									class="re_deleteAndEditBtn" type="button" value="수정하기" /></a>
+<%-- 								<a href="${ path }/mypage/delete?no=${ review.reviewNo } "> --%>
+									<button class="re_deleteBtn" id="deleteBtn" value="${ review.reviewNo }">삭제하기</button>
+<!-- 									<input class="re_deleteAndEditBtn" id="deleteBtn" type="button" value="삭제하기" /> -->
+								</a>
+								<br /> 
+<%-- 								<a href="${ path }/review/reviewEdit "> --%>
+								<a href="${ path }/review/reviewEdit?reviewNo=${ review.reviewNo }">
+									<input class="re_editBtn" id="editBtn" type="button" value="수정하기" />
+								</a>
 							</div>
 						</div>
 					</div>

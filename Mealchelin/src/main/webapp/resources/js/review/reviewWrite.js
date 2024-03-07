@@ -83,3 +83,21 @@ $('#re_periodDropBox').change(function(){
 });
 
 
+// 작성한 리뷰 삭제하는 코드
+ $('.re_deleteBtn').on('click', (event) => {
+    let reviewNo = $(event.target).val();
+    console.log($(event.target).val());
+    if (confirm('게시글을 삭제 하시겠습니까?')) {
+        location.replace('/mypage/delete?no=' + reviewNo);
+    }
+ });
+
+// 작성한 리뷰 상세보기
+ $('#editBtn').on('click', () => {
+    let reviewNo = $('#deleteBtn').val();
+
+    location.replace('/mypage/edit?no=' + reviewNo);
+ });
+
+
+

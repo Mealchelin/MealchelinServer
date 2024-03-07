@@ -80,6 +80,18 @@ public class ReviewController {
 		return modelAndView;
     }
 	
+	@GetMapping("/reviewEdit")
+	public ModelAndView reviewEdit(ModelAndView modelAndView, @RequestParam int reviewNo) {
+		Review review = null;
+		
+		review = service.getReviewByNo(reviewNo);
+		
+		modelAndView.addObject("review", review);
+		modelAndView.setViewName("review/reviewEdit");
+		
+        return modelAndView;
+    }
+	
 	@GetMapping("/reviewWrite")
 	public String reviewWrite() {
 		
@@ -95,13 +107,6 @@ public class ReviewController {
         return "/review/FootSearchBox";
     }
 
-	@GetMapping("/reviewEdit")
-	public String reviewEdit() {
-		
-		
-        return "/review/reviewEdit";
-    }
-	
 	@GetMapping("/reviewEmpty")
 	public String reviewEmpty() {
 		

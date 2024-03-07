@@ -69,4 +69,10 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.selectAllByuserNo(rowBounds, userNo);
 	}
 
+	@Override
+	public int delete(int no) {
+		
+		return mapper.delete(no, "N");
+	}
+
 }

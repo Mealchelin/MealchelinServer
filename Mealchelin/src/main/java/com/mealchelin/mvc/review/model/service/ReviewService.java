@@ -19,4 +19,6 @@ public interface ReviewService {
 	int getReviewCountByuserNo(int userNo);
 
 	List<Review> getReviewListByuserNo(PageInfo pageInfo, int userNo);
+
+	int delete(int no);
 }

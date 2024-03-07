@@ -21,7 +21,8 @@ h3 {
     margin-top: 20px;
     margin-bottom: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 28px;
     flex-wrap: wrap;
     float:left;
 }

@@ -38,7 +38,6 @@ public class MyPageReviewController {
 		List<Review> list = null;
 		
 		reviewCount = service.getReviewCountByuserNo(userNo);
-//		reviewCount = service.getReviewCount();
 		pageInfo = new PageInfo(page, 5, reviewCount, 5);
 		list = service.getReviewListByuserNo(pageInfo, userNo);
 
@@ -51,6 +50,29 @@ public class MyPageReviewController {
 
 		return modelAndView;
 	}
+	
+	@GetMapping("/delete")
+	public ModelAndView delete(ModelAndView modelAndView, @RequestParam("no") int no
+			) {
+		int result = 0;
+		
+		
+		result = service.delete(no);
+			if (result > 0) {
+				modelAndView.addObject("msg", "삭제 성공");
+				modelAndView.addObject("location", "/mypage/mypageProductReview");
+			} else {
+				modelAndView.addObject("msg", "게시글 삭제 실패");
+				modelAndView.addObject("location", "/mypage/mypageProductReview");
+			}
+		
+
+		modelAndView.setViewName("common/msg");
+
+		return modelAndView;
+	}
+	
+	
 	
 	@GetMapping("/writableReview")
 	public String mypageWritableReview() {

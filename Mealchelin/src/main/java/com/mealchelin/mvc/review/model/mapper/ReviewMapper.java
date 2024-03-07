@@ -3,6 +3,7 @@ package com.mealchelin.mvc.review.model.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.mealchelin.mvc.member.model.vo.Member;
@@ -22,5 +23,7 @@ public interface ReviewMapper {
 	int getReviewCountByuserNo(int userNo);
 
 	List<Review> selectAllByuserNo(RowBounds rowBounds, int userNo);
+
+	int delete(@Param("reviewNo") int no, @Param("status") String status);
 
 }
