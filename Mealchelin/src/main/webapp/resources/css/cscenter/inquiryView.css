@@ -52,6 +52,11 @@
 	min-height: 310px;
 }
 
+.cs-inquiry-text img{
+	width: 600px;
+	height: auto;
+}
+
 
 /* 버튼 */
 #cs-section3 {

@@ -135,7 +135,7 @@
 											            <td style="cursor: pointer;" onclick="location.href='${path}/admin/post/adQnADetail?no=${support.supportNo}'">${support.sname}</td>
 											            <td><fmt:formatDate value="${support.rgstrDate}" pattern="yyyy.MM.dd"/></td>
 											            <td class="d-none d-xl-table-cell">${support.mname}</td>
-											            <c:set var="status" value="${ support.status }" scope="session"/> 
+											            <c:set var="status" value="${ support.csstatus }" scope="session"/> 
 											            <c:choose>
 															<c:when test='${ status == "Y" }'>
 																<td class="d-none d-xl-table-cell">노출</td>

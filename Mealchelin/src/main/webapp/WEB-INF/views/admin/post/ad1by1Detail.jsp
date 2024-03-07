@@ -210,7 +210,11 @@
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
     <script>
     ClassicEditor
-	    .create( document.querySelector( '#answerContent' ))
+	    .create( document.querySelector( '#answerContent' ),{
+	    	ckfinder: {
+				uploadUrl: '/admin/post/image.do'
+	    	}
+		})
 	    .catch( error => {
 	        console.error( error );
 	} );

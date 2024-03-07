@@ -37,4 +37,6 @@ public interface SupportMapper {
 
 	int updateAdSupport(Support support);
 
+	int deleteSupportByNo(@Param("supportNo") int no);
+
 }

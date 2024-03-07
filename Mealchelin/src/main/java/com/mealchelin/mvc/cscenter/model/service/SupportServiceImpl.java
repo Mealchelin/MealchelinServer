@@ -109,6 +109,11 @@ public class SupportServiceImpl implements SupportService {
 		return mapper.selectFaqByNo(no);
 	}
 
+	@Override
+	public int deleteSupport(int no) {
+		return mapper.deleteSupportByNo(no);
+	}
+
 
 	
 }

@@ -51,7 +51,7 @@
                     <div class="cs-inquiry-column">내용</div>
                     <!-- ck에디터 찾아보기 -->
                     <!-- <div id="classic" class="cs-inquiry-data" name="content"></div> -->
-                    <textarea class="cs-inquiry-data" name="inquiryContent" id="classic" placeholder="내용을 입력해주세요." required></textarea>
+                    <textarea class="cs-inquiry-data" name="inquiryContent" id="classic" placeholder="내용을 입력해주세요."></textarea>
                 </div>
                 <!-- 버튼 -->
                 <div class="cs-inquiryBtns">
@@ -75,7 +75,10 @@
         ClassicEditor
             .create( document.querySelector( '#classic' ), {
                 removePlugins: [ 'Heading' ],
-                language: 'ko'
+                language: 'ko',
+            	ckfinder: {
+        			uploadUrl: '/cscenter/image.do'
+        		}
             })
             .catch( error => {
                 console.error( error );

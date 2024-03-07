@@ -143,7 +143,7 @@
 									</tr>
 									<tr>
 										<td class="ad_th"  id="adCSWriteShow">노출 여부</label></td>
-										<c:set var="status" value="${ support.status }" scope="session"/> 
+										<c:set var="status" value="${ support.csstatus }" scope="session"/> 
 										    <c:choose>
 												<c:when test='${ status == "Y" }'>
 													<td colspan="3">노출</td>
@@ -158,9 +158,9 @@
 									</tr>
 								</table>
 								<div style="margin:0 auto; width: 312px; margin-bottom:30px;">
-									<button type="button" class="meal_btn3" onClick="location.href='${ path }/admin/post/edit'">수정</button>
+									<button type="button" class="meal_btn3" onClick="location.href='${ path }/admin/post/edit?no=${support.supportNo}'">수정</button>
 									<button type="button" class="meal_btn4" style="margin-left:5px;" onClick="location.href='${ path }/admin/post/adNotice'">목록</button>
-									<button type="button" class="meal_btn4" style="margin-left:5px;">삭제</button>
+									<button type="button" class="meal_btn4" style="margin-left:5px;" id="btnDelete">삭제</button>
 								</div>
                             </div>
 						</div>
@@ -201,8 +201,17 @@
 	</div>
     
     <!-- 필요한 js 밑에 추가-->
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
-    
+    <script type="text/javascript">
+		$(document).ready(() => {
+			$('#btnDelete').on('click', () => {
+				if (confirm('정말로 삭제하시겠습니까?')) {
+					location.replace('${ path }/admin/post/delete?no=${support.supportNo}');
+				}
+			});
+		});
+	</script>
 </body>
 
 </html>

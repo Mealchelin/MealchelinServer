@@ -22,7 +22,7 @@ public class Support {
 	
 	private Date rgstrDate;
 	
-	private String status;
+	private String csstatus;
 	
 	private int memberNo;
 	

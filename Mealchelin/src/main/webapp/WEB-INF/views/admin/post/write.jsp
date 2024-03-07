@@ -128,7 +128,7 @@
 				<div class="container-fluid p-0">
                     <div class="row ad_mem_de">
                         <h1 class="h3 mb-4" style="font-weight: 600;">게시글 작성</h1>
-                        <form>
+                        <form method="POST" action="${ path }/admin/post/write">
 						<div class="col-12">
 							<div class="card">
 								<table class="table my-4" style="width: 95%; margin:0 auto;">
@@ -142,14 +142,15 @@
                                     <tr>
                                         <td class="ad_th">작성자</td>
                                         <td>${ loginMember.name }</td>
-                                        <td class="ad_th"><label for="adCSWrite">카테고리</label></td>
+                                        <td class="ad_th"><label for="category">카테고리</label></td>
                                         <td>
                                             <select name="category" id="adCSWrite" class="adCat" onchange="QnASelect(this)">
                                                 <option selected value="공지사항">공지사항</option>
                                                 <option value="자주묻는질문">자주 묻는 질문</option>
                                             </select>
 											<select name="subCategory" id="adQnAcat" class="adCat">
-                                                <option selected value="회원">회원</option>
+												<option selected value="">---선택---</option>
+                                                <option value="회원">회원</option>
                                                 <option value="주문/결제">주문/결제</option>
                                                 <option value="취소/교환/환불">취소/교환/환불</option>
                                                 <option value="배송">배송</option>
@@ -166,10 +167,10 @@
                                 <textarea name="content" id="adCSWriteContent"></textarea>
 								<table class="table my-3" style="width: 95%; margin:0 auto;">
 									<tr>
-										<td class="ad_th"><label for="status">노출 여부</label></td>
+										<td class="ad_th"><label for="csstatus">노출 여부</label></td>
                                         <td>
-											<label style="margin-right: 10px;"><input type="radio" checked name="status" id="adCSWriteShow" value="Y" style="width: 20px;"/>노출</label>
-                                            <label><input type="radio" name="status" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출</label>
+											<input type="radio" checked name="csstatus" id="adCSWriteShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            <input type="radio" name="csstatus" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출
 										</td>
 									</tr>
 								</table>

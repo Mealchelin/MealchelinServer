@@ -31,4 +31,6 @@ public interface SupportService {
 
 	Support getSupportByNo(int no);
 
+	int deleteSupport(int no);
+
 }

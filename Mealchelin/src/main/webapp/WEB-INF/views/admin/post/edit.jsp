@@ -127,28 +127,30 @@
 			<main class="content">
 				<div class="container-fluid p-0">
                     <div class="row ad_mem_de">
-                        <h1 class="h3 mb-4" style="font-weight: 600;">게시글 작성</h1>
-                        <form>
+                        <h1 class="h3 mb-4" style="font-weight: 600;">게시글 수정</h1>
+                        <form method="POST" action="${ path }/admin/post/edit?no=${ support.supportNo }">
 						<div class="col-12">
 							<div class="card">
 								<table class="table my-4" style="width: 95%; margin:0 auto;">
 									<tr>
                                         <td class="ad_th" width="25%">게시글 번호</td>
-                                        <td width="25%">1</td>
+                                        <td width="25%">${ support.supportNo }</td>
                                         <td class="ad_th" width="25%">게시글 작성 날짜</td>
-                                        <td width="25%">20204.02.21</td>
+                                        <c:set var="now" value="<%=new java.util.Date()%>" />
+                                        <td width="25%"><fmt:formatDate value="${support.rgstrDate}" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">작성자</td>
-                                        <td>관리자</td>
-                                        <td class="ad_th"><label for="adCSWrite">카테고리</label></td>
+                                        <td>${ support.mname }</td>
+                                        <td class="ad_th"><label for="category">카테고리</label></td>
                                         <td>
-                                            <select name="adCSWrite" id="adCSWrite" class="adCat" onchange="QnASelect2(this)">
-                                                <option selected value="공지사항">공지사항</option>
+                                            <select name="category" id="adCSWrite2" class="adCat" onchange="QnASelect2(this)">
+                                                <option value="공지사항">공지사항</option>
                                                 <option value="자주묻는질문">자주 묻는 질문</option>
                                             </select>
-											<select name="adQnAcat2" id="adQnAcat2" class="adCat">
-												<option selected value="회원">회원</option>
+											<select name="subCategory" id="adQnAcat2" class="adCat">
+												<option value="">---선택---</option>
+                                                <option value="회원">회원</option>
                                                 <option value="주문/결제">주문/결제</option>
                                                 <option value="취소/교환/환불">취소/교환/환불</option>
                                                 <option value="배송">배송</option>
@@ -158,25 +160,29 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="ad_th"><label for="adCSWriteTitle">제목</label></td>
-                                        <td colspan="3"><input type="text" name="adCSWriteTitle" id="adCSWriteTitle" style="width: 99%; border:none;" value="보통 배송은 어느정도 걸리나요?"></td>
+                                        <td class="ad_th"><label for="sname">제목</label></td>
+                                        <td colspan="3"><input type="text" name="sname" id="adCSWriteTitle" value="${ support.sname }" style="width: 99%; border:none;"></td>
                                     </tr>
 								</table>
-                                <textarea name="adCSWriteContent" id="adCSWriteContent">
-                                    모든 지역 하루면 배송이 완료됩니다.<br>
-											도서산간지역, 제주도를 제외한 지역에는 다음날 오전 7시 전에 배송이 완료됩니다.
-                                </textarea>
+                                <textarea name="content" id="adCSWriteContent">${ support.content }</textarea>
 								<table class="table my-3" style="width: 95%; margin:0 auto;">
 									<tr>
-										<td class="ad_th"><label for="adCSWriteShow">노출 여부</label></td>
+										<td class="ad_th"><label for="csstatus">노출 여부</label></td>
                                         <td>
-											<label style="margin-right: 10px;"><input type="radio" checked name="adCSWriteShow" id="adCSWriteShow" value="Y" style="width: 20px;"/>노출</label>
-                                            <label><input type="radio" name="adCSWriteShow" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출</label>
+                                        	<c:set var="status" value="${ support.csstatus }" scope="session"></c:set>
+                                        	<c:if test='${ status == "Y" }'>
+												<input type="radio" checked name="csstatus" id="adCSWriteShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            	<input type="radio" name="csstatus" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출
+                                        	</c:if>
+                                        	<c:if test='${ status == "N" }'>
+												<input type="radio" name="csstatus" id="adCSWriteShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            	<input type="radio" checked name="csstatus" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출
+                                        	</c:if>
 										</td>
 									</tr>
 								</table>
 								<div style="margin:20px auto; width: 205px;">
-									<button type="submit" class="meal_btn3">등록</button>
+									<button type="submit" class="meal_btn3">수정</button>
 									<button type="button" class="meal_btn4" style="margin-left:5px;" onClick="history.go(-1)">취소</button>
 								</div>
                             </div>
@@ -219,7 +225,36 @@
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/ad_post_edit.js"></script>
-    
+    <script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    	var selectedCategory = '${ support.category }';
+    	var selectedSubCategory = '${ support.subCategory }';
+    	let adQnAcat = document.getElementById('adQnAcat2');
+    	
+    	console.log(selectedCategory);
+    	
+    	var categorySelect = document.getElementById("adCSWrite2");
+    	for (var i = 0; i < categorySelect.options.length; i++) {
+    	    if (categorySelect.options[i].value === selectedCategory) {
+    	        categorySelect.options[i].selected = true;
+    	        break;
+    	    }
+    	}
+    	if(selectedCategory == "자주묻는질문"){
+    		adQnAcat.style.display="inline-table";
+    	}
+    	        
+    	var subCategorySelect = document.getElementById("adQnAcat2");
+    	for (var i = 0; i < subCategorySelect.options.length; i++) {
+    	       if (subCategorySelect.options[i].value === selectedSubCategory) {
+    	          subCategorySelect.options[i].selected = true;
+    	          break;
+    	       }
+    	 }
+    	
+    });
+	</script>
 </body>
 
 </html>

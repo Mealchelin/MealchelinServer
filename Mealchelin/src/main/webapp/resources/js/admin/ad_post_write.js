@@ -1,5 +1,9 @@
 ClassicEditor
-    .create( document.querySelector( '#adCSWriteContent' ))
+    .create( document.querySelector( '#adCSWriteContent' ),{
+    	ckfinder: {
+			uploadUrl: '/admin/post/image.do'
+		}
+    })
     .catch( error => {
         console.error( error );
 } );
