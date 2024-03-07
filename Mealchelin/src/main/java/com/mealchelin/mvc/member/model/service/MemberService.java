@@ -8,7 +8,7 @@ public interface MemberService {
 	
 	Member login(String id, String password);
 
-	int save(Member member);
+	int save(Member member);	
 
 	Member getMemberByNo(int i);
 	
@@ -17,6 +17,7 @@ public interface MemberService {
 	Boolean isDuplicateId(String userId);
 
 	Member updateBefore(String id, String password);
+
 
 
 	

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,8 @@ public class MemberController {
 	private final ShoppingBasketService shoppingBasketService;
 	
 	private final ShippingLocationService shippingLocationService;
+	
+	private final BCryptPasswordEncoder encoder;
 	
 	@GetMapping("/member/login")
 	public String login() {
@@ -109,7 +112,7 @@ public class MemberController {
 		if(result > 0) {
 			
 			modelAndView.addObject("msg", "회원 가입에 성공했습니다.");
-			modelAndView.addObject("location", "/");
+			modelAndView.addObject("location", "/member/enrollEnd");
 				
 			// 회원 가입 후 장바구니 만들기
 			shoppingBasket.setMemberNo(member.getMemberNo());
@@ -117,8 +120,7 @@ public class MemberController {
 			sbresult = shoppingBasketService.save(shoppingBasket);
 			
 			// 회원 가입 후 배송지 관리 만들기
-			shippingLocation.setMemberNo(member.getMemberNo());
-			
+			shippingLocation.setMemberNo(member.getMemberNo());			
 			shippingLocation.setShipName(member.getName());
 			shippingLocation.setRecipient(member.getName());
 			shippingLocation.setPhone(member.getPhone());
@@ -148,20 +150,19 @@ public class MemberController {
 		log.info("UserId : {}", userId);
 		
 		map.put("duplicate", service.isDuplicateId(userId));
-		
-		
+				
 	      return ResponseEntity.ok()
 	    		 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).body(map);
 	}
 	
 
+	// 마이페이지 정보수정 첫번째 화면 (비밀번호 비교)
 	@GetMapping("/mypage/updateMember")
 	public String updateMember() {
 
 		return "mypage/updateMember";
 		
 	}
-	
 	
 	@PostMapping("/mypage/updateMember")
 	public ModelAndView updateMember(ModelAndView modelAndView,
@@ -184,12 +185,60 @@ public class MemberController {
 		
 	}
 	
+	
+	// 마이페이지 정보수정 두번째 화면 
 	@GetMapping("/mypage/updateMember2")
-	public ModelAndView updateMember2(ModelAndView modelAndView) {
+	public String updateMember2() {
 		
-		modelAndView.setViewName("mypage/updateMember2");
+		return "mypage/updateMember2";
+		
+	}
+	
+	@PostMapping("/mypage/updateMember2")
+	public ModelAndView updateMember2(ModelAndView modelAndView,
+									  Member member, 
+									  @SessionAttribute("loginMember") Member loginMember,
+									  @RequestParam("myMemberName") String name,
+									  @RequestParam("myMemberPwd") String password,
+									  @RequestParam("myMemberPhone") String phone,
+									  @RequestParam("myMemberEmail") String email,
+									  @RequestParam("myMemberAdress") String postalCode,
+									  @RequestParam("myMemberAdress2") String address,
+									  @RequestParam("myMemberAdress3") String addressDetail,
+									  @RequestParam("myMemberBdate") String birth) {
+		int result = 0;
+		
+		member.setMemberNo(loginMember.getMemberNo());
+		
+		member.setName(name);
+		member.setPassword(encoder.encode(password));
+		member.setPhone(phone);
+		member.setEmail(email);
+		member.setPostalCode(postalCode);
+		member.setAddress(address);
+		member.setAddressDetail(addressDetail);
+		member.setBirth(birth);
+		
+		result = service.save(member);
+		
+		if(result > 0) {
+			// 회원 정보 수정 완료
+			modelAndView.addObject("loginMember", service.findMemberById(loginMember.getId()));
+			modelAndView.addObject("msg", "회원 정보 수정이 완료되었습니다.");
+		} else {
+			// 회원 정보 수정 실패 
+			modelAndView.addObject("msg"," 회원 정보 수정이 실패되었습니다.");		
+		}
+		
+		modelAndView.addObject("location","/mypage/updateMember");
+		modelAndView.setViewName("common/msg");
 		
 		return modelAndView;
+	}
+	
+	@GetMapping("/member/enrollEnd")
+	public String enrollEnd() {
 		
+		return "member/enrollEnd";
 	}
 }

@@ -64,8 +64,7 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="${ path }/js/main.js"></script>
-    <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"
-    		integrity="sha384-l+xbElFSnPZ2rOaPrU//2FF5B4LB8FiX5q4fXYTlfcG4PGpMkE1vcL7kNXI6Cci0" crossorigin="anonymous"></script>
+    <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="${ path }/js/member/login.js"></script>
 </body>
 

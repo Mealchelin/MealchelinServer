@@ -12,7 +12,8 @@ public interface MemberMapper {
 
 	int insertMember(Member member);
 	
-
+	int updateMember(Member member);
+	
 	Member selectMemberByNo(@Param("No") int memberNo);
 
 	Member selectMemberByOrderInfo(@Param("id") String id);

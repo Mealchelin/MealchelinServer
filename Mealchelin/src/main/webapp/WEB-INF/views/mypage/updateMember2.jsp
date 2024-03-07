@@ -40,7 +40,7 @@
                             <label for="myMemberName" >이름</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text" class="mymemberIp" name="myMemberName" id="myMemberName" value="이주연">
+                            <input type="text" class="mymemberIp" name="myMemberName" id="myMemberName" value="${ loginMember.name }">
                         </div>
                         
                         <br>
@@ -49,7 +49,7 @@
                             <label for="myMemberId">아이디</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text" class="mymemberIp" name="myMemberId" id="myMemberId" value="juyeon123" readonly>
+                            <input type="text" class="mymemberIp" name="myMemberId" id="myMemberId" value="${ loginMember.id }" readonly>
                         </div>
                         
                         <br>
@@ -78,7 +78,7 @@
                             <label for="myMemberPhone">휴대폰</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text"  class="mymemberIp" name="myMemberPhone" id="myMemberPhone" value="01011112222">
+                            <input type="text"  class="mymemberIp" name="myMemberPhone" id="myMemberPhone" value="${ loginMember.phone }">
                         </div>
                         
                         <br>
@@ -87,7 +87,7 @@
                             <label for="myMemberEmail">이메일</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="email"  class="mymemberIp" name="myMemberEmail" id="myMemberEmail" value="juyeon123@iei.or.kr">
+                            <input type="email"  class="mymemberIp" name="myMemberEmail" id="myMemberEmail" value="${ loginMember.email }">
                         </div>
                         
                         <br>
@@ -96,16 +96,18 @@
                             <label for="myMemberAdress">주소</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text" name="myMemberAdress" id="myMemberAdress" placeholder="우편번호 검색" readonly>
+                            <input type="text" name="myMemberAdress" id="myMemberAdress" placeholder="우편번호 검색" value="${ loginMember.postalCode }" readonly>
                         </div>
                         <button type="button" class="myInputBtn1">우편번호 검색</button>
                         <br>
                         <div class="myInputDiv1">
-                            <input type="text"  class="mymemberIp" name="myMemberAdress2" id="myMemberAdress2" placeholder="주소를 입력해주세요" readonly>
+                            <input type="text"  class="mymemberIp" name="myMemberAdress2" id="myMemberAdress2" 
+                            	   value="${ loginMember.address }" placeholder="주소를 입력해주세요" readonly>
                         </div>
                         <br>
                         <div class="myInputDiv2">
-                            <input type="text"  class="mymemberIp" name="myMemberAdress3" id="myMemberAdress3" placeholder="상세주소를 입력해주세요">
+                            <input type="text"  class="mymemberIp" name="myMemberAdress3" id="myMemberAdress3" 
+                            	   value="${ loginMember.addressDetail }" placeholder="상세주소를 입력해주세요">
                         </div>
                         
                         <br>
@@ -114,11 +116,11 @@
                             <label for="myMemberBdate">생년월일</label>
                         </div>
                         <div class="myInputDiv2">
-                            <input type="text"  class="mymemberIp"  name="myMemberBdate" id="myMemberBdate" value="990111" placeholder="ex 990101" >
+                            <input type="text"  class="mymemberIp"  name="myMemberBdate" id="myMemberBdate" value="${ loginMember.birth }" placeholder="ex 990101" >
                         </div>
                     </div>
                     <div class="myBtnGroup">
-                        <button class="myStatus" type="submit">탈퇴하기</button>
+                        <button class="myStatus" type="button">탈퇴하기</button>
                         <button class="myUpdate" type="submit">회원정보수정</button>
                     </div>
                 </form>

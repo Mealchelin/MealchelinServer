@@ -14,11 +14,9 @@
 	<insert id="insertShoppingBasket" parameterType="ShoppingBasket"
 		useGeneratedKeys="true" keyColumn="MEMBER_NO" keyProperty="memberNo">		
 		INSERT INTO SHOPPING_BASKET (
-			MEMBER_NO,
-			SHIP_NO
+			MEMBER_NO
 		) VALUES (
-			#{memberNo},
-			SEQ_SHIP_NO.NEXTVAL
+			#{memberNo}
 		)
 	</insert>
 	

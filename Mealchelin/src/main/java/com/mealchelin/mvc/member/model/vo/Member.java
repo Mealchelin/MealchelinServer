@@ -54,7 +54,7 @@ public class Member {
 	private String role;
 	
 	// 회원 상태 (탈퇴 여부)
-	private String status;
+	private String memStatus;
 
 
 

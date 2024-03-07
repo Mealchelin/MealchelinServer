@@ -43,15 +43,18 @@
 		                               RECIPIENT, 
 		                               PHONE, 
 		                               POSTAL_CODE, 
-		                               SHIP_ADDRESS
+		                               SHIP_ADDRESS,
+		                               SHIP_ADDRESS_DETAIL
 		                       ) VALUES (
 		                       		   #{memberNo}, 
-                                       #{shipNo}, 
+                                       SEQ_SHIP_NO.NEXTVAL, 
                     		           #{shipName}, 
                     		           #{recipient}, 
                     		           #{phone},
                      		           #{postalCode}, 
-                     		           #{shipAddress})
+                     		           #{shipAddress},
+                     		           #{shipAddressDetail}
+                     		           )
 	</insert>
 
 

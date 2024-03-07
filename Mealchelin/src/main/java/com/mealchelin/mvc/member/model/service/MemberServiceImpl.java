@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		if(member.getMemberNo() > 0) {
 			//update
-			
+			result = mapper.updateMember(member);
 			
 		} else {
 			//insert
