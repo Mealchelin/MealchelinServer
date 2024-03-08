@@ -159,17 +159,18 @@ public class ProductController {
 	public ModelAndView purchase(
 			ModelAndView modelAndView,
 			@RequestParam int no,
-			@RequestParam int quantity) {
+			@RequestParam int quantity
+			) {
 		
 		Product product = null;
 		product = productService.getProductByNo(no);
 		
-		log.info("{}", product);
+		log.info("purchase product product: {}", product);
 		
 		modelAndView.addObject("product", product);
 		modelAndView.addObject("no", no);
 		modelAndView.addObject("quantity", quantity);
-		modelAndView.setViewName("redirect:/payment/pay");
+		modelAndView.setViewName("redirect:/payment/directpay");
 		
 		return modelAndView;
 	}
