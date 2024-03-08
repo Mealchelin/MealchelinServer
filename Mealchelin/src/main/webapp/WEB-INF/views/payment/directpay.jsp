@@ -10,6 +10,9 @@
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <c:set var="totalPrice" value="${price + shipPrice }" />
 
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -196,10 +199,10 @@
 								<fmt:formatNumber value="${shipPrice}" type="number" /> 원
 							</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" class="shippingPrice" name="shippingPrice" value="${shipPrice}" />
+							<input type="hidden" class="shippingPrice" name="shippingPrice" value="${totalPrice}" />
 						</div>
 						<div class="pay_finalResult">
-							<span class="pay_Delivery">최종 결제 금액</span> <span
+							<span class="pay_Delivery">최종 결제 금액</span> <span id="test"
 								class="pay_Finalpay"> <fmt:formatNumber
 									value="${totalPrice}" type="number" />원
 							</span>
