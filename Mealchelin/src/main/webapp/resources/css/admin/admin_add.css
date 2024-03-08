@@ -66,6 +66,14 @@
     border-radius: 0.2rem;
 }
 
+.ad_button_gn{
+	border:none;
+    background-color:#3B6C51;
+    color: #fff;
+    padding:5px 20px;
+    float:right;
+}
+
 .ad_sub_button{
     text-align: right;
     margin-top:-10px;

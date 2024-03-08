@@ -282,6 +282,53 @@ public class AdminPostController {
 		return modelAndView;
 	}
 	
+	@PostMapping("/exposure")
+	public ModelAndView adPostEx(ModelAndView modelAndView,
+			@RequestParam(value="ad_support_chk", required=false) List<Integer> supportList) {
+		if(supportList == null) {
+			modelAndView.addObject("msg", "노출 여부가 실패하였습니다.");
+			modelAndView.addObject("location", "/admin/post/adPost");			
+		} else {
+			for(Integer no : supportList) {
+				Support support = serviceS.getSupportByNo(no);
+				if (support != null) {
+					support.setCsstatus("Y");
+					serviceS.adSave(support);
+				}
+			}
+			modelAndView.addObject("msg", "선택한 데이터를 노출하였습니다.");
+			modelAndView.addObject("location", "/admin/post/adPost");			
+		}
+		
+		modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
+	}
+
+	
+	@PostMapping("/nonExposure")
+	public ModelAndView adPostNonEx(ModelAndView modelAndView,
+			@RequestParam(value="ad_support_chk", required=false) List<Integer> supportList) {
+		if(supportList == null) {
+			modelAndView.addObject("msg", "노출 여부가 실패하였습니다.");
+			modelAndView.addObject("location", "/admin/post/adPost");			
+		} else {
+			for(Integer no : supportList) {
+				Support support = serviceS.getSupportByNo(no);
+				if (support != null) {
+					support.setCsstatus("N");
+					serviceS.adSave(support);
+				}
+			}
+			modelAndView.addObject("msg", "선택한 데이터를 비노출하였습니다.");
+			modelAndView.addObject("location", "/admin/post/adPost");			
+		}
+		
+		modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value="/image.do", method = RequestMethod.POST) 
 	public void imageUpload(HttpServletRequest request, HttpSession session,
 			HttpServletResponse response, MultipartHttpServletRequest multiFile , 

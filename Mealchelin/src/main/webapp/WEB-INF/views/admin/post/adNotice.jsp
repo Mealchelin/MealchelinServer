@@ -104,15 +104,16 @@
 			<!--메인 내용-->
 			<main class="content">
 				<div class="container-fluid p-0">
-
-					<h1 class="h3 mb-4" style="font-weight: 600;">공지사항</h1>
-					<div class="row">
+					<h1 class="h3 mb-4" style="font-weight: 600; float:left;">공지사항</h1>
+					<button class="ad_button_gn" onClick="location.href='${ path }/admin/post/write'">게시글 작성</button>
+					<div class="row"  style="clear:both;">
 						<div class="col-12">
+							<form id="exposureForm" method="post">
 							<div class="card">
 								<table class="table table-hover my-0" style="text-align: center;">
 									<thead>
 										<tr>
-                                            <th width="5%"><input type="checkbox" name="ad_notice_chk" id="ad_buy_allChk" onclick='selectNoticeAll(this)'></th>
+                                            <th width="5%"><input type="checkbox" name="ad_support_chk" id="ad_buy_allChk" onclick='selectNoticeAll(this)'></th>
 											<th width="12%">번호</th>
                                             <th>제목</th>
 											<th width="15%">작성일</th>
@@ -130,7 +131,7 @@
 										    <c:forEach var="support" items="${list}">
 										        <tr>
 										            <!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-										            <td><input type="checkbox" class="ad_notice_chk" name="ad_notice_chk" value="${support.rnum}"></td>
+										            <td><input type="checkbox" class="ad_support_chk" name="ad_support_chk" value="${support.supportNo}"></td>
 										            <td>${support.rnum}</td>
 										            <td style="cursor: pointer;" onclick="location.href='${path}/admin/post/adNoticeDetail?no=${support.supportNo}'">${support.sname}</td>
 										            <td><fmt:formatDate value="${support.rgstrDate}" pattern="yyyy.MM.dd"/></td>
@@ -154,11 +155,11 @@
 								</table>
                             </div>
                             <div class="ad_sub_button">
-                                <button class="ad_sub_button_gn" onClick="location.href='${ path }/admin/post/write'">게시글 작성</button>
                                 <!-- <button class="ad_sub_button_gy">게시글 삭제</button> -->
-                                <button class="ad_sub_button_gy">노출</button>
-                                <button class="ad_sub_button_gy">비노출</button>
+                                <button class="ad_sub_button_gy" id="exposeData">노출</button>
+                                <button class="ad_sub_button_gy" id="nonExposeData">비노출</button>
                             </div>
+                            </form>
                             <section id="cs-section3">
 					            <div class="cs-paging">
 						            <button onclick="location.href='${ path }/admin/post/adNotice?page=${ pageInfo.prevPage }'">&lt;</button>
@@ -177,7 +178,6 @@
 					        </section>
 						</div>
 					</div>
-
 				</div>
 			</main>
 
@@ -212,16 +212,33 @@
 	</div>
     
     <!-- 필요한 js 밑에 추가-->
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
     <script>
 		function selectNoticeAll(selectNoticeAll)  {
 			const checkboxes 
-				= document.getElementsByName('ad_notice_chk');
+				= document.getElementsByName('ad_support_chk');
 			
 			checkboxes.forEach((checkbox) => {
 				checkbox.checked = selectNoticeAll.checked;
 			})
 		};
+		
+		$(document).ready(() => {
+			$('#exposeData').on('click', () => {
+				if (confirm('선택한 데이터들을 노출하시겠습니까?')) {
+					$('#exposureForm').attr('action', '${path}/admin/post/exposure');
+					$('#exposureForm').submit();
+				}
+			});
+			
+			$('#nonExposeData').on('click', () => {
+				if (confirm('선택한 데이터들을 비노출하시겠습니까?')) {
+					$('#exposureForm').attr('action', '${path}/admin/post/nonExposure');
+					$('#exposureForm').submit();
+				}
+			});
+		});
 		
 	</script>
 </body>
