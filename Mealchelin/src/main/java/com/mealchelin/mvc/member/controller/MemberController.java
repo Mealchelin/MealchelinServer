@@ -3,6 +3,8 @@ package com.mealchelin.mvc.member.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -264,4 +266,19 @@ public class MemberController {
 		return modelAndView;
 	}
 
+	 // 카카오 로그인 시도..?
+	 @GetMapping("/member/kakao/login")
+	 public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+	         
+	     log.info("code : {}",code);
+	      
+	      
+	     // 접속 토큰 get 
+	     String kakaoToken = service.getReturnAccessToken(code);
+	      
+	     // 접속자 정보 get 
+	     Map<String, Object> result = service.getUserInfo(kakaoToken);
+	     return null;
+	            
+	   }
 }

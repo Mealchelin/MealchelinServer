@@ -1,5 +1,7 @@
 package com.mealchelin.mvc.member.model.service;
 
+import java.util.Map;
+
 import com.mealchelin.mvc.member.model.vo.Member;
 
 public interface MemberService {
@@ -19,6 +21,10 @@ public interface MemberService {
 	Member updateBefore(String id, String password);
 
 	int dalete(int memberNo);
+
+	String getReturnAccessToken(String code);
+
+	Map<String, Object> getUserInfo(String kakaoToken);
 
 
 
