@@ -65,10 +65,10 @@
 							class="pay_paynumber"> <fmt:formatNumber value="${price}"
 								type="number" /> 원
 						</span> <input type="hidden" name="image" value="${product.image}" /> <input
-							type="hidden" name="produceName" value="${product.name}" /> <input
-							type="hidden" name="productBrand" value="${product.brand}" /> <input
-							type="hidden" name="productQuantity" value="${quantity}개" /> <input
-							type="hidden" name="productPrice" value="${price}" />
+							type="hidden" name="produceName" id="produceName" value="${product.name}"/> <input
+							type="hidden" name="productBrand" id="productBrand" value="${product.brand}"/> <input
+							type="hidden" name="productQuantity" id="productQuantity" value="${quantity}개"/> <input
+							type="hidden" name="productPrice"  id="productPrice" value="${price}" />
 					</div>
 
 					<div class="pay_SecondContentArea">
@@ -80,13 +80,13 @@
 								<span class="pay_username">이름</span> <span class="pay_usernames"
 									id="username">${userInfo.name}</span>
 								<!-- hidden input 태그 추가 -->
-								<input type="hidden" name="username" value="${userInfo.name}" />
+								<input type="hidden" name="username" id="username" value="${userInfo.name}" />
 							</div>
 							<div class="pay_Sender">
 								<span class="pay_userPhone">연락처</span> <span
 									class="pay_userPhones" id="userphone">${userInfo.phone}</span>
 								<!-- hidden input 태그 추가 -->
-								<input type="hidden" name="userphone" value="${userInfo.phone}" />
+								<input type="hidden" name="userphone" id="userphone" value="${userInfo.phone}" />
 							</div>
 						</div>
 						<div class="pay_Sender">
@@ -97,7 +97,7 @@
 								</p>
 							</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="useremail" value="${userInfo.email}" />
+							<input type="hidden" name="useremail" id="useremail" value="${userInfo.email}" />
 						</div>
 					</div>
 					<div class="pay_thirdContent">
@@ -108,14 +108,14 @@
 							<span class="pay_username">이름</span> <span class="pay_usernames"
 								id="shipname">${shippingInfo.shipName}</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="shipName"
+							<input type="hidden" name="shipName" id="shipName"
 								value="${shippingInfo.shipName}" />
 						</div>
 						<div class="pay_Sender">
 							<span class="pay_userPhone">연락처</span> <span
 								class="pay_userPhones" id="shipphone">${shippingInfo.phone}</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="shipPhone"
+							<input type="hidden" name="shipPhone" id="shipPhone"
 								value="${shippingInfo.phone}" />
 						</div>
 						<div class="pay_Sender">
@@ -138,7 +138,7 @@
 						<div class="pay_DeliveryRequestInfo">
 							<span class="pay_DeliveryRequest">배송요청사항</span> <input
 								class="pay_DeliveryUserRequest" type="text"
-								placeholder="예) 문 앞에 놔주세요">
+								placeholder="예) 문 앞에 놔주세요" id="pay_DeliveryUserRequest">
 							<p class="pay_UserRequest">배송 요청사항을 입력해주세요</p>
 						</div>
 					</div>
@@ -184,7 +184,7 @@
 									value="${totalPrice}" type="number" /> 원
 							</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="totalPrice" value="${totalPrice}" />
+							<input type="hidden" name="totalPrice" id="totalPrice" value="${totalPrice}" />
 						</div>
 						<div class="pay_paymentInfo">
 							<span class="pay_Product">ㄴ 상품금액</span> <span
@@ -192,17 +192,17 @@
 									type="number" /> 원
 							</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="productPrice" value="${price}" />
+							<input type="hidden" name="productPrice" id="productPrice" value="${price}" />
 						</div>
 						<div class="pay_paymentInfo">
 							<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay">
 								<fmt:formatNumber value="${shipPrice}" type="number" /> 원
 							</span>
 							<!-- hidden input 태그 추가 -->
-							<input type="hidden" class="shippingPrice" name="shippingPrice" value="${totalPrice}" />
+							<input type="hidden" class="shippingPrice" id name="shippingPrice" value="${totalPrice}" />
 						</div>
 						<div class="pay_finalResult">
-							<span class="pay_Delivery">최종 결제 금액</span> <span id="test"
+							<span class="pay_Delivery">최종 결제 금액</span> <span id="price"
 								class="pay_Finalpay"> <fmt:formatNumber
 									value="${totalPrice}" type="number" />원
 							</span>
