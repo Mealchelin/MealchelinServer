@@ -30,4 +30,6 @@ public interface ProductService {
 
 	int getProductSearchCount(String category, String name);
 
+	int save(Product product);
+
 }

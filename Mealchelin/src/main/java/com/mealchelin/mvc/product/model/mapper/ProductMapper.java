@@ -34,4 +34,6 @@ public interface ProductMapper {
 
 	int selectProductSearchCount(@Param("category") String category, @Param("name") String name);
 
+	int insertProduct(Product product);
+
 }

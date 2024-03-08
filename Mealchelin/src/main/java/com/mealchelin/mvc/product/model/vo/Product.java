@@ -24,6 +24,8 @@ public class Product {
 	
 	private String brand;
 	
+	private String display;
+
 	private String sale;
 	
 	private int stock;
