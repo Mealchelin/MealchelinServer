@@ -16,47 +16,63 @@ $('.starR').click(function() {
 });
 
 // 리뷰 수정 페이지 제목 글자 수 출력하는 코드
-$('#re_titleContent').keyup(function (e) {
+$('#re_titleContent').keydown(function (e) {
 	let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
         $('#re_nowTextCount1').text('0');
     } else{
-        $('#re_nowTextCount1').text(content.length);
+        if(content.length > 30){
+            $('#re_nowTextCount1').text('30');
+        } else{
+            $('#re_nowTextCount1').text(content.length);
+        }
     }
 })
 
 // 리뷰 수정 페이지 상세리뷰 글자 수 출력하는 코드
-$('#re_detailReviewContent').keyup(function (e) {
+$('#re_detailReviewContent').keydown(function (e) {
 	let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
         $('#re_nowTextCount2').text('0');
     } else{
-        $('#re_nowTextCount2').text(content.length);
+        if(content.length > 300){
+            $('#re_nowTextCount2').text('300');
+        } else{
+            $('#re_nowTextCount2').text(content.length);
+        }
     }
 }) 
 
 
 // 리뷰 작성 페이지 제목 글자 수 출력하는 코드
-$('#re_inputTitle').keyup(function (e) {
+$('#re_inputTitle').keydown(function (e) {
 	let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
         $('#re_nowTextCount1').text('0');
     } else{
-        $('#re_nowTextCount1').text(content.length);
+        if(content.length > 30){
+            $('#re_nowTextCount1').text('30');
+        } else{
+            $('#re_nowTextCount1').text(content.length);
+        }
     }
 }) 
 
 // 리뷰 작성 페이지 상세리뷰 글자 수 출력하는 코드
-$('#re_detailReview').keyup(function (e) {
+$('#re_detailReview').keydown(function (e) {
 	let content = $(this).val();
     // console.log(content);
     if(content.length == 0 || content == ''){
         $('#re_nowTextCount2').text('0');
     } else{
-        $('#re_nowTextCount2').text(content.length);
+        if(content.length > 300){
+            $('#re_nowTextCount2').text('300');
+        } else{
+            $('#re_nowTextCount2').text(content.length);
+        }
     }
 }) 
 
@@ -72,6 +88,7 @@ $('#re_imgadd').change(function() {
     });
 
     $('#re_imgSizeMsg').html(imgName);
+
 })
 
 
@@ -81,5 +98,23 @@ $('#re_periodDropBox').change(function(){
 
     console.log(period);
 });
+
+
+// 작성한 리뷰 삭제하는 코드
+ $('.re_deleteBtn').on('click', (event) => {
+    let reviewNo = $(event.target).val();
+    console.log($(event.target).val());
+    if (confirm('게시글을 삭제 하시겠습니까?')) {
+        location.replace('/mypage/delete?no=' + reviewNo);
+    }
+ });
+
+// 작성한 리뷰 상세보기
+ $('#editBtn').on('click', () => {
+    let reviewNo = $('#deleteBtn').val();
+
+    location.replace('/mypage/edit?no=' + reviewNo);
+ });
+
 
 

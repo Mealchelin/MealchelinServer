@@ -106,7 +106,16 @@ hr {
     margin-bottom: 20px;
 }
 
-.re_deleteAndEditBtn {
+.re_deleteBtn {
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:7px 30px;
+    background-color: #fff;
+    color: #559D50;
+    margin: 10px;
+}
+
+.re_editBtn {
     border: none;
     box-shadow: 0 0 0 1px #559D50 inset;
     padding:7px 30px;

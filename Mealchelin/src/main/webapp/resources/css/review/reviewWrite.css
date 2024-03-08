@@ -35,6 +35,7 @@ h3 {
 #re_foodName {
     font-size: 18px;
     font-weight: 500;
+    font-weight: bold;
 }
 
 #re_productSelectBtn {
@@ -58,7 +59,7 @@ h3 {
 }
 
 .on {
-    color: #559D50;
+    color: #86BC66;
 }
 
 #re_titleAndDetailReview {

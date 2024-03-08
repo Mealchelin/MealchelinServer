@@ -23,6 +23,8 @@
 <link rel="stylesheet"
 	href="${ path }/css/review/MypageWrittenReviewEmpty.css">
 <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
+<link rel="stylesheet"
+	href="${ path }/css/cscenter/cscenterListCommon.css">
 
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -42,8 +44,8 @@
 		<jsp:include page="./../mypage/mypageHeaderBox.jsp" />
 		<section>
 			<h3>나의 리뷰</h3>
-			<a href="${ path }/mypage/productReview"><span id="re_writtenReview">작성한 리뷰</span></a>
-            <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
+			<a href="${ path }/mypage/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
+                <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
 			<select name="period"
 				id="re_periodDropBox">
 				<option value="">기간</option>
@@ -60,15 +62,15 @@
 				<c:forEach var="review" items="${ list }">
 					<div id="re_mainDiv1">
 						<div id="re_review1">
-							<a href="./reviewDetail.html">
+<%-- 							<a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }"> --%>
 								<div id="re_foodImgAndName">
 									<img src="../img/new_01.jpg" alt="" id="re_foodImg" />
 								</div>
 								<div id="re_reviewInfo">
-									<p id="re_foodName">안동식 순살 찜닭(제목을 이미지 밑에말고 이렇게 하는게 더 나은 거
-										같습니다.)</p>
+									<p id="re_foodName">안동식 순살 찜닭</p>
 									<p id="re_reviewTitle">${ review.name }</p>
 									<p id="re_reviewContent">${ review.content }</p>
+
 
 									<c:choose>
 										<c:when test="${ review.rated == 0}">
@@ -97,24 +99,26 @@
 							</a>
 							<div id="re_editDeleteBtn">
 								<p id="re_companyName">업체이름</p>
-								<input class="re_deleteAndEditBtn" type="button" value="삭제하기" />
-								<br /> <a href="${ path }/review/reviewEdit "><input
-									class="re_deleteAndEditBtn" type="button" value="수정하기" /></a>
+<%-- 								<a href="${ path }/mypage/delete?no=${ review.reviewNo } "> --%>
+									<button class="re_deleteBtn" id="deleteBtn" value="${ review.reviewNo }">삭제하기</button>
+<!-- 									<input class="re_deleteAndEditBtn" id="deleteBtn" type="button" value="삭제하기" /> -->
+								</a>
+								<br /> 
+<%-- 								<a href="${ path }/review/reviewEdit "> --%>
+								<a href="${ path }/review/reviewEdit?reviewNo=${ review.reviewNo }">
+									<input class="re_editBtn" id="editBtn" type="button" value="수정하기" />
+								</a>
 							</div>
 						</div>
 					</div>
 				</c:forEach>
 			</c:if>
-
-			<div id="pageBar">
-				<!-- 맨 처음으로 -->
-				<button onclick="location.href='${ path }/board/list?page=1'">&lt;&lt;</button>
-
-				<!-- 이전 페이지로 -->
+		</section>
+		<c:if test="${ not empty list }">
+		<section id="cs-section3">
+			<div class="cs-paging">
 				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.prevPage }'">&lt;</button>
-
-				<!--  10개 페이지 목록 -->
+					onclick="location.href='${ path }/mypage/mypageProductReview?page=${ pageInfo.prevPage }'">&lt;</button>
 				<c:forEach var="current" begin="${ pageInfo.startPage }"
 					end="${ pageInfo.endPage }">
 					<c:choose>
@@ -123,25 +127,15 @@
 						</c:when>
 						<c:otherwise>
 							<button
-								onclick="location.href='${ path }/board/list?page=${ current }'">${ current }</button>
+								onclick="location.href='${ path }/mypage/mypageProductReview?page=${ current }'">${ current }</button>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-
-				<!-- 다음 페이지로 -->
 				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.nextPage }'">&gt;</button>
-
-				<!-- 맨 끝으로 -->
-				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
-			</div>
-
-			<div id="re_bottomPageNumbers">
-				<span>&lt;</span> <span>1</span> <span>2</span> <span>3</span> <span>4</span>
-				<span>5</span> <span>&gt;</span>
+					onclick="location.href='${ path }/mypage/mypageProductReview?page=${ pageInfo.nextPage }'">&gt;</button>
 			</div>
 		</section>
+		</c:if>
 	</main>
 
 	<!-- 푸터 -->

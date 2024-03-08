@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.common.util.PageInfo;
+import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.vo.Review;
 
@@ -42,6 +43,49 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		
 		return mapper.selectAll(rowBounds);
+	}
+
+	@Override
+	public Review getReviewByNo(int reviewNo) {
+		
+		
+		return mapper.selectReviewByNo(reviewNo);
+	}
+
+	@Override
+	public int getReviewCountByuserNo(int userNo) {
+		
+		
+		return mapper.getReviewCountByuserNo(userNo);
+	}
+
+	@Override
+	public List<Review> getReviewListByuserNo(PageInfo pageInfo, int userNo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		return mapper.selectAllByuserNo(rowBounds, userNo);
+	}
+
+	@Override
+	public int delete(int no) {
+		
+		return mapper.delete(no, "N");
+	}
+
+	@Override
+	public int updateReview(Review review) {
+		
+		
+		return mapper.updateReview(review);
+	}
+
+	@Override
+	public int updateReviewNoImgChage(Review review) {
+		
+		return mapper.updateReviewNoImgChage(review);
 	}
 
 }

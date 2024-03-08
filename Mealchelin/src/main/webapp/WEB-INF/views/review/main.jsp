@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="${ path }/css/common.css">
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/review/reviewMain.css" />
+<link rel="stylesheet"
+	href="${ path }/css/cscenter/cscenterListCommon.css">
 
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -38,10 +40,11 @@
 				<a href="${ path }/mypage/writableReview"><input
 					id="re_reviewBtn" type="button" value="리뷰 작성" /></a>
 			</div>
-		
-				<div class="mainDiv">
-			<c:forEach var="review" items="${ list }">
-					<a href="${ path }/review/reviewDetail">
+
+			<div class="mainDiv">
+				<c:forEach var="review" items="${ list }">
+					<a
+						href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
 						<div class="re_imgDiv">
 							<img class="re_img" src="../img/new_01.jpg" alt="" />
 							<div class="re_innerimgDiv">
@@ -53,45 +56,37 @@
 								<p class="re_reviewContent">${ review.content }</p>
 								<br>
 								<c:choose>
-										<c:when test="${ review.rated == 1}">
-											<span class="starR"><span id="re_star">★</span>★★★★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 2 }">
-											<span class="starR"><span id="re_star">★★</span>★★★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 3}">
-											<span class="starR"><span id="re_star">★★★</span>★★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 4}">
-											<span class="starR"><span id="re_star">★★★★</span>★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 5}">
-											<span class="starR"><span id="re_star">★★★★★</span></span>
-										</c:when>
-										<c:otherwise> 
+									<c:when test="${ review.rated == 1}">
+										<span class="starR"><span id="re_star">★</span>★★★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 2 }">
+										<span class="starR"><span id="re_star">★★</span>★★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 3}">
+										<span class="starR"><span id="re_star">★★★</span>★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 4}">
+										<span class="starR"><span id="re_star">★★★★</span>★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 5}">
+										<span class="starR"><span id="re_star">★★★★★</span></span>
+									</c:when>
+									<c:otherwise> 
 											<span class="starR"><span class="starR">★</span>★★★★</span>
-										</c:otherwise>
+									</c:otherwise>
 								</c:choose>
 							</div>
 						</div>
 					</a>
-			</c:forEach>
-				</div>
+				</c:forEach>
+				<jsp:include page="./FootSearchBox.jsp" />
+			</div>
 			
-
-
-			<!-- 하단 검색창 -->
-			<jsp:include page="FootSearchBox.jsp" />
-
-			<div id="pageBar">
-				<!-- 맨 처음으로 -->
-				<button onclick="location.href='${ path }/board/list?page=1'">&lt;&lt;</button>
-
-				<!-- 이전 페이지로 -->
+		</section>
+		<section id="cs-section3">
+			<div class="cs-paging">
 				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.prevPage }'">&lt;</button>
-
-				<!--  10개 페이지 목록 -->
+					onclick="location.href='${ path }/review/main?page=${ pageInfo.prevPage }'">&lt;</button>
 				<c:forEach var="current" begin="${ pageInfo.startPage }"
 					end="${ pageInfo.endPage }">
 					<c:choose>
@@ -100,23 +95,12 @@
 						</c:when>
 						<c:otherwise>
 							<button
-								onclick="location.href='${ path }/board/list?page=${ current }'">${ current }</button>
+								onclick="location.href='${ path }/review/main?page=${ current }'">${ current }</button>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-
-				<!-- 다음 페이지로 -->
 				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.nextPage }'">&gt;</button>
-
-				<!-- 맨 끝으로 -->
-				<button
-					onclick="location.href='${ path }/board/list?page=${ pageInfo.maxPage }'">&gt;&gt;</button>
-			</div>
-
-			<div id="re_bottomPageNumbers">
-				<span>&lt;</span> <span>1</span> <span>2</span> <span>3</span> <span>4</span>
-				<span>5</span> <span>&gt;</span>
+					onclick="location.href='${ path }/review/main?page=${ pageInfo.nextPage }'">&gt;</button>
 			</div>
 		</section>
 	</main>

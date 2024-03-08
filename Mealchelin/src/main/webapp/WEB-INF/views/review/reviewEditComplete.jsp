@@ -37,7 +37,7 @@
                 <img src="../img/all/logo5.png" alt="로고사진" class="memLogo">
                 <h3>리뷰가 수정되었습니다.</h3>
                 <p id="co_enrollment">고객님의 소중한 리뷰가 전달되었습니다. <br> 향후 더 나은 서비스를 위해 노력하겠습니다.</p>
-                <a href="${ path }/review/mypageProductReview"><input id="co_goMainBtn" type="button" value="목록"></a>
+                <a href="${ path }/mypage/mypageProductReview"><input id="co_goMainBtn" type="button" value="목록"></a>
             </div>
     	</section>
     </main>
