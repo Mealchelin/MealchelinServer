@@ -33,7 +33,7 @@
                             onmouseover='this.src="../img/all/mypage-active.png"' alt="빈화살표">
                         </div>
                     </a>
-                    <a href="${ path }/mypage/productReview" class="myboxRight myBox1">
+                    <a href="${ path }/mypage/mypageProductReview" class="myboxRight myBox1">
                         <div class="myboxRightDiv">
                             <img class="myboxRightImg1" src="../img/all/review.png" alt="주문내역">
                             <div class="myboxRightText">상품리뷰</div>

@@ -86,11 +86,31 @@ public class ReviewController {
 		
 		review = service.getReviewByNo(reviewNo);
 		
+		log.info(review.toString());
+		
 		modelAndView.addObject("review", review);
 		modelAndView.setViewName("review/reviewEdit");
 		
         return modelAndView;
     }
+	
+	
+	@PostMapping("/reviewEditComplete")
+	public String reviewEditComplete(Review review, @SessionAttribute("loginMember") Member loginMember) {
+		int result = 0;
+		
+		log.info(review.getImage());
+		
+		if(review.getImage() == null || review.getImage().isEmpty()) {
+			result = service.updateReviewNoImgChage(review);
+		} else {
+			result = service.updateReview(review);
+		}
+		
+		log.info(review.getImage());
+		
+	    return "/review/reviewEditComplete";
+	}
 	
 	@GetMapping("/reviewWrite")
 	public String reviewWrite() {
@@ -123,12 +143,7 @@ public class ReviewController {
         return "/review/reviewAddComplete";
     }
 	
-	@GetMapping("/reviewEditComplete")
-	public String reviewEditComplete() {
-		
-		
-	    return "/review/reviewEditComplete";
-	}
+	
 	
 
 }

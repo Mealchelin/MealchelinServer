@@ -75,4 +75,17 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.delete(no, "N");
 	}
 
+	@Override
+	public int updateReview(Review review) {
+		
+		
+		return mapper.updateReview(review);
+	}
+
+	@Override
+	public int updateReviewNoImgChage(Review review) {
+		
+		return mapper.updateReviewNoImgChage(review);
+	}
+
 }

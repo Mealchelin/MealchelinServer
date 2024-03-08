@@ -21,4 +21,8 @@ public interface ReviewService {
 	List<Review> getReviewListByuserNo(PageInfo pageInfo, int userNo);
 
 	int delete(int no);
+
+	int updateReview(Review review);
+
+	int updateReviewNoImgChage(Review review);
 }

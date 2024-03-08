@@ -37,7 +37,7 @@
 		<section>
 			<h3>리뷰 수정</h3>
             <div id="re_maindiv">
-                <form action="${ path }/review/reviewEditComplete" method="get">
+                <form action="${ path }/review/reviewEditComplete" method="post">
                     <div id="re_innerdivMain">
                         <img id="re_img" src="../img/new_01.jpg" alt="">
                         <div id="re_foodInfo">
@@ -60,7 +60,7 @@
 		                                <span name="rated" data-value="3" class="starR">★</span>
 		                                <span name="rated" data-value="4" class="starR">★</span>
 		                                <span name="rated" data-value="5" class="starR">★</span>
-		                                <input id="ratedInput" type="hidden" name="rated" value="0" />
+		                                <input id="ratedInput" type="hidden" name="rated" value="1" />
 		                            </div>
 	                            </c:when>
 	                            <c:when test="${ review.rated == 2}">
@@ -70,7 +70,7 @@
 		                                <span name="rated" data-value="3" class="starR">★</span>
 		                                <span name="rated" data-value="4" class="starR">★</span>
 		                                <span name="rated" data-value="5" class="starR">★</span>
-		                                <input id="ratedInput" type="hidden" name="rated" value="0" />
+		                                <input id="ratedInput" type="hidden" name="rated" value="2" />
 		                            </div>
 	                            </c:when>
 	                            <c:when test="${ review.rated == 3}">
@@ -80,7 +80,7 @@
 		                                <span name="rated" data-value="3" class="starR on">★</span>
 		                                <span name="rated" data-value="4" class="starR">★</span>
 		                                <span name="rated" data-value="5" class="starR">★</span>
-		                                <input id="ratedInput" type="hidden" name="rated" value="0" />
+		                                <input id="ratedInput" type="hidden" name="rated" value="3" />
 		                            </div>
 	                            </c:when>
 	                            <c:when test="${ review.rated == 4}">
@@ -90,7 +90,7 @@
 		                                <span name="rated" data-value="3" class="starR on">★</span>
 		                                <span name="rated" data-value="4" class="starR on">★</span>
 		                                <span name="rated" data-value="5" class="starR">★</span>
-		                                <input id="ratedInput" type="hidden" name="rated" value="0" />
+		                                <input id="ratedInput" type="hidden" name="rated" value="4" />
 		                            </div>
 	                            </c:when>
 	                            <c:when test="${ review.rated == 5}">
@@ -100,25 +100,31 @@
 		                                <span name="rated" data-value="3" class="starR on">★</span>
 		                                <span name="rated" data-value="4" class="starR on">★</span>
 		                                <span name="rated" data-value="5" class="starR on">★</span>
-		                                <input id="ratedInput" type="hidden" name="rated" value="0" />
+		                                <input id="ratedInput" type="hidden" name="rated" value="5" />
 		                            </div>
 	                            </c:when>
                             </c:choose>
                         </div>
                         <br>
                         <p id="re_titleAndDetailReview" >제목</p>
-                        <textarea maxlength="30" id="re_titleContent" >${ review.name }</textarea>
+                        <textarea maxlength="30" id="re_titleContent" name="name">${ review.name }</textarea>
                         <p id="re_textCount"><span id="re_nowTextCount1">0</span>/30</p>
                         <p id="re_titleAndDetailReview">상세리뷰</p>
-                        <textarea maxlength="300" id="re_detailReviewContent" >${ review.content }</textarea>
+                        <textarea maxlength="300" id="re_detailReviewContent" name="content">${ review.content }</textarea>
                         <p id="re_textCount"><span id="re_nowTextCount2">0</span>/300</p>
                         <!-- <input id="re_imgAttachBtn" type="button" value="사진 첨부"> -->
-                        <input id="re_imgadd" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
+                        <input id="re_imgadd"  type="file" name="image" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
                         <label id="re_imgAttachBtn" for="re_imgadd">사진 첨부</label>
-                        <span id="re_imgSizeMsg">${ review.image }</span>
+                        <span id="re_imgSizeMsg" >${ review.image }</span>
                         <div id="re_SubmitAndCancelBtn">
-                            <input id="re_subMitBtn" type="submit" value="수정">
-                            <a href="${ path }/review/mypageProductReview"><input id="re_cancelBtn" type="button" value="취소"></a>
+                        <input id="re_subMitBtn" type="submit" value="수정">
+                        
+                            <a href="${ path }/mypage/mypageProductReview"><input id="re_cancelBtn" type="button" value="취소"></a>
+                            
+                        <input type="hidden" name="reviewNo" value="${ review.reviewNo }"/>
+                        <input type="hidden" name="status" value="${ review.status }"/>
+                        <input type="hidden" name="userNo" value="${ loginMember.memberNo }"/>
+                        <input type="hidden" name="rgstrDate" value="${ review.rgstrDate }"/>
                         </div>
                     </div>
                 </form>

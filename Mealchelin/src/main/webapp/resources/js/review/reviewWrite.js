@@ -72,6 +72,7 @@ $('#re_imgadd').change(function() {
     });
 
     $('#re_imgSizeMsg').html(imgName);
+
 })
 
 

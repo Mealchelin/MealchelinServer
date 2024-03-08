@@ -26,4 +26,8 @@ public interface ReviewMapper {
 
 	int delete(@Param("reviewNo") int no, @Param("status") String status);
 
+	int updateReview(Review review);
+
+	int updateReviewNoImgChage(Review review);
+
 }

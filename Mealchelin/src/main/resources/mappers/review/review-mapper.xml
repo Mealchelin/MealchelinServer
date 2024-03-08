@@ -108,6 +108,27 @@
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	
+	<update id="updateReview" parameterType="Review">
+		UPDATE REVIEW
+		SET
+			RATED = #{rated},
+			NAME = #{name},
+			CONTENT = #{content},
+			IMAGE = #{image},
+			RGSTR_DATE = SYSDATE
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
+	<update id="updateReviewNoImgChage" parameterType="Review">
+		UPDATE REVIEW
+		SET
+			RATED = #{rated},
+			NAME = #{name},
+			CONTENT = #{content},
+			RGSTR_DATE = SYSDATE
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	
 
 </mapper>	
 	
