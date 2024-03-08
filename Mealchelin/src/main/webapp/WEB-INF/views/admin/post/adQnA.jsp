@@ -108,12 +108,12 @@
 					<button class="ad_button_gn" onClick="location.href='${ path }/admin/post/write'">게시글 작성</button>
 					<div class="row" style="clear:both;">
 						<div class="col-12">
-						<form id="exposureForm" method="post">
+						<form id="exposureForm">
 							<div class="card">
 								<table class="table table-hover my-0" style="text-align: center;">
 									<thead>
 										<tr>
-                                            <th width="5%"><input type="checkbox" name="ad_support_chk" id="ad_qna_allChk" onclick='selectQnaAll(this)'></th>
+                                            <th width="5%"><input type="checkbox" name="ad_support_chk" id="ad_qna_allChk" value="" onclick='selectQnaAll(this)'></th>
 											<th width="12%">번호</th>
                                             <th>제목</th>
 											<th width="15%">작성일</th>
@@ -227,6 +227,7 @@
 		$(document).ready(() => {
 			$('#exposeData').on('click', () => {
 				if (confirm('선택한 데이터들을 노출하시겠습니까?')) {
+					$('#exposureForm').attr('method', 'post');
 					$('#exposureForm').attr('action', '${path}/admin/post/exposure');
 					$('#exposureForm').submit();
 				}
@@ -234,6 +235,7 @@
 			
 			$('#nonExposeData').on('click', () => {
 				if (confirm('선택한 데이터들을 비노출하시겠습니까?')) {
+					$('#exposureForm').attr('method', 'post');
 					$('#exposureForm').attr('action', '${path}/admin/post/nonExposure');
 					$('#exposureForm').submit();
 				}

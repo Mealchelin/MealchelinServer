@@ -290,10 +290,12 @@ public class AdminPostController {
 			modelAndView.addObject("location", "/admin/post/adPost");			
 		} else {
 			for(Integer no : supportList) {
-				Support support = serviceS.getSupportByNo(no);
-				if (support != null) {
-					support.setCsstatus("Y");
-					serviceS.adSave(support);
+				if(no != null) {
+					Support support = serviceS.getSupportByNo(no);
+					if (support != null) {
+						support.setCsstatus("Y");
+						serviceS.adSave(support);
+					}
 				}
 			}
 			modelAndView.addObject("msg", "선택한 데이터를 노출하였습니다.");
@@ -314,10 +316,12 @@ public class AdminPostController {
 			modelAndView.addObject("location", "/admin/post/adPost");			
 		} else {
 			for(Integer no : supportList) {
-				Support support = serviceS.getSupportByNo(no);
-				if (support != null) {
-					support.setCsstatus("N");
-					serviceS.adSave(support);
+				if(no != null) {
+					Support support = serviceS.getSupportByNo(no);
+					if (support != null) {
+						support.setCsstatus("N");
+						serviceS.adSave(support);
+					}
 				}
 			}
 			modelAndView.addObject("msg", "선택한 데이터를 비노출하였습니다.");
