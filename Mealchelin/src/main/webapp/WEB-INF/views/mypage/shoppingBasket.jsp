@@ -14,7 +14,8 @@
     <!--default css-->
     <link rel="stylesheet" href="${ path }/css/common.css">
     <!-- 필요한 css -->
-     <link rel="stylesheet" href="${ path }/css/mypage/shoppingBasket.css">
+    <link rel="stylesheet" href="${ path }/css/mypage/shoppingBasket.css">
+    <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
     
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -32,6 +33,7 @@
     
     <!-- 내용 넣기 -->
   	 <main>
+  	   <jsp:include page="mypageHeaderBox.jsp"/>
         <section>
         	<form action="" method="get">
 	            <h3 class="mytitle">장바구니</h3>

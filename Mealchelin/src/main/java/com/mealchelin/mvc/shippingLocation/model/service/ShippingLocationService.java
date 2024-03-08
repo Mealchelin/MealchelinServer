@@ -7,6 +7,8 @@ public interface ShippingLocationService {
 
 	ShippingLocation getShippinginfoByInfo(int memberNo);
 
+	int save(ShippingLocation shippingLocation);
+
 	
 
 	

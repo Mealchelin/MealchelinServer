@@ -21,10 +21,42 @@ $(document).ready(()=>{
         
         if(regex.exec(pwd)){
             $('#memregPwd').html("사용 가능한 비밀번호 입니다.");
+           
         }else {
             $('#memregPwd').html("6자 이상 25자 이하 영문/숫자/특수문자 조합");
+              
         }
     });
+    
+	 
+	 $('.memEnroll').on('click', ()=>{
+	 	let pwd = $('#memPwd').val();
+        let regex = /^(?=.*[A-Za-z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,25}$/;
+ 	        
+		let memchecker1 = $('#memchecker1').is(':checked');
+		let memchecker2 = $('#memchecker2').is(':checked');
+		let memchecker3 = $('#memchecker3').is(':checked');
+
+         
+         if(!regex.exec(pwd)){
+				alert ("패스워드가 형식에 맞지 않습니다.");
+				   
+         } else if( !memchecker1 || !memchecker2 || !memchecker3 ){         	
+         		alert ("이용약관 필수 항목에 체크해주세요.");
+				
+         } else {
+         	
+          		$('.memEnroll').prop('type', "submit");
+         
+         
+         }
+             
+         
+         
+         
+        
+	 });
+	 
         
 // 비밀번호 같은 번호를 입력했는지 체크 
     $('#memPwd2').keyup(function(){
@@ -35,6 +67,7 @@ $(document).ready(()=>{
             $('#memregPwd2').html("동일한 비밀번호 입니다.");
         } else {
             $('#memregPwd2').html("동일 하지 않은 비밀번호입니다.");
+
         }
 
     });

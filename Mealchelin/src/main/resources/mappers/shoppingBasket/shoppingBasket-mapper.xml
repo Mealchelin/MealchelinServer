@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketMapper">
+	<resultMap  id="shoppingBasketResultMap" type="ShoppingBasket">
+		<id property="memberNo" column="MEMBER_NO"/>
+		<result property="payment" column="PAYMENT"/>
+		<result property="shipNo" column="SHIP_NO"/>	
+	</resultMap>
+
+	<insert id="insertShoppingBasket" parameterType="ShoppingBasket"
+		useGeneratedKeys="true" keyColumn="MEMBER_NO" keyProperty="memberNo">		
+		INSERT INTO SHOPPING_BASKET (
+			MEMBER_NO
+		) VALUES (
+			#{memberNo}
+		)
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+</mapper>

@@ -10,12 +10,14 @@ public interface MemberMapper {
 	
 	Member selectMemberById(@Param("id") String id);
 
+	Member selectMemberByNo(@Param("No") int memberNo);
+	
+	Member selectMemberByOrderInfo(@Param("id") String id);
+	
 	int insertMember(Member member);
 	
-
-	Member selectMemberByNo(@Param("No") int memberNo);
-
-	Member selectMemberByOrderInfo(@Param("id") String id);
-
+	int updateMember(Member member);
+	
+	int updateStatus(@Param("memberNo") int memberNo, @Param("memStatus") String memberStatus);
 
 }

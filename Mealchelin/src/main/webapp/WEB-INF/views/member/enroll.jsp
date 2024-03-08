@@ -97,7 +97,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="text" name="addressDetail" class="memTdIp" id="memDetail_Ad" placeholder="상세주소를 입력해주세요" required></td>
+                        <td><input type="text" name="addressDetail" class="memTdIp" id="memDetail_Ad" placeholder="상세주소를 입력해주세요" ></td>
                         <td></td>
                     </tr>
                     <tr>
@@ -143,7 +143,7 @@
                         </tr>
                     </table>
                 </div>
-            <button class="memEnroll" type="submit">가입하기</button>
+            <button class="memEnroll" type="button">가입하기</button>
         </form>   
         </section>
         <section>

@@ -54,15 +54,32 @@
 	        </li>
         </c:if>
         <c:if test="${ not empty loginMember }">
-	        <li class="nav_login">
-	        	<a href="${ path }/mypage/updateMember">
-		        	<ul class="nav_login_hover">
-		        		<li><a href="${ path }/member/logout">로그아웃</a></li>
-		        		<li><a href="${ path }/mypage/updateMember">마이페이지</a></li>
-		        	</ul>
-	        	</a>
-	        </li>
+        	<c:set var="adminYN" value="${ loginMember.role }" scope="session"></c:set>
+        	<c:choose>
+        		<c:when test='${ adminYN == "ROLE_ADMIN" }'>
+		        	 <li class="nav_login">
+			        	<a href="${ path }/mypage/updateMember">
+				        	<ul class="nav_login_hover">
+				        		<li><a href="${ path }/member/logout">로그아웃</a></li>
+				        		<li><a href="${ path }/admin/main">관리자 페이지</a></li>
+				        	</ul>
+			        	</a>
+			        </li>
+        		</c:when>
+        		<c:otherwise>
+			        <li class="nav_login">
+			        	<a href="${ path }/mypage/updateMember">
+				        	<ul class="nav_login_hover">
+				        		<li><a href="${ path }/member/logout">로그아웃</a></li>
+				        		<li><a href="${ path }/mypage/updateMember">마이페이지</a></li>
+				        	</ul>
+			        	</a>
+			        </li>
+        		</c:otherwise>
+		    </c:choose>
+
         </c:if>
+     
         <a href=""><li class="nav_cart" ></li></a>
     </ul>
 </nav>
