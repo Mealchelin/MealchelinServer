@@ -49,7 +49,9 @@
             <!-- sns 로그인 -->
             <div class="memSns">
                 <img  class="memSns1" src="../img/all/naver-login.png" alt="네이버 로그인">
-                <img  class="memSns2" src="../img/all/kakao-login.png" alt="카카오 로그인">
+                <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=df2ba4c3585b62edc907c6e6f8b09486&redirect_uri=http://localhost:8080/member/kakao/login">
+               	 <img  class="memSns2" src="../img/all/kakao-login.png" alt="카카오 로그인">
+                </a> 
             </div>
         </section>
     </main>
@@ -64,7 +66,6 @@
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="${ path }/js/main.js"></script>
-    <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="${ path }/js/member/login.js"></script>
 </body>
 

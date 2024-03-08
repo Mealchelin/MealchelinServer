@@ -48,6 +48,9 @@
 			<exclude-mapping path="/member/enroll"/>
 			<exclude-mapping path="/member/enrollEnd"/>
 			<exclude-mapping path="/member/idCheck"/>
+			<exclude-mapping path="/member/kakao/login"/>
+			
+			
 			
 			<!-- 실행시킬 인터셉터는 빈으로 등록 -->
 			<beans:bean id="LoginCheckInterceptor"

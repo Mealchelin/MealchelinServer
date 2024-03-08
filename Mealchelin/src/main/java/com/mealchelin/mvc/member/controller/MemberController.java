@@ -111,8 +111,7 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			modelAndView.addObject("msg", "회원 가입에 성공했습니다.");
-			modelAndView.addObject("location", "/member/enrollEnd");
+			modelAndView.setViewName("member/enrollEnd");
 				
 			// 회원 가입 후 장바구니 만들기
 			shoppingBasket.setMemberNo(member.getMemberNo());
@@ -133,9 +132,9 @@ public class MemberController {
 		} else {
 			modelAndView.addObject("msg", "회원 가입에 실패했습니다.");
 			modelAndView.addObject("location", "/member/enroll");
+			modelAndView.setViewName("common/msg");
 		}
 		
-		modelAndView.setViewName("common/msg");
 		
 		return modelAndView;
 	}
@@ -241,4 +240,28 @@ public class MemberController {
 		
 		return "member/enrollEnd";
 	}
+	
+	
+	// 회원 탈퇴 ( 회원 상태 바꾸기 )
+	@GetMapping("/member/delete")
+	public ModelAndView delete(ModelAndView modelAndView,
+							   @SessionAttribute("loginMember") Member loginMember) {
+		int result = 0;
+		
+		
+		result = service.dalete(loginMember.getMemberNo());
+		
+		if (result > 0) {
+			modelAndView.addObject("msg", "탈퇴가 정상적으로 처리되었습니다.");
+			modelAndView.addObject("location", "/");			
+		} else {
+			modelAndView.addObject("msg", "탈퇴가 정상적으로 처리되지 않았습니다.");
+			modelAndView.addObject("location", "/mypage/updateMember");
+		}
+		
+		modelAndView.setViewName("common/msg");
+
+		return modelAndView;
+	}
+
 }

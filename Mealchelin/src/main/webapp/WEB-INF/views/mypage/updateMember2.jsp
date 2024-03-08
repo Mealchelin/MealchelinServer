@@ -140,6 +140,17 @@
     <script type="text/javascript" src="../js/main.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ path }/js/mypage/updateMember2.js"></script>
+    <script>
+    	$(document).ready(()=>{
+    		$('.myStatus').on('click', ()=>{
+    			if(confirm('정말로 탈퇴하실건가요?ㅠ_ㅠ')){
+    				location.replace('${ path}/member/delete');
+    			}
+    		});
+    		
+    	})
+    
+    </script>
    
 </body>
 

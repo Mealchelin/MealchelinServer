@@ -18,6 +18,8 @@ public interface MemberService {
 
 	Member updateBefore(String id, String password);
 
+	int dalete(int memberNo);
+
 
 
 	
