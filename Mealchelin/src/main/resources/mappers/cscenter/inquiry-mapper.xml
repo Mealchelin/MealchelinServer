@@ -50,5 +50,62 @@
 	    )
         ORDER BY RNUM DESC
    </select>
+   
+   <select id="selectadInquiryCount" resultType="_int">
+      SELECT COUNT(*) FROM INQUIRY
+   </select>
+   
+   <select id="selectadInquiryAll" resultMap="inquiryListResultMap">
+      <include refid="inquiryListSql" />
+		    ORDER BY INQUIRY_NO
+		    )
+	    )
+        ORDER BY RNUM DESC
+   </select>
+   
+   <select id="selectInquiryByNo" parameterType="_int" resultMap="inquiryViewResultMap" >
+	   SELECT I.INQUIRY_NO AS INQUIRY_NO,
+	                   I.NAME AS I_NAME,
+	                   I.INQUIRY_CONTENT AS INQUIRY_CONTENT,
+	                   I.RGSTR_DATE AS RGSTR_DATE,
+	                   I.ANSWER_STATE AS ANSWER_STATE,
+	                   I.ANSWER_CONTENT AS ANSWER_CONTENT,
+	                   I.MEMBER_NO AS MEMBER_NO,
+	                   M.NAME AS M_NAME
+		FROM INQUIRY I
+		LEFT JOIN MEMBER M ON I.MEMBER_NO = M.MEMBER_NO
+		WHERE INQUIRY_NO = #{inquiryNo}
+   </select>
+   
+   <!-- 게시글 등록 -->
+	<insert id="insertInquiry" parameterType="Inquiry"
+		useGeneratedKeys="true" keyProperty="inquiryNo" keyColumn="INQUIRY_NO">
+		INSERT INTO INQUIRY(
+		    INQUIRY_NO,
+		    NAME,
+		    INQUIRY_CONTENT,
+		    RGSTR_DATE,
+		    ANSWER_STATE,
+		    MEMBER_NO
+		)
+		VALUES (
+		    SEQ_INQUIRY_NO.NEXTVAL,
+		    #{iname},
+		    #{inquiryContent},
+		    DEFAULT,
+		    DEFAULT,
+		    #{memberNo}
+		)
+	</insert>
+	
+	<!-- 관리자 답변 등록 -->
+	<update id="insertadInquiry" parameterType="Inquiry">
+		UPDATE INQUIRY
+		SET
+		    ANSWER_STATE = 'Y',
+		    ANSWER_CONTENT = #{answerContent}
+		WHERE INQUIRY_NO = #{inquiryNo}
+	</update>
+	
 
 </mapper>

@@ -3,32 +3,15 @@ package com.mealchelin.mvc.common.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mealchelin.mvc.member.model.service.MemberService;
 import com.mealchelin.mvc.member.model.vo.Member;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
- * 인터셉터
- *   - 컨트롤러에 들어오는 요청과 응답을 가로채는 역할을 한다.
- *   - 인터셉트를 구현하기 위해서는 HandlerInterceptor 
- *     인터페이스를 구현해야 한다.
- *     
- * 필터와의 차이점
- *   - 필터는 서블릿 실행 전에 실행된다. (web.xml)
- *   - 인터셉터는 디스패쳐 서블릿 수행 후 컨트롤러에 요청을 넘기기 전에
- *     실행된다. (servlet-context.xml)
- */
-
 @Slf4j
-public class LoginCheckInterceptor implements HandlerInterceptor {
-//	@Autowired
-//	private MemberService service;
-	
+public class AdLoginCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -41,8 +24,10 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 		Member loginMember = 
 				(Member) request.getSession().getAttribute("loginMember");
 		
-		if (loginMember == null) {
-			request.setAttribute("msg", "로그인 후 이용이 가능합니다.");
+		String adYN = "ROLE_ADMIN";
+		
+		if (loginMember == null || !loginMember.getRole().equals(adYN)) {
+			request.setAttribute("msg", "관리자 로그인 후 이용이 가능합니다.");
 			request.setAttribute("location", "/member/login");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp")
 				.forward(request, response);

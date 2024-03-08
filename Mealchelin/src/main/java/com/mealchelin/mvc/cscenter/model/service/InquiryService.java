@@ -13,4 +13,14 @@ public interface InquiryService {
 
 	List<Support> getInquiryList(Inquiry inquiry, PageInfo pageInfo);
 
+	Inquiry getInquiryByNo(int no);
+
+	int inquirySave(Inquiry inquiry);
+
+	int getadInquiryCount();
+
+	List<Inquiry> getadInquiryList(PageInfo pageInfo);
+
+	int inquiryadSave(Inquiry inquiry);
+
 }

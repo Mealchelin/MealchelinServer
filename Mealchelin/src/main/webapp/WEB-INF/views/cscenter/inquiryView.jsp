@@ -43,26 +43,15 @@
             <div class="cs-inquiry-wrap">
                 <div class="cs-inquiry-content">
                     <div class="cs-inquiry-column">제목</div>
-                    <textarea class="cs-inquiry-data" cols="100" rows="1" readonly>재료에서 떡이 빠져서 왔어요. 어떻게 해야 하나요?</textarea>
+                    <div class="cs-inquiry-title">${ inquiry.iname }</div>
                 </div>
                 <div class="cs-inquiry-content">
                     <div class="cs-inquiry-column">내용</div>
-                    <textarea class="cs-inquiry-data" cols="100" rows="12" readonly>재료에서 떡이 빠져서 왔어요. 어떻게 해야 하나요?&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;&#10;dd</textarea>
+                    <div class="cs-inquiry-text">${ inquiry.inquiryContent }</div>
                 </div>
                 <div class="cs-inquiry-content">
                     <div class="cs-inquiry-column">답변</div>
-                    <textarea class="cs-inquiry-data" cols="100" rows="12" readonly>
-제품에 떡이 빠져서 발생한 불편함에 대해 진심으로 사과의 말씀을 전합니다.
-
-고객님의 주문한 제품이 완벽하지 못한 상태로 도착하여 매우 유감스럽게 생각합니다. 
-제품 품질과 고객 만족도는 저희가 항상 최우선으로 고려하는 사항이며, 이번에 발생한 문제에 대해서는 즉각적으로 조치를 취하고 동일한 문제가 재발하지 않도록 철저히 관리하겠습니다.
-고객님의 소중한 의견을 듣고 더 나은 서비스를 제공할 수 있도록 노력하겠습니다. 
-추가적인 문의나 요청이 있으시면 언제든지 연락주시기 바랍니다.
-					                        
-다시 한 번 이러한 불편을 끼쳐드려 죄송하다는 말씀을 전합니다.
-					                        
-감사합니다.
-					</textarea>
+                    <div class="cs-inquiry-text">${ inquiry.answerContent }</div>
                 </div>
             </div>
         </section>

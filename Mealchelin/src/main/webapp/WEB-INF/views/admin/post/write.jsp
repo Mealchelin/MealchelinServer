@@ -113,11 +113,11 @@
 								<span class="text-dark"><i  class="align-middle me-2" data-feather="user"></i><b>관리자님</b> 어서오세요</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
-							</div>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
+		                        <div class="dropdown-divider"></div>
+		                        <a class="dropdown-item" href="${ path }/member/logout"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
+		                     </div>
 						</li>
 					</ul>
 				</div>
@@ -128,27 +128,29 @@
 				<div class="container-fluid p-0">
                     <div class="row ad_mem_de">
                         <h1 class="h3 mb-4" style="font-weight: 600;">게시글 작성</h1>
-                        <form>
+                        <form method="POST" action="${ path }/admin/post/write">
 						<div class="col-12">
 							<div class="card">
 								<table class="table my-4" style="width: 95%; margin:0 auto;">
 									<tr>
                                         <td class="ad_th" width="25%">게시글 번호</td>
-                                        <td width="25%">1</td>
+                                        <td width="25%">${ support.supportNo }</td>
                                         <td class="ad_th" width="25%">게시글 작성 날짜</td>
-                                        <td width="25%">20204.02.21</td>
+                                        <c:set var="now" value="<%=new java.util.Date()%>" />
+                                        <td width="25%"><fmt:formatDate value="${now}" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">작성자</td>
-                                        <td>관리자</td>
-                                        <td class="ad_th"><label for="adCSWrite">카테고리</label></td>
+                                        <td>${ loginMember.name }</td>
+                                        <td class="ad_th"><label for="category">카테고리</label></td>
                                         <td>
-                                            <select name="adCSWrite" id="adCSWrite" class="adCat" onchange="QnASelect(this)">
+                                            <select name="category" id="adCSWrite" class="adCat" onchange="QnASelect(this)">
                                                 <option selected value="공지사항">공지사항</option>
                                                 <option value="자주묻는질문">자주 묻는 질문</option>
                                             </select>
-											<select name="adQnAcat" id="adQnAcat" class="adCat">
-                                                <option selected value="회원">회원</option>
+											<select name="subCategory" id="adQnAcat" class="adCat">
+												<option selected value="">---선택---</option>
+                                                <option value="회원">회원</option>
                                                 <option value="주문/결제">주문/결제</option>
                                                 <option value="취소/교환/환불">취소/교환/환불</option>
                                                 <option value="배송">배송</option>
@@ -158,17 +160,17 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="ad_th"><label for="adCSWriteTitle">제목</label></td>
-                                        <td colspan="3"><input type="text" name="adCSWriteTitle" id="adCSWriteTitle" style="width: 99%; border:none;" ></td>
+                                        <td class="ad_th"><label for="sname">제목</label></td>
+                                        <td colspan="3"><input type="text" name="sname" id="adCSWriteTitle" style="width: 99%; border:none;" ></td>
                                     </tr>
 								</table>
-                                <textarea name="adCSWriteContent" id="adCSWriteContent"></textarea>
+                                <textarea name="content" id="adCSWriteContent"></textarea>
 								<table class="table my-3" style="width: 95%; margin:0 auto;">
 									<tr>
-										<td class="ad_th"><label for="adCSWriteShow">노출 여부</label></td>
+										<td class="ad_th"><label for="csstatus">노출 여부</label></td>
                                         <td>
-											<label style="margin-right: 10px;"><input type="radio" checked name="adCSWriteShow" id="adCSWriteShow" value="Y" style="width: 20px;"/>노출</label>
-                                            <label><input type="radio" name="adCSWriteShow" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출</label>
+											<input type="radio" checked name="csstatus" id="adCSWriteShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            <input type="radio" name="csstatus" id="adCSWriteShow" value="N" style="width: 30px;"/>비노출
 										</td>
 									</tr>
 								</table>

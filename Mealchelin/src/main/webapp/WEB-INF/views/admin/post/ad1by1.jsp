@@ -26,7 +26,7 @@
     <link href="${ path }/css/admin/app.css" rel="stylesheet">
     <link href="${ path }/css/admin/admin_add.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="${ path }/css/cscenter/cscenterListCommon.css">
 </head>
 
 <body>
@@ -91,11 +91,11 @@
 								<span class="text-dark"><i  class="align-middle me-2" data-feather="user"></i><b>관리자님</b> 어서오세요</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
-							</div>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
+		                        <div class="dropdown-divider"></div>
+		                        <a class="dropdown-item" href="${ path }/member/logout"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
+		                     </div>
 						</li>
 					</ul>
 				</div>
@@ -112,8 +112,8 @@
 								<table class="table table-hover my-0" style="text-align: center;">
 									<thead>
 										<tr>
-                                            <th width="5%"><input type="checkbox" id="ad_1by1_allChk" name="ad_1by1_chk" onclick='select1by1All(this)'></th>
-											<th width="12%">번호</th>
+                                            <!-- <th width="5%"><input type="checkbox" id="ad_1by1_allChk" name="ad_1by1_chk" onclick='select1by1All(this)'></th> -->
+											<th width="10%">번호</th>
                                             <th>제목</th>
 											<th class="d-none d-xl-table-cell" width="15%">작성일</th>
                                             <th class="d-none d-xl-table-cell" width="15%">작성자</th>
@@ -121,18 +121,54 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-											<td><input type="checkbox" class="ad_1by1_chk" name="ad_1by1_chk" value=""></td>
-                                            <td>60</td>
-                                            <td style="cursor: pointer;" onclick="location.href='${ path }/admin/post/ad1by1Detail'">물건이 파손되어서 도착했어요.</td>
-											<td class="d-none d-xl-table-cell">2024.02.21</td>
-											<td class="d-none d-xl-table-cell">Baeksee</td>
-											<td>미답변</td>
-										</tr>
+										<c:if test="${ empty list }">
+											<tr>
+						                    	<td colspan="6">조회된 게시글이 없습니다.</td>
+						                	</tr>	
+										</c:if>
+										<c:if test="${not empty list}">
+										    <c:forEach var="inquiry" items="${list}">
+											<tr>
+												<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+												<!-- <td><input type="checkbox" class="ad_1by1_chk" name="ad_1by1_chk" value="${inquiry.inquiryNo}"></td> -->
+	                                            <td>${inquiry.inquiryNo}</td>
+	                                            <td style="cursor: pointer;" onclick="location.href='${ path }/admin/post/ad1by1Detail?no=${ inquiry.inquiryNo }'">${inquiry.iname}</td>
+												<td class="d-none d-xl-table-cell"><fmt:formatDate value="${ inquiry.rgstrDate }" pattern="yyyy.MM.dd"/></td>
+												<td class="d-none d-xl-table-cell">${inquiry.mname}</td>
+												<c:set var="status" value="${ inquiry.answerState }" scope="session"/> 
+												<c:choose>
+													<c:when test='${ status == "Y" }'>
+														<td>답변 완료</td>
+													</c:when>
+													<c:when test='${ status == "N" }'>
+														<td>미답변</td>
+													</c:when>
+													<c:otherwise>
+														<td> </td>
+													</c:otherwise>
+												</c:choose>
+											</tr>
+											</c:forEach>
+										</c:if>
 									</tbody>
 								</table>
                             </div>
+                            <section id="cs-section3">
+					            <div class="cs-paging">
+						            <button onclick="location.href='${ path }/admin/post/ad1by1?page=${ pageInfo.prevPage }'">&lt;</button>
+							        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+											<c:choose>
+												<c:when test="${ current == pageInfo.currentPage }">
+													<button disabled>${ current }</button>
+												</c:when>
+												<c:otherwise>
+													<button onclick="location.href='${ path }/admin/post/ad1by1?page=${ current }'">${ current }</button>
+												</c:otherwise>
+											</c:choose>
+									</c:forEach>
+									<button onclick="location.href='${ path }/admin/post/ad1by1?page=${ pageInfo.nextPage }'">&gt;</button>
+					            </div>
+					        </section>
 						</div>
 					</div>
 
@@ -171,7 +207,7 @@
     
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
-    <script>
+    <!-- <script>
 		function select1by1All(select1by1All)  {
 			const checkboxes 
 				= document.getElementsByName('ad_1by1_chk');
@@ -180,7 +216,7 @@
 				checkbox.checked = select1by1All.checked;
 			})
 		}
-	</script>
+	</script> -->
 </body>
 
 </html>
