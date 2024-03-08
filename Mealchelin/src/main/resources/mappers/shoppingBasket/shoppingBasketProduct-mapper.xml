@@ -14,18 +14,16 @@
 	</resultMap>
 
 	<insert id="insertSbp" parameterType="ShoppingBasketProduct">
-		INSERT INTO
-		SHOPPING_BASKET_PRODUCT (
-		PRD_NO,
-		MEMBER_NO,
-		QUANTITY,
-		TOTAL_PRICE
-		) VALUES
-		(
-		#{prdNo},
-		#{memNo},
-		#{quantity},
-		#{totalPrice}
+		INSERT INTO SHOPPING_BASKET_PRODUCT (
+			PRD_NO,
+			MEMBER_NO,
+			QUANTITY,
+			TOTAL_PRICE
+		) VALUES (
+			#{prdNo},
+			#{memberNo},
+			#{quantity},
+			#{totalPrice}
 		)
 	</insert>
 
@@ -66,6 +64,10 @@
 		FROM SHOPPING_BASKET_PRODUCT
 		WHERE PRD_NO = #{prdNo} 
 		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectSbpCountByMemberNo" resultType="_int" parameterType="int">
+		SELECT COUNT(*) FROM SHOPPING_BASKET_PRODUCT WHERE MEMBER_NO = #{memberNo}
 	</select>
 
 </mapper>

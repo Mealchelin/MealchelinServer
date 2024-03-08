@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -29,6 +31,7 @@
     
     <!-- jquery -->
     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
 	<style>
         input{
             padding:3px 5px;
@@ -55,7 +58,7 @@
 			<main class="content" style="background-color: #fff;">
 				<div class="container-fluid p-0">
 					<div class="row ad_mem_de">
-                        <form>
+                        <form id="meal_form" action="${ path }/admin/product/write" method="post" enctype="multipart/form-data">
                             <table class="col-12">
                                 <thead class="ad_mem_th">
                                     <th colspan="4">상품 등록</th>
@@ -64,63 +67,63 @@
                                     <tr>
                                         <td class="ad_th"><label for="adProShow">노출 상태</label></td>
                                         <td>
-                                            <label style="margin-right: 10px;"><input type="radio" checked name="adProShow" id="adProShow" value="Y" style="width: 20px;"/>노출</label>
-                                            <label><input type="radio" name="adProShow" id="adProShow" value="N" style="width: 20px;"/>비노출</label>
+                                            <label style="margin-right: 10px;"><input type="radio" checked name="display" id="adProShow" value="Y" style="width: 20px;"/>노출</label>
+                                            <label><input type="radio" name="display" id="adProShow" value="N" style="width: 20px;"/>비노출</label>
                                         </td>
                                         <td class="ad_th"><label for="adBuyShow">판매 상태</label></td>
                                         <td>
-                                            <label style="margin-right: 10px;"><input type="radio" checked name="adBuyShow" id="adBuyShow" value="Y" style="width: 20px;"/>판매</label>
-                                            <label><input type="radio" name="adBuyShow" id="adBuyShow" value="N" style="width: 20px;"/>판매 중지</label>
+                                            <label style="margin-right: 10px;"><input type="radio" checked name="sale" id="adBuyShow" value="Y" style="width: 20px;"/>판매</label>
+                                            <label><input type="radio" name="sale" id="adBuyShow" value="N" style="width: 20px;"/>판매 중지</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProName">상품명</label></td>
-                                        <td><input type="text" name="adProName" id="adProName"></td>
+                                        <td><input type="text" name="name" id="adProName"></td>
                                         <td class="ad_th">등록 날짜</td>
-                                        <td>2024-02-20</td>
+                                        <td>${ date }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProCat">카테고리</label></td>
                                         <td>
-                                            <select name="adProCat" id="adProCat" class="adCat">
-                                                <option selected value="">양식</option>
-                                                <option value="">중식</option>
-                                                <option value="">한식</option>
-                                                <option value="">일식</option>
-                                                <option value="">분식</option>
-                                                <option value="">동남아</option>
+                                            <select name="category" id="adProCat" class="adCat">
+                                                <option selected value="western">양식</option>
+                                                <option value="chinese">중식</option>
+                                                <option value="korean">한식</option>
+                                                <option value="japanese">일식</option>
+                                                <option value="bunsik">분식</option>
+                                                <option value="southeast">동남아</option>
                                             </select>
                                         </td>
                                         <td class="ad_th"><label for="adProCode">상품 코드</label></td>
-                                        <td><input type="number" name="adProCode" id="adProCode"></td>
+                                        <td><input type="number" name="adProCode" id="adProCode" disabled></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProBrand">브랜드</label></td>
-                                        <td><input type="text" name="adProBrand" id="adProBrand"></td>
+                                        <td><input type="text" name="brand" id="adProBrand"></td>
                                         <td class="ad_th"><label for="adProPrice">판매가</label></td>
-                                        <td><input type="number" name="adProPrice" id="adProPrice"></td>
+                                        <td><input type="number" name="price" id="adProPrice" required></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProAmount">재고</label></td>
-                                        <td><input type="number" name="adProAmount" id="adProAmount" placeholder="최대 재고: 9999"></td>
+                                        <td><input type="number" name="stock" id="adProAmount" placeholder="최대 재고: 9999" required></td>
                                         <td class="ad_th"><label for="adProWeight">중량</label></td>
-                                        <td><input type="text" name="adProWeight" id="adProWeight"></td>
+                                        <td><input type="text" name="weight" id="adProWeight"></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">상품 이미지 등록</td>
                                         <td colspan="3">
                                             <div class="adProImg"></div>
-                                            <input type="file" name="adProImg" id="adProImg">
+                                            <input type="file" name="upfile" id="adProImg" style="width: 210px;">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProDetail">상품 상세 설명</label></td>
-                                        <td colspan="3"><textarea name="adProDetail" id="adProDetail"></textarea></td>
+                                        <td colspan="3"><textarea name="description" id="adProDetail"></textarea></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div style="margin:20px auto; width: 205px;">
-                                <button type="submit" class="meal_btn3">수정</button>
+                                <button type="submit" class="meal_btn3" id="meal_submit">등록</button>
                                 <button type="button" class="meal_btn4" style="margin-left:5px;" onClick="window.close();">취소</button>
                             </div>
                         </form>
@@ -139,7 +142,32 @@
             .catch( error => {
                 console.error( error );
             } );
+        
+        // 작성하지 않은 값 null 로 넣는게 안됨
+//         $(document).ready(() => {
+//         	let product = ['adProShow', 'adBuyShow', 'adProName', 'adProCat', 'adProCode', 'adProBrand', 'adProPrice', 'adProAmount', 'adProWeight', 'adProImg', 'adProDetail'];
+// 	        $('#meal_submit').on('submit', () => {
+// 	        	console.log($('#adProName'));
+// 	        	if ($('#adProName').val() === '') {
+// 					$('#adProName').prop('disabled', true);
+// 				}
+// 	        	product.forEach((eletment) => {
+// 	        		if ($('#'+eletment).val() === '') {
+// 						$('#'+eletment).prop('disabled', true);
+// 					}
+// 	        	})
+// 			})
+//         })
+// 		$(document).ready(() => {
+// 			$('#meal_submit').on('click', () => {
+// 				$('#meal_form').submit();
+// 				setTimeout(() => {
+// 					window.close();
+// 				}, 100);
+// 			});
+// 		});
     </script> 
+    <c:out value="${closeWindowScript}" escapeXml="false" />
 </body>
 
 </html>

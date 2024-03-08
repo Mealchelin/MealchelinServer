@@ -13,8 +13,10 @@ public interface ShoppingBasketProductMapper {
 
 	int insertSbp(ShoppingBasketProduct sbp);
 	
-	 List<ShoppingBasketProduct> selectByProduct(@Param("memberNo") int memberNo); // 반환 타입 수정
+	List<ShoppingBasketProduct> selectByProduct(@Param("memberNo") int memberNo); // 반환 타입 수정
 
 	ShoppingBasketProduct selectSbpByNo(@Param("prdNo") int prdNo, @Param("memberNo") int memberNo);
+
+	int selectSbpCountByMemberNo(@Param("memberNo") int memberNo);
 
 }

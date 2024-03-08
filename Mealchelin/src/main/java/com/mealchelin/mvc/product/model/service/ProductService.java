@@ -26,4 +26,10 @@ public interface ProductService {
 
 	List<Product> getProductBestList();
 
+	List<Product> getProductListOrderByNo(PageInfo pageInfo, String category, String name);
+
+	int getProductSearchCount(String category, String name);
+
+	int save(Product product);
+
 }

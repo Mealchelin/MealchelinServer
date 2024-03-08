@@ -8,6 +8,8 @@ public interface ShoppingBasketProductService {
 
 	int save(ShoppingBasketProduct sbp);
 
-	ShoppingBasketProduct findSbpByNo(int prdNo, int memNo);
+	ShoppingBasketProduct findSbpByNo(int prdNo, int memberNo);
+
+	int getSbpCountByMemberNo(int memberNo);
 
 }

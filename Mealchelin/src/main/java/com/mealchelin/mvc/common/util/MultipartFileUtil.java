@@ -29,14 +29,16 @@ public class MultipartFileUtil {
 
 		try {
 			// 업로드한 파일 데이터를 지정한 파일에 저장한다.
-			upfile.transferTo(new File(location + "/" + renamedFileName));
+//			upfile.transferTo(new File(location + "/" + renamedFileName));
+			upfile.transferTo(new File(location + "/" + originalFileName));
 
 		} catch (IllegalStateException | IOException e) {
 			log.error("파일 전송 에러");
 			e.printStackTrace();
 		}
 
-		return renamedFileName;
+//		return renamedFileName;
+		return originalFileName;
 	}
 
 	public static void delete(String location) {

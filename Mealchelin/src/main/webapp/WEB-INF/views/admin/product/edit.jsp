@@ -110,7 +110,7 @@
                                         <td class="ad_th">상품 이미지 등록</td>
                                         <td colspan="3">
                                             <div class="adProImg"></div>
-                                            <input type="file" name="adProImg" id="adProImg">
+                                            <input type="file" name="adProImg" id="adProImg" style="width: 210px;">
                                         </td>
                                     </tr>
                                     <tr>

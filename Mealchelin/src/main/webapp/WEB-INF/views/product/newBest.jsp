@@ -50,7 +50,7 @@
         <!-- 섹션2 -->
         <!-- jsp로 변경 시 c:if 문 사용하여 하나로 단축 -->
         <!-- 한 페이지 16개의 제품 노출 -->
-        <section id="pd-section2">
+        <section id="pd-section2" style="margin-bottom: 80px">
             <div class="pd-main_new_menu">
             	<c:if test="${ listCount == 0 }">
 <%--             		<jsp:include page="" /> --%>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.product.model.mapper.ProductMapper;
@@ -81,6 +82,35 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getProductBestList() {
 		return productMapper.selectProductBestList();
+	}
+
+	@Override
+	public List<Product> getProductListOrderByNo(PageInfo pageInfo, String category, String name) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+		return productMapper.selectProductListOrderByNo(rowBounds, category, name);
+	}
+
+	@Override
+	public int getProductSearchCount(String category, String name) {
+		return productMapper.selectProductSearchCount(category,name);
+	}
+
+	@Override
+	@Transactional
+	public int save(Product product) {
+		int result = 0;
+		
+		if (product.getNo() > 0) {
+			// update
+		} else {
+			// insert
+			result = productMapper.insertProduct(product);
+		}
+		return result;
 	}
 
 }
