@@ -93,48 +93,7 @@ public class PayController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/paysucces")
-	public ModelAndView paysucces(ModelAndView modelAndView) {
-		
 
-		modelAndView.setViewName("redirect:/paysucces");
-		
-		return modelAndView;
-	}
-	
-
-	@GetMapping("payment/paysucces")
-	public ModelAndView payresult(ModelAndView modelAndView) {
-		
-		
-		modelAndView.setViewName("payment/paysucces");
-	
-		return modelAndView;	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/payment/pay")
 	public ModelAndView cartpayment(ModelAndView modelAndView,
 			@SessionAttribute("loginMember") Member loginMember
@@ -142,7 +101,6 @@ public class PayController {
 		List<ShoppingBasketProduct> shippingProductList = null;
 		ShippingLocation shippingInfo = null;
 		List<Payment> payInfoList = null;
-		
 
 		//주문 상품
 		shippingProductList = payService.getShippingList(loginMember.getMemberNo());	    	
@@ -163,7 +121,29 @@ public class PayController {
 	    
 		return modelAndView;
 	}
+	
+	
+	
+	@PostMapping("payment/paysucces")
+	public ModelAndView paysucces(ModelAndView modelAndView) {
+		
 
+		modelAndView.setViewName("redirect:payment/paysucces");
+		
+		return modelAndView;
+	}
+	
+
+	@GetMapping("payment/paysucces")
+	public ModelAndView payresult(ModelAndView modelAndView) {
+		
+		
+		modelAndView.setViewName("payment/paysucces");
+	
+		return modelAndView;	
+	}
+	
+	
 
 	@GetMapping("/mypage/payInquiry")
 	public ModelAndView paylnquiry(ModelAndView modelAndView) {

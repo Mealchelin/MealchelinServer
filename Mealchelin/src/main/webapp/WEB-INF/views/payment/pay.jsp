@@ -45,20 +45,23 @@
 	<!-- 내용 넣기 -->
 	<main id="pay_Mains">
 		<section class="pay_Sections">
+			
 			<!-- <h2 class="pay_Title">주문서</h2> -->
 			<h3 class="pay_Title">주문서</h3>
 			<div class="pay_MainContent">
 				<div class="pay_FirstContent">
 					<span class="pay_FirstContentTitle">주문 상품</span>
 				</div>				
+				<form action="/payment/succes" method="POST">
 				<c:forEach items="${shippingBaketInfoList}" var="item">
 					<div class="pay_FirstContentArea">
-						<img src="${ path }/img/product/${item.image}"
-							class="pay_menuPhoto"> <span class="pay_FirstMemu">
-							<span class="pay_FirstName">${item.name}</span>
+						<img src="${ path }/img/product/${item.image}" class="pay_menuPhoto" id="pay_menuPhoto"> 
+						<span class="pay_FirstMemu">
+							<span class="pay_FirstName" >${item.name}</span>
 							<p class="pay_subFirstName">${item.brand}</p>
-						</span> <span class="pay_number">${item.quantity}개</span> <span
-							class="pay_paynumber"> <fmt:formatNumber
+						</span>
+						 <span class="pay_number" id="pay_number">${item.quantity}개</span> 
+						<span class="pay_paynumber"> <fmt:formatNumber
 								value="${item.price}" pattern="#,##0" /> 원
 						</span>
 					</div>
@@ -75,17 +78,14 @@
 								id="username">${userInfo.name}</span>
 						</div>
 						<div class="pay_Sender">
-							<span class="pay_userPhone">연락처</span> <span
-								class="pay_userPhones" id="userphone">${userInfo.phone}</span>
+							<span class="pay_userPhone">연락처</span> 
+							<span class="pay_userPhones" id="userphone">${userInfo.phone}</span>
 						</div>
 					</div>
 					<div class="pay_Sender">
-						<span class="pay_userEmail">이메일</span> <span
-							class="pay_userEmails" id="useremail"> ${userInfo.email}
-							<p>
-								이메일을 통해 주문처리과정을 보내드립니다 <br> 정보변경은 맛슐랭>개인정보 수정 메뉴에서 가능합니다
-							</p>
-						</span>
+						<span class="pay_userEmail">이메일</span> 
+						<span class="pay_userEmails" id="userEmail"> ${userInfo.email}</span>
+							<p>	이메일을 통해 주문처리과정을 보내드립니다 <br> 정보변경은 맛슐랭>개인정보 수정 메뉴에서 가능합니다</p>
 					</div>
 				</div>
 				<div class="pay_thirdContent">
@@ -147,30 +147,46 @@
 			<div class="pay_sixContent">
 				<span class="pay_sixContentTitle">결제 정보</span>
 			</div>
-			<div class="pay_payResultArea">
-				<div class="pay_payResult">
-					<span class="pay_paymentInfo">결제금액</span> <span class="pay_payment">결제
-						금액</span> <span class="pay_pay"> <fmt:formatNumber
-							value="${totalPrice}" pattern="#,##0" /> 원
-					</span>
-				</div>
-				<div class="pay_paymentInfo">
-					<span class="pay_Product">ㄴ 상품금액</span> <span class="pay_payMoney">
-						<fmt:formatNumber value="${totalPrice-3000}" pattern="#,##0" /> 원
-					</span>
-				</div>
-				<div class="pay_paymentInfo">
-					<span class="pay_Delivery">ㄴ 배송비</span> <span class="pay_pay">
-						<fmt:formatNumber value="3000" pattern="#,##0" /> 원
-					</span>
-				</div>
-				<div class="pay_finalResult">
-					<span class="pay_Delivery">최종 결제 금액</span> <span
-						class="pay_Finalpay"><fmt:formatNumber
-							value="${totalPrice}" pattern="#,##0" />원</span>
-				</div>
-				<div class="pay_line"></div>
-			</div>
+			<c:set var="shippingPrice" value="3000" /> <!-- 기본 배송비 -->
+<c:if test="${totalPrice >= 50000}">
+    <c:set var="shippingPrice" value="0" /> <!-- 주문 총액이 5만원 이상이면 배송비 무료 -->
+</c:if>
+<c:if test="${shippingInfo != null and shippingInfo.mountain == 'Y'}">
+    <c:set var="shippingPrice" value="${shippingPrice + 2000}" /> <!-- 산간 지역이면 배송비 추가 -->
+</c:if>
+
+<c:set var="finalPrice" value="${totalPrice + shippingPrice}" /> <!-- 최종 결제 금액 계산 -->
+
+<div class="pay_payResultArea">
+    <div class="pay_payResult">
+        <span class="pay_paymentInfo">결제금액</span> 
+         <span class="pay_payment">결제금액</span> <span class="pay_pay">
+            <fmt:formatNumber value="${finalPrice}" pattern="#,##0" /> 원
+        </span>
+    </div>
+    <div class="pay_paymentInfo">
+        <span class="pay_Product">ㄴ 상품금액</span> 
+        <span class="pay_payMoney">
+            <fmt:formatNumber value="${totalPrice}" pattern="#,##0" /> 원
+        </span>
+    </div>
+    <div class="pay_paymentInfo">
+        <span class="pay_Delivery">ㄴ 배송비</span> 
+        <span class="pay_pay">
+            <fmt:formatNumber value="${shippingPrice}" pattern="#,##0" /> 원
+        </span>
+    </div>
+    <div class="pay_finalResult">
+        <span class="pay_Delivery">최종 결제 금액</span> 
+        <span class="pay_Finalpay">
+            <fmt:formatNumber value="${finalPrice}" pattern="#,##0" /> 원
+        </span>
+    </div>
+    <div class="pay_line"></div>
+</div>
+
+</form>
+
 			<div class="pay_sevenContent">
 				<span class="pay_sevenContentTitle">개인정보 수집 및 동의</span>
 			</div>
@@ -345,6 +361,7 @@
 			</div>
 		</section>
 	</main>
+	
 
 	<!-- 푸터 -->
 	<footer>
