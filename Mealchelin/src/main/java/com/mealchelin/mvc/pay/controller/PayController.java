@@ -1,10 +1,15 @@
 package com.mealchelin.mvc.pay.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -12,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.service.OrderService;
+import com.mealchelin.mvc.order.model.vo.Orders;
 import com.mealchelin.mvc.pay.model.service.PayInfoService;
 import com.mealchelin.mvc.pay.model.service.UserOrderPayService;
 import com.mealchelin.mvc.pay.model.vo.Payment;
@@ -124,24 +130,61 @@ public class PayController {
 	
 	
 	
-	@PostMapping("payment/paysucces")
-	public ModelAndView paysucces(ModelAndView modelAndView) {
-		
+	@PostMapping("/payment/paysucces")
+	public ModelAndView paySuccess(ModelAndView modelAndView,@RequestBody Map<String, Object> orderInfo , HttpSession session) {
+	    // 세션에서 로그인한 회원 정보 가져오기
+	    Member member = (Member) session.getAttribute("loginMember");
 
-		modelAndView.setViewName("redirect:payment/paysucces");
-		
-		return modelAndView;
+	    Orders order = new Orders();
+	    
+	    // 주문 정보에 회원 번호 설정
+	    order.setMemberNo(member.getMemberNo());
+	    
+//	    order.setRequest(orderInfo.get("").toString());
+//	    order.setPaymentMethod(orderInfo.get("").toString());
+	    order.setPayMent(Integer.parseInt(orderInfo.get("amount").toString().replace(",", "")));
+//	    order.setShipStatus(orderInfo.get("").toString());
+//	    order.setCancleStatus(orderInfo.get("").toString());
+//	    order.setCancleReason(orderInfo.get("").toString());
+//	    order.setMemberNo((Integer)orderInfo.get(""));
+//	    order.setShipNo((Integer)orderInfo.get(""));
+	    
+	    
+	    
+	   
+	    
+	    // 주문 정보와 회원 정보를 담은 Map 생성
+//	    = new HashMap<>();
+//	    orderInfo.put("order", order);
+	    orderInfo.put("member", member);
+	    
+	    
+	    // 주문 정보를 저장하고 결과를 반환
+	    int result = orderService.save(orderInfo);
+	    
+	    
+	    if (result > 0) {
+	        modelAndView.addObject("msg", "결제가 완료되었습니다");
+	    } else {
+	        modelAndView.addObject("msg", "결제에 실패하였습니다.");
+	    }
+
+	    modelAndView.setViewName("redirect:/payment/paysucces");
+	    return modelAndView;
 	}
 	
-
-	@GetMapping("payment/paysucces")
-	public ModelAndView payresult(ModelAndView modelAndView) {
-		
-		
-		modelAndView.setViewName("payment/paysucces");
-	
-		return modelAndView;	
+	@GetMapping("/payment/paysucces")
+	public ModelAndView paySuccessView(ModelAndView modelAndView) {
+	    modelAndView.addObject("msg", "결제에 실패하였습니다.");
+	    modelAndView.setViewName("payment/paysucces");
+	    return modelAndView;
 	}
+
+
+
+
+
+
 	
 	
 

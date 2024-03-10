@@ -104,21 +104,25 @@ function createOrderNum() {
             };
             // AJAX를 통해 데이터를 서버에 전송
             
-            $.ajax({        
-                        type: "POST",
-                        url: '/payment/paysucces/' + rsp.imp_uid,
-                        data: JSON.stringify(data), // 데이터를 JSON 문자열로 변환하여 전송
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function(response) {
-                            console.log("결제 정보가 성공적으로 전송되었습니다.");
-                            console.log(response); // 서버 응답 확인
-                        },
-                        error: function(error) {
-                            console.error("결제 정보 전송 중 오류가 발생했습니다.");
-                            console.error(error); // 오류 내용 확인
-                        }
-                    });
+            
+            console.log(data);
+            $.ajax({  
+                  
+			    type: "POST",
+			    url: '/payment/paysucces/',
+			    data: JSON.stringify(data),
+			    contentType: "application/json; charset=utf-8",
+			    dataType: "json",
+			    success: function(response) {
+			        console.log("결제 정보가 성공적으로 전송되었습니다.");
+			        console.log(response);
+			        window.location.href = '/payment/paysucces'; // GET 요청 보냄
+			    },
+			    error: function(error) {
+			        console.error("결제 정보 전송 중 오류가 발생했습니다.");
+			        console.error(error);
+			    }
+			});
                     // 결제가 완료되면 페이지를 리다이렉트하여 완료 페이지로 이동합니다.
                     window.location.href = '/payment/paysucces'; // 리다이렉트할 URL을 지정합니다.
                 } else {

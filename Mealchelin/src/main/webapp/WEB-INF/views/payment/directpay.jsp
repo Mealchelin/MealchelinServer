@@ -56,7 +56,7 @@
 					<div class="pay_FirstContent">
 						<span class="pay_FirstContentTitle">주문 상품</span>
 					</div>
-					<form action="/payment/succes" method="POST">
+					<form action="payment/paysucces" method="POST">
 					<div class="pay_FirstContentArea">
 						<img src="${ path }/img/product/${product.image}"
 							class="pay_menuPhoto"> <span class="pay_FirstMemu">

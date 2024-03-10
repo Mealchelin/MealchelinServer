@@ -1,5 +1,7 @@
 package com.mealchelin.mvc.order.model.service;
 
-public interface OrderService {
+import java.util.Map;
 
+public interface OrderService {
+    int save(Map<String, Object> orderInfo);
 }

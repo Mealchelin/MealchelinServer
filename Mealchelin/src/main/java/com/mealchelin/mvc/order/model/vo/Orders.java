@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Orders {
 
 	// 주문 번호
-	private int qrderNo;
+	private int orderNo;
 
 	// 배송 요청사항
 	private String request;
