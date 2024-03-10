@@ -123,5 +123,31 @@
 		WHERE 
 			MEMBER_NO = #{memberNo}
 	</update>
+	
+	
+	<!--  카카오 조회 해오기 !  -->
+	<select id="findKakao" parameterType="Member" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE STATUS = 'Y'
+		AND ID = #{id}
+		AND NAME = #{name}
+		AND EMAIL = #{email}
+	</select>
 
+	<!-- 카카오 회원가입 -->
+	<insert id="kakaoInsert" >
+		INSERT INTO MEMBER (
+			MEMBER_NO,
+			ID,
+			NAME,
+			EMAIL,
+			PHONE
+		) VALUES (
+		SEQ_MEMBER_NO.NEXTVAL,
+		#{id},
+		#{name},
+		#{email},
+		#{phone_number}
+		)
+	</insert>
 </mapper>

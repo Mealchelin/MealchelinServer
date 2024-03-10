@@ -1,5 +1,6 @@
 package com.mealchelin.mvc.member.model.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.mealchelin.mvc.member.model.vo.Member;
@@ -22,9 +23,12 @@ public interface MemberService {
 
 	int dalete(int memberNo);
 
-	String getReturnAccessToken(String code);
+	String getAccessToken(String code);
 
-	Map<String, Object> getUserInfo(String kakaoToken);
+	Member getUserInfo(String access_Token);
+
+
+
 
 
 

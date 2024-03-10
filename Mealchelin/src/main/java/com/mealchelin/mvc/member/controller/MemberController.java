@@ -1,5 +1,6 @@
 package com.mealchelin.mvc.member.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -171,11 +173,13 @@ public class MemberController {
 			 						 @RequestParam("mymemberPwd") String password,
 			 						 @SessionAttribute("loginMember") Member loginMember) {
 	
-		loginMember = service.updateBefore(id,password);
-		
+		loginMember = service.updateBefore(id,password);	
 		if(loginMember != null) {
 			modelAndView.addObject("loginMember", loginMember); 
 			modelAndView.setViewName("redirect:/mypage/updateMember2"); 
+			
+		
+			
 		} else {
 			modelAndView.addObject("msg", "비밀번호가 일치하지 않습니다.");
 			modelAndView.addObject("location", "/mypage/updateMember");
@@ -266,19 +270,29 @@ public class MemberController {
 		return modelAndView;
 	}
 
-	 // 카카오 로그인 시도..?
+	 // 카카오 로그인-------------------------------------------------------------------------------
 	 @GetMapping("/member/kakao/login")
-	 public String kakaoLogin(@RequestParam("code") String code, HttpSession session) {
+	 public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
+			 								HttpSession session) throws Exception {
 	         
-	     log.info("code : {}",code);
-	      
-	      
-	     // 접속 토큰 get 
-	     String kakaoToken = service.getReturnAccessToken(code);
-	      
-	     // 접속자 정보 get 
-	     Map<String, Object> result = service.getUserInfo(kakaoToken);
-	     return null;
+			System.out.println("#########" + code);
+			
+			// 위에서 만든 코드 아래에 코드 추가
+			String access_Token = service.getAccessToken(code);
+			
+			Member userInfo = service.getUserInfo(access_Token);
+			session.setAttribute("loginMember", userInfo);
+//			loginMember
+			System.out.println("###access_Token#### : " + access_Token);
+			System.out.println("###name#### : " + userInfo.getName());
+			System.out.println("###email#### : " + userInfo.getEmail());
+			System.out.println("###phone_number#### : " + userInfo.getPhone());
+			
+			
+			System.out.println(session.getAttribute("loginMember"));
+			
+			
+			return "redirect:/";
 	            
 	   }
 }
