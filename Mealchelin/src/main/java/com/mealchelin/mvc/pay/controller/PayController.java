@@ -1,6 +1,5 @@
 package com.mealchelin.mvc.pay.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -107,6 +106,8 @@ public class PayController {
 		List<ShoppingBasketProduct> shippingProductList = null;
 		ShippingLocation shippingInfo = null;
 		List<Payment> payInfoList = null;
+		
+		
 
 		//주문 상품
 		shippingProductList = payService.getShippingList(loginMember.getMemberNo());	    	
@@ -114,8 +115,8 @@ public class PayController {
 		// 배송정보
 		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 		
-		// 결제수단 표시
-		payInfoList= payInfoService.selectByProductPay(loginMember.getMemberNo());
+		
+		System.out.println(payInfoList);
 
 		log.info("shippinginfo = {}", shippingInfo);
 		log.info("payInfoList = {}", payInfoList);
@@ -131,37 +132,41 @@ public class PayController {
 	
 	
 	@PostMapping("/payment/paysucces")
-	public ModelAndView paySuccess(ModelAndView modelAndView,@RequestBody Map<String, Object> orderInfo , HttpSession session) {
+	public ModelAndView paySuccess(
+			ModelAndView modelAndView,
+			@RequestBody Map<String, Object> orderInfo ,
+			HttpSession session
+			) {
 	    // 세션에서 로그인한 회원 정보 가져오기
 	    Member member = (Member) session.getAttribute("loginMember");
-
-	    Orders order = new Orders();
+	    
+	    ShippingLocation shippingInfo = shippingService.getShippingInfoByInfo(member.getMemberNo());
 	    
 	    // 주문 정보에 회원 번호 설정
+	    Orders order = new Orders();
 	    order.setMemberNo(member.getMemberNo());
-	    
-//	    order.setRequest(orderInfo.get("").toString());
-//	    order.setPaymentMethod(orderInfo.get("").toString());
-	    order.setPayMent(Integer.parseInt(orderInfo.get("amount").toString().replace(",", "")));
-//	    order.setShipStatus(orderInfo.get("").toString());
-//	    order.setCancleStatus(orderInfo.get("").toString());
-//	    order.setCancleReason(orderInfo.get("").toString());
-//	    order.setMemberNo((Integer)orderInfo.get(""));
-//	    order.setShipNo((Integer)orderInfo.get(""));
-	    
-	    
-	    
-	   
+	    order.setShipNo(shippingInfo.getShipNo());
+	        
 	    
 	    // 주문 정보와 회원 정보를 담은 Map 생성
-//	    = new HashMap<>();
-//	    orderInfo.put("order", order);
+	    orderInfo.put("order", order);
 	    orderInfo.put("member", member);
 	    
+ 	    
+	 // 결제 방식 추가
+	    String paymentMethod = (String) orderInfo.get("paymentMethod");
+	    order.setPaymentMethod(paymentMethod);
 	    
+	    int payMent = (int) orderInfo.get("amount");
+	    order.setPayMent(payMent);
+	    
+	    String request = (String) orderInfo.get("quest");
+	    order.setRequest(request);
+	    
+	    
+
 	    // 주문 정보를 저장하고 결과를 반환
 	    int result = orderService.save(orderInfo);
-	    
 	    
 	    if (result > 0) {
 	        modelAndView.addObject("msg", "결제가 완료되었습니다");
@@ -173,9 +178,12 @@ public class PayController {
 	    return modelAndView;
 	}
 	
+	
+	
+	
+	
 	@GetMapping("/payment/paysucces")
 	public ModelAndView paySuccessView(ModelAndView modelAndView) {
-	    modelAndView.addObject("msg", "결제에 실패하였습니다.");
 	    modelAndView.setViewName("payment/paysucces");
 	    return modelAndView;
 	}

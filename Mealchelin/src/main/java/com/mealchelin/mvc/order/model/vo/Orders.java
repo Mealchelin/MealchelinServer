@@ -28,13 +28,22 @@ public class Orders {
 
 	// 주문일
 	private Date orderDate;
+	
 	// 취소 여부
 	private String cancleStatus;
+	
 	// 취소 사유
 	private String cancleReason;
+	
 	// 회원 번호
 	private int memberNo;
+	
 	// 배송지 번호
 	private int shipNo;
+
+		
+	
+
+
 
 }
