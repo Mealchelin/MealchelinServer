@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.mealchelin.mvc.member.model.vo.Member;
+import com.mealchelin.mvc.review.model.vo.MemberDTO;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 @Mapper
@@ -29,5 +30,7 @@ public interface ReviewMapper {
 	int updateReview(Review review);
 
 	int updateReviewNoImgChage(Review review);
+
+	int updateStatus(String[] checkedReviewNoList);
 
 }

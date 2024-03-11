@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
+import com.mealchelin.mvc.review.model.vo.MemberDTO;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -68,7 +69,7 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.selectAllByuserNo(rowBounds, userNo);
 	}
-
+	
 	@Override
 	public int delete(int no) {
 		
@@ -87,5 +88,17 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.updateReviewNoImgChage(review);
 	}
+
+	@Override
+	public int updateStatus(String[] checkedReviewNoList) {
+	    // reviewNoList와 status를 사용하여 DB 업데이트
+		return mapper.updateStatus(checkedReviewNoList);
+		
+	  }
+
+
+	
+
+	
 
 }

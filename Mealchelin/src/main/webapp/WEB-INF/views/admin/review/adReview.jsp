@@ -27,6 +27,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${ path }/css/cscenter/cscenterListCommon.css">
 
+<!-- jquery -->
+<script src="${ path }/js/jquery-3.7.1.js"></script>
 </head>
 
 <body>
@@ -89,23 +91,36 @@
 									<thead>
 										<tr>
 											<th width="5%"><input type="checkbox" name="ad_qna_chk" id="ad_qna_allChk" onclick='selectQnaAll(this)'></th>
-											<th width="12%">번호</th>
+											<th width="10%">번호</th>
 											<th>제목</th>
-											<th width="20%">별점</th>
+											<th width="10%">별점</th>
 											<th class="d-none d-xl-table-cell" width="15%">작성자</th>
 											<th class="d-none d-xl-table-cell" width="15%">작성일</th>
+											<th class="d-none d-xl-table-cell" width="15%">노출</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="review" items="${ list }">
 											<tr>
 												<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-												<td><input type="checkbox" class="ad_qna_chk" name="ad_qna_chk" value=""></td>
+												<td><input type="checkbox" class="ad_qna_chk" id="checkbox" name="ad_qna_chk" value="${ review.reviewNo }"></td>
 												<td>${ review.reviewNo }</td>
 												<td style="cursor: pointer;" onclick="location.href='${ path }/admin/review/edit'">${ review.name }</td>
-												<td>${ Math.round(review.rated) } /5</td>
-												<td class="d-none d-xl-table-cell">Baeksee</td>
+												<td>${ Math.round(review.rated) }/ 5</td>
+												<td class="d-none d-xl-table-cell">${ review.id }</td>
 												<td class="d-none d-xl-table-cell">${ review.rgstrDate }</td>
+												<c:set var="status" value="${ review.status }" scope="session" />
+												<c:choose>
+													<c:when test='${ status == "Y" }'>
+														<td id="editStatus_Y" class="d-none d-xl-table-cell">노출</td>
+													</c:when>
+													<c:when test='${ status == "N" }'>
+														<td id="editStatus_N" class="d-none d-xl-table-cell">비노출</td>
+													</c:when>
+													<c:otherwise>
+														<td class="d-none d-xl-table-cell"></td>
+													</c:otherwise>
+												</c:choose>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -115,8 +130,8 @@
 							<div class="ad_sub_button">
 								<!-- <button class="ad_sub_button_gn" onClick="location.href='ad_post_write.html'">게시글 작성</button> -->
 								<!-- <button class="ad_sub_button_gy">게시글 삭제</button> -->
-								<button class="ad_sub_button_gy">노출</button>
-								<button class="ad_sub_button_gy">비노출</button>
+								<button id="editStatus_Y" class="ad_sub_button_gy">노출</button>
+								<button id="editStatus_N" class="ad_sub_button_gy">비노출</button>
 							</div>
 							<section id="cs-section3">
 								<div class="cs-paging">
@@ -173,6 +188,30 @@
 				checkbox.checked = selectQnaAll.checked;
 			})
 		}
+		
+		$('#editStatus_N').on('click', function() {
+			  let checkedReviewNoList = [];
+			  $('input[id="checkbox"]:checked').each(function() {
+			    checkedReviewNoList.push($(this).val());
+			  });
+			  
+			  $.ajax({
+				  	url: '/admin/review/updateReviewStatus',
+				    type: 'POST',
+				    data: JSON.stringify(checkedReviewNoList),
+					dataType: 'json',
+					contentType: 'application/json;charset=utf-8',
+				    success: function(data) {
+				      // success handler
+				      alert('상태 변경 성공!');
+				    },
+				    error: function(xhr, status, error) {
+				      // error handler
+				      alert('상태 변경 실패!');
+				    }
+			  });
+		});
+
 	</script>
 </body>
 
