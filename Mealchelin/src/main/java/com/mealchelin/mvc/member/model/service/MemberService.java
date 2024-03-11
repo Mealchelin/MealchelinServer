@@ -1,8 +1,10 @@
 package com.mealchelin.mvc.member.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 
 public interface MemberService {
@@ -26,6 +28,10 @@ public interface MemberService {
 	String getAccessToken(String code);
 
 	Member getUserInfo(String access_Token);
+
+	List<Member> getMemberList(PageInfo pageInfo);
+
+	int getMemberCount();
 
 
 

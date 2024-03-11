@@ -9,8 +9,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.mapper.MemberMapper;
 import com.mealchelin.mvc.member.model.vo.Member;
 
@@ -228,13 +231,21 @@ public class MemberServiceImpl implements MemberService {
 			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 			String phone_number = kakao_account.getAsJsonObject().get("phone_number").getAsString();
 
+			// 전화번호 들어오는 데이터 형식 변경하기 
+			String phone = phone_number.replaceAll("[^0-9]", "");
+			if (!phone.startsWith("010")) {
+				phone = "010" + phone.substring(4);
+			}
+			String password = "1234";
+			
 			System.out.println(element);
 			System.out.println("id!!!!!!!!!!!!!!!!!! : " + id);
 			
 			userInfo.put("id",id);
+			userInfo.put("password",encoder.encode(password));
 			userInfo.put("email", email);
 			userInfo.put("name", name);
-			userInfo.put("phone_number", phone_number);
+			userInfo.put("phone_number", phone);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -245,7 +256,8 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("SSSSSSSSSSSSSSSSSS: " + result);
 		
 		if (result == null) {
-		// result null이면 정보가 저장이 안된거라 정보를 저장 	
+		// result null이면 정보가 저장이 안된거라 정보를 저장 
+			
 			mapper.kakaoInsert(userInfo);
 			
 			return mapper.findKakao(userInfo);
@@ -256,6 +268,22 @@ public class MemberServiceImpl implements MemberService {
 			// 정보가 이미 있어서 result를 리턴 
 		}
 		
+	}
+//----------------------------admin
+	@Override
+	public List<Member> getMemberList(PageInfo pageInfo) {
+		int limit = pageInfo.getListLimit();
+	    int offset = (pageInfo.getCurrentPage() - 1) * limit;
+	    RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		return mapper.selectAll(rowBounds);
+	}
+
+	@Override
+	public int getMemberCount() {
+		// TODO Auto-generated method stub
+		return mapper.selectCount();
 	}
 }
 

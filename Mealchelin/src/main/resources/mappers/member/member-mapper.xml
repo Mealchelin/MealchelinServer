@@ -139,12 +139,14 @@
 		INSERT INTO MEMBER (
 			MEMBER_NO,
 			ID,
+			PASSWORD,
 			NAME,
 			EMAIL,
 			PHONE
 		) VALUES (
 		SEQ_MEMBER_NO.NEXTVAL,
 		#{id},
+		#{password},
 		#{name},
 		#{email},
 		#{phone_number}

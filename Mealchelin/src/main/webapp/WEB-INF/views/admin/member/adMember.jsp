@@ -24,6 +24,7 @@
 
     <!-- 필요한 css -->
     <link href="${ path }/css/admin/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="${ path }/css/cscenter/cscenterListCommon.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- jquery -->
@@ -129,97 +130,37 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr style="cursor: pointer;" onclick="window.open('${ path }/admin/member/edit', '_blank', 'width=700, height=550'); return false;">
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
+									<c:forEach var="member" items="${ list }">
+										<tr style="cursor: pointer;" onclick="window.open('${ path }/admin/member/edit?no=${ member.memberNo }', '_blank', 'width=700, height=550'); return false;">
+											<td>${ member.name }</td>
+											<td>${ member.id }</td>
+											<td class="d-none d-xl-table-cell phoneNumber">${ member.phone }</td>
+											<td class="d-none d-xl-table-cell">${ member.email }</td>
+                                            <td class="d-none d-xl-table-cell"><fmt:formatDate value="${ member.enrollDate }" pattern="yyyy.MM.dd"/></td>
 										</tr>
-										<tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-                                        <tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
-										<tr>
-											<td>이하윤</td>
-											<td>hongu90</td>
-											<td class="d-none d-xl-table-cell">010-0000-0000</td>
-											<td class="d-none d-xl-table-cell">hong@gmail.com</td>
-                                            <td class="d-none d-xl-table-cell">2023.08.20</td>
-										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-
 				</div>
+				<section id="cs-section3">
+                           <div class="cs-paging">
+                              <button onclick="location.href='${ path }admin/member/adMember?page=${ pageInfo.prevPage }'">&lt;</button>
+                             <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+                                 <c:choose>
+                                    <c:when test="${ current == pageInfo.currentPage }">
+                                       <button disabled>${ current }</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                       <button onclick="location.href='${ path }admin/member/adMember?page=${ current }'">${ current }</button>
+                                    </c:otherwise>
+                                 </c:choose>
+                           </c:forEach>
+                           <button onclick="location.href='${ path }admin/member/adMember?page=${ pageInfo.nextPage }'">&gt;</button>
+                           </div>
+                  </section>
 			</main>
 
 			<footer class="footer">

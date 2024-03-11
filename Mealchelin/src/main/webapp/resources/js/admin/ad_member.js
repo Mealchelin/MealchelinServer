@@ -62,3 +62,22 @@ function adRandomPw_code() {
     
     document.getElementById("adRandomPw").value = temp_pw;
 }
+
+function formatPhoneNumbers() {
+    $('.phoneNumber').each(function () {
+        let phoneNumber = $(this).text().replace(/\D/g, '');
+
+        if (phoneNumber.length === 10) {
+            phoneNumber = phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+        } else if (phoneNumber.length === 11) {
+            phoneNumber = phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        }
+
+        $(this).text(phoneNumber);
+    });
+}
+
+// 페이지 로드 후에 한 번 호출하여 초기 데이터 변환
+$(document).ready(function () {
+    formatPhoneNumbers();
+});

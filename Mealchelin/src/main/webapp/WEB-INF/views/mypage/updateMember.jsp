@@ -38,6 +38,7 @@
             <h3 class="myTitle"> 내 정보 수정 </h3>
             <p class="mySubTitle1"">비밀번호 재확인</p>
             <p class="mySubTitle2">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인해주세요</p>
+            <p class="mySubTitle3">※ 카카오로 접속하신 회원님은 처음 비밀번호는 "1234"입니다.</p>
             <hr>
             <div class="myInputBox">
                 <form action="#" method="post">

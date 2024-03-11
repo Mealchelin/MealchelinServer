@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mealchelin.mvc.member.model.service.MemberService;
 import com.mealchelin.mvc.member.model.vo.Member;
@@ -161,10 +163,9 @@ public class MemberController {
 
 	// 마이페이지 정보수정 첫번째 화면 (비밀번호 비교)
 	@GetMapping("/mypage/updateMember")
-	public String updateMember() {
-
-		return "mypage/updateMember";
+	public String updateMember(Member member) {
 		
+		return "mypage/updateMember";
 	}
 	
 	@PostMapping("/mypage/updateMember")
@@ -273,7 +274,13 @@ public class MemberController {
 	 // 카카오 로그인-------------------------------------------------------------------------------
 	 @GetMapping("/member/kakao/login")
 	 public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
-			 								HttpSession session) throws Exception {
+			 				  HttpSession session,
+			 				  ShoppingBasket shoppingBasket,
+			 				  ShippingLocation shippingLocation,
+			 				  Model model
+			 				  ) throws Exception {
+		 	int sbresult = 0;
+		 	int slresult = 0;
 	         
 			System.out.println("#########" + code);
 			
@@ -281,18 +288,34 @@ public class MemberController {
 			String access_Token = service.getAccessToken(code);
 			
 			Member userInfo = service.getUserInfo(access_Token);
+			System.out.println("###access_Token#### : " + access_Token);
+			
+			
 			session.setAttribute("loginMember", userInfo);
 //			loginMember
-			System.out.println("###access_Token#### : " + access_Token);
 			System.out.println("###name#### : " + userInfo.getName());
 			System.out.println("###email#### : " + userInfo.getEmail());
 			System.out.println("###phone_number#### : " + userInfo.getPhone());
 			
+			// 장바구니 같이 만들기.
+			shoppingBasket.setMemberNo(userInfo.getMemberNo());
+			
+			sbresult = shoppingBasketService.save(shoppingBasket);
+			
+			// 배송지 같이 만들기
+			shippingLocation.setMemberNo(userInfo.getMemberNo());			
+			shippingLocation.setShipName(userInfo.getName());
+			shippingLocation.setRecipient(userInfo.getName());
+			shippingLocation.setPhone(userInfo.getPhone());
+					
+			slresult = shippingLocationService.save(shippingLocation);
 			
 			System.out.println(session.getAttribute("loginMember"));
 			
-			
-			return "redirect:/";
+			model.addAttribute("msg", "회원 정보 수정 후 이용해주세요!");
+	        model.addAttribute("location", "/mypage/updateMember");
+							
+			return "common/msg";
 	            
 	   }
 }
