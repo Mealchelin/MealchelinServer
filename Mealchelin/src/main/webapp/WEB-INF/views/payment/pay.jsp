@@ -7,8 +7,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 
-<c:set var="path" value="${ pageContext.request.contextPath }" />
-<c:set var="totalPrice" value="${price + shipPrice }" />
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="totalPrice" value="0" />
+<c:forEach items="${shippingBaketInfoList}" var="item">
+    <c:set var="totalPrice" value="${totalPrice + item.price * item.quantity}" />
+</c:forEach>
 
 <c:set var="shippingPrice" value="3000" /> <!-- 기본 배송비 -->
 <c:if test="${totalPrice >= 50000}">
@@ -19,6 +22,14 @@
 </c:if>
 
 <c:set var="finalPrice" value="${totalPrice + shippingPrice}" /> <!-- 최종 결제 금액 계산 -->
+
+<c:set var="totalPrice" value="0" />
+<c:forEach items="${shippingBaketInfoList}" var="item">
+    <c:set var="totalPrice" value="${totalPrice + item.price * item.quantity}" />
+</c:forEach>
+
+
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -68,16 +79,16 @@
 					<div class="pay_FirstContentArea">
 						<img src="${ path }/img/product/${item.image}" class="pay_menuPhoto" id="pay_menuPhoto"> 
 						<span class="pay_FirstMemu">
-							<span class="pay_FirstName" >${item.name}</span>
-							<p class="pay_subFirstName">${item.brand}</p>
+							<span class="pay_FirstName" id="payFirstName" >${item.name}</span>
+							<p class="pay_subFirstName" id="paysubFirstName" >${item.brand}</p>
 						</span>
 						 <span class="pay_number" id="pay_number">${item.quantity}개</span> 
-							<span class="pay_paynumber"> <fmt:formatNumber value="${item.price}" type="number" /> 원</span>
+							<span class="pay_paynumber"> <fmt:formatNumber value="${item.price * item.quantity}" type="number" /> 원</span>
 						 <input type="hidden" name="image" value="${item.image}"/> 
 						 <input type="hidden" name="payFirstName" id="payFirstName" value="${item.name}" /> 
 						 <input type="hidden" name="paysubFirstName" id="paysubFirstName" value="${item.brand}" /> 
 						 <input type="hidden" name="paynumber" id="paynumber" value="${item.quantity}" /> 
-						 <input type="hidden" name="paypaynumber" id="paypaynumber" value="${item.quantity}" />		
+						 <input type="hidden" name="paypaynumber" id="paypaynumber" value="${item.price * item.quantity}" />		
 					</div>	
 				</c:forEach>
 				
@@ -179,34 +190,35 @@
 				<span class="pay_sixContentTitle">결제 정보</span>
 			</div>
 			
-				<div class="pay_payResultArea">
-				    <div class="pay_payResult">
-				        <span class="pay_paymentInfo">결제금액</span> 
-				        <span class="pay_payment">결제금액</span> <span class="pay_pay"><fmt:formatNumber value="${finalPrice}" type="number" /> 원</span>
-				        <!-- hidden input 태그 추가 -->
-						<input type="hidden" name="totalPrice" id="totalPrice" value="${finalPrice}" />
-				    </div>
-				    
-				    <div class="pay_paymentInfo">
-				        <span class="pay_Product">ㄴ 상품금액</span> 
-				        <span class="pay_payMoney"><fmt:formatNumber value="${totalPrice}" type="number" /> 원</span>
-				        <!-- hidden input 태그 추가 -->
-						<input type="hidden" name="productPrice" id="productPrice" value="${totalPrice}" />
-				    </div>
-				    
-				    <div class="pay_paymentInfo">
-				        <span class="pay_Delivery">ㄴ 배송비</span> 
-				        <span class="pay_pay"><fmt:formatNumber value="${shippingPrice}" type="number" /> 원</span>
-				        <!-- hidden input 태그 추가 -->
-						<input type="hidden" class="shippingPrice" id="shippingPrice" name="shippingPrice" value="${shippingPrice}" />
-				    </div>
-				    <div class="pay_finalResult">
-				        <span class="pay_Delivery">최종 결제 금액</span> 
-				        <span class="pay_Finalpay"><fmt:formatNumber value="${finalPrice}" type="number" /> 원 </span>
-				    </div>
-				</form>
-			 <div class="pay_line"></div>
+		<div class="pay_payResultArea">
+		    <div class="pay_payResult">
+		        <span class="pay_paymentInfo">결제금액</span> 
+		        <span class="pay_payment">결제금액</span> 
+		        <span class="pay_pay"><fmt:formatNumber value="${finalPrice}" type="number" /> 원</span>
+		        <!-- hidden input 태그 추가 -->
+		        <input type="hidden" name="totalPrice" id="totalPrice" value="${finalPrice}" />
+		    </div>
+		    
+		    <div class="pay_paymentInfo">
+		        <span class="pay_Product">ㄴ 상품금액</span> 
+		        <span class="pay_payMoney"><fmt:formatNumber value="${totalPrice}" type="number" /> 원</span>
+		        <!-- hidden input 태그 추가 -->
+		        <input type="hidden" name="productPrice" id="productPrice" value="${totalPrice}" />
+		    </div>
+		    
+		    <div class="pay_paymentInfo">
+		        <span class="pay_Delivery">ㄴ 배송비</span> 
+		        <span class="pay_pay"><fmt:formatNumber value="${shippingPrice}" type="number" /> 원</span>
+		        <!-- hidden input 태그 추가 -->
+		        <input type="hidden" class="shippingPrice" id="shippingPrice" name="shippingPrice" value="${shippingPrice}" />
+		    </div>
+		    <div class="pay_finalResult">
+		        <span class="pay_Delivery">최종 결제 금액</span> 
+		        <span id="price" class="pay_Finalpay"><fmt:formatNumber value="${finalPrice}" type="number" /> 원 </span>
+		    </div>
 		</div>
+		<div class="pay_line"></div>
+	</form>
 
 			<div class="pay_sevenContent">
 				<span class="pay_sevenContentTitle">개인정보 수집 및 동의</span>

@@ -54,11 +54,8 @@ public class PayController {
 		List<Payment> payInfoList = null;
 		
 		int price = 0;
-		price = product.getPrice()*quantity;
-		System.out.println(price);
 		int shipPrice = 0;
-		log.info("price {}",price);
-		
+		price = product.getPrice()*quantity;
 		
 
 		//주문 상품	    	
@@ -106,8 +103,7 @@ public class PayController {
 		List<ShoppingBasketProduct> shippingProductList = null;
 		ShippingLocation shippingInfo = null;
 		List<Payment> payInfoList = null;
-		
-		
+
 
 		//주문 상품
 		shippingProductList = payService.getShippingList(loginMember.getMemberNo());	    	
@@ -178,13 +174,12 @@ public class PayController {
 	    return modelAndView;
 	}
 	
-	
-	
-	
-	
+
 	@GetMapping("/payment/paysucces")
-	public ModelAndView paySuccessView(ModelAndView modelAndView) {
-	    modelAndView.setViewName("payment/paysucces");
+	public ModelAndView paySuccessView(ModelAndView modelAndView
+			) {
+		modelAndView.setViewName("payment/paysucces");
+	    
 	    return modelAndView;
 	}
 

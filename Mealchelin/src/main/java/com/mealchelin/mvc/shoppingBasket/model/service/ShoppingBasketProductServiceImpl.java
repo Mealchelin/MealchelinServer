@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductService {
 	
 	private final ShoppingBasketProductMapper sbpMapper;
+	
+	
 
 	@Override
 	public ShoppingBasketProduct findSbpByNo(int prdNo, int memberNo) {
@@ -48,5 +50,7 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 		
 		return resultCode;
 	}
+	
+	
 
 }

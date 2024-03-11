@@ -68,7 +68,8 @@
 						 <input type="hidden" name="image" value="${product.image}"/> 
 						 <input type="hidden" name="payFirstName" id="payFirstName" value="${product.name}" /> 
 						 <input type="hidden" name="paysubFirstName" id="paysubFirstName" value="${product.brand}" /> 
-						 <input type="hidden" name="paynumber" id="paynumber" value="${quantity}개" /> <input type="hidden" name="paypaynumber" id="paypaynumber" value="${price}" />						
+						 <input type="hidden" name="paynumber" id="paynumber" value="${quantity}개" /> 
+						 <input type="hidden" name="paypaynumber" id="paypaynumber" value="${price}" />						
 					</div>
 
 					<div class="pay_SecondContentArea">

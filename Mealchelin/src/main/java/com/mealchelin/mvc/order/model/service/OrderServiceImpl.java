@@ -23,10 +23,14 @@ public class OrderServiceImpl implements OrderService {
         
         // 회원 번호 설정
         order.setMemberNo(member.getMemberNo());
-        
-        
-        
+    
         // 주문 정보 DB에 저장
         return orderMapper.insertOrder(order);
     }
+
+	
+	
+	
+	
+	
 }
