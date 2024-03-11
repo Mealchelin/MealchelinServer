@@ -44,36 +44,32 @@
 	                <!-- 왼쪽 장바구니 리스트-->
 	                <div class="myList">
 	                    <table>
-	                        <tr class="mytr">
-	                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker1" value="" class="mychecker"><label for="mychecker1"></label></td>
-	                            <td class="mytd2"><img src="../img/galbitang.png" alt="음식사진"></td>
-	                            <td class="mytd3"><a href="#"><div class="myProductName"> [사미헌] 갈비탕 </div></a></td>
-	                            <td class="mytd4">
-	                                <div class="myCounter myCounter1">
-	                                    <button class="myCounter-minus" id="my-view-quantity-minus1">-</button>
-	                                    <input type="number" class="myCounter-quantity" id="my-view-quantity1"
-	                                        value="1" dir="rtl" min="1" max="99" readonly>
-	                                    <button class="myCounter-plus" id="my-view-quantity-plus1">+</button>
-	                                </div>
-	                            </td>
-	                            <td class="mytd5"><div class="myProductPrice" id="my-view-totalPrice1" > 12,000원 </div></td>
-	                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
-	                        </tr>
-	                        <tr class="mytr">
-	                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker2" value="" class="mychecker"><label for="mychecker2"></label></td>
-	                            <td class="mytd2"><img src="../img/galbitang.png" alt="음식사진"></td>
-	                            <td class="mytd3"><a href="#"><div class="myProductName"> [사미헌] 갈비탕 </div></a></td>
-	                            <td class="mytd4">
-	                                <div class="myCounter myCounter1">
-	                                    <button class="myCounter-minus" id="my-view-quantity-minus2">-</button>
-	                                    <input type="number" class="myCounter-quantity" id="my-view-quantity2"
-	                                            value="1" dir="rtl" min="1" max="99" readonly>
-	                                    <button class="myCounter-plus" id="my-view-quantity-plus2">+</button>
-	                                </div>
-	                            </td>
-	                            <td class="mytd5"><div class="myProductPrice" id="my-view-totalPrice2"> 12,000원 </div></td>
-	                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
-	                        </tr>
+	                    	<c:if test="${ empty loginMember }">
+			            		<tr>
+			            			<td>로그인 후 이용해주세요.</td>
+			            		</tr>
+			            	</c:if>
+			            	
+			            	<c:if test="${ not empty list }">
+	            				<c:forEach var="sbp" items="${ list }">
+		                        <tr class="mytr">
+		                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker" value="${ sbp.prdNo }" class="mychecker"><label for="mychecker"></label></td>
+		                            <td class="mytd2"><img src="${path}/img/product/${sbp.image}" width="92px" alt="음식사진"></td>
+		                            <td class="mytd3"><a href="#"><div class="myProductName"> [${ sbp.brand }] ${ sbp.name } </div></a></td>
+		                            <td class="mytd4">
+		                                <div class="myCounter myCounter1">
+		                                    <button class="myCounter-minus" id="my-view-quantity-minus1">-</button>
+		                                    <input type="number" class="myCounter-quantity" id="my-view-quantity1"
+		                                        value="${ sbp.quantity }" dir="rtl" min="1" max="99" readonly>
+		                                    <button class="myCounter-plus" id="my-view-quantity-plus1">+</button>
+		                                </div>
+		                            </td>
+		                            <td class="mytd5"><div class="myProductPrice" id="my-view-totalPrice1" > <fmt:formatNumber value="${ sbp.price * sbp.quantity }" pattern="###,###,###"/>원 </div></td>
+		                            <td class="mytd6"><img src="../img/all/x.png" alt="취소버튼"></td>
+		                        </tr>
+		                        </c:forEach>
+	                        </c:if>
+	                        
 	                    </table>
 	                </div>
 	                <div class="myAllPriceDiv">

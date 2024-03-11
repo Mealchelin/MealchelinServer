@@ -1,5 +1,7 @@
 package com.mealchelin.mvc.shoppingBasket.model.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,5 +50,11 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 		
 		return resultCode;
 	}
+
+	@Override
+	public List<ShoppingBasketProduct> getBasketlist(ShoppingBasketProduct shoppingBasketProduct) {
+		return sbpMapper.selectSbpAllbyMemNo(shoppingBasketProduct);
+	}
+
 
 }

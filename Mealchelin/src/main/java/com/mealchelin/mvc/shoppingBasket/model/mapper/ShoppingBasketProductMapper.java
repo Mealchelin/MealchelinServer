@@ -19,4 +19,6 @@ public interface ShoppingBasketProductMapper {
 
 	int selectSbpCountByMemberNo(@Param("memberNo") int memberNo);
 
+	List<ShoppingBasketProduct> selectSbpAllbyMemNo(ShoppingBasketProduct shoppingBasketProduct);
+
 }
