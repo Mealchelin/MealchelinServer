@@ -1,10 +1,14 @@
 package com.mealchelin.mvc.pay.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -12,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.service.OrderService;
+import com.mealchelin.mvc.order.model.vo.Orders;
 import com.mealchelin.mvc.pay.model.service.PayInfoService;
 import com.mealchelin.mvc.pay.model.service.UserOrderPayService;
 import com.mealchelin.mvc.pay.model.vo.Payment;
@@ -49,11 +54,8 @@ public class PayController {
 		List<Payment> payInfoList = null;
 		
 		int price = 0;
-		price = product.getPrice()*quantity;
-		System.out.println(price);
 		int shipPrice = 0;
-		log.info("price {}",price);
-		
+		price = product.getPrice()*quantity;
 		
 
 		//주문 상품	    	
@@ -93,48 +95,7 @@ public class PayController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/paysucces")
-	public ModelAndView paysucces(ModelAndView modelAndView) {
-		
 
-		modelAndView.setViewName("redirect:/paysucces");
-		
-		return modelAndView;
-	}
-	
-
-	@GetMapping("payment/paysucces")
-	public ModelAndView payresult(ModelAndView modelAndView) {
-		
-		
-		modelAndView.setViewName("payment/paysucces");
-	
-		return modelAndView;	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@GetMapping("/payment/pay")
 	public ModelAndView cartpayment(ModelAndView modelAndView,
 			@SessionAttribute("loginMember") Member loginMember
@@ -142,7 +103,7 @@ public class PayController {
 		List<ShoppingBasketProduct> shippingProductList = null;
 		ShippingLocation shippingInfo = null;
 		List<Payment> payInfoList = null;
-		
+
 
 		//주문 상품
 		shippingProductList = payService.getShippingList(loginMember.getMemberNo());	    	
@@ -150,8 +111,8 @@ public class PayController {
 		// 배송정보
 		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 		
-		// 결제수단 표시
-		payInfoList= payInfoService.selectByProductPay(loginMember.getMemberNo());
+		
+		System.out.println(payInfoList);
 
 		log.info("shippinginfo = {}", shippingInfo);
 		log.info("payInfoList = {}", payInfoList);
@@ -163,16 +124,97 @@ public class PayController {
 	    
 		return modelAndView;
 	}
+	
+	
+	
+	@PostMapping("/payment/paysucces")
+	public ModelAndView paySuccess(
+			ModelAndView modelAndView,
+			@RequestBody Map<String, Object> orderInfo ,
+			HttpSession session
+			) {
+	    // 세션에서 로그인한 회원 정보 가져오기
+	    Member member = (Member) session.getAttribute("loginMember");
+	    
+	    ShippingLocation shippingInfo = shippingService.getShippingInfoByInfo(member.getMemberNo());
+	    
+	    // 주문 정보에 회원 번호 설정
+	    Orders order = new Orders();
+	    order.setMemberNo(member.getMemberNo());
+	    order.setShipNo(shippingInfo.getShipNo());
+	    
+	    
+	    
+	    // 주문 정보와 회원 정보를 담은 Map 생성
+	    orderInfo.put("order", order);
+	    orderInfo.put("member", member);
+	    
+ 	    
+	 // 결제 방식 추가
+	    
+	    String orderMembers = (String) orderInfo.get("orderNo");
+	    order.setOrderMembers(orderMembers);
+	     
+	    String paymentMethod = (String) orderInfo.get("paymentMethod");
+	    order.setPaymentMethod(paymentMethod);
+	    
+	    int payMent = (int) orderInfo.get("amount");
+	    order.setPayMent(payMent);
+	    
+	    String request = (String) orderInfo.get("quest");
+	    order.setRequest(request);
+	    
+	    
+	    
+	    
+
+
+	    // 주문 정보를 저장하고 결과를 반환
+	    int result = orderService.save(orderInfo);
+	    
+	    if (result > 0) {
+	        modelAndView.addObject("msg", "결제가 완료되었습니다");
+	    } else {
+	        modelAndView.addObject("msg", "결제에 실패하였습니다.");
+	    }
+
+	    modelAndView.setViewName("redirect:/payment/paysucces");
+	    return modelAndView;
+	}
+	
+
+	@GetMapping("/payment/paysucces")
+	public ModelAndView paySuccessView(ModelAndView modelAndView
+			) {
+		modelAndView.setViewName("payment/paysucces");
+	    
+	    return modelAndView;
+	}
 
 
 	@GetMapping("/mypage/payInquiry")
-	public ModelAndView paylnquiry(ModelAndView modelAndView) {
+	public ModelAndView paylnquiry(ModelAndView modelAndView,
+			@RequestParam int memberNo
+			) {
+		
+		 List<Orders> orders = orderService.getOrderProductResultset(memberNo);
+		
+		
+		log.info("############## = {}",orders);
 
 		modelAndView.setViewName("mypage/payInquiry");
+		modelAndView.addObject("orders", orders);
+		
 
 		return modelAndView;
-
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/mypage/payDetails")
 	public ModelAndView payDetails(ModelAndView modelAndView) {

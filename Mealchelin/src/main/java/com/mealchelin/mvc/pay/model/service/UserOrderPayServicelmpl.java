@@ -22,6 +22,10 @@ public class UserOrderPayServicelmpl implements UserOrderPayService {
     public List<ShoppingBasketProduct> getShippingList(int memberNo) {
         return mapper.selectByProduct(memberNo);
     }
+
+
+	
+	
 	
 	
 

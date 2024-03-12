@@ -48,11 +48,7 @@
                 <!-- <div id="co_addressAndOrderNumber">
                     <p id="co_order">서울 동작구 가로수길 109(00아파트) <br> 주문번호 216156146546</p>
                 </div> -->
-                <hr>
-                <div id="co_paymentDiv">
-                    <p id="co_paymentText">결제금액</p>
-                    <p id="co_paymentMoney">47,500원</p>
-                </div>
+             
                 <input id="co_goOrderList" type="button" onclick="location.href='/mypage/payInquiry'"  value="주문내역으로 이동">
                 <input id="co_goHomeBtn" type="button" onclick="location.href='/'" value="홈으로 이동">
             </div>

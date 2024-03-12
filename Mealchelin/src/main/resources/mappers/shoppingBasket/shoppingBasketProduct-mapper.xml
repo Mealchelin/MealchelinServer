@@ -37,7 +37,7 @@
 		<result property="brand" column="BRAND" />
 		<result property="quantity" column="QUANTITY" />
 	</resultMap>
-
+	
 
 
 	<select id="selectByProduct" resultMap="shoppingBasketResultMap"

@@ -28,12 +28,11 @@ document.getElementById('payButton').addEventListener('click', function() {
 			console.log(getProductName());
 			console.log(getProductAdress());
 			console.log(price);     
+			//console.log(createOrderNum());     
 			console.log(quest);     
 			
 			
-			console.log(createOrderNum());
-			console.log(typeof createOrderNum());
-
+			console.log(typeof split3);
 			
         });
 
@@ -56,6 +55,9 @@ function getProductName() {
     var productBrand = $('#paysubFirstName').text(); // 브랜드명을 클래스 이름이 'pay_subFirstName'인 요소에서 가져옴
     return productName + ' ' + productBrand; // 상품명과 브랜드명을 결합하여 반환
 }
+
+
+
 
 //주소명 가져오는 함수 
 function getProductAdress() {
@@ -153,54 +155,59 @@ function createOrderNum() {
     break;
 
 
-              case 'pay_card':
-    IMP.init('imp31687115');
-    $('#overlay').show();
-    IMP.request_pay({
-        pg: 'mobilians',
-        pay_method: "card",
-        merchant_uid: createOrderNum(),   // 주문번호
-        name: getProductName(), // 상품명을 가져옴
-        amount: split3,   // 숫자 타입
-        buyer_email: getuserEmail(),
-        buyer_name: getusername(),
-        buyer_tel: getuserphone(),
-        buyer_addr: getProductAdress(),
-        quest : getquest(),
-        m_redirect_url : '/payment/paysucces/'
-    }, function(rsp) {
-        $('#overlay').hide();
-        if (rsp.success) {
-            var data = {
-               orderNo: createOrderNum(), // 주문번호
+
+
+
+
+
+               case 'pay_card':
+        // Method 2에 해당하는 결제창 열기
+        IMP.init('imp31687115');
+        $('#overlay').show();
+        IMP.request_pay({
+            pg: 'mobilians',
+            pay_method: 'card',
+            merchant_uid: createOrderNum(), // 상점에서 생성한 고유 주문번호
+            name: getProductName(), // 상품명을 가져옴
+            amount: price,
+            buyer_email: getuserEmail(),
+      		  buyer_name: getusername(),
+       		 buyer_tel: getuserphone(),
+      	 	 buyer_addr: getProductAdress(),
+            m_redirect_url : '/payment/paysucces' // 수정된 부분
+        }, function(rsp) { // callback 로직
+            //* ...중략... *//
+            $('#overlay').hide();
+
+            // 결제 요청이 성공적으로 완료된 경우
+            if (rsp.success) {
+                // 결제 정보를 서버로 전송
+               var data = {
+                orderNo: createOrderNum(), // 주문번호
                 productName: getProductName(), // 상품명을 가져옴
-                amount: split3, // 결제 금액
+                amount: price, // 결제 금액
                 buyerEmail: getuserEmail(), // 구매자 이메일
                 buyerName: getusername(),// 구매자 이름
                 buyerTel: getuserphone(), // 구매자 전화번호
                 buyerAddr: getProductAdress(), // 구매자 주소
-                paymentMethod: '신용카드', // 결제 방식 추가
-                quest : getquest()
-            };
+                }
 
-    console.log(data);
-            $.ajax({  
-                  
-			    type: "POST",
-			    url: '/payment/paysucces/',
-			    data: JSON.stringify(data),
-			    contentType: "application/json; charset=utf-8",
-			    dataType: "json",
-			    success: function(response) {
-			        console.log("결제 정보가 성공적으로 전송되었습니다.");
-			        console.log(response);
-			        window.location.href = '/payment/paysucces'; // GET 요청 보냄
-			    },
-			    error: function(error) {
-			        console.error("결제 정보 전송 중 오류가 발생했습니다.");
-			        console.error(error);
-			    }
-			});
+                // 결제 정보를 서버로 전송하는 AJAX 요청
+                  $.ajax({        
+                        type: "POST",
+                        url: '/payment/paysucces/' + rsp.imp_uid,
+                        data: JSON.stringify(data), // 데이터를 JSON 문자열로 변환하여 전송
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(response) {
+                            console.log("결제 정보가 성공적으로 전송되었습니다.");
+                            console.log(response); // 서버 응답 확인
+                        },
+                        error: function(error) {
+                            console.error("결제 정보 전송 중 오류가 발생했습니다.");
+                            console.error(error); // 오류 내용 확인
+                        }
+                    });
                     // 결제가 완료되면 페이지를 리다이렉트하여 완료 페이지로 이동합니다.
                     window.location.href = '/payment/paysucces'; // 리다이렉트할 URL을 지정합니다.
                 } else {
@@ -221,48 +228,49 @@ function createOrderNum() {
     IMP.request_pay({
         pg: "mobilians",
         pay_method: "phone",
-        merchant_uid: createOrderNum(),   // 주문번호
-        name: getProductName(), // 상품명을 가져옴
-        amount: split3,   // 숫자 타입
-        buyer_email: getuserEmail(),
-        buyer_name: getusername(),
-        buyer_tel: getuserphone(),
-        buyer_addr: getProductAdress(),
-        quest : getquest(),
-        m_redirect_url : '/payment/paysucces/'
-   }, function(rsp) {
-        $('#overlay').hide();
+       merchant_uid: createOrderNum(), // 상점에서 생성한 고유 주문번호
+            name: getProductName(), // 상품명을 가져옴
+            amount: price,
+            buyer_email: getuserEmail(),
+      		  buyer_name: getusername(),
+       		 buyer_tel: getuserphone(),
+      	 	 buyer_addr: getProductAdress(),
+            m_redirect_url : '/payment/paysucces' // 수정된 부분
+            
+    }, function(rsp) { // callback
+    
+     $('#overlay').hide();
+     
         if (rsp.success) {
+            console.log(rsp);
+            // 결제 성공 시 서버로 결제 정보 전송
             var data = {
-               orderNo: createOrderNum(), // 주문번호
+                orderNo: createOrderNum(), // 주문번호
                 productName: getProductName(), // 상품명을 가져옴
-                amount: split3, // 결제 금액
+                amount: price, // 결제 금액
                 buyerEmail: getuserEmail(), // 구매자 이메일
                 buyerName: getusername(),// 구매자 이름
                 buyerTel: getuserphone(), // 구매자 전화번호
                 buyerAddr: getProductAdress(), // 구매자 주소
-                paymentMethod: '신용카드', // 결제 방식 추가
-                quest : getquest()
-            };
+                }
 
-    console.log(data);
-            $.ajax({  
-                  
-			    type: "POST",
-			    url: '/payment/paysucces/',
-			    data: JSON.stringify(data),
-			    contentType: "application/json; charset=utf-8",
-			    dataType: "json",
-			    success: function(response) {
-			        console.log("결제 정보가 성공적으로 전송되었습니다.");
-			        console.log(response);
-			        window.location.href = '/payment/paysucces'; // GET 요청 보냄
-			    },
-			    error: function(error) {
-			        console.error("결제 정보 전송 중 오류가 발생했습니다.");
-			        console.error(error);
-			    }
-			});
+
+            // AJAX를 통해 결제 정보를 서버로 전송
+            $.ajax({        
+                        type: "POST",
+                        url: '/payment/paysucces/' + rsp.imp_uid,
+                        data: JSON.stringify(data), // 데이터를 JSON 문자열로 변환하여 전송
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(response) {
+                            console.log("결제 정보가 성공적으로 전송되었습니다.");
+                            console.log(response); // 서버 응답 확인
+                        },
+                        error: function(error) {
+                            console.error("결제 정보 전송 중 오류가 발생했습니다.");
+                            console.error(error); // 오류 내용 확인
+                        }
+                    });
                     // 결제가 완료되면 페이지를 리다이렉트하여 완료 페이지로 이동합니다.
                     window.location.href = '/payment/paysucces'; // 리다이렉트할 URL을 지정합니다.
                 } else {

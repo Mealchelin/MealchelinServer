@@ -8,4 +8,6 @@ import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 public interface ShoppingBasketMapper {
 	
 	int insertShoppingBasket(ShoppingBasket shoppingBasket);
+	
+	int findShoppingBasketProduct();
 }

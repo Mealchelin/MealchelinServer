@@ -11,5 +11,7 @@ public interface ShoppingBasketProductService {
 	ShoppingBasketProduct findSbpByNo(int prdNo, int memberNo);
 
 	int getSbpCountByMemberNo(int memberNo);
+	
+	
 
 }

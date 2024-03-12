@@ -9,10 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Orders {
 
 	// 주문 번호
-	private int qrderNo;
+	private int orderNo;
+	
+	//배송사번호
+	private String orderMembers;
 
 	// 배송 요청사항
 	private String request;
@@ -28,13 +31,25 @@ public class Order {
 
 	// 주문일
 	private Date orderDate;
+	
 	// 취소 여부
 	private String cancleStatus;
+	
 	// 취소 사유
 	private String cancleReason;
+	
 	// 회원 번호
 	private int memberNo;
+	
 	// 배송지 번호
 	private int shipNo;
+
+	//상품명 
+	private String name;
+	
+	
+	
+
+
 
 }

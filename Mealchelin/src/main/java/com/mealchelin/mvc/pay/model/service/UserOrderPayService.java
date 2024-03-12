@@ -8,4 +8,5 @@ public interface UserOrderPayService {
 
 	List<ShoppingBasketProduct> getShippingList(int memberNo);
 
+
 }
