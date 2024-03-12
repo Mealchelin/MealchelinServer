@@ -124,7 +124,7 @@
                                 </tbody>
                             </table>
                             <div style="margin:20px auto; width: 205px;">
-                                <button type="button" class="meal_btn3" id="meal_submit">수정</button>
+                                <button type="submit" class="meal_btn3" id="meal_submit">수정</button>
                                 <button type="button" class="meal_btn4" style="margin-left:5px;" onClick="window.close();">취소</button>
                             </div>
                         </form>
@@ -150,7 +150,6 @@
         
         document.addEventListener('DOMContentLoaded', function() {
         	var selectedShow = '${ product.display }'
-        	
         	$(":radio[name='display']").each(function() { 
         		var $this = $(this);  
         		if($this.val() == selectedShow)  {
@@ -159,7 +158,6 @@
         	});
         	
         	var selectedSale = '${ product.sale }'
-            	
            	$(":radio[name='sale']").each(function() { 
            		var $this = $(this);  
            		if($this.val() == selectedSale)  {
@@ -168,7 +166,6 @@
            	});
         	
         	var selectedCategory = '${ product.category }';
-        	
         	var categorySelect = document.getElementById("adProCat");
         	for (var i = 0; i < categorySelect.options.length; i++) {
         	    if (categorySelect.options[i].value === selectedCategory) {
@@ -178,15 +175,6 @@
         	}
         });
         
-        $(document).ready(() => {
-			$('#meal_submit').on('click', (event) => {
-				event.preventDefault();
-				$('#meal_form').submit();
-				setTimeout(() => {
-					window.close();
-				}, 100);
-			});
-		});
     </script> 
 </body>
 

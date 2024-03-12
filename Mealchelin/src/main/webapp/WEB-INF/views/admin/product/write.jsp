@@ -123,7 +123,7 @@
                                 </tbody>
                             </table>
                             <div style="margin:20px auto; width: 205px;">
-                                <button type="button" class="meal_btn3" id="meal_submit">등록</button>
+                                <button type="submit" class="meal_btn3" id="meal_submit">등록</button>
                                 <button type="button" class="meal_btn4" style="margin-left:5px;" onClick="window.close();">취소</button>
                             </div>
                         </form>
@@ -147,15 +147,7 @@
 	            console.error( error );
 	    	} );
         
-		$(document).ready(() => {
-			$('#meal_submit').on('click', (event) => {
-				event.preventDefault();
-				$('#meal_form').submit();
-				setTimeout(() => {window.close();}, 100);
-			});
-		});
     </script> 
-<%--     <c:out value="${closeWindowScript}" escapeXml="false" /> --%>
 </body>
 
 </html>

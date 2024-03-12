@@ -29,7 +29,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.common.util.MultipartFileUtil;
 import com.mealchelin.mvc.common.util.PageInfo;
-import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.product.model.service.ProductService;
 import com.mealchelin.mvc.product.model.vo.Product;
 
@@ -104,7 +103,6 @@ public class AdminProductController {
 				
 				if (originalFileName != null) {
 					product.setImage(upfile.getOriginalFilename());
-//					product.setRenamedFilename(renamedFileName);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -118,14 +116,12 @@ public class AdminProductController {
 		if (result > 0) {
 			modelAndView.addObject("msg", "상품 등록 완료");
 			modelAndView.addObject("script", "setTimeout(() => {window.close();}, 100);");
-//			modelAndView.addObject("location", "/admin/product/write");
 		} else {
 			modelAndView.addObject("msg", "상품 등록 실패");
 			modelAndView.addObject("location", "/admin/product/write");
 		}
+		
 		modelAndView.setViewName("common/msg");
-
-//		modelAndView.addObject("closeWindowScript", "<script>window.close();</script>");
 		return modelAndView;
 	}
 	
@@ -161,7 +157,6 @@ public class AdminProductController {
 				
 				if (originalFileName != null) {
 					product.setImage(upfile.getOriginalFilename());
-//					product.setRenamedFilename(renamedFileName);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -182,7 +177,6 @@ public class AdminProductController {
 		if (result > 0) {
 			modelAndView.addObject("msg", "상품 수정 완료");
 			modelAndView.addObject("script", "setTimeout(() => {window.close();}, 100);");
-//			modelAndView.addObject("location", "/admin/product/edit?no="+product.getNo());
 		} else {
 			modelAndView.addObject("msg", "상품 수정 실패");
 			modelAndView.addObject("location", "/admin/product/edit?no="+product.getNo());
@@ -351,7 +345,6 @@ public class AdminProductController {
 			for(Integer no : productList) {
 				if (no != null) {
 					Product product = productService.getProductAllByNo(no);
-//					product.setStatus("N");
 					productService.delete(product);
 				}
 			}
