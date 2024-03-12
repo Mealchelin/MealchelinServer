@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.mealchelin.mvc.order.model.vo.OrderProduct;
 import com.mealchelin.mvc.pay.model.mapper.PaymentMapper;
 import com.mealchelin.mvc.pay.model.vo.Payment;
 
@@ -17,6 +18,11 @@ public class PayInfoServiceImpl implements PayInfoService {
 
     @Override
     public List<Payment> selectByProductPay(int memberNo) {
-        return paymentMapper.selectByProductPay(memberNo);
+    	return paymentMapper.selectByProductPay(memberNo);
     }
+
+	@Override
+	public int saveOrderProduct(List<OrderProduct> orderProducts) {
+		return paymentMapper.insertSaveOrderProduct(orderProducts);
+	}
 }

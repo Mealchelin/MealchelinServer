@@ -11,5 +11,7 @@ public interface OrderService {
 
 	List<Orders> getOrderProductResultset(int memberNo);
 
+	int updateOrderProduct(Long ordersNumbers, int orderNo);
+
 
 }

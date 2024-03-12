@@ -65,6 +65,7 @@
 						</span> 
 						<span class="pay_number" id="paynumber">${quantity}개</span>
 						 <span class="pay_paynumber" id="paypaynumber"> <fmt:formatNumber value="${price}" type="number" /> 원</span> 
+						 <input type="hidden" name="prdNo" value="${product.no}"/> 
 						 <input type="hidden" name="image" value="${product.image}"/> 
 						 <input type="hidden" name="payFirstName" id="payFirstName" value="${product.name}" /> 
 						 <input type="hidden" name="paysubFirstName" id="paysubFirstName" value="${product.brand}" /> 

@@ -5,7 +5,8 @@
 <mapper
 	namespace="com.mealchelin.mvc.order.model.mapper.OrderMapper">
 
-	<insert id="insertOrder" parameterType="com.mealchelin.mvc.order.model.vo.Orders">
+	<insert id="insertOrder" parameterType="com.mealchelin.mvc.order.model.vo.Orders"  
+	useGeneratedKeys="true" keyProperty="orderNo" keyColumn="ORDER_NO">
     <!-- 주문번호는 시퀀스로 처리 -->
     INSERT INTO ORDERS (
         ORDER_NO,
@@ -59,6 +60,11 @@ WHERE MEMBER_NO = #{memberNo}
 
 </select>
 
+<update id="updateProductResultset" parameterType="map">
+  UPDATE ORDER_PRODUCT
+   SET ORDER_NO = #{orderNo}
+ WHERE ORDER_NO = #{ordersNumbers}
+</update>
 
 </mapper>
 

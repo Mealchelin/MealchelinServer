@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+        
+        
+<mapper namespace="com.mealchelin.mvc.orderProduct.mapper.OrderProductMapper">
+<insert id="insectOrderProduct" parameterType="com.mealchelin.mvc.order.model.vo.OrderProduct">
+        
+            INSERT INTO ORDERS (
+		        PRD_NO,
+		        ORDER_NO,
+		        QUANTITY,
+		        TOTAL_PRICE
+		    ) VALUES (
+		        #{proNo},
+		        #{orderNo},
+		        #{quantity},
+		        #{totalPrice}	 
+  			  )
+       
+        </insert>
+        
+        
+        
+        
+        </mapper>
