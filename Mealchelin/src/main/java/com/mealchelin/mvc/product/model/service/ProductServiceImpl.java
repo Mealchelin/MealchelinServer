@@ -78,6 +78,10 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> getProductNewList() {
 		return productMapper.selectProductNewList();
 	}
+	@Override
+	public List<Product> getProductNewListByHome() {
+		return productMapper.selectProductNewListByHome();
+	}
 
 	@Override
 	public List<Product> getProductBestList() {
@@ -106,11 +110,37 @@ public class ProductServiceImpl implements ProductService {
 		
 		if (product.getNo() > 0) {
 			// update
+			result = productMapper.updateProduct(product);
 		} else {
 			// insert
 			result = productMapper.insertProduct(product);
 		}
 		return result;
+	}
+
+	@Override
+	public int getProductCountBySearch(String result) {
+		return productMapper.selectProductCountByResult(result);
+	}
+
+	@Override
+	public List<Product> getProductListBySearch(String result, PageInfo pageInfo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit); 
+		
+		return productMapper.selectProductListBySearch(result, rowBounds);
+	}
+
+	@Override
+	public Product getProductAllByNo(int no) {
+		return productMapper.selectProductAllByNo(no);
+	}
+
+	@Override
+	public int delete(Product product) {
+		return productMapper.updateStatus(product);
 	}
 
 }

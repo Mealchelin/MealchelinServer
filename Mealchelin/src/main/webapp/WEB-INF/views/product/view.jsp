@@ -19,6 +19,7 @@
     
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
+<!--     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script> -->
 </head>
 
 <body>
@@ -104,7 +105,7 @@
             <h3 class="pd-view-detail-header">상품 상세 정보</h3>
             <br>
             <br>
-            <img class="pd-view-detail-image" src="${path}/img/product/${product.description}" width="900">
+            <div class="pd-view-detail-image"  width="900" id="pd-desc" >${product.description}</div>
         </section>
 
         <!-- 제품 교환 및 환불 정보 -->
@@ -200,6 +201,7 @@
         });
     });
     </script>
+
 </body>
 
 </html>

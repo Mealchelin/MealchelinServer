@@ -72,6 +72,10 @@
 		SELECT COUNT(*) FROM PRODUCT WHERE STATUS = 'Y' AND DISPLAY = 'Y' AND CATEGORY = #{category}
 	</select>
 	
+	<select id="selectProductCountByResult" resultType="_int" parameterType="string">
+		SELECT COUNT(*) FROM PRODUCT WHERE STATUS = 'Y' AND DISPLAY = 'Y' AND NAME LIKE '%' || #{result} || '%'
+	</select>
+	
 	<select id="selectProductList" resultMap="productResultMap">
 		<include refid="selectProductSql"/>
 		ORDER BY TOTAL_SALES DESC
@@ -120,6 +124,10 @@
 		<include refid="selectProductSql"/>
 		AND PRD_NO = #{no}
 	</select>
+	<select id="selectProductAllByNo" resultMap="productResultMap">
+		<include refid="selectAllSql"/>
+		WHERE STATUS = 'Y' AND PRD_NO = #{no}
+	</select>
 	
 	<select id="selectProductNewList" resultMap="productResultMap">
 		SELECT PRD_NO,
@@ -143,6 +151,30 @@
 			ORDER BY RGSTR_DATE DESC 
 		)
 		WHERE ROWNUM BETWEEN 1 AND 16
+	</select>
+	
+	<select id="selectProductNewListByHome" resultMap="productResultMap">
+		SELECT PRD_NO,
+			   NAME,
+			   CATEGORY,
+			   PRICE,
+			   PRD_DESC,
+			   IMAGE,
+			   BRAND,
+			   DISPLAY,
+			   SALE,
+			   STOCK,
+			   RGSTR_DATE,
+			   TOTAL_SALES,
+			   VIEWS,
+			   RATING,
+			   STATUS,
+			   WEIGHT
+		FROM (
+			<include refid="selectProductSql"/>
+			ORDER BY RGSTR_DATE DESC 
+		)
+		WHERE ROWNUM BETWEEN 1 AND 8
 	</select>
 	
 	<select id="selectProductBestList" resultMap="productResultMap">
@@ -171,8 +203,9 @@
 	
 	<select id="selectProductListOrderByNo" resultMap="productResultMap">
 		<include refid="selectAllSql"/>
+		WHERE STATUS = 'Y'
 		<if test="!(category.equals('') and name.equals(''))">
-			<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<trim prefix="AND" prefixOverrides="AND|OR">
 				<if test="!category.equals('')">
 					CATEGORY LIKE '%' || #{category} || '%'
 				</if>
@@ -181,6 +214,12 @@
 				</if>
 			</trim>
 		</if>
+		ORDER BY PRD_NO DESC
+	</select>
+	
+	<select id="selectProductListBySearch" resultMap="productResultMap">
+		<include refid="selectAllSql"/>
+		WHERE STATUS = 'Y' AND DISPLAY = 'Y' AND NAME LIKE '%' || #{result} || '%'
 		ORDER BY PRD_NO DESC
 	</select>
 	
@@ -238,6 +277,27 @@
 		)
 	</insert>
 	
+	<update id="updateProduct" parameterType="Product">
+		UPDATE PRODUCT
+		SET
+			NAME = #{name},
+			CATEGORY = #{category},
+			PRICE = #{price},
+			PRD_DESC = #{description},
+			IMAGE = #{image},
+			BRAND = #{brand},
+			DISPLAY = #{display},
+			SALE = #{sale},
+			STOCK = #{stock},
+			WEIGHT = #{weight}
+		WHERE PRD_NO = #{no}
+	</update>
 	
+	<update id="updateStatus" parameterType="Product">
+		UPDATE PRODUCT
+		SET
+			STATUS = 'N'
+		WHERE PRD_NO = #{no}
+	</update>
 	
 </mapper>
