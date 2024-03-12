@@ -18,7 +18,9 @@
 		}
 		
 		// 페이지 이동
-		location.replace("${ pageContext.request.contextPath }${ location }");
+		if(${ not empty location }) {
+			location.replace("${ pageContext.request.contextPath }${ location }");
+		}
 	</script>
 </body>
 </html>

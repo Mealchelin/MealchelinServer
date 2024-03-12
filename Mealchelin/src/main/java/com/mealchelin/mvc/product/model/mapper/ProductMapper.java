@@ -36,4 +36,16 @@ public interface ProductMapper {
 
 	int insertProduct(Product product);
 
+	int selectProductCountByResult(@Param("result") String result);
+
+	List<Product> selectProductListBySearch(@Param("result") String result, RowBounds rowBounds);
+
+	List<Product> selectProductNewListByHome();
+
+	Product selectProductAllByNo(@Param("no") int no);
+
+	int updateProduct(Product product);
+
+	int updateStatus(Product product);
+
 }

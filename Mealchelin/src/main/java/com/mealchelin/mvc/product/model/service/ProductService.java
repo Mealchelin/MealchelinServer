@@ -32,4 +32,14 @@ public interface ProductService {
 
 	int save(Product product);
 
+	int getProductCountBySearch(String result);
+
+	List<Product> getProductListBySearch(String result, PageInfo pageInfo);
+
+	List<Product> getProductNewListByHome();
+
+	Product getProductAllByNo(int no);
+
+	int delete(Product product);
+
 }

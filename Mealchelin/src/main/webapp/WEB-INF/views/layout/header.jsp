@@ -38,8 +38,8 @@
     </ul>
     <ul class="right_nav">
         <li class="nav_search">
-            <form style=" position: relative;">
-                <input type="search" name="nav_search" id="nav_search">
+            <form style=" position: relative;" action="${ path }/product/search" method="get">
+                <input type="search" name="result" id="nav_search">
                 <input type="submit" id="nav_search_but" value="">
             </form>
         </li>
@@ -80,6 +80,6 @@
 
         </c:if>
      
-        <a href=""><li class="nav_cart" ></li></a>
+        <a href="${ path }mypage/shoppingBasket"><li class="nav_cart" ></li></a>
     </ul>
 </nav>

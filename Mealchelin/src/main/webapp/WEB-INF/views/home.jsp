@@ -124,70 +124,16 @@
         <section id="section4">
             <h3># NEW_신메뉴 소개</h3>
             <div class="main_new_menu">
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_01.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="main_new_txt_brand">마이셰프</div>
-                        <div class="main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_02.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">기사식당 돼지불백(2-3인)</div>
-                        <div class="main_new_txt_brand">마이셰프</div>
-                        <div class="main_new_txt_price">14,900원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_03.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">소고기뭇국</div>
-                        <div class="main_new_txt_brand">쿡킷</div>
-                        <div class="main_new_txt_price">16,800원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_04.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="main_new_txt_brand">마이셰프</div>
-                        <div class="main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_05.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="main_new_txt_brand">마이셰프</div>
-                        <div class="main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_06.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">바질 크림 빠네파스타 밀키트 2인분</div>
-                        <div class="main_new_txt_brand">프레시지</div>
-                        <div class="main_new_txt_price">13,900원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_07.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="main_new_txt_brand">마이셰프</div>
-                        <div class="main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
-                <div class="main_new_box">
-                    <a href=""><div class="main_new_box_img"><img src="${ path }/img/new_08.jpg"></div></a>
-                    <div class="main_new_box_txt">
-                        <div class="main_new_txt_name">안동식 순살 찜닭</div>
-                        <div class="main_new_txt_brand">마이셰프</div>
-                        <div class="main_new_txt_price">18,900원</div>
-                    </div>
-                </div>
+	            <c:forEach var="product" items="${ list }">
+	                <div class="main_new_box">
+	                    <a href="${ path }/product/view?no=${product.no}"><div class="main_new_box_img"><img src="${ path }/img/product/${ product.image }"></div></a>
+	                    <div class="main_new_box_txt">
+	                        <div class="main_new_txt_name">${ product.name }</div>
+	                        <div class="main_new_txt_brand">${ product.brand }</div>
+	                        <div class="main_new_txt_price"><fmt:formatNumber  value="${product.price}" type="number"/>원</div>
+	                    </div>
+	                </div>
+				</c:forEach>
             </div>
         </section>
 

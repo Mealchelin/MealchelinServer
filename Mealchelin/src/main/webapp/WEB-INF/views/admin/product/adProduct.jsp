@@ -131,62 +131,64 @@
                     </form>
 					<div class="row">
 						<div class="col-12">
-							<div class="card">
-								<table class="table table-hover my-0" style="text-align: center;">
-									<thead>
-										<tr>
-                                            <th width="5%"><input type="checkbox" id="ad_pro_allChk" name="ad_pro_chk" onclick='selectProAll(this)'></th>
-											<th class="d-none d-xl-table-cell" width="10%">상품코드</th>
-                                            <th>상품명</th>
-											<th width="20%">판매가</th>
-											<th class="d-none d-xl-table-cell" width="12%">재고</th>
-											<th class="d-none d-xl-table-cell" width="12%">판매</th>
-											<th class="d-none d-xl-table-cell" width="12%">노출</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:if test="${ not empty list }">
-											<c:forEach var="product" items="${ list }">
-												<tr>
-													<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-													<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value=""></td>
-		                                            <td class="d-none d-xl-table-cell">${ product.no }</td>
-		                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/product/edit', '_blank', 'width=800, height=600'); return false;">${ product.name }</td>
-													<td><fmt:formatNumber  value="${product.price}" type="number"/>원</td>
-													<td class="d-none d-xl-table-cell">${ product.stock }</td>
-													<td class="d-none d-xl-table-cell">
-														<c:if test="${ product.sale == 'Y' }">
-															판매중
-														</c:if>
-														<c:if test="${ product.sale == 'N' }">
-															판매 중지
-														</c:if>
-													</td>
-													<td class="d-none d-xl-table-cell">
-														<c:if test="${ product.sale == 'Y' }">
-															노출중
-														</c:if>
-														<c:if test="${ product.sale == 'N' }">
-															노출 중지
-														</c:if>
-													</td>
-												</tr>
-											</c:forEach>
-										</c:if>
-										<c:if test="${ empty list }">
+							<form id="exposureForm" method="post">
+								<div class="card">
+									<table class="table table-hover my-0" style="text-align: center;">
+										<thead>
 											<tr>
-												<td colspan="7">조회 결과가 없습니다.</td>
+	                                            <th width="5%"><input type="checkbox" id="ad_pro_allChk" onclick='selectProAll(this)'></th>
+												<th class="d-none d-xl-table-cell" width="10%">상품코드</th>
+	                                            <th>상품명</th>
+												<th width="20%">판매가</th>
+												<th class="d-none d-xl-table-cell" width="12%">재고</th>
+												<th class="d-none d-xl-table-cell" width="12%">판매</th>
+												<th class="d-none d-xl-table-cell" width="12%">노출</th>
 											</tr>
-										</c:if>
-									</tbody>
-								</table>
-                            </div>
-                            <div class="ad_sub_button">
-                                <button class="ad_sub_button_gn"  onclick="window.open('${ path }/admin/product/write', '_blank', 'width=800, height=600'); return false;">상품 등록</button>
-                                <button class="ad_sub_button_gy">상품 삭제</button>
-                                <button class="ad_sub_button_gy">노출</button>
-                                <button class="ad_sub_button_gy">비노출</button>
-                            </div>
+										</thead>
+										<tbody>
+											<c:if test="${ not empty list }">
+												<c:forEach var="product" items="${ list }">
+													<tr>
+														<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
+														<td><input type="checkbox" class="ad_pro_chk" name="ad_pro_chk" value="${ product.no }"></td>
+			                                            <td class="d-none d-xl-table-cell">${ product.no }</td>
+			                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/product/edit?no=${ product.no }', '_blank', 'width=800, height=600'); return false;">${ product.name }</td>
+														<td><fmt:formatNumber  value="${product.price}" type="number"/>원</td>
+														<td class="d-none d-xl-table-cell">${ product.stock }</td>
+														<td class="d-none d-xl-table-cell">
+															<c:if test="${ product.sale == 'Y' }">
+																판매중
+															</c:if>
+															<c:if test="${ product.sale == 'N' }">
+																판매 중지
+															</c:if>
+														</td>
+														<td class="d-none d-xl-table-cell">
+															<c:if test="${ product.display == 'Y' }">
+																노출중
+															</c:if>
+															<c:if test="${ product.display == 'N' }">
+																노출 중지
+															</c:if>
+														</td>
+													</tr>
+												</c:forEach>
+											</c:if>
+											<c:if test="${ empty list }">
+												<tr>
+													<td colspan="7">조회 결과가 없습니다.</td>
+												</tr>
+											</c:if>
+										</tbody>
+									</table>
+	                            </div>
+	                            <div class="ad_sub_button">
+	                                <button class="ad_sub_button_gn"  onclick="window.open('${ path }/admin/product/write', '_blank', 'width=800, height=600'); return false;">상품 등록</button>
+	                                <button class="ad_sub_button_gy" id="deleteData">상품 삭제</button>
+	                                <button class="ad_sub_button_gy" id="exposeData">노출</button>
+	                                <button class="ad_sub_button_gy" id="nonExposeData">비노출</button>
+	                            </div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -242,6 +244,42 @@
     
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
+    <script type="text/javascript">
+	    function selectProAll(selectProAll)  {
+			const checkboxes 
+				= document.getElementsByName('ad_pro_chk');
+			
+			checkboxes.forEach((checkbox) => {
+				checkbox.checked = selectProAll.checked;
+			})
+		};
+	
+		$(document).ready(() => {
+			$('#deleteData').on('click', () => {
+				if (confirm('선택한 데이터들을 삭제하시겠습니까?')) {
+					$('#exposureForm').attr('method', 'post');
+					$('#exposureForm').attr('action', '${path}/admin/product/delete');
+					$('#exposureForm').submit();
+				}
+			});
+			
+			$('#exposeData').on('click', () => {
+				if (confirm('선택한 데이터들을 노출하시겠습니까?')) {
+					$('#exposureForm').attr('method', 'post');
+					$('#exposureForm').attr('action', '${path}/admin/product/exposure');
+					$('#exposureForm').submit();
+				}
+			});
+		
+			$('#nonExposeData').on('click', () => {
+				if (confirm('선택한 데이터들을 비노출하시겠습니까?')) {
+					$('#exposureForm').attr('method', 'post');
+					$('#exposureForm').attr('action', '${path}/admin/product/nonExposure');
+					$('#exposureForm').submit();
+				}
+			});
+		});
+    </script>
     
 </body>
 

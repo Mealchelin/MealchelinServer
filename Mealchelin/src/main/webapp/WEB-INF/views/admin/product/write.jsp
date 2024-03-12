@@ -31,7 +31,7 @@
     
     <!-- jquery -->
     <script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
-    <script src="${ path }/js/jquery-3.7.1.js"></script>
+<%--     <script src="${ path }/js/jquery-3.7.1.js"></script> --%>
 	<style>
         input{
             padding:3px 5px;
@@ -123,7 +123,7 @@
                                 </tbody>
                             </table>
                             <div style="margin:20px auto; width: 205px;">
-                                <button type="submit" class="meal_btn3" id="meal_submit">등록</button>
+                                <button type="button" class="meal_btn3" id="meal_submit">등록</button>
                                 <button type="button" class="meal_btn4" style="margin-left:5px;" onClick="window.close();">취소</button>
                             </div>
                         </form>
@@ -138,36 +138,24 @@
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
    	<script>
         ClassicEditor
-            .create( document.querySelector( '#adProDetail' ))
-            .catch( error => {
-                console.error( error );
-            } );
+	        .create( document.querySelector( '#adProDetail' ),{
+	        	ckfinder: {
+	    			uploadUrl: '/admin/product/image.do'
+	    		}
+	        })
+	        .catch( error => {
+	            console.error( error );
+	    	} );
         
-        // 작성하지 않은 값 null 로 넣는게 안됨
-//         $(document).ready(() => {
-//         	let product = ['adProShow', 'adBuyShow', 'adProName', 'adProCat', 'adProCode', 'adProBrand', 'adProPrice', 'adProAmount', 'adProWeight', 'adProImg', 'adProDetail'];
-// 	        $('#meal_submit').on('submit', () => {
-// 	        	console.log($('#adProName'));
-// 	        	if ($('#adProName').val() === '') {
-// 					$('#adProName').prop('disabled', true);
-// 				}
-// 	        	product.forEach((eletment) => {
-// 	        		if ($('#'+eletment).val() === '') {
-// 						$('#'+eletment).prop('disabled', true);
-// 					}
-// 	        	})
-// 			})
-//         })
-// 		$(document).ready(() => {
-// 			$('#meal_submit').on('click', () => {
-// 				$('#meal_form').submit();
-// 				setTimeout(() => {
-// 					window.close();
-// 				}, 100);
-// 			});
-// 		});
+		$(document).ready(() => {
+			$('#meal_submit').on('click', (event) => {
+				event.preventDefault();
+				$('#meal_form').submit();
+				setTimeout(() => {window.close();}, 100);
+			});
+		});
     </script> 
-    <c:out value="${closeWindowScript}" escapeXml="false" />
+<%--     <c:out value="${closeWindowScript}" escapeXml="false" /> --%>
 </body>
 
 </html>
