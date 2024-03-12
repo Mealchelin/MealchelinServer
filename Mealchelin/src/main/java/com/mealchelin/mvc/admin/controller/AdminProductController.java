@@ -115,7 +115,7 @@ public class AdminProductController {
 		result = productService.save(product);
 		if (result > 0) {
 			modelAndView.addObject("msg", "상품 등록 완료");
-			modelAndView.addObject("script", "setTimeout(() => {window.close();}, 100);");
+			modelAndView.addObject("script", "opener.parent.location.reload(); setTimeout(() => {window.close();}, 100);");
 		} else {
 			modelAndView.addObject("msg", "상품 등록 실패");
 			modelAndView.addObject("location", "/admin/product/write");
@@ -176,7 +176,7 @@ public class AdminProductController {
 		
 		if (result > 0) {
 			modelAndView.addObject("msg", "상품 수정 완료");
-			modelAndView.addObject("script", "setTimeout(() => {window.close();}, 100);");
+			modelAndView.addObject("script", "opener.parent.location.reload(); setTimeout(() => {window.close();}, 100);");
 		} else {
 			modelAndView.addObject("msg", "상품 수정 실패");
 			modelAndView.addObject("location", "/admin/product/edit?no="+product.getNo());
