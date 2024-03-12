@@ -9,6 +9,7 @@
     <!-- 주문번호는 시퀀스로 처리 -->
     INSERT INTO ORDERS (
         ORDER_NO,
+        ORDERS_NUMBERS,
         REQUEST,
         PAYMENT_METHOD,
         PAYMENT,
@@ -16,6 +17,7 @@
         SHIP_NO
     ) VALUES (
         SEQ_ORDER_NO.NEXTVAL,
+        #{orderMembers},
         #{request},
         #{paymentMethod},
         #{payMent},
@@ -25,6 +27,51 @@
 </insert>
 
 
+<resultMap id="selectProductResultMap" type="com.mealchelin.mvc.order.model.vo.Orders">
+
+<id property="orderNo" column="ORDER_NO"/>
+<result property="memberNo" column="MEMBER_NO"/>
+<result property="paymentMethod" column="PAYMENT_METHOD"/>
+<result property="payMent" column="PAYMENT"/>
+<result property="orderDate" column="ORDER_DATE"/>
+<result property="name" column="NAME"/>
+<result property="orderMembers" column="ORDERS_NUMBERS"/>
+
+
+</resultMap>
+
+	
+
+
+<select id="selectProductResultset" resultMap="selectProductResultMap" parameterType="_int">
+
+SELECT 
+    ORDERS.ORDER_NO,
+    ORDERS.MEMBER_NO,
+    ORDERS.PAYMENT_METHOD,
+    ORDERS.PAYMENT,
+    ORDERS.ORDER_DATE,
+    ORDERS.ORDERS_NUMBERS,
+    PRODUCT.NAME AS PRODUCT_NAME
+FROM ORDERS
+JOIN PRODUCT ON ORDERS.ORDER_NO = PRODUCT.PRD_NO
+WHERE MEMBER_NO = #{memberNo}
+
+</select>
 
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

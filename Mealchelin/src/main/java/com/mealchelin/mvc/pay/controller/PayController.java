@@ -142,7 +142,8 @@ public class PayController {
 	    Orders order = new Orders();
 	    order.setMemberNo(member.getMemberNo());
 	    order.setShipNo(shippingInfo.getShipNo());
-	        
+	    
+	    
 	    
 	    // 주문 정보와 회원 정보를 담은 Map 생성
 	    orderInfo.put("order", order);
@@ -150,6 +151,10 @@ public class PayController {
 	    
  	    
 	 // 결제 방식 추가
+	    
+	    String orderMembers = (String) orderInfo.get("orderNo");
+	    order.setOrderMembers(orderMembers);
+	     
 	    String paymentMethod = (String) orderInfo.get("paymentMethod");
 	    order.setPaymentMethod(paymentMethod);
 	    
@@ -160,6 +165,9 @@ public class PayController {
 	    order.setRequest(request);
 	    
 	    
+	    
+	    
+
 
 	    // 주문 정보를 저장하고 결과를 반환
 	    int result = orderService.save(orderInfo);
@@ -184,21 +192,29 @@ public class PayController {
 	}
 
 
-
-
-
-
-	
-	
-
 	@GetMapping("/mypage/payInquiry")
-	public ModelAndView paylnquiry(ModelAndView modelAndView) {
+	public ModelAndView paylnquiry(ModelAndView modelAndView,
+			@RequestParam int memberNo
+			) {
+		
+		 List<Orders> orders = orderService.getOrderProductResultset(memberNo);
+		
+		
+		log.info("############## = {}",orders);
 
 		modelAndView.setViewName("mypage/payInquiry");
+		modelAndView.addObject("orders", orders);
+		
 
 		return modelAndView;
-
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/mypage/payDetails")
 	public ModelAndView payDetails(ModelAndView modelAndView) {

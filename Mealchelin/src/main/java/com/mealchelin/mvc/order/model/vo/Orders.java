@@ -13,6 +13,9 @@ public class Orders {
 
 	// 주문 번호
 	private int orderNo;
+	
+	//배송사번호
+	private String orderMembers;
 
 	// 배송 요청사항
 	private String request;
@@ -41,7 +44,10 @@ public class Orders {
 	// 배송지 번호
 	private int shipNo;
 
-		
+	//상품명 
+	private String name;
+	
+	
 	
 
 

@@ -1,5 +1,6 @@
 package com.mealchelin.mvc.order.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,15 @@ public class OrderServiceImpl implements OrderService {
         // 주문 정보 DB에 저장
         return orderMapper.insertOrder(order);
     }
+
+	
+
+	@Override
+	public List<Orders> getOrderProductResultset(int memberNo) {
+		return orderMapper.selectProductResultset(memberNo);
+	}
+
+	
 
 	
 	

@@ -77,26 +77,28 @@
                         <div class="pay_ProductImg">
                             <a href="../img/new_01.jpg"><img src="../img/new_01.jpg" class="pay_ProductImgArea"></a>
                         </div>
-                        <div class="pay_ProductInfo">
-                            <table class="pay_table">
-                                <tr>
-                                    <td>상품명</td>
-                                    <td class="pay_subName">안동심 찜닭</td>
-                                </tr>
-                                <tr>
-                                    <td>주문번호</td>
-                                    <td class="pay_subName">216156146546</td>
-                                </tr>
-                                <tr>
-                                    <td>결제방법</td>
-                                    <td class="pay_subName">카카오페이</td>                              
-                                </tr>
-                                <tr>
-                                    <td>결제금액</td>
-                                    <td class="pay_subName">15,800원</td>
-                                </tr>
-                            </table>
-                        </div>
+                        <c:forEach var="order" items="${orders}">
+					            <div class="pay_ProductInfo">
+					                <table class="pay_table">
+					                    <tr>
+					                        <td>상품명</td>
+					                        <td class="pay_subName">${order.name}</td>
+					                    </tr>
+					                    <tr>
+					                        <td>주문번호</td>
+					                        <td class="pay_subName">${order.orderMembers}</td>
+					                    </tr>
+					                    <tr>
+					                        <td>결제방법</td>
+					                        <td class="pay_subName">${order.paymentMethod}</td>                              
+					                    </tr>
+					                    <tr>
+					                        <td>결제금액</td>
+					                        <td class="pay_subName">${order.payMent}원</td>
+					                    </tr>
+					                </table>
+					            </div>
+					        </c:forEach>
                         <div class="pay_ProductResult">
                             <p>
                                 배송완료
@@ -104,80 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pay_ProductInfoArea">
-                    <p class="pay_ProductTitle">
-                        <span>2024.02.27</span>
-                        <a href="../pay/OrderDetails.html">주문내역 상세보기></a>
-                    </p>
-                    <p class="pay_line"></p>
-                    <div class="pay_Product">
-                        <div class="pay_ProductImg">
-                            <a href="../img/new_01.jpg"><img src="../img/new_01.jpg" class="pay_ProductImgArea"></a>
-                        </div>
-                        <div class="pay_ProductInfo">
-                            <table class="pay_table">
-                                <tr>
-                                    <td>상품명</td>
-                                    <td class="pay_subName">안동심 찜닭</td>
-                                </tr>
-                                <tr>
-                                    <td>주문번호</td>
-                                    <td class="pay_subName">216156146546</td>
-                                </tr>
-                                <tr>
-                                    <td>결제방법</td>
-                                    <td class="pay_subName">카카오페이</td>                              
-                                </tr>
-                                <tr>
-                                    <td>결제금액</td>
-                                    <td class="pay_subName">15,800원</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="pay_ProductResult">
-                            <p>
-                                배송완료
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="pay_ProductInfoArea">
-                    <p class="pay_ProductTitle">
-                        <span>2024.02.27</span>
-                        <a href="../pay/OrderDetails.html">주문내역 상세보기></a>
-                    </p>
-                    <p class="pay_line"></p>
-                    <div class="pay_Product">
-                        <div class="pay_ProductImg">
-                            <a href="../img/new_01.jpg"><img src="../img/new_01.jpg" class="pay_ProductImgArea"></a>
-                        </div>
-                        <div class="pay_ProductInfo">
-                            <table class="pay_table">
-                                <tr>
-                                    <td>상품명</td>
-                                    <td class="pay_subName">안동심 찜닭</td>
-                                </tr>
-                                <tr>
-                                    <td>주문번호</td>
-                                    <td class="pay_subName">216156146546</td>
-                                </tr>
-                                <tr>
-                                    <td>결제방법</td>
-                                    <td class="pay_subName">카카오페이</td>                              
-                                </tr>
-                                <tr>
-                                    <td>결제금액</td>
-                                    <td class="pay_subName">15,800원</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="pay_ProductResult">
-                            <p>
-                                배송완료
-                            </p>
-                        </div>
-                    </div>
-                </div>
+
                
                 <div class="pay_pageNumber">
                     <ul>

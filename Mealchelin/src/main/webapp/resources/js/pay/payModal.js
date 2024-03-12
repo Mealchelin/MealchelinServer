@@ -28,11 +28,12 @@ document.getElementById('payButton').addEventListener('click', function() {
 			console.log(getProductName());
 			console.log(getProductAdress());
 			console.log(price);     
-			//console.log(createOrderNum());     
 			console.log(quest);     
 			
 			
-			console.log(typeof split3);
+			console.log(createOrderNum());
+			console.log(typeof createOrderNum());
+
 			
         });
 
