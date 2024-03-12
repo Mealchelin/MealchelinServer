@@ -10,7 +10,6 @@ import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
-import com.mealchelin.mvc.review.model.vo.MemberDTO;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -119,24 +118,13 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.updateAdReview(review);
 	}
 
+	@Override
+	public List<Review> getReviewListForHome() {
+		
+		return mapper.getReviewListForHome();
+	}
 
-//	@Override
-//	@Transactional
-//	public void adSave(Review review) {
-//		int result = 0;
-//		
-//		if (review.getReviewNo() > 0) {
-//			// update
-//			result = mapper.updateAdSupport(review);
-//		} else {
-//			// insert
-//			result = mapper.insertAdSupport(review);
-//		}
-//		
-//		return result;
-//		
-//		
-//	}
+
 
 
 	

@@ -5,7 +5,6 @@ import java.util.List;
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
-import com.mealchelin.mvc.review.model.vo.MemberDTO;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 public interface ReviewService {
@@ -35,5 +34,7 @@ public interface ReviewService {
 	int updateStatus(String[] checkedReviewNoList);
 
 	int adSave(Review review);
+
+	List<Review> getReviewListForHome();
 
 }
