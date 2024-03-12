@@ -61,12 +61,12 @@
 		</interceptor>
 		
 		<!-- 관리자페이지 전용 -->
-		<interceptor>
-			<mapping path="/admin/**"/>
+<!-- 		<interceptor> -->
+<!-- 			<mapping path="/admin/**"/> -->
 			
-			<beans:bean id="AdLoginCheckInterceptor"
-						class="com.mealchelin.mvc.common.interceptor.AdLoginCheckInterceptor" />
-		</interceptor>
+<!-- 			<beans:bean id="AdLoginCheckInterceptor" -->
+<!-- 						class="com.mealchelin.mvc.common.interceptor.AdLoginCheckInterceptor" /> -->
+<!-- 		</interceptor> -->
 	</interceptors>
 
 </beans:beans>

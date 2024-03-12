@@ -38,6 +38,11 @@
 		<result property="quantity" column="QUANTITY" />
 	</resultMap>
 	
+	<resultMap id="shoppingBasketViewResultMap"
+		type="ShoppingBasketProduct" extends="shoppingBasketResultMap">
+		<result property="totalPrice" column="TOTAL_PRICE" />
+	</resultMap>
+
 
 
 	<select id="selectByProduct" resultMap="shoppingBasketResultMap"
@@ -68,6 +73,21 @@
 	
 	<select id="selectSbpCountByMemberNo" resultType="_int" parameterType="int">
 		SELECT COUNT(*) FROM SHOPPING_BASKET_PRODUCT WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectSbpAllbyMemNo" parameterType="ShoppingBasketProduct" resultMap="shoppingBasketViewResultMap">
+		SELECT SP.PRD_NO AS PRD_NO,
+		        P.NAME AS NAME,
+		        P.IMAGE AS IMAGE,
+		        P.PRICE AS PRICE,
+		        P.BRAND AS BRAND,
+		        M.MEMBER_NO AS MEMBER_NO,
+		        SP.QUANTITY AS QUANTITY,
+		        SP.TOTAL_PRICE AS TOTAL_PRICE
+		FROM SHOPPING_BASKET_PRODUCT SP
+		JOIN MEMBER M ON SP.MEMBER_NO = M.MEMBER_NO
+		JOIN PRODUCT P ON SP.PRD_NO = P.PRD_NO
+		WHERE M.MEMBER_NO = #{memberNo}
 	</select>
 
 </mapper>

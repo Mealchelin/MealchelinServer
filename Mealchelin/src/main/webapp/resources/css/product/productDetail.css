@@ -132,9 +132,12 @@
     margin: 10px 0 0 10px;
 }
 
-.pd-view-detail-image {
+.pd-view-detail-image img {
     display: block;
     margin: auto;
+	width: 1000px;
+	height: auto;
+
 }
 
 /* 섹션3 교환/환불 정보 */

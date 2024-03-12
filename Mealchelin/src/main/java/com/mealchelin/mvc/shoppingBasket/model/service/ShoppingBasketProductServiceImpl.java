@@ -1,9 +1,13 @@
 package com.mealchelin.mvc.shoppingBasket.model.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketProductMapper;
+import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
 
@@ -52,5 +56,16 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 	}
 	
 	
+
+	@Override
+	public List<ShoppingBasketProduct> getBasketlist(ShoppingBasketProduct shoppingBasketProduct) {
+		return sbpMapper.selectSbpAllbyMemNo(shoppingBasketProduct);
+	}
+
+	@Override
+	public int getPayment(ShoppingBasket shoppingBasket) {
+		return sbpMapper.countPayment(shoppingBasket);
+	}
+
 
 }

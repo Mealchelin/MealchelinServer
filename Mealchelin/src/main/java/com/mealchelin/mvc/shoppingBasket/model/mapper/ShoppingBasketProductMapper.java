@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.mealchelin.mvc.member.model.vo.Member;
+import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
 
@@ -19,5 +21,9 @@ public interface ShoppingBasketProductMapper {
 
 	int selectSbpCountByMemberNo(@Param("memberNo") int memberNo);
 	
+
+	List<ShoppingBasketProduct> selectSbpAllbyMemNo(ShoppingBasketProduct shoppingBasketProduct);
+
+	int countPayment(ShoppingBasket shoppingBasket);
 
 }
