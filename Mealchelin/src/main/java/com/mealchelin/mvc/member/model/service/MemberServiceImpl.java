@@ -282,7 +282,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int getMemberCount() {
-		// TODO Auto-generated method stub
 		return mapper.selectCount();
 	}
 }

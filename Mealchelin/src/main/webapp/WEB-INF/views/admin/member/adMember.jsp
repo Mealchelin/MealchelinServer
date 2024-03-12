@@ -147,18 +147,18 @@
 				</div>
 				<section id="cs-section3">
                            <div class="cs-paging">
-                              <button onclick="location.href='${ path }admin/member/adMember?page=${ pageInfo.prevPage }'">&lt;</button>
-                             <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+                              <button onclick="location.href='${ path }/admin/member/adMember?page=${ pageInfo.prevPage }'">&lt;</button>
+                              <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
                                  <c:choose>
                                     <c:when test="${ current == pageInfo.currentPage }">
                                        <button disabled>${ current }</button>
                                     </c:when>
                                     <c:otherwise>
-                                       <button onclick="location.href='${ path }admin/member/adMember?page=${ current }'">${ current }</button>
+                                       <button onclick="location.href='${ path }/admin/member/adMember?page=${ current }'">${ current }</button>
                                     </c:otherwise>
                                  </c:choose>
-                           </c:forEach>
-                           <button onclick="location.href='${ path }admin/member/adMember?page=${ pageInfo.nextPage }'">&gt;</button>
+                          	  </c:forEach>
+                          	  <button onclick="location.href='${ path }/admin/member/adMember?page=${ pageInfo.nextPage }'">&gt;</button>
                            </div>
                   </section>
 			</main>

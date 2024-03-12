@@ -48,6 +48,7 @@
 	<!-- 모든 회원 조회 -->
 	<select id="selectAll" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
+		 ORDER BY ENROLL_DATE DESC
 	</select>
 	
 	

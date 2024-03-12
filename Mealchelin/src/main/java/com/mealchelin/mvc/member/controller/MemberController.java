@@ -66,10 +66,7 @@ public class MemberController {
 		Member loginMember = service.login(id,password);
 		
 		if (loginMember != null) {
-			String adminYN = loginMember.getRole();
-	        log.info(adminYN);
-			modelAndView.addObject("loginMember",loginMember);
-			modelAndView.addObject("adminYN",adminYN);
+			
 			modelAndView.setViewName("redirect:/");	
 		} else {
 			modelAndView.addObject("msg", "아이디나 비밀번호가 일치하지 않습니다.");
@@ -78,7 +75,7 @@ public class MemberController {
 		}
 		
 		return modelAndView;
-	}
+	} 
 	
 	
 	//로그아웃
