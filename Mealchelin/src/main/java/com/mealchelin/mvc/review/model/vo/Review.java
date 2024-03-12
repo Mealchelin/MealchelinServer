@@ -29,6 +29,8 @@ public class Review {
 	    private int userNo; // 회원 번호
 	    
 	    private Long prdNo; // 상품 번호
+	    
+		private String id; // 회원 아이디
 
 	}
 
