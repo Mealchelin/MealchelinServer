@@ -19,6 +19,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.common.util.PageInfo;
+import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.service.ReviewService;
@@ -47,9 +48,9 @@ public class AdminReviewController {
 		
 		log.info(modelAndView.toString());
 
-		reviewCount = service.getReviewCount();
+		reviewCount = service.getAdminReviewCount();
 		pageInfo = new PageInfo(page, 5, reviewCount, 12);
-		list = service.getReviewList(pageInfo);
+		list = service.getAdminReviewList(pageInfo);
 		
 
 		modelAndView.addObject("pageInfo", pageInfo);
@@ -82,4 +83,55 @@ public class AdminReviewController {
 	    
 	    return ResponseEntity.ok(map);
 	  }
+	
+	@PostMapping("/exposure")
+	public ModelAndView adPostEx(ModelAndView modelAndView,
+			@RequestParam(value="ad_review_chk", required=false) List<Integer> reviewList) {
+		if(reviewList == null) {
+			modelAndView.addObject("msg", "노출 여부가 실패하였습니다.");
+			modelAndView.addObject("location", "/admin/review/adReview");			
+		} else {
+			for(Integer no : reviewList) {
+				if(no != null) {
+					Review review= service.getReviewByNo(no);
+					if (review != null) {
+						review.setStatus("Y");
+						service.adSave(review);
+					}
+				}
+			}
+			modelAndView.addObject("msg", "선택한 데이터를 노출하였습니다.");
+			modelAndView.addObject("location", "/admin/review/adReview");			
+		}
+		
+		modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
+	}
+
+	
+	@PostMapping("/nonExposure")
+	public ModelAndView adPostNonEx(ModelAndView modelAndView,
+			@RequestParam(value="ad_review_chk", required=false) List<Integer> reviewList) {
+		if(reviewList == null) {
+			modelAndView.addObject("msg", "노출 여부가 실패하였습니다.");
+			modelAndView.addObject("location", "/admin/review/adReview");			
+		} else {
+			for(Integer no : reviewList) {
+				if(no != null) {
+					Review review= service.getReviewByNo(no);
+					if (review != null) {
+						review.setStatus("N");
+						service.adSave(review);
+					}
+				}
+			}
+			modelAndView.addObject("msg", "선택한 데이터를 비노출하였습니다.");
+			modelAndView.addObject("location", "/admin/review/adReview");			
+		}
+		
+		modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
+	}
 }

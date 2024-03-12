@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.common.util.PageInfo;
+import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.vo.MemberDTO;
@@ -34,6 +35,23 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		
 		return mapper.getReviewCount();
+	}
+	
+	@Override
+	public int getAdminReviewCount() {
+		
+		
+		return mapper.getAdminReviewCount();
+	}
+	
+	@Override
+	public List<Review> getAdminReviewList(PageInfo pageInfo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		return mapper.adminSelectAll(rowBounds);
 	}
 
 	@Override
@@ -95,6 +113,30 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.updateStatus(checkedReviewNoList);
 		
 	  }
+
+	@Override
+	public int adSave(Review review) {
+		return mapper.updateAdReview(review);
+	}
+
+
+//	@Override
+//	@Transactional
+//	public void adSave(Review review) {
+//		int result = 0;
+//		
+//		if (review.getReviewNo() > 0) {
+//			// update
+//			result = mapper.updateAdSupport(review);
+//		} else {
+//			// insert
+//			result = mapper.insertAdSupport(review);
+//		}
+//		
+//		return result;
+//		
+//		
+//	}
 
 
 	

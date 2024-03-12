@@ -227,14 +227,14 @@
 		$(document).ready(() => {
 			$('#exposeData').on('click', () => {
 				if (confirm('선택한 데이터들을 노출하시겠습니까?')) {
-					$('#exposureForm').attr('action', '${path}/admin/post/exposure');
+					$('#exposureForm').attr('action', '${path}/admin/review/exposure');
 					$('#exposureForm').submit();
 				}
 			});
 			
 			$('#nonExposeData').on('click', () => {
 				if (confirm('선택한 데이터들을 비노출하시겠습니까?')) {
-					$('#exposureForm').attr('action', '${path}/admin/post/nonExposure');
+					$('#exposureForm').attr('action', '${path}/admin/review/nonExposure');
 					$('#exposureForm').submit();
 				}
 			});
