@@ -38,7 +38,7 @@
         	<form action="" method="get">
 	            <h3 class="mytitle">장바구니</h3>
 	            <div class="myToptext">
-	                <input type="checkbox" name="mychecker" id="mycheckerAll" class="mychecker"><label for="mycheckerAll">전체선택</label>
+	                <!-- <input type="checkbox" name="mychecker" id="mycheckerAll" class="mychecker"><label for="mycheckerAll">전체선택</label> -->
 	            </div>
 	            <div class="myAllBox">
 	                <!-- 왼쪽 장바구니 리스트-->
@@ -53,7 +53,7 @@
 			            	<c:if test="${ not empty list }">
 	            				<c:forEach var="sbp" items="${ list }">
 		                        <tr class="mytr">
-		                            <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker" value="${ sbp.prdNo }" class="mychecker"><label for="mychecker"></label></td>
+		                            <%-- <td class="mytd1"><input type="checkbox" name="mychecker" id="mychecker" value="${ sbp.prdNo }" class="mychecker"><label for="mychecker"></label></td> --%>
 		                            <td class="mytd2"><img src="${path}/img/product/${sbp.image}" width="92px" alt="음식사진"></td>
 		                            <td class="mytd3"><a href="#"><div class="myProductName"> [${ sbp.brand }] ${ sbp.name } </div></a></td>
 		                            <td class="mytd4">
