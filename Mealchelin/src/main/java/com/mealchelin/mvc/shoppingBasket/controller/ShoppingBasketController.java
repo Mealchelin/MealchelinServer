@@ -28,15 +28,15 @@ public class ShoppingBasketController {
 		shoppingBasketProduct.setMemberNo(loginMember.getMemberNo());
 		shoppingBasket.setMemberNo(loginMember.getMemberNo());
 		
-		Map<String, Object> map = new HashMap<>();
+//		Map<String, Object> map = new HashMap<>();
 		List<ShoppingBasketProduct> list = null;
 		
 		list = service.getBasketlist(shoppingBasketProduct);
 		
-		int payment = service.getPayment(shoppingBasket);
+//		int payment = service.getPayment(shoppingBasket);
 		
-		map.put("list", list);
-		map.put("payment", payment);
+//		map.put("list", list);
+//		map.put("payment", payment);
 		
 		modelAndView.addObject("list", list);
 		modelAndView.setViewName("mypage/shoppingBasket");
