@@ -7,7 +7,9 @@ import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 @Mapper
 public interface ShoppingBasketMapper {
 	
-	int insertShoppingBasket(ShoppingBasket shoppingBasket);
+	int insertShoppingBasket(int memberNo);
 	
 	int findShoppingBasketProduct();
+	
+	ShoppingBasket selectGetBasket(int memberNo);
 }

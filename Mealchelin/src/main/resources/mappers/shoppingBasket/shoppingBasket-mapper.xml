@@ -8,11 +8,11 @@
 	<resultMap  id="shoppingBasketResultMap" type="ShoppingBasket">
 		<id property="memberNo" column="MEMBER_NO"/>
 		<result property="payment" column="PAYMENT"/>
-		<result property="shipNo" column="SHIP_NO"/>	
+		<result property="shoppingBasketNo" column="SHOPPING_BASKET_NO"/>	
 	</resultMap>
 
-	<insert id="insertShoppingBasket" parameterType="ShoppingBasket"
-		useGeneratedKeys="true" keyColumn="MEMBER_NO" keyProperty="memberNo">		
+	<insert id="insertShoppingBasket" parameterType="_int"
+			useGeneratedKeys="true" keyProperty="memberNo" keyColumn="MEMBER_NO">		
 		INSERT INTO SHOPPING_BASKET (
 			MEMBER_NO
 		) VALUES (
@@ -20,6 +20,14 @@
 		)
 	</insert>
 	
+	<select id="selectGetBasket" resultMap="shoppingBasketResultMap" parameterType="_int">
+		SELECT MEMBER_NO,
+			   SHOPPING_BASKET_NO,
+			   PAYMENT
+		FROM SHOPPING_BASKET
+		WHERE MEMBER_NO = #{memberNo}
+
+	</select>
 	
 	
 	

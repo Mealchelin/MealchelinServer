@@ -13,6 +13,6 @@ public class ShoppingBasket {
 		
 		private int payment;
 		
-		private int shipNo;
+		private int shoppingBasketNo;
 
 }

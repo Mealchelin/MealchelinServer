@@ -119,7 +119,7 @@ public class MemberController {
 			// 회원 가입 후 장바구니 만들기
 			shoppingBasket.setMemberNo(member.getMemberNo());
 			
-			sbresult = shoppingBasketService.save(shoppingBasket);
+			sbresult = shoppingBasketService.save(member.getMemberNo());
 			
 			// 회원 가입 후 배송지 관리 만들기
 			shippingLocation.setMemberNo(member.getMemberNo());			
@@ -294,25 +294,37 @@ public class MemberController {
 			System.out.println("###email#### : " + userInfo.getEmail());
 			System.out.println("###phone_number#### : " + userInfo.getPhone());
 			
-			// 장바구니 같이 만들기.
-			shoppingBasket.setMemberNo(userInfo.getMemberNo());
 			
-			sbresult = shoppingBasketService.save(shoppingBasket);
+			ShoppingBasket shoppingResult = null;
 			
-			// 배송지 같이 만들기
-			shippingLocation.setMemberNo(userInfo.getMemberNo());			
-			shippingLocation.setShipName(userInfo.getName());
-			shippingLocation.setRecipient(userInfo.getName());
-			shippingLocation.setPhone(userInfo.getPhone());
-					
-			slresult = shippingLocationService.save(shippingLocation);
+			shoppingResult = shoppingBasketService.getBasket(userInfo.getMemberNo());
 			
-			System.out.println(session.getAttribute("loginMember"));
+			System.out.println(shoppingResult);
 			
-			model.addAttribute("msg", "회원 정보 수정 후 이용해주세요!");
-	        model.addAttribute("location", "/mypage/updateMember");
+			if (shoppingResult == null) {
+				
+				// 배송지 같이 만들기
+				shippingLocation.setMemberNo(userInfo.getMemberNo());			
+				shippingLocation.setShipName(userInfo.getName());
+				shippingLocation.setRecipient(userInfo.getName());
+				shippingLocation.setPhone(userInfo.getPhone());
+				
+				slresult = shippingLocationService.save(shippingLocation);
+				
+				// 장바구니 같이 만들기.
+				shoppingBasket.setMemberNo(userInfo.getMemberNo());
+				sbresult = shoppingBasketService.save(userInfo.getMemberNo());
+				
+				System.out.println(session.getAttribute("loginMember"));
+				
+				model.addAttribute("msg", "회원 정보 수정 후 이용해주세요!");
+				model.addAttribute("location", "/mypage/updateMember");
+				return "common/msg";
+			} else {
+				
+				return "redirect:/";
+			}
 							
-			return "common/msg";
 	            
 	   }
 }
