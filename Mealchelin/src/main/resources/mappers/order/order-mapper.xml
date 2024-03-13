@@ -71,19 +71,20 @@ WHERE MEMBER_NO = #{memberNo}
  <id property="orderNo" column="ORDER_NO"/>
     <result property="memberNo" column="MEMBER_NO"/>
     <result property="paymentMethod" column="PAYMENT_METHOD"/>
-    <result property="payment" column="PAYMENT"/>
+    <result property="payMent" column="PAYMENT"/>
     <result property="orderDate" column="ORDER_DATE"/>
     <result property="shipStatus" column="SHIP_STATUS"/>
     <result property="orderMembers" column="ORDERS_NUMBERS"/>
     <result property="name" column="PRODUCT_NAME"/>
     <result property="brand" column="BRAND"/>
     <result property="prdNo" column="PRD_NO"/>
+    <result property="image" column="IMAGE"/>
 </resultMap>
 
 
 
-<select id="selectProductPayResultset" parameterType="list" resultMap="selectProductPayResultMap">
-    SELECT 
+<select id="selectProductPayResultset" parameterType="map" resultMap="selectProductPayResultMap">
+SELECT 
         O.ORDER_NO,
         O.MEMBER_NO,
         O.PAYMENT_METHOD,
@@ -93,7 +94,8 @@ WHERE MEMBER_NO = #{memberNo}
         O.ORDERS_NUMBERS,
         P.NAME AS PRODUCT_NAME,
         P.BRAND,
-        P.PRD_NO
+        P.PRD_NO,
+        P.IMAGE
     FROM 
         ORDERS O
     JOIN 
@@ -101,9 +103,12 @@ WHERE MEMBER_NO = #{memberNo}
     JOIN 
         PRODUCT P ON OP.PRD_NO = P.PRD_NO
     WHERE 
-        O.ORDER_NO = #{orderNo}
-        AND ROWNUM = 1;
+        O.MEMBER_NO = #{memberNo}  -- 해당 사용자의 주문만 가져오도록 변경
+    ORDER BY 
+        O.ORDER_DATE DESC
 </select>
+
+
 
 
 

@@ -240,27 +240,25 @@ public class PayController {
 	}
 	
 	
-	//주문내역페이지
 	@GetMapping("/mypage/payInquiry")
-	public ModelAndView payInquiry(ModelAndView modelAndView,
-	  @SessionAttribute("loginMember") Member loginMember) {
-		
-		List<Orders >orders = null;
+	public ModelAndView payInquiry(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember) {
 
-	    System.out.println("loginMember : " + loginMember);
+	    List<Orders> orders = null;
 
-		// 주문 번호 리스트를 통해 주문 정보를 가져옵니다.
-	    orders =  orderService.getOrderPayResult();
-	    
-	    
+	    // getOrderPayResult 메서드를 호출하여 마지막 주문 1건을 가져옵니다.
+	    orders = orderService.selectProductPayResultset();
 
-	    log.info("#########$#######################################={}",orders);
+	    // 로그에 주문 목록을 출력합니다.
+	    log.info("Orders: {}", orders);
 
-	    modelAndView.addObject("orders", orders.get(0));
+	    // ModelAndView에 주문 목록을 추가하고, 뷰 이름을 설정하여 반환합니다.
+	    modelAndView.addObject("orders", orders);
 	    modelAndView.setViewName("mypage/payInquiry");
 
 	    return modelAndView;
 	}
+
+
 
 
 	
