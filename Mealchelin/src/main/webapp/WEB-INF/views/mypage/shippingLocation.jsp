@@ -37,104 +37,84 @@
         <jsp:include page="mypageHeaderBox.jsp"/>
         <section>
             <h3 class="myadress">배송지 관리</h3>
-            <div class="mytableDiv">
-                <table class="mytatble" style="margin: 0 auto; width: 1028px;">
-                    <colgroup>
-                    <col style="width: 44px">
-                    <col style="width: 95px">
-                    <col style="width: 460px">
-                    <col style="width: 33px">
-                    <col style="width: 32px">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <td class="mytable_check" rowspan="5"><input type="checkbox" id="myaddressNow" name="myaddressCheckbox"><label for="myaddressNow"></label></td>
-                            <td class="mytable_type" rowspan="5">기본 배송지</td>
-                            <td class="mytable_name">이주연</td>
-                            <td class="mytable_update" rowspan="5"><button class="myaddress_update"><img src="../img/all/write.png" alt="펜"></button></td>
-                            <td class="mytable_delete" rowspan="5"><button class="myaddress_delete"><img src="../img/all/x.png" alt="x"></button></td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_number">01012341234</td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_addressNumber">192-12</td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_address">서울 중구 남대문로 120</td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_addressDetail">대일빌딩 2층</td>
-                        </tr>
-                    
-                    </tbody>
-                </table>              
-            </div>
-            <div class="mytableDiv">
-                <table class="mytatble" style="margin: 0 auto; width: 1028px;">
-                    <colgroup>
-                    <col style="width: 44px">
-                    <col style="width: 95px">
-                    <col style="width: 460px">
-                    <col style="width: 33px">
-                    <col style="width: 32px">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <td class="mytable_check" rowspan="5"><input type="checkbox" id="myaddress1" name="myaddressCheckbox"><label for="myaddress1"></label></td>
-                            <td class="mytable_type" rowspan="5">배송지 1</td>
-                            <td class="mytable_name">손연희</td>
-                            <td class="mytable_update" rowspan="5"><button class="myaddress_update"><img src="../img/all/write.png" alt="펜"></button></td>
-                            <td class="mytable_delete" rowspan="5"><button class="myaddress_delete"><img src="../img/all/x.png" alt="x"></button></td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_number">01012341234</td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_addressNumber">192-12</td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_address">서울 중구 남대문로 120</td>
-                        </tr>
-                        <tr>
-                            <td class="mytable_addressDetail">대일빌딩 2층</td>
-                        </tr>        
-                    </tbody>
-                </table>              
-            </div>
+            <button class="myform_submit">기본 배송지로 등록</button>
+            <c:forEach var="shippingLocation" items="${ list }">
+	            <div class="mytableDiv">
+	                <table class="mytatble" style="margin: 0 auto; width: 1028px;">
+	                    <colgroup>
+	                    <col style="width: 44px">
+	                    <col style="width: 95px">
+	                    <col style="width: 460px">
+	                    <col style="width: 33px">
+	                    <col style="width: 32px">
+	                    </colgroup>
+	                    <tbody>
+	                        <tr>
+	                            <td class="mytable_check" rowspan="5"><input type="checkbox" id="myaddressNow" name="myaddressCheckbox"><label for="myaddressNow"></label></td>
+	                            <td class="mytable_type" rowspan="5">${ shippingLocation.shipName }</td>
+	                            <td class="mytable_name">${ shippingLocation.recipient }</td>
+	                            <td class="mytable_update" rowspan="5"><button class="myaddress_update"><img src="../img/all/write.png" alt="펜"></button></td>
+	                            <td class="mytable_delete" rowspan="5">
+		                            <form action="${ path }/mypage/shippingLocation/delete" method="post">
+		                            	<input type="hidden" name="shipNo" value="${ shippingLocation.shipNo }">
+			                            <button type="submit" class="myaddress_delete">
+	                            			<img src="../img/all/x.png" alt="x">
+	                            		</button>
+		                            </form>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <td class="mytable_number">${ shippingLocation.phone }</td>
+	                        </tr>
+	                        <tr>
+	                            <td class="mytable_addressNumber">${ shippingLocation.postalCode }</td>
+	                        </tr>
+	                        <tr>
+	                            <td class="mytable_address">${ shippingLocation.shipAddress }</td>
+	                        </tr>
+	                        <tr>
+	                            <td class="mytable_addressDetail">${ shippingLocation.shipAddressDetail }</td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+	            </div>
+            </c:forEach>
             
             <!-- 배송지 추가하기-->
             <div class="mytable_input">
-                <form action="" method="post">
+                <form action="${ path }/mypage/shippingLocation" method="post">
                     <table class="mytatble mytable_inputTable" style="margin: 0 auto; width: 1028px;">
                         <tbody>
                             <tr>
                                 <td>배송지 등록</td>
                             </tr>
                             <tr>
-                                <td class="mytable_inputName mytable_inputTd"><input type="text" name="myaddress_name" placeholder="이름을 입력하세요" required></td>
+                                <td class="mytable_inputName mytable_inputTd"><input type="text" name="shipName" placeholder="배송지명을 입력하세요" required></td>
                             </tr>
                             <tr>
-                                <td class="mytable_inputNumber mytable_inputTd"><input type="text" name="myaddress_phone" id="myaddress_phone" placeholder=" -빼고, 전화번호를 입럭하세요" required></td>
+                                <td class="mytable_inputName mytable_inputTd"><input type="text" name="recipient" placeholder="수취인명을 입력하세요" required></td>
                             </tr>
                             <tr>
-                                <td class="mytable_inputAddressNumber mytable_inputTd"><input type="text" name="mymaddress_1" id="mymaddress_1" placeholder="우편 번호" readonly required>
+                                <td class="mytable_inputNumber mytable_inputTd"><input type="text" name="phone" id="myaddress_phone" placeholder=" -빼고, 전화번호를 입력하세요" required></td>
+                            </tr>
+                            <tr>
+                                <td class="mytable_inputAddressNumber mytable_inputTd"><input type="text" name="postalCode" id="mymaddress_1" placeholder="우편 번호" readonly required>
                                 <button class="mytable_inputButton" type="button">우편 번호 검색 </button></td>
                             </tr>
                             <tr>
-                                <td class="mytable_inputAddress mytable_inputTd"><input type="text" name="myaddress_2" id="myaddress_2" placeholder="주소" readonly required></td>
+                                <td class="mytable_inputAddress mytable_inputTd"><input type="text" name="shipAddress" id="myaddress_2" placeholder="주소" readonly required></td>
                             </tr>
                             <tr>
-                                <td class="mytable_inputAddressDetail mytable_inputTd"><input type="text" name="myaddress_detail" id="myaddress_detail" placeholder="세부 주소를 입력하세요" required></td>
+                                <td class="mytable_inputAddressDetail mytable_inputTd"><input type="text" name="shipAddressDetail" id="myaddress_detail" placeholder="세부 주소를 입력하세요" required></td>
                             </tr>
                             <tr>
                                 <td><input type="submit" class="mytable_inputSubmit" value="배송지 추가하기"></td>
                             </tr>
                         </tbody>
                     </table>    
-                    <button class="myform_submit">기본 배송지로 등록</button>          
                 </form>
             </div>
+               
         </section>
     </main>
     
@@ -146,6 +126,7 @@
     <!-- 필요한 js 밑에 추가-->
     <script type="text/javascript" src="${ path }/js/index.js"></script>
     <script type="text/javascript" src="${ path }/js/mypage/shippingLocation.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </body>
 
 </html>
