@@ -43,14 +43,21 @@
 	<!-- 회원 수 구하기 -->
 	<select id="selectCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
+		<if test="!name.equals('')">
+			WHERE ID LIKE '%' || #{name} || '%'
+		 	OR NAME LIKE '%' || #{name} || '%'
+		</if>
 	</select>
 	
 	<!-- 모든 회원 조회 -->
 	<select id="selectAll" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
+		<if test="!name.equals('')">
+			WHERE ID LIKE '%' || #{name} || '%'
+		 	OR NAME LIKE '%' || #{name} || '%'
+		</if>
 		 ORDER BY ENROLL_DATE DESC
 	</select>
-	
 	
 	<select id="selectMemberById" parameterType="String" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>

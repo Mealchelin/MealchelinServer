@@ -24,14 +24,17 @@ public class AdminMemberController {
 	private final MemberService memberService;
 	
 	@GetMapping("/adMember")
-	public ModelAndView adMember(ModelAndView modelAndView, @RequestParam(defaultValue = "1") int page) {
+	public ModelAndView adMember(ModelAndView modelAndView, 
+								 @RequestParam(defaultValue = "1") int page,
+								 @RequestParam(defaultValue="", name = "ad_memberSearch") String name
+								 ) {
 		int listCount = 0;
 		PageInfo pageInfo = null;
 		List<Member> list = null;
 		
-		listCount = memberService.getMemberCount();
+		listCount = memberService.getMemberCount(name);
 		pageInfo = new PageInfo(page, 10, listCount, 10);
-		list = memberService.getMemberList(pageInfo);
+		list = memberService.getMemberList(pageInfo, name);
 		
 		log.info("List : {}", list);
 		log.info("#############ListCount : {}", listCount);

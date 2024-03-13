@@ -97,6 +97,7 @@ input::-webkit-search-cancel-button {
 
 .myGrayboxLeft p {
     display: inline-block;
+	vertical-align: super;
 }
 
 

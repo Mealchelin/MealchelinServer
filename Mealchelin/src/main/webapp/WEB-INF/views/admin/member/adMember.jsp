@@ -110,7 +110,7 @@
 					<h1 class="h3 mb-3" style="font-weight: 600;">회원 관리</h1>
                     <form style="display: flex;">
                         <div class="col-12 col-lg-4">
-                            <input type="search" name="ad_memberSearch" id="ad_memberSearch" class="form-control mb-4" placeholder="아이디를 입력하세요." style="font-size: 13px;">
+                            <input type="search" name="ad_memberSearch" id="ad_memberSearch" class="form-control mb-4" placeholder="아이디 또는 이름을 입력하세요." style="font-size: 13px;">
                         </div>
                         <div class="col-12 col-lg-4" style="margin-left:10px;">
                             <input type="submit" value="검색" class="btn btn-secondary" style="font-size: 13px;">
@@ -130,6 +130,7 @@
 										</tr>
 									</thead>
 									<tbody>
+									<c:if test="${ not empty list }">
 									<c:forEach var="member" items="${ list }">
 										<tr style="cursor: pointer;" onclick="window.open('${ path }/admin/member/edit?no=${ member.memberNo }', '_blank', 'width=700, height=550'); return false;">
 											<td>${ member.name }</td>
@@ -139,6 +140,12 @@
                                             <td class="d-none d-xl-table-cell"><fmt:formatDate value="${ member.enrollDate }" pattern="yyyy.MM.dd"/></td>
 										</tr>
 									</c:forEach>
+									</c:if>
+									<c:if test="${ empty list }">
+										<tr>
+											<td colspan="5">조회 결과가 없습니다.</td>
+										</tr>
+									</c:if>
 									</tbody>
 								</table>
 							</div>

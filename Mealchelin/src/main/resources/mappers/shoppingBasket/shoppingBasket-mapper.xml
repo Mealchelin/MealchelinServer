@@ -11,11 +11,12 @@
 		<result property="shoppingBasketNo" column="SHOPPING_BASKET_NO"/>	
 	</resultMap>
 
-	<insert id="insertShoppingBasket" parameterType="_int"
-			useGeneratedKeys="true" keyProperty="memberNo" keyColumn="MEMBER_NO">		
+	<insert id="insertShoppingBasket" parameterType="_int">		
 		INSERT INTO SHOPPING_BASKET (
+			SHOPPING_BASKET_NO,
 			MEMBER_NO
 		) VALUES (
+			SEQ_SHOP_NO.NEXTVAL,
 			#{memberNo}
 		)
 	</insert>
@@ -26,7 +27,6 @@
 			   PAYMENT
 		FROM SHOPPING_BASKET
 		WHERE MEMBER_NO = #{memberNo}
-
 	</select>
 	
 	
