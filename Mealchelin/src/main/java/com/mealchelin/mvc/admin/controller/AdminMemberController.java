@@ -48,10 +48,22 @@ public class AdminMemberController {
 	}
 	
 	@GetMapping("/edit")
-	public ModelAndView adMemberEdit(ModelAndView modelAndView) {
+	public ModelAndView adMemberEdit(ModelAndView modelAndView,
+									 @RequestParam int no) {
 		
+		Member member = memberService.getAdminMemberByNo(no);
+		
+		System.out.println(member);
+		
+		modelAndView.addObject("member", member);
 		modelAndView.setViewName("admin/member/edit");
 		
 		return modelAndView;
 	}
+	
+	
+	
+	
+	
+	
 }

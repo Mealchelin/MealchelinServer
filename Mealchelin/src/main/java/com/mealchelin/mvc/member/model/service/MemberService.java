@@ -33,6 +33,8 @@ public interface MemberService {
 
 	List<Member> getMemberList(PageInfo pageInfo, String name);
 
+	Member getAdminMemberByNo(int no);
+
 
 
 

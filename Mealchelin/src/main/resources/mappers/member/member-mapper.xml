@@ -160,4 +160,10 @@
 		#{phone_number}
 		)
 	</insert>
+	
+	<select id="selectAdminMemberByNo" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE MEMBER_NO = #{no}
+	</select>
+	
 </mapper>

@@ -284,6 +284,12 @@ public class MemberServiceImpl implements MemberService {
 	public int getMemberCount(String name) {
 		return mapper.selectCount(name);
 	}
+
+	@Override
+	public Member getAdminMemberByNo(int no) {
+		
+		return mapper.selectAdminMemberByNo(no);
+	}
 }
 
 
