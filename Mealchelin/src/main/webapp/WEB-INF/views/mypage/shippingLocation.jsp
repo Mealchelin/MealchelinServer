@@ -38,7 +38,7 @@
         <section>
             <h3 class="myadress">배송지 관리</h3>
             <button class="myform_submit">기본 배송지로 등록</button>
-            <c:forEach var="shippingLocation" items="${ list }">
+            <c:forEach var="shippingLocation" items="${ list }" varStatus="st">
 	            <div class="mytableDiv">
 	                <table class="mytatble" style="margin: 0 auto; width: 1028px;">
 	                    <colgroup>
@@ -50,7 +50,7 @@
 	                    </colgroup>
 	                    <tbody>
 	                        <tr>
-	                            <td class="mytable_check" rowspan="5"><input type="checkbox" id="myaddressNow" name="myaddressCheckbox"><label for="myaddressNow"></label></td>
+	                            <td class="mytable_check" rowspan="5"><input type="checkbox" id="myaddressNow${ st.index }" class="myCheckBoxs" name="myaddressNow"><label for="myaddressNow${ st.index }"></label></td>
 	                            <td class="mytable_type" rowspan="5">${ shippingLocation.shipName }</td>
 	                            <td class="mytable_name">${ shippingLocation.recipient }</td>
 	                            <td class="mytable_update" rowspan="5"><button class="myaddress_update"><img src="../img/all/write.png" alt="펜"></button></td>
@@ -127,6 +127,22 @@
     <script type="text/javascript" src="${ path }/js/index.js"></script>
     <script type="text/javascript" src="${ path }/js/mypage/shippingLocation.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+	  document.addEventListener('DOMContentLoaded', function () {
+	    var checkboxes = document.querySelectorAll('.myCheckBoxs');
+	
+	    checkboxes.forEach(function (checkbox) {
+	      checkbox.addEventListener('click', function () {
+	        // 모든 체크박스의 체크를 해제
+	        checkboxes.forEach(function (otherCheckbox) {
+	          if (otherCheckbox !== checkbox) {
+	            otherCheckbox.checked = false;
+	          }
+	        });
+	      });
+	    });
+	  });
+	</script>
 </body>
 
 </html>
