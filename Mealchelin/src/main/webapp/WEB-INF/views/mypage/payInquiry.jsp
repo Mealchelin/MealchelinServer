@@ -77,28 +77,26 @@
                         <div class="pay_ProductImg">
                             <a href="../img/new_01.jpg"><img src="../img/new_01.jpg" class="pay_ProductImgArea"></a>
                         </div>
-                        <c:forEach var="order" items="${orders}">
 					            <div class="pay_ProductInfo">
 					                <table class="pay_table">
 					                    <tr>
 					                        <td>상품명</td>
-					                        <td class="pay_subName">${order.name}</td>
+					                        <td class="pay_subName">${orders.name}</td>
 					                    </tr>
 					                    <tr>
 					                        <td>주문번호</td>
-					                        <td class="pay_subName">${order.orderMembers}</td>
+					                        <td class="pay_subName">${orders.orderMembers}</td>
 					                    </tr>
 					                    <tr>
 					                        <td>결제방법</td>
-					                        <td class="pay_subName">${order.paymentMethod}</td>                              
+					                        <td class="pay_subName">${orders.paymentMethod}</td>                              
 					                    </tr>
 					                    <tr>
 					                        <td>결제금액</td>
-					                        <td class="pay_subName">${order.payMent}원</td>
+					                        <td class="pay_subName">${orders.payMent}원</td>
 					                    </tr>
 					                </table>
 					            </div>
-					        </c:forEach>
                         <div class="pay_ProductResult">
                             <p>
                                 배송완료

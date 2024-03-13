@@ -57,11 +57,17 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.updateProductResultset(map);
 	}
 
-	
 
-	
-	
-	
+
+	@Override
+	public List<Orders> getOrderPayResult() {
+		return orderMapper.selectProductPayResultset();
+	}
+
+
+
+
+
 	
 	
 }

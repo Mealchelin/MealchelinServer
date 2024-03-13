@@ -45,6 +45,7 @@ public class PayController {
 	private final OrderService orderService;
 	private final OrderProductService  orderProductService;
 
+	
 	@GetMapping("/payment/directpay")
 	public ModelAndView directment(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember,
 			@RequestParam int no, @RequestParam int quantity) {
@@ -119,6 +120,7 @@ public class PayController {
 
 	
 	//order_product 에 insert 하는 ajax 요청
+	// 장바구니 결제
 	@PostMapping("/payment/saveOrderProduct")
 	public ModelAndView saveOrderProduct(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
 			HttpSession session) {
@@ -145,16 +147,34 @@ public class PayController {
 			tempOrderProduct.setQuantity(quantity);
 			tempOrderProduct.setTotalPrice(price);
 			
+			// 객체
+			System.out.println("tempOrderProduct : " +  tempOrderProduct);
+			
+			// 객체의 리스트
 			OrderProducts.add(tempOrderProduct);
+			
 		}
-		int result = payInfoService.saveOrderProduct(OrderProducts);
+		
+		int result = 0;
+		for(int i = 0; i < OrderProducts.size(); i++) {
+			System.out.println("test : " + OrderProducts.get(i));
+			
+			result = payInfoService.saveOrderProduct(OrderProducts.get(i));
+		}
+		
+//		System.out.println("OrderProducts : " + OrderProducts);
+		
+		
 		
 		modelAndView.addObject("result",result);
 		
 		return modelAndView;
 	}
-		@PostMapping("/payment/paysucces")
-		public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
+	
+	
+	// 단일 상품 결재
+	@PostMapping("/payment/paysucces")
+	public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
 				HttpSession session) {
 		// 세션에서 로그인한 회원 정보 가져오기
 		Member member = (Member) session.getAttribute("loginMember");
@@ -210,23 +230,8 @@ public class PayController {
 		return modelAndView;
 	}
 
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	//결제완료페이지 
 	@GetMapping("/payment/paysucces")
 	public ModelAndView paySuccessView(ModelAndView modelAndView) {
 		modelAndView.setViewName("payment/paysucces");
@@ -235,25 +240,42 @@ public class PayController {
 	}
 	
 	
-	
-	
-	
-	
-	
-
+	//주문내역페이지
 	@GetMapping("/mypage/payInquiry")
-	public ModelAndView paylnquiry(ModelAndView modelAndView, @RequestParam int memberNo) {
+	public ModelAndView payInquiry(ModelAndView modelAndView,
+	  @SessionAttribute("loginMember") Member loginMember) {
+		
+		List<Orders >orders = null;
 
-		List<Orders> orders = orderService.getOrderProductResultset(memberNo);
+	    System.out.println("loginMember : " + loginMember);
 
-		log.info("############## = {}", orders);
+		// 주문 번호 리스트를 통해 주문 정보를 가져옵니다.
+	    orders =  orderService.getOrderPayResult();
 
-		modelAndView.setViewName("mypage/payInquiry");
-		modelAndView.addObject("orders", orders);
+	    log.info("#########$#######################################={}",orders);
 
-		return modelAndView;
+	    modelAndView.addObject("orders", orders);
+	    modelAndView.setViewName("mypage/payInquiry");
+
+	    return modelAndView;
 	}
 
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/mypage/payDetails")
 	public ModelAndView payDetails(ModelAndView modelAndView) {
 

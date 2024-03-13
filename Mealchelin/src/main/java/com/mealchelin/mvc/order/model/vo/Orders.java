@@ -47,9 +47,12 @@ public class Orders {
 	//상품명 
 	private String name;
 	
+	//상품 번호
+	private int prdNo;
 	
-	
-
 
 
 }
+
+
+

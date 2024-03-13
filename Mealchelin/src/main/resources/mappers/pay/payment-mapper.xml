@@ -32,25 +32,52 @@
 		s.MEMBER_NO = #{memberNo}
 
 	</select>
-	<insert id="insertSaveOrderProduct" parameterType="list">
-		INSERT
-         INTO ORDER_PRODUCT
-       (
-              PRD_NO
-            , ORDER_NO
-            , QUANTITY
-            , TOTAL_PRICE
-       )
-       VALUES
-       <foreach collection="list" item="item" separator=",">
-       (
-              #{item.proNo}
-            , #{item.orderNo}   
-            , #{item.quantity}  
-            , #{item.totalPrice}
-       )
-    </foreach>
+<!-- 	<insert id="insertSaveOrderProduct" parameterType="list"> -->
+<!--     INSERT INTO ORDER_PRODUCT -->
+<!--     ( -->
+<!--         PRD_NO, -->
+<!--         ORDER_NO, -->
+<!--         QUANTITY, -->
+<!--         TOTAL_PRICE -->
+<!--     ) -->
+<!--     VALUES -->
+<!--     <foreach collection="list" item="item" separator=","> -->
+<!--         ( -->
+<!--             #{item.proNo}, -->
+<!--             #{item.orderNo}, -->
+<!--             #{item.quantity}, -->
+<!--             #{item.totalPrice} -->
+<!--         ) -->
+<!--     </foreach> -->
+<!-- </insert> -->
+	<insert id="insertSaveOrderProduct" parameterType="com.mealchelin.mvc.order.model.vo.OrderProduct" >
+	  INSERT INTO ORDER_PRODUCT
+	  (
+	  	PRD_NO,
+	  	ORDER_NO,
+	  	QUANTITY,
+	  	TOTAL_PRICE
+	  )
+	  VALUES
+	  (
+	  	#{proNo},
+	  	#{orderNo},
+	  	#{quantity},
+	  	#{totalPrice}
+	  )
 	</insert>
 
 
+
+
+
 </mapper>
+
+
+
+
+
+
+
+
+

@@ -15,7 +15,7 @@ public interface PaymentMapper {
 
 	void insertPayment(Payment payment);
 
-	int insertSaveOrderProduct(@Param("list") List<OrderProduct> orderProducts);
+	int insertSaveOrderProduct(OrderProduct orderProducts);
 
 	
 

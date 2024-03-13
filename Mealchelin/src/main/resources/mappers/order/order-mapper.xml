@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.mealchelin.mvc.order.model.mapper.OrderMapper">
+	
+	
+	<resultMap id="selectProductResultMap" type="com.mealchelin.mvc.order.model.vo.Orders">
+
+<id property="orderNo" column="ORDER_NO"/>
+<result property="memberNo" column="MEMBER_NO"/>
+<result property="paymentMethod" column="PAYMENT_METHOD"/>
+<result property="payMent" column="PAYMENT"/>
+<result property="orderDate" column="ORDER_DATE"/>
+<result property="name" column="NAME"/>
+<result property="orderMembers" column="ORDERS_NUMBERS"/>
+
+
+</resultMap>
+	
 
 	<insert id="insertOrder" parameterType="com.mealchelin.mvc.order.model.vo.Orders"  
 	useGeneratedKeys="true" keyProperty="orderNo" keyColumn="ORDER_NO">
@@ -28,21 +43,6 @@
 </insert>
 
 
-<resultMap id="selectProductResultMap" type="com.mealchelin.mvc.order.model.vo.Orders">
-
-<id property="orderNo" column="ORDER_NO"/>
-<result property="memberNo" column="MEMBER_NO"/>
-<result property="paymentMethod" column="PAYMENT_METHOD"/>
-<result property="payMent" column="PAYMENT"/>
-<result property="orderDate" column="ORDER_DATE"/>
-<result property="name" column="NAME"/>
-<result property="orderMembers" column="ORDERS_NUMBERS"/>
-
-
-</resultMap>
-
-	
-
 
 <select id="selectProductResultset" resultMap="selectProductResultMap" parameterType="_int">
 
@@ -52,7 +52,6 @@ SELECT
     ORDERS.PAYMENT_METHOD,
     ORDERS.PAYMENT,
     ORDERS.ORDER_DATE,
-    ORDERS.ORDERS_NUMBERS,
     PRODUCT.NAME AS PRODUCT_NAME
 FROM ORDERS
 JOIN PRODUCT ON ORDERS.ORDER_NO = PRODUCT.PRD_NO
@@ -65,6 +64,65 @@ WHERE MEMBER_NO = #{memberNo}
    SET ORDER_NO = #{orderNo}
  WHERE ORDER_NO = #{ordersNumbers}
 </update>
+
+
+<resultMap id="selectProductPayResultMap" type="com.mealchelin.mvc.order.model.vo.Orders">
+
+ <id property="orderNo" column="ORDER_NO"/>
+    <result property="memberNo" column="MEMBER_NO"/>
+    <result property="paymentMethod" column="PAYMENT_METHOD"/>
+    <result property="payment" column="PAYMENT"/>
+    <result property="orderDate" column="ORDER_DATE"/>
+    <result property="shipStatus" column="SHIP_STATUS"/>
+    <result property="orderMembers" column="ORDERS_NUMBERS"/>
+    <result property="name" column="PRODUCT_NAME"/>
+    <result property="brand" column="BRAND"/>
+    <result property="prdNo" column="PRD_NO"/>
+</resultMap>
+
+
+
+<select id="selectProductFirstOrder" parameterType="int" resultMap="selectProductPayResultMap">
+    SELECT 
+        O.ORDER_NO,
+        O.MEMBER_NO,
+        O.PAYMENT_METHOD,
+        O.PAYMENT,
+        O.ORDER_DATE,
+        O.SHIP_STATUS,
+        O.ORDERS_NUMBERS,
+        P.NAME AS PRODUCT_NAME,
+        P.BRAND,
+        P.PRD_NO
+    FROM 
+        ORDERS O
+    JOIN 
+        ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+    JOIN 
+        PRODUCT P ON OP.PRD_NO = P.PRD_NO
+    WHERE 
+        O.ORDER_NO = #{orderNo}
+        AND ROWNUM = 1;
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>
 

@@ -14,4 +14,16 @@ public interface OrderService {
 	int updateOrderProduct(Long ordersNumbers, int orderNo);
 
 
+	List<Orders> getOrderPayResult();
+
+
+
+
+
+
+
+	
+	
+
+
 }

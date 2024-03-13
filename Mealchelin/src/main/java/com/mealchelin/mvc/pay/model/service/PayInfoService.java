@@ -10,6 +10,6 @@ public interface PayInfoService {
 
 	List<Payment> selectByProductPay(int memberNo);
 
-	int saveOrderProduct(List<OrderProduct> orderProducts);
+	int saveOrderProduct(OrderProduct orderProducts);
 
 }

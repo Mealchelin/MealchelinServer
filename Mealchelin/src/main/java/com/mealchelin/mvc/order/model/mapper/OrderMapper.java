@@ -15,6 +15,8 @@ public interface OrderMapper {
     List<Orders> selectProductResultset(int memberNo);
 
 	int updateProductResultset(Map<String, Object> map);
+	
+	List<Orders> selectProductPayResultset();
     
     
 }
