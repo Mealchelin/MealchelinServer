@@ -82,7 +82,7 @@ WHERE MEMBER_NO = #{memberNo}
 
 
 
-<select id="selectProductFirstOrder" parameterType="int" resultMap="selectProductPayResultMap">
+<select id="selectProductPayResultset" parameterType="list" resultMap="selectProductPayResultMap">
     SELECT 
         O.ORDER_NO,
         O.MEMBER_NO,

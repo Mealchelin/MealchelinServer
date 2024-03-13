@@ -251,10 +251,12 @@ public class PayController {
 
 		// 주문 번호 리스트를 통해 주문 정보를 가져옵니다.
 	    orders =  orderService.getOrderPayResult();
+	    
+	    
 
 	    log.info("#########$#######################################={}",orders);
 
-	    modelAndView.addObject("orders", orders);
+	    modelAndView.addObject("orders", orders.get(0));
 	    modelAndView.setViewName("mypage/payInquiry");
 
 	    return modelAndView;

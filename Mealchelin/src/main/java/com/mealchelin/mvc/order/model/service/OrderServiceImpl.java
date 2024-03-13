@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.mapper.OrderMapper;
@@ -60,7 +61,9 @@ public class OrderServiceImpl implements OrderService {
 
 
 	@Override
+	@Transactional
 	public List<Orders> getOrderPayResult() {
+
 		return orderMapper.selectProductPayResultset();
 	}
 
