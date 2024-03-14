@@ -84,7 +84,8 @@
 						</span>
 						 <span class="pay_number" id="pay_number">${item.quantity}개</span> 
 							<span class="pay_paynumber"> <fmt:formatNumber value="${item.price * item.quantity}" type="number" /> 원</span>
-						 <input type="hidden" name="image" value="${item.image}"/> 
+						<input type="hidden" name="prdNo" value="${item.prdNo}"/> 
+						<input type="hidden" name="image" value="${item.image}"/> 
 						 <input type="hidden" name="payFirstName" id="payFirstName" value="${item.name}" /> 
 						 <input type="hidden" name="paysubFirstName" id="paysubFirstName" value="${item.brand}" /> 
 						 <input type="hidden" name="paynumber" id="paynumber" value="${item.quantity}" /> 
