@@ -181,7 +181,7 @@
     	        break;
     	    }
     	}
-    }
+    });
     </script>
 </body>
 
