@@ -13,6 +13,7 @@ import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.service.ReviewService;
+import com.mealchelin.mvc.review.model.vo.MemberProdutOrderList;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -24,19 +25,19 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/mypage")
 public class MyPageReviewController {
 	private ReviewMapper reviewMapper;
-	
+
 	private final ReviewService service;
-	
+
 	@GetMapping("/mypageProductReview")
-	public ModelAndView list(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember , Review review, @RequestParam(defaultValue = "1") int page) {
-		
+	public ModelAndView list(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember, Review review, @RequestParam(defaultValue = "1") int page) {
+
 		review.setUserNo(loginMember.getMemberNo());
-		
+
 		int userNo = review.getUserNo();
 		int reviewCount = 0;
 		PageInfo pageInfo = null;
 		List<Review> list = null;
-		
+
 		reviewCount = service.getReviewCountByuserNo(userNo);
 		pageInfo = new PageInfo(page, 5, reviewCount, 5);
 		list = service.getReviewListByuserNo(pageInfo, userNo);
@@ -51,48 +52,63 @@ public class MyPageReviewController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/writableReview")
+	public ModelAndView mypageWritableReview(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember, MemberProdutOrderList memberProdutOrderList, @RequestParam(defaultValue = "1") int page) {
+
+		int userNo = loginMember.getMemberNo();
+		int reviewCount = 0;
+		PageInfo pageInfo = null;
+		List<MemberProdutOrderList> list = null;
+
+		reviewCount = service.getOrderListCountByUserNo(userNo);
+		pageInfo = new PageInfo(page, 5, reviewCount, 5);
+		list = service.getOrderListByUserNo(pageInfo, userNo);
+		
+//		log.info("page Number : {}", page);
+//		log.info("List Count : {}", reviewCount);
+		
+		modelAndView.addObject("pageInfo", pageInfo);
+		modelAndView.addObject("list", list);
+		modelAndView.setViewName("mypage/writableReview");
+
+		return modelAndView;
+	}
+
 	@GetMapping("/delete")
-	public ModelAndView delete(ModelAndView modelAndView, @RequestParam("no") int no
-			) {
+	public ModelAndView delete(ModelAndView modelAndView, @RequestParam("no") int no) {
 		int result = 0;
-		
-		
+
 		result = service.delete(no);
-			if (result > 0) {
-				modelAndView.addObject("msg", "삭제 성공");
-				modelAndView.addObject("location", "/mypage/mypageProductReview");
-			} else {
-				modelAndView.addObject("msg", "게시글 삭제 실패");
-				modelAndView.addObject("location", "/mypage/mypageProductReview");
-			}
-		
+		if (result > 0) {
+			modelAndView.addObject("msg", "삭제 성공");
+			modelAndView.addObject("location", "/mypage/mypageProductReview");
+		} else {
+			modelAndView.addObject("msg", "게시글 삭제 실패");
+			modelAndView.addObject("location", "/mypage/mypageProductReview");
+		}
 
 		modelAndView.setViewName("common/msg");
 
 		return modelAndView;
 	}
+
 	
 	
-	
-	@GetMapping("/writableReview")
-	public String mypageWritableReview() {
-		
-		
-        return "mypage/writableReview";
-    }
-	
-	
+//	@GetMapping("/writableReview")
+//		public String writableReview() {
+//			
+//		return "mypage/writableReview";
+//	} 
+
 	@GetMapping("/writableReviewEmpty")
 	public String mypageWritableReviewEmpty() {
-		
-		
-        return "mypage/writableReviewEmpty";
-    }
-	
+
+		return "mypage/writableReviewEmpty";
+	}
+
 	@GetMapping("/writtenReviewEmpty")
 	public String mypageWrittenReviewEmpty() {
-		
-		
-        return "mypage/writtenReviewEmpty";
-    }
+
+		return "mypage/writtenReviewEmpty";
+	}
 }

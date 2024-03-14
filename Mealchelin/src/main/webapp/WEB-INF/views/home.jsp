@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="${ path }/slick/slick-theme.css"/>
     
     <script src="${ path }/js/jquery-3.7.1.js"></script>
+    
+    <link rel="stylesheet" href="${ path }/css/review/reviewMain.css" />
 </head>
 <body>
     <!-- 플로팅 배너(TOP버튼)-->
@@ -150,107 +152,41 @@
                 </div>
                 <div class="main_review_list">
                     <!--1 페이지-->
+                    <c:forEach var="review" items="${ review }">
                     <div class="m_review_box">
-                        <a href="">
+                        <a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
                             <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
                             <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요. 정말 맛있어요. 정말 맛있어요. 정말 맛있어요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
+                                <div class="m_review_title">${ review.name }</div>
+                                <div class="m_review_con">${ review.content }</div>
+                                <div class="m_review_star">
+									<c:choose>
+									<c:when test="${ review.rated == 1}">
+										<span class="starR"><span id="re_star">★</span>★★★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 2 }">
+										<span class="starR"><span id="re_star">★★</span>★★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 3}">
+										<span class="starR"><span id="re_star">★★★</span>★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 4}">
+										<span class="starR"><span id="re_star">★★★★</span>★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 5}">
+										<span class="starR"><span id="re_star">★★★★★</span></span>
+									</c:when>
+									<c:otherwise> 
+											<span class="starR"><span class="starR">★</span>★★★★</span>
+									</c:otherwise>
+								</c:choose>
+								</div>
+                                <div class="m_review_date">${ review.rgstrDate }</div>
                             </div>
                         </a>
                     </div>
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <!--2 페이지-->
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요2</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <!--3 페이지-->
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요3</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="m_review_box">
-                        <a href="">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
-                            <div class="m_review_txt">
-                                <div class="m_review_title">너무 맛있어요</div>
-                                <div class="m_review_con">여기서 산 밀키트 중에서 가장 맛있어요. 양도 적당하고 너무 이쁘게 잘 꾸며지네요.</div>
-                                <div class="m_review_star">★★★★★</div>
-                                <div class="m_review_date">2023.03.04</div>
-                            </div>
-                        </a>
-                    </div>
+                    </c:forEach>
+                    
                 </div>
             </div>
         </section>

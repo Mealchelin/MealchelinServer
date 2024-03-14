@@ -106,7 +106,7 @@
 													<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
 													<td><input type="checkbox" class="ad_review_chk" id="ad_review_chk" name="ad_review_chk" value="${ review.reviewNo }"></td>
 													<td>${ review.reviewNo }</td>
-													<td style="cursor: pointer;" onclick="location.href='${ path }/admin/review/edit'">${ review.name }</td>
+													<td style="cursor: pointer;" onclick="location.href='${ path }/admin/review/edit?reviewNo=${ review.reviewNo }'">${ review.name }</td>
 													<td>${ Math.round(review.rated) }/5</td>
 													<td class="d-none d-xl-table-cell">${ review.id }</td>
 													<td class="d-none d-xl-table-cell">${ review.rgstrDate }</td>
