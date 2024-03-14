@@ -71,7 +71,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
-
 	@Override
 	public int getPayListCount() {
 		return orderMapper.selctPayConut();
@@ -79,15 +78,17 @@ public class OrderServiceImpl implements OrderService {
 
 
 
-//	@Override
-//	public List<Orders> getPayListList(PageInfo pageInfo) {
-//		
-//		int limit = pageInfo.getListLimit();
-//		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-//		RowBounds rowBounds = new RowBounds(offset, limit);
-//		
-//		return orderMapper.selectAll(rowBounds);
-//	}
+	@Override
+	public List<Orders> selectPayInfo(int member) {
+		return orderMapper.selectPayInfo(member);
+	}
+
+	@Override
+	public Orders selectPayInfoOne(int orderNo) {
+		return orderMapper.selectPayInfoOne(orderNo);
+	}
+
+
 
 
 

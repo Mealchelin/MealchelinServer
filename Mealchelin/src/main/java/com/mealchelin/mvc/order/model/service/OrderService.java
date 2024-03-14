@@ -21,15 +21,10 @@ public interface OrderService {
 	int getPayListCount();
 
 
-//	List<Orders> getPayListList(PageInfo pageInfo);
+	List<Orders> selectPayInfo(int member);
 
 
-
-
-
-
-
-
+	Orders selectPayInfoOne(int orderNo);
 
 
 

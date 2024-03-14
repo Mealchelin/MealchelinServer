@@ -22,7 +22,9 @@ public interface OrderMapper {
 
 	int selctPayConut();
 
-//	List<Orders> selectAll(RowBounds rowBounds);
     
+	List<Orders> selectPayInfo(int memberNo);
+	
+	Orders selectPayInfoOne(int orderNo);
     
 }

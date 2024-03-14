@@ -240,6 +240,7 @@ public class PayController {
 		return modelAndView;
 	}
 	
+	
 	//주문내역페에지
 	@GetMapping("/mypage/payInquiry")
 	public ModelAndView payInquiry(ModelAndView modelAndView,
@@ -265,10 +266,6 @@ public class PayController {
 	    // getOrderPayResult 메서드를 호출하여 마지막 주문 1건을 가져옵니다.
 	    orders = orderService.selectProductPayResultset(pageInfo, loginMember.getMemberNo());
 	    
-	    
-	    
-	    
-
 	    // 로그에 주문 목록을 출력합니다.
 	    log.info("Orders: {}", orders);
 
@@ -280,39 +277,90 @@ public class PayController {
 
 	    return modelAndView;
 	}
-
-
-
-
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//주문 상세페이지
 	@GetMapping("/mypage/payDetails")
-	public ModelAndView payDetails(ModelAndView modelAndView) {
+	public ModelAndView payDetails(ModelAndView modelAndView,
+	        @SessionAttribute("loginMember") Member loginMember,
+	        @RequestParam int orderNo) {
+	    
+	    List<Orders> result = null;
+	    Orders orders = null;
+	    
+	    System.out.println(orderNo);
+	    
+	    // 사용자의 주문 목록을 가져옵니다.
+	    result = orderService.selectPayInfo(loginMember.getMemberNo());
+	   
+	    orders = orderService.selectPayInfoOne(orderNo);
+	  
 
-		modelAndView.setViewName("mypage/payDetails");
+	    // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
+	    modelAndView.addObject("result", result);
+	    modelAndView.addObject("orders", orders);
+	    modelAndView.setViewName("mypage/payDetails");
 
-		return modelAndView;
+	    return modelAndView;
 	}
+
 
 	@GetMapping("/mypage/payDelete")
 	public ModelAndView payDelete(ModelAndView modelAndView) {
 
+		
+		
+		
+		
 		modelAndView.setViewName("mypage/payDelete");
+		
 
 		return modelAndView;
 	}
 
 }
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
