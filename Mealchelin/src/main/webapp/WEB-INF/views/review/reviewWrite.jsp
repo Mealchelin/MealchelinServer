@@ -38,9 +38,9 @@
             <div id="re_maindiv">
                 <form action="${ path }/review/reviewAddComplete" method="post">
                     <div id="re_innerdivMain">
-                        <img id="re_img" src="../img/new_01.jpg" alt="">
+                        <img id="re_img" src="../img/product/${ memberProdutOrderList.image }" alt="">
                         <div id="re_foodInfo">
-                            <p id="re_foodName">안동식 순살 찜닭</p>
+                            <p id="re_foodName">${ memberProdutOrderList.productName }</p>
                             <div name="rated" class="re_star">
                                 <span name="rated" data-value="1" class="starR">★</span>
                                 <span name="rated" data-value="2" class="starR">★</span>

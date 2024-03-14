@@ -23,7 +23,6 @@ import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.service.ReviewService;
-import com.mealchelin.mvc.review.model.vo.MemberDTO;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -44,7 +43,6 @@ public class AdminReviewController {
 		int reviewCount = 0;
 		PageInfo pageInfo = null;
 		List<Review> list = null;
-		List<MemberDTO> memberList = null;
 		
 		log.info(modelAndView.toString());
 
@@ -55,7 +53,6 @@ public class AdminReviewController {
 
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
-		modelAndView.addObject("memberList", memberList);
 		
 		modelAndView.setViewName("admin/review/adReview");
 		
@@ -63,12 +60,39 @@ public class AdminReviewController {
 	}
 	
 	@GetMapping("/edit")
-	public ModelAndView adReviewEdit(ModelAndView modelAndView) {
-		
+	public ModelAndView adReviewEdit(ModelAndView modelAndView, @RequestParam int reviewNo) {
+		Review review = null;
+
+		review = service.getReviewByNo(reviewNo);
+		log.info(review.toString());
+
+		modelAndView.addObject("review", review);
 		modelAndView.setViewName("admin/review/edit");
 		
 		return modelAndView;
 	}
+	
+	@PostMapping("/edit")
+	public ModelAndView adReviewEditStatus(ModelAndView modelAndView, @RequestParam String status, @RequestParam int reviewNo) {
+		log.info(status);
+		log.info("reviewNo : " + reviewNo);
+		
+		int result = 0;
+		
+		result = service.updateStatusAdmin(reviewNo, status);
+		if (result > 0) {
+			modelAndView.addObject("msg", "노출 여부 변경 성공");
+			modelAndView.addObject("location", "admin/review/edit");
+		} else {
+			modelAndView.addObject("msg", "노출 여부 변경 실패");
+			modelAndView.addObject("location", "admin/review/edit");
+		}
+		
+		modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
+	}
+	
 	
 	@PostMapping("/updateReviewStatus")
 	  public ResponseEntity<Map<String, Object>> updateStatus(@RequestBody String[] checkedReviewNoList) {

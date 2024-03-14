@@ -15,6 +15,7 @@ import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
 import com.mealchelin.mvc.review.model.service.ReviewService;
+import com.mealchelin.mvc.review.model.vo.MemberProdutOrderList;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -68,6 +69,19 @@ public class ReviewController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/reviewWrite")
+	public ModelAndView reviewWrite(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember, @RequestParam int orderNo) {
+		int userNo = loginMember.getMemberNo();
+		MemberProdutOrderList memberProdutOrderList = null;
+		
+		memberProdutOrderList = service.getOrderInfo(orderNo);
+		
+		modelAndView.addObject("memberProdutOrderList", memberProdutOrderList);
+		modelAndView.setViewName("review/reviewWrite");
+		
+        return modelAndView;
+    }
+	
 	@GetMapping("/reviewDetail")
 	public ModelAndView reviewDetail(ModelAndView modelAndView, @RequestParam int reviewNo) {
 		Review review = null;
@@ -111,12 +125,6 @@ public class ReviewController {
 		
 	    return "/review/reviewEditComplete";
 	}
-	
-	@GetMapping("/reviewWrite")
-	public String reviewWrite() {
-		
-        return "/review/reviewWrite";
-    }
 	
 	
 	

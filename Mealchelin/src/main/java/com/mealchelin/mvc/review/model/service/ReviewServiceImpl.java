@@ -10,6 +10,7 @@ import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
+import com.mealchelin.mvc.review.model.vo.MemberProdutOrderList;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -69,12 +70,25 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.selectReviewByNo(reviewNo);
 	}
+	
+	@Override
+	public MemberProdutOrderList getOrderInfo(int orderNo) {
+		
+		
+		return mapper.getOrderInfo(orderNo);
+	}
 
 	@Override
 	public int getReviewCountByuserNo(int userNo) {
 		
 		
 		return mapper.getReviewCountByuserNo(userNo);
+	}
+	
+	@Override
+	public int getOrderListCountByUserNo(int userNo) {
+		
+		return mapper.getOrderListCountByUserNo(userNo);
 	}
 
 	@Override
@@ -86,6 +100,16 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.selectAllByuserNo(rowBounds, userNo);
 	}
+	
+	@Override
+	public List<MemberProdutOrderList> getOrderListByUserNo(PageInfo pageInfo, int userNo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getOrderListByUserNo(rowBounds, userNo);
+	}
+
 	
 	@Override
 	public int delete(int no) {
@@ -123,6 +147,19 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.getReviewListForHome();
 	}
+
+	@Override
+	public int updateStatusAdmin(int reviewNo, String status) {
+		
+		
+		return mapper.updateStatusAdmin(reviewNo, status);
+	}
+
+	
+
+	
+
+	
 
 
 
