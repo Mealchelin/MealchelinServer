@@ -36,4 +36,10 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 		return shoppingBasketMapper.selectGetBasket(memberNo);
 	}
 
+
+	@Override
+	public int updateSbByNo(ShoppingBasket shoppingBasket) {
+		return shoppingBasketMapper.updateBasket(shoppingBasket);
+	}
+
 }

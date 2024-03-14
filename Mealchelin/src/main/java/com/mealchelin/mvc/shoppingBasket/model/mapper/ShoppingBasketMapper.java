@@ -12,4 +12,6 @@ public interface ShoppingBasketMapper {
 	int findShoppingBasketProduct();
 	
 	ShoppingBasket selectGetBasket(int memberNo);
+
+	int updateBasket(ShoppingBasket shoppingBasket);
 }
