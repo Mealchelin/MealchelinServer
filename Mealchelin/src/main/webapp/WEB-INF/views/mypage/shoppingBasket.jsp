@@ -80,7 +80,7 @@
 	                </div>
 	            </div>
 	            <div class="finalbtnDiv">
-	            	<button type="submit" class="finalbtn">주문하기</button>
+	            	<button type="button" class="finalbtn">주문하기</button>
 	            </div>
         	</form>
         </section>

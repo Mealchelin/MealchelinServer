@@ -35,7 +35,9 @@ $(document).ready(()=>{
             success : function(data){
                 if (data.success) {
                     quantityEle.val(quantity);
-                    $(event.target).closest('tr.mytr').find('.myProductPrice').text(totalPrice + '원');
+                    let resultStr = (totalPrice+'').replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
+
+                    $(event.target).closest('tr.mytr').find('.myProductPrice').text(resultStr);
                     totalCalc(); 
                 } else {
                     alert('수량 업데이트에 실패했습니다.');
@@ -57,9 +59,13 @@ $(document).ready(()=>{
 	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	        },
 	        success : function(data){
-	            $(event.target).parents('tr.mytr').remove();
-	            //myAllPrice
-	            totalCalc();
+	            if(data.success){
+                    $(event.target).parents('tr.mytr').remove();
+                    //myAllPrice
+                    totalCalc();
+                } else {
+                    alert('삭제를 다시 시도해주세요.')
+                }
 	        }
 	    });
 		
@@ -79,10 +85,40 @@ $(document).ready(()=>{
             let priceStr = $(element).text().replace(/[^0-9]/gi, '').replace('원', '');
             totalPrice += parseInt(priceStr);
         });
-        console.log(totalPrice);
+        // console.log(totalPrice);
         
         let resultStr = (totalPrice+'').replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원';
 
         totalCalcEle.text(resultStr);
 
     }
+
+    $('.finalbtn').on('click', function(event) { 
+        let myProductPriceEle = $('div.myProductPrice');
+
+        let totalPrice = 0;
+        
+        myProductPriceEle.each((idx, element) => 
+        {
+            let priceStr = $(element).text().replace(/[^0-9]/gi, '').replace('원', '');
+            totalPrice += parseInt(priceStr);
+        });
+
+        $.ajax({
+	        type : "POST",
+	        url : "/mypage/shoppingBasketTotal",
+	        dataType : "json",
+	        data : {"payment" : totalPrice},
+	        error : function(request, status, error){
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	        },
+	        success : function(data){
+                if(data.success){
+                    location.href="/payment/pay";
+                } else {
+                    alert('구매하기 버튼을 다시 눌러주세요.')
+                }
+            }
+	    });
+
+    });

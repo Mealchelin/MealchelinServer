@@ -29,11 +29,13 @@
 
 	</select>
 	
-	
-	
-	
-	
-	
+	<!-- 금액 수정 -->
+	<update id="updateBasket" parameterType="ShoppingBasket">
+		UPDATE SHOPPING_BASKET
+		SET
+			PAYMENT = #{payment}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
 	
 	
 	

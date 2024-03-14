@@ -8,4 +8,6 @@ public interface ShoppingBasketService {
 
 	ShoppingBasket getBasket(int memberNo);
 
+	int updateSbByNo(ShoppingBasket shoppingBasket);
+
 }

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketProductService;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketService;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
@@ -26,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ShoppingBasketController {
 	private final ShoppingBasketProductService service;
+	private final ShoppingBasketService sbservice;
 
 	@GetMapping("/mypage/shoppingBasket")
 	public ModelAndView shoppingBasket(ModelAndView modelAndView, ShoppingBasketProduct shoppingBasketProduct, ShoppingBasket shoppingBasket , @SessionAttribute("loginMember") Member loginMember) {
@@ -102,6 +104,35 @@ public class ShoppingBasketController {
 	    return ResponseEntity.ok(map);
 	}
 	
+	@GetMapping("/mypage/shoppingBasketTotal")
+	@ResponseBody
+	public ResponseEntity<Map<String, ShoppingBasket>> shoppingBasketProduct(@SessionAttribute("loginMember") Member loginMember) {
+		Map<String, ShoppingBasket> map = new HashMap<>();
+		int memberNo = loginMember.getMemberNo();
+		
+		map.put("shoppingBasket", sbservice.getBasket(memberNo));
+		
+		return ResponseEntity.ok(map);
+	}
+	
+	@PostMapping("/mypage/shoppingBasketTotal")
+	@ResponseBody
+	public ResponseEntity<Map<String, Object>> shoppingBasketProductUpdate(@RequestParam int payment,
+																		   @SessionAttribute("loginMember") Member loginMember) {
+	    Map<String, Object> map = new HashMap<>();
+	    int memberNo = loginMember.getMemberNo();
+	    
+	    ShoppingBasket shoppingBasket = null;
+	    
+	    shoppingBasket = sbservice.getBasket(memberNo);
+	    shoppingBasket.setPayment(payment);
+	    
+	    int result = sbservice.updateSbByNo(shoppingBasket);
+	    
+	     map.put("success", result);
+	    
+	    return ResponseEntity.ok(map);
+	}
 	
 	
 }
