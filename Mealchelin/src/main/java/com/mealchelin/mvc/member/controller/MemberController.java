@@ -1,31 +1,27 @@
 package com.mealchelin.mvc.member.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mealchelin.mvc.member.model.service.MemberService;
 import com.mealchelin.mvc.member.model.vo.Member;
-import com.mealchelin.mvc.pay.model.vo.Payment;
 import com.mealchelin.mvc.shippingLocation.model.service.ShippingLocationService;
 import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
 import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketService;
@@ -101,6 +97,7 @@ public class MemberController {
 	
 	
 	//회원가입
+	@Transactional
 	@PostMapping("/member/enroll")
 	public ModelAndView enroll(ModelAndView modelAndView,
 							   Member member,
@@ -114,12 +111,11 @@ public class MemberController {
 		
 		if(result > 0) {
 			
-			modelAndView.setViewName("member/enrollEnd");
 				
 			// 회원 가입 후 장바구니 만들기
 			shoppingBasket.setMemberNo(member.getMemberNo());
 			
-			sbresult = shoppingBasketService.save(member.getMemberNo());
+			sbresult = shoppingBasketService.save(shoppingBasket.getMemberNo());
 			
 			// 회원 가입 후 배송지 관리 만들기
 			shippingLocation.setMemberNo(member.getMemberNo());			
@@ -132,6 +128,7 @@ public class MemberController {
 			
 			slresult = shippingLocationService.save(shippingLocation);
 			
+			modelAndView.setViewName("member/enrollEnd");
 		} else {
 			modelAndView.addObject("msg", "회원 가입에 실패했습니다.");
 			modelAndView.addObject("location", "/member/enroll");
@@ -249,13 +246,16 @@ public class MemberController {
 	// 회원 탈퇴 ( 회원 상태 바꾸기 )
 	@GetMapping("/member/delete")
 	public ModelAndView delete(ModelAndView modelAndView,
-							   @SessionAttribute("loginMember") Member loginMember) {
+							   @SessionAttribute("loginMember") Member loginMember,
+							   SessionStatus status
+							   ) {
 		int result = 0;
 		
 		
 		result = service.dalete(loginMember.getMemberNo());
 		
 		if (result > 0) {
+			status.setComplete();
 			modelAndView.addObject("msg", "탈퇴가 정상적으로 처리되었습니다.");
 			modelAndView.addObject("location", "/");			
 		} else {
@@ -269,6 +269,7 @@ public class MemberController {
 	}
 
 	 // 카카오 로그인-------------------------------------------------------------------------------
+	 @Transactional
 	 @GetMapping("/member/kakao/login")
 	 public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
 			 				  HttpSession session,

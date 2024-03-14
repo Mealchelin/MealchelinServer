@@ -46,27 +46,23 @@
                                 <tbody>
                                     <tr>
                                         <td class="ad_th">아이디</td>
-                                        <td>hongu90</td>
+                                        <td>${ member.id }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">이름</td>
-                                        <td>이하윤</td>
+                                        <td>${ member.name }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">가입일자</td>
-                                        <td>2023.08.20</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ad_th"><label for="adMemNick">닉네임</label></td>
-                                        <td><input type="text" name="adMemNick" id="adMemNick" value="나는야 알바왕"></td>
+                                        <td>${ member.enrollDate }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adMemEmail">이메일</label></td>
-                                        <td><input type="email" name="adMemEmail" id="adMemEmail" value="hong@gmail.com"></td>
+                                        <td><input type="email" name="adMemEmail" id="adMemEmail" value="${ member. email }"></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adMemPh">휴대폰 번호</label></td>
-                                        <td><input type="tel" id="adMemPh" name="adMemPh" value="01000000000"></td>
+                                        <td><input type="tel" id="adMemPh" name="adMemPh" value="${ member.phone }"></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" rowspan="3"> <label for="adMemAd">주소</label></td>

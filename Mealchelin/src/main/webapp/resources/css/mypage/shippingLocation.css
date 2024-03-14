@@ -47,6 +47,7 @@ input[type="checkbox"]:checked + label::before{
 .myaddress_update, .myaddress_delete {
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
 .mytable_inputTd > input {
@@ -111,11 +112,11 @@ input[type="checkbox"]:checked + label::before{
 
 .mytable_input {
     margin-top: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
 .myform_submit {
-    margin: 40px auto;
+    margin: 40px auto 20px 50px;
     display: block;
     border:none;
     padding:7px 30px;

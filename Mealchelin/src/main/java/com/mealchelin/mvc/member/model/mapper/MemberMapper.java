@@ -28,9 +28,13 @@ public interface MemberMapper {
 
 	int kakaoInsert(HashMap<String, Object> userInfo);
 
-	List<Member> selectAll(RowBounds rowBounds);
 	
-	int selectCount();
+	// ------------------admin
+	List<Member> selectAll(RowBounds rowBounds,@Param("name") String name);
+	
+	int selectCount(@Param("name") String name);
+
+	Member selectAdminMemberByNo(@Param("no") int no);
     
 	
 
