@@ -37,11 +37,11 @@
 		<section>
 			<h3>리뷰 수정</h3>
             <div id="re_maindiv">
-                <form action="${ path }/review/reviewEditComplete" method="post">
+                <form action="${ path }/review/reviewEditComplete" method="post" enctype="multipart/form-data">
                     <div id="re_innerdivMain">
-                        <img id="re_img" src="../img/new_01.jpg" alt="">
+                        <img id="re_img" src="../img/product/${ review.productimage }" alt="">
                         <div id="re_foodInfo">
-                            <p id="re_foodName">안동식 순살 찜닭</p>
+                            <p id="re_foodName">${ review.productName }</p>
                             <c:choose>
                             	<c:when test="${ review.rated == 0}">
 		                            <div name="rated" class="re_star">
@@ -113,16 +113,16 @@
                         <textarea maxlength="300" id="re_detailReviewContent" name="content">${ review.content }</textarea>
                         <p id="re_textCount"><span id="re_nowTextCount2">0</span>/300</p>
                         <!-- <input id="re_imgAttachBtn" type="button" value="사진 첨부"> -->
-                        <input id="re_imgadd"  type="file" name="image" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
+                        <input id="re_imgadd"  type="file" name="upfile" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
                         <label id="re_imgAttachBtn" for="re_imgadd">사진 첨부</label>
-                        <span id="re_imgSizeMsg" >${ review.image }</span>
+                        <span id="re_imgSizeMsg" >${ review.renamedFilename }</span>
                         <div id="re_SubmitAndCancelBtn">
                         <input id="re_subMitBtn" type="submit" value="수정">
                         
                             <a href="${ path }/mypage/mypageProductReview"><input id="re_cancelBtn" type="button" value="취소"></a>
                             
                         <input type="hidden" name="reviewNo" value="${ review.reviewNo }"/>
-                        <input type="hidden" name="status" value="${ review.status }"/>
+                        <input type="hidden" name="rstatus" value="${ review.rstatus }"/>
                         <input type="hidden" name="userNo" value="${ loginMember.memberNo }"/>
                         <input type="hidden" name="rgstrDate" value="${ review.rgstrDate }"/>
                         </div>

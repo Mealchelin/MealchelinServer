@@ -36,11 +36,12 @@
 		<section>
 			<h3>리뷰 작성</h3>
             <div id="re_maindiv">
-                <form action="${ path }/review/reviewAddComplete" method="post">
+                <form action="${ path }/review/reviewAddComplete" method="post" enctype="multipart/form-data">
                     <div id="re_innerdivMain">
                         <img id="re_img" src="../img/product/${ memberProdutOrderList.image }" alt="">
                         <div id="re_foodInfo">
                             <p id="re_foodName">${ memberProdutOrderList.productName }</p>
+                            <input type="hidden" name="prdNo" value="${ memberProdutOrderList.prdNo }">
                             <div name="rated" class="re_star">
                                 <span name="rated" data-value="1" class="starR">★</span>
                                 <span name="rated" data-value="2" class="starR">★</span>
@@ -57,12 +58,12 @@
                         <p id="re_titleAndDetailReview">상세리뷰</p>
                         <textarea maxlength="300" name="content" id="re_detailReview" cols="30" rows="10"></textarea>
                         <p id="re_textCount"><span id="re_nowTextCount2">0</span>/300</p>
-                        <input id="re_imgadd" name="image" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
+                        <input id="re_imgadd" name="upfile" type="file" accept="image/jpeg,image/png,image/gif" value="사진 첨부">
                         <label id="re_imgAttachBtn" for="re_imgadd">사진 첨부</label>
                         <span id="re_imgSizeMsg">사진은 최대 20MB 이하의 JPG, PNG, GIF 파일 1장까지 첨부 가능합니다.</span>
                         <div id="re_SubmitAndCancelBtn">
                             <input id="re_subMitBtn" type="submit" value="등록">
-                            <a href="${ path }/review/mypageWritableReview"><input id="re_cancelBtn" type="button" value="취소"></a>
+                            <a href="${ path }/mypage/writableReview"><input id="re_cancelBtn" type="button" value="취소"></a>
                         </div>
                     </div>
                 </form>

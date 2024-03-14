@@ -37,7 +37,7 @@ public interface ReviewMapper {
 	
 	List<MemberProdutOrderList> getOrderListByUserNo(RowBounds rowBounds, int userNo);
 
-	int delete(@Param("reviewNo") int no, @Param("status") String status);
+	int delete(@Param("reviewNo") int no, @Param("rstatus") String status);
 
 	int updateReview(Review review);
 
