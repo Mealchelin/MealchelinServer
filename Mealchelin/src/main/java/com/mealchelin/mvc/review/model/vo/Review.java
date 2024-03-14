@@ -18,19 +18,28 @@ public class Review {
 	    
 	    private String content; // 리뷰 내용
 	    
-	    private String image; // 첨부 이미지
+	    private String image; // 이 필드 지우면 에러 떠서 그냥 보관해야함...ㅠㅠ
+	    
+	    private String originalFilename; // 첨부 이미지
+
+		private String renamedFilename; // 첨부 이미지
 	    
 	    private Date rgstrDate; // 등록 날짜
 	    
 	    private Long views; // 조회수
 	    
-	    private String status; // 상태 (Y/N)
+	    private String rstatus; // 상태 (Y/N)
 	    
 	    private int userNo; // 회원 번호
 	    
 	    private Long prdNo; // 상품 번호
 	    
 		private String id; // 회원 아이디
+		
+		private String productName; // 상품 이름
+		
+		private String productimage; // 상품 이미지
+		
 
 	}
 

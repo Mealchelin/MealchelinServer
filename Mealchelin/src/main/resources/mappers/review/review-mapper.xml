@@ -11,6 +11,8 @@
 				NAME,
 				CONTENT,
 				IMAGE,
+				ORIGINAL_FILENAME,
+				RENAMED_FILENAME,
 				RGSTR_DATE,
 				VIEWS,
 				STATUS,
@@ -27,10 +29,14 @@
 		<result property="image" column="IMAGE"/>
 		<result property="rgstrDate" column="RGSTR_DATE"/>
 		<result property="views" column="VIEWS"/>
-		<result property="status" column="STATUS"/>
+		<result property="rstatus" column="STATUS"/>
 		<result property="userNo" column="USER_NO"/>
 		<result property="prdNo" column="PRD_NO"/>
 		<result property="id" column="ID"/>
+		<result property="originalFilename" column="ORIGINAL_FILENAME"/>
+		<result property="renamedFilename" column="RENAMED_FILENAME"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="productimage" column="PRODUCT_IMAGE"/>
 	</resultMap>
 	
 	<resultMap id="orderListResultMap" type="MemberProdutOrderList">
@@ -54,17 +60,20 @@
 			NAME,
 			CONTENT,
 			RGSTR_DATE,
-			IMAGE,
-			USER_NO
+			USER_NO,
+			ORIGINAL_FILENAME,
+			RENAMED_FILENAME,
+			PRD_NO
 		) VALUES(
 			SEQ_REVIEW_NO.NEXTVAL,
 			#{rated},
 			#{name},
 			#{content},
             SYSDATE,
-			#{image},
-			#{userNo}
-			
+			#{userNo},
+			#{originalFilename},
+			#{renamedFilename},
+			#{prdNo}
 		)
 	</insert>
 	
@@ -168,9 +177,22 @@
 	</select>
 	
 	<select id="selectAllByuserNo" resultMap="reviewListResultMap" parameterType="_int">
-		<include refid="reviewListSql" />
-		WHERE STATUS = 'Y' AND USER_NO = #{userNo}
-        ORDER BY REVIEW_NO DESC
+		SELECT	REVIEW.REVIEW_NO, 
+				REVIEW.RATED,
+				REVIEW.NAME,
+				REVIEW.CONTENT,
+				REVIEW.IMAGE,
+				REVIEW.ORIGINAL_FILENAME,
+				REVIEW.RENAMED_FILENAME,
+				REVIEW.RGSTR_DATE,
+				REVIEW.VIEWS,
+				REVIEW.STATUS,
+				REVIEW.USER_NO,
+				PRODUCT.NAME as "PRODUCT_NAME"
+        FROM REVIEW
+		LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
+		WHERE REVIEW.STATUS = 'Y' AND REVIEW.USER_NO = #{userNo}
+        ORDER BY REVIEW.REVIEW_NO DESC
 	</select>
 	
 	<select id="getOrderListByUserNo" resultMap="orderListResultMap" parameterType="_int">
@@ -197,22 +219,27 @@
 				REVIEW.NAME AS NAME,
 				REVIEW.CONTENT AS CONTENT,
 				REVIEW.IMAGE AS IMAGE,
+				REVIEW.ORIGINAL_FILENAME,
+				REVIEW.RENAMED_FILENAME,
 				REVIEW.RGSTR_DATE AS RGSTR_DATE,
 				REVIEW.VIEWS AS VIEWS,
 				REVIEW.STATUS AS STATUS,
 				REVIEW.USER_NO AS USER_NO,
 				REVIEW.PRD_NO AS PRD_NO,
-	               MEMBER.ID AS ID
-	     FROM REVIEW
-         LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
-         WHERE REVIEW.REVIEW_NO = #{reviewNo}
+	            MEMBER.ID AS ID,
+                PRODUCT.NAME AS "PRODUCT_NAME",
+                product.image as "PRODUCT_IMAGE"
+	    FROM REVIEW
+        LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
+        LEFT JOIN product ON REVIEW.PRD_NO = PRODUCT.PRD_NO
+        WHERE REVIEW.REVIEW_NO = #{reviewNo}
 	</select>
 
 	<!-- 게시글 삭제 -->
 	<update id="delete" parameterType="map">
 		UPDATE REVIEW
 		SET
-			STATUS = #{status}  
+			STATUS = #{rstatus}  
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	
@@ -223,7 +250,9 @@
 			NAME = #{name},
 			CONTENT = #{content},
 			IMAGE = #{image},
-			RGSTR_DATE = SYSDATE
+			RGSTR_DATE = SYSDATE,
+			ORIGINAL_FILENAME = #{originalFilename},
+			RENAMED_FILENAME = #{renamedFilename}
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	
@@ -248,7 +277,7 @@
 	
 	<update id="updateAdReview" parameterType="Review">
 		UPDATE REVIEW
-			SET STATUS = #{status}
+			SET STATUS = #{rstatus}
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 
@@ -285,7 +314,7 @@
 	<update id="updateStatusAdmin" parameterType="map">
 		UPDATE REVIEW
 		SET
-			STATUS = #{status}  
+			STATUS = #{rstatus}  
 		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 
