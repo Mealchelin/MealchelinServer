@@ -8,16 +8,16 @@
 	
 	<resultMap id="selectProductResultMap" type="com.mealchelin.mvc.order.model.vo.Orders">
 
-<id property="orderNo" column="ORDER_NO"/>
-<result property="memberNo" column="MEMBER_NO"/>
-<result property="paymentMethod" column="PAYMENT_METHOD"/>
-<result property="payMent" column="PAYMENT"/>
-<result property="orderDate" column="ORDER_DATE"/>
-<result property="name" column="NAME"/>
-<result property="orderMembers" column="ORDERS_NUMBERS"/>
-
-
-</resultMap>
+	<id property="orderNo" column="ORDER_NO"/>
+	<result property="memberNo" column="MEMBER_NO"/>
+	<result property="paymentMethod" column="PAYMENT_METHOD"/>
+	<result property="payMent" column="PAYMENT"/>
+	<result property="orderDate" column="ORDER_DATE"/>
+	<result property="name" column="NAME"/>
+	<result property="orderMembers" column="ORDERS_NUMBERS"/>
+	
+	
+	</resultMap>
 	
 
 	<insert id="insertOrder" parameterType="com.mealchelin.mvc.order.model.vo.Orders"  
@@ -82,6 +82,32 @@ WHERE MEMBER_NO = #{memberNo}
     <result property="cancleStatus" column="CANCLE_STATUS"/>
 </resultMap>
 
+<resultMap id="selectAdOrderResultMap" type="Orders">
+ 	<id property="orderNo" column="ORDER_NO"/>
+    <result property="memberNo" column="MEMBER_NO"/>
+    <result property="paymentMethod" column="PAYMENT_METHOD"/>
+    <result property="payMent" column="PAYMENT"/>
+    <result property="orderDate" column="ORDER_DATE"/>
+    <result property="shipStatus" column="SHIP_STATUS"/>
+    <result property="name" column="PRODUCT_NAME"/>
+    <result property="countQ" column="COUNT_QUANTITY"/>
+</resultMap>
+
+<resultMap id="selectAdOrderNoResultMap" type="Orders" extends="selectAdOrderResultMap">
+	<result property="orderMembers" column="ORDERS_NUMBERS"/>
+	<result property="request" column="REQUEST"/>
+	<result property="sumQ" column="SUM_QUANTITY"/>
+    <result property="mname" column="M_NAME"/>
+    <result property="memId" column="M_ID"/>
+    <result property="recipient" column="RECIPIENT"/>
+    <result property="phone" column="PHONE"/>
+    <result property="postalCode" column="POSTAL_CODE"/>
+    <result property="shipAddress" column="SHIP_ADDRESS"/>
+    <result property="shipAddressDetail" column="SHIP_ADDRESS_DETAIL"/>
+    <result property="cancleStatus" column="CANCLE_STATUS"/>
+</resultMap>
+   
+
 
 
 <select id="selectProductPayResultset" parameterType="map" resultMap="selectProductPayResultMap">
@@ -139,20 +165,69 @@ SELECT
 
 </select>
 
+<select id="selectadOrderCount" resultType="_int" >
+
+SELECT COUNT(*) FROM ORDERS
+
+</select>
+
+<select id="selectadOrderAll" resultMap="selectAdOrderResultMap" parameterType="Orders">
+
+SELECT 
+    O.ORDER_NO AS ORDER_NO,
+    MAX(O.MEMBER_NO) AS MEMBER_NO,
+    MAX(O.PAYMENT_METHOD) AS PAYMENT_METHOD,
+    MAX(O.PAYMENT) AS PAYMENT,
+    MAX(O.ORDER_DATE) AS ORDER_DATE,
+    MAX(O.SHIP_STATUS) AS SHIP_STATUS,
+    MAX(P.NAME) AS PRODUCT_NAME,
+    COUNT(OP.QUANTITY) AS COUNT_QUANTITY
+FROM ORDERS O
+JOIN ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+JOIN PRODUCT P ON OP.PRD_NO = P.PRD_NO
+GROUP BY O.ORDER_NO
+ORDER BY ORDER_NO DESC
+
+</select>
 
 
+<select id="selectOrderByNo" resultMap="selectAdOrderNoResultMap" parameterType="Orders">
 
+SELECT 
+    O.ORDER_NO AS ORDER_NO,
+    MAX(O.MEMBER_NO) AS MEMBER_NO,
+    MAX(O.PAYMENT_METHOD) AS PAYMENT_METHOD,
+    MAX(O.PAYMENT) AS PAYMENT,
+    MAX(O.ORDER_DATE) AS ORDER_DATE,
+    MAX(O.REQUEST) AS REQUEST,
+    MAX(O.SHIP_STATUS) AS SHIP_STATUS,
+    MAX(O.ORDERS_NUMBERS) AS ORDERS_NUMBERS,
+    MAX(O.CANCLE_STATUS) AS CANCLE_STATUS,
+    LISTAGG(P.NAME, ', ') WITHIN GROUP (ORDER BY P.NAME) AS PRODUCT_NAME,
+    SUM(OP.QUANTITY) AS SUM_QUANTITY,
+    MAX(M.NAME) AS M_NAME,
+    MAX(M.ID) AS M_ID,
+    MAX(SL.RECIPIENT) AS RECIPIENT,
+    MAX(SL.PHONE) AS PHONE,
+    MAX(SL.POSTAL_CODE) AS POSTAL_CODE,
+    MAX(SL.SHIP_ADDRESS) AS SHIP_ADDRESS,
+    MAX(SL.SHIP_ADDRESS_DETAIL) AS SHIP_ADDRESS_DETAIL
+FROM ORDERS O
+JOIN ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+JOIN PRODUCT P ON OP.PRD_NO = P.PRD_NO
+JOIN SHIPPING_LOCATION SL ON O.SHIP_NO = SL.SHIP_NO
+JOIN MEMBER M ON M.MEMBER_NO = O.MEMBER_NO
+WHERE O.ORDER_NO = #{orderNo}
+GROUP BY O.ORDER_NO
 
+</select>
 
-
-
-
-
-
-
-
-
-
+<update id="updateAdOrders" parameterType="Orders">
+	UPDATE ORDERS
+	SET
+		SHIP_STATUS = #{shipStatus}
+	WHERE ORDER_NO = #{orderNo}
+</update>
 
 
 

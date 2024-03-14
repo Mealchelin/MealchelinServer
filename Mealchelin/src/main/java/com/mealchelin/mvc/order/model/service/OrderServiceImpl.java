@@ -70,11 +70,33 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.selectProductPayResultset(rowBounds, memberNo);
 	}
 
-
-
 	@Override
 	public int getPayListCount() {
 		return orderMapper.selctPayConut();
+	}
+
+	@Override
+	public int getadOrderCount() {
+		return orderMapper.selectadOrderCount();
+	}
+
+	@Override
+	public List<Orders> getadOrderList(PageInfo pageInfo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return orderMapper.selectadOrderAll(rowBounds);
+	}
+
+	@Override
+	public Orders getAdOrderByNo(int no) {
+		return orderMapper.selectOrderByNo(no);
+	}
+
+	@Override
+	public int adOrderSave(Orders orders) {
+		return orderMapper.updateAdOrders(orders);
 	}
 
 

@@ -3,6 +3,8 @@ package com.mealchelin.mvc.order.model.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.vo.Orders;
@@ -17,9 +19,15 @@ public interface OrderService {
 
 	List<Orders> selectProductPayResultset(PageInfo pageInfo, int memberNo);
 
-
 	int getPayListCount();
 
+	int getadOrderCount();
+
+	List<Orders> getadOrderList(PageInfo pageInfo);
+
+	Orders getAdOrderByNo(int no);
+
+	int adOrderSave(Orders orders);
 
 //	List<Orders> getPayListList(PageInfo pageInfo);
 
