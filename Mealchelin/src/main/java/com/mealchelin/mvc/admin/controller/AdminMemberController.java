@@ -64,7 +64,7 @@ public class AdminMemberController {
 	
 	@PostMapping("/edit")
 	public ModelAndView adMemberEdit(ModelAndView modelAndView,
-								     @RequestParam(defaultValue="1") int memberNo,
+								     @RequestParam("memberNo") int memberNo,
 									 @RequestParam("adMemEmail") String email, 
 									 @RequestParam("adMemPh") String phone, 
 									 @RequestParam("adMemAd") String postalCode, 

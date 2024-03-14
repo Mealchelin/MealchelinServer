@@ -43,6 +43,7 @@
                                 <thead class="ad_mem_th">
                                     <th colspan="2">회원 정보 수정</th>
                                 </thead>
+                                <input type="hidden" name="memberNo" value="${ member.memberNo }">
                                 <tbody>
                                     <tr>
                                         <td class="ad_th">아이디</td>
