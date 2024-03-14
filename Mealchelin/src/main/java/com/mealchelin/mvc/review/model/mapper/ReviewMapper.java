@@ -16,14 +16,15 @@ import com.mealchelin.mvc.review.model.vo.Review;
 public interface ReviewMapper {
 
 	int insertReview(Review review);
-	
-	int getReviewCount();
+	// 검색 
+	int getReviewCount(String type, String text);
 	
 	int getAdminReviewCount();
 	
 	List<Review> adminSelectAll(RowBounds rowBounds);
 	
-	List<Review> selectAll(RowBounds rowBounds);
+	// 검색
+	List<Review> selectAll(RowBounds rowBounds, String type, String text);
 
 	Review selectReviewByNo(int reviewNo);
 	

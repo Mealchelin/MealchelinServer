@@ -112,7 +112,9 @@
 		UPDATE MEMBER
 		SET 
 			NAME = #{name},
-			PASSWORD = #{password},
+			<if test="password == null">
+				PASSWORD = #{password},
+			</if>
 			PHONE = #{phone},
 			EMAIL = #{email},
 			POSTAL_CODE = #{postalCode},

@@ -87,6 +87,25 @@
 		SELECT COUNT(*) 
 		FROM REVIEW 
 		WHERE STATUS='Y'
+		<!-- 
+		<if test="!(type.equals('') and text.equals(''))">
+			<trim prefix="AND" prefixOverrides="AND|OR">
+				<if test="!type.equals('')">
+					<choose>
+						<when test="type.equals('title')">
+							NAME LIKE '%' || #{text} || '%'
+						</when>
+						<when test="type.equals('writerId')">
+							
+						</when>
+					
+					
+					
+					</choose>
+				</if>
+			</trim>
+		</if>
+		 -->
 	</select>
 	
 	<!-- Admin 게시글 목록 조회(전체 목록) -->

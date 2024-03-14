@@ -2,6 +2,7 @@ package com.mealchelin.mvc.admin.controller;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,8 @@ import lombok.extern.slf4j.Slf4j;
 public class AdminMemberController {
 	
 	private final MemberService memberService;
+	
+	private final BCryptPasswordEncoder encoder;
 	
 	@GetMapping("/adMember")
 	public ModelAndView adMember(ModelAndView modelAndView, 
@@ -85,13 +88,13 @@ public class AdminMemberController {
 			member.setPostalCode(postalCode);
 			member.setAddress(address);
 			member.setAddressDetail(addressDetail);
-			member.setPassword(password);
+			member.setPassword(encoder.encode(password));
 			
 			result = memberService.adminMemberUpdate(member);
 			
 			if(result > 0 ) {
 				modelAndView.addObject("msg", "정보 수정이 완료되었습니다.");
-				modelAndView.addObject("location", "/admin/member/adMember");	
+				modelAndView.addObject("script", "opener.parent.location.reload(); setTimeout(() => {window.close();}, 100);");
 			} else {
 				modelAndView.addObject("msg", "정보 수정이 실패되었습니다.");
 				modelAndView.addObject("location", "/admin/member/edit?no="+member.getMemberNo());	

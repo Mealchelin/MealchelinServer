@@ -208,16 +208,30 @@ public class MemberController {
 									  @RequestParam("myMemberBdate") String birth) {
 		int result = 0;
 		
-		member.setMemberNo(loginMember.getMemberNo());
 		
-		member.setName(name);
-		member.setPassword(encoder.encode(password));
-		member.setPhone(phone);
-		member.setEmail(email);
-		member.setPostalCode(postalCode);
-		member.setAddress(address);
-		member.setAddressDetail(addressDetail);
-		member.setBirth(birth);
+		if(password == null) {
+		
+			member.setMemberNo(loginMember.getMemberNo());
+			member.setName(name);
+			member.setPhone(phone);
+			member.setEmail(email);
+			member.setPostalCode(postalCode);
+			member.setAddress(address);
+			member.setAddressDetail(addressDetail);
+			member.setBirth(birth);
+			
+		} else {
+			member.setMemberNo(loginMember.getMemberNo());
+			member.setName(name);
+			member.setPassword(encoder.encode(password));
+			member.setPhone(phone);
+			member.setEmail(email);
+			member.setPostalCode(postalCode);
+			member.setAddress(address);
+			member.setAddressDetail(addressDetail);
+			member.setBirth(birth);
+			
+		}
 		
 		result = service.save(member);
 		

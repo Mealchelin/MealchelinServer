@@ -42,6 +42,7 @@
 			</div>
 
 			<div class="mainDiv">
+			<c:if test="${ not empty list}">
 				<c:forEach var="review" items="${ list }">
 					<a
 						href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
@@ -79,6 +80,10 @@
 						</div>
 					</a>
 				</c:forEach>
+			 </c:if>
+			 <c:if test="${ empty list}">
+			 	<div class="re_imgDiv">조회 결과가 없습니다.</div>
+			 </c:if>
 				<jsp:include page="./FootSearchBox.jsp" />
 			</div>
 			

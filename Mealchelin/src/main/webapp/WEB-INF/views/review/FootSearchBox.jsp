@@ -24,17 +24,19 @@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> <%@ taglib uri="htt
             <section>
                 <form action="${ path }/review/reviewEmpty">
                     <div id="re_bottomSearchBox">
+                    	<!-- 
                         <select id="re_shearchBtn" name="period" id="">
                             <option value="all">전체</option>
                             <option value="1">한달</option>
                             <option value="3">3달</option>
                         </select>
-                        <select id="re_shearchBtn" name="searchType" id="">
+                    	 -->
+                        <select id="re_shearchBtn" name="searchType">
+                            <option value="">전체</option>
                             <option value="title">제목</option>
-                            <option value="content">내용</option>
                             <option value="writerId">아이디</option>
                         </select>
-                        <input id="re_shearchBtn" type="text" />
+                        <input id="re_shearchBtn" type="text" name="searchText"/>
                         <input id="re_shearchBtn" type="submit" value="찾기" />
                     </div>
                 </form>
