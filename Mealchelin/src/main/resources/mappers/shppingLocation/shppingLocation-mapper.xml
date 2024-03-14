@@ -74,6 +74,7 @@
 	<select id="selectShippingLocationListByLoginMember" resultMap="shippingLocationResultMap">
 		<include refid="selectShippingLocationSql"/>
 		AND MEMBER_NO = #{memberNo}
+		ORDER BY SHIP_NO DESC
 	</select>
 	
 	<select id="selectShippingLocationCountByMemberNo" resultType="_int">
@@ -83,6 +84,12 @@
 	<update id="updateStatus" parameterType="_int">
 		UPDATE SHIPPING_LOCATION 
 		SET STATUS = 'N'
+		WHERE SHIP_NO = #{shipNo}
+	</update>
+	
+	<update id="setShipNoForChangeDefaultLocation" parameterType="_int">
+		UPDATE SHIPPING_LOCATION 
+		SET SHIP_NO = SEQ_SHIP_NO.NEXTVAL
 		WHERE SHIP_NO = #{shipNo}
 	</update>
 

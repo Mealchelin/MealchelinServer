@@ -37,7 +37,7 @@
         <jsp:include page="mypageHeaderBox.jsp"/>
         <section>
             <h3 class="myadress">배송지 관리</h3>
-            <button class="myform_submit">기본 배송지로 등록</button>
+            <button class="myform_submit" id="myform_submit">기본 배송지로 등록</button>
             <c:forEach var="shippingLocation" items="${ list }" varStatus="st">
 	            <div class="mytableDiv">
 	                <table class="mytatble" style="margin: 0 auto; width: 1028px;">
@@ -49,8 +49,9 @@
 	                    <col style="width: 32px">
 	                    </colgroup>
 	                    <tbody>
+	                    
 	                        <tr>
-	                            <td class="mytable_check" rowspan="5"><input type="checkbox" id="myaddressNow${ st.index }" class="myCheckBoxs" name="myaddressNow"><label for="myaddressNow${ st.index }"></label></td>
+	                            <td class="mytable_check" rowspan="5"><form id="defaultLocation${ st.index }"><input type="checkbox" id="myaddressNow${ st.index }" class="myCheckBoxs" name="ckShipNo" value="${ shippingLocation.shipNo }" <c:if test="${ st.index == 0 }">checked</c:if>><label for="myaddressNow${ st.index }"></label></form></td>
 	                            <td class="mytable_type" rowspan="5">${ shippingLocation.shipName }</td>
 	                            <td class="mytable_name">${ shippingLocation.recipient }</td>
 	                            <td class="mytable_update" rowspan="5"><button class="myaddress_update"><img src="../img/all/write.png" alt="펜"></button></td>
@@ -79,7 +80,6 @@
 	                </table>
 	            </div>
             </c:forEach>
-            
             <!-- 배송지 추가하기-->
             <div class="mytable_input">
                 <form action="${ path }/mypage/shippingLocation" method="post">
@@ -128,20 +128,41 @@
     <script type="text/javascript" src="${ path }/js/mypage/shippingLocation.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-	  document.addEventListener('DOMContentLoaded', function () {
-	    var checkboxes = document.querySelectorAll('.myCheckBoxs');
+		document.addEventListener('DOMContentLoaded', function () {
+			var checkboxes = document.querySelectorAll('.myCheckBoxs');
 	
-	    checkboxes.forEach(function (checkbox) {
-	      checkbox.addEventListener('click', function () {
-	        // 모든 체크박스의 체크를 해제
-	        checkboxes.forEach(function (otherCheckbox) {
-	          if (otherCheckbox !== checkbox) {
-	            otherCheckbox.checked = false;
-	          }
-	        });
-	      });
-	    });
-	  });
+			checkboxes.forEach(function (checkbox) {
+				checkbox.addEventListener('click', function () {
+					// 모든 체크박스의 체크를 해제
+					checkboxes.forEach(function (otherCheckbox) {
+						if (otherCheckbox !== checkbox) {
+							otherCheckbox.checked = false;
+						}
+					});
+				});
+			});
+		});
+	  
+// 		$('#myform_submit').on('click', () => {
+// 			if (confirm('선택한 배송지를 기본 배송지로 등록하시겠습니까?')) {
+// 				$('#defaultLocation').attr('method', 'get');
+// 				$('#defaultLocation').attr('action', '${path}/mypage/shippingLocation/dtd');
+// 				$('#defaultLocation').submit();
+// 			}
+// 		});
+		$('#myform_submit').on('click', () => {
+			let nows = document.getElementsByName('ckShipNo');
+			nows.forEach(function (now) {
+				if (now.checked == true) {
+					if (confirm('선택한 배송지를 기본 배송지로 등록하시겠습니까?')) {
+						now.parentNode.setAttribute('method', 'post');
+						now.parentNode.setAttribute('action', '${path}/mypage/shippingLocation/setDefault');
+						now.parentNode.submit();
+					}
+
+				};
+			})
+		})
 	</script>
 </body>
 

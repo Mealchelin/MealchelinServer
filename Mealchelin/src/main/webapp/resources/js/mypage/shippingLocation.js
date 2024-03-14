@@ -1,4 +1,4 @@
-
+$(document).ready(()=>{
     
         $('.mytable_inputButton').on('click', ()=>{
                 new daum.Postcode({
@@ -46,12 +46,5 @@
                     document.getElementById("myaddress_detail").focus();
                 }
             }).open();
-        })
-
-    
-    
-    
-    
-    
-    
+        });
     });

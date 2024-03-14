@@ -18,6 +18,8 @@ public interface ShippingLocationService {
 
 	int delete(Member loginMember, int shipNo);
 
+	int changeDefaultLocation(int shipNo);
+
 	
 
 	

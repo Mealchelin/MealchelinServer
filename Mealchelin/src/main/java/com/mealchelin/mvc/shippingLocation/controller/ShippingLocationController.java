@@ -76,14 +76,34 @@ public class ShippingLocationController {
 		
 		if (result == 1) {
 			modelAndView.addObject("msg", "배송지가 삭제되었습니다.");
-			modelAndView.addObject("location", "/mypage/shippingLocation");
 		} else if (result == 2) {
 			modelAndView.addObject("msg", "배송지는 최소 1개는 존재해야 합니다.");
-			modelAndView.addObject("location", "/mypage/shippingLocation");
 		} else {
 			modelAndView.addObject("msg", "배송지 삭제에 실패하였습니다.");
-			modelAndView.addObject("location", "/mypage/shippingLocation");
 		}
+		modelAndView.addObject("location", "/mypage/shippingLocation");
+		modelAndView.setViewName("common/msg");
+		return modelAndView;
+	}
+	
+	@PostMapping("/mypage/shippingLocation/setDefault")
+	public ModelAndView setDefault(
+			ModelAndView modelAndView,
+			@RequestParam("ckShipNo") int shipNo) {
+		
+		
+		log.info("{}", shipNo);
+		int result = 0;
+		result = sLService.changeDefaultLocation(shipNo);
+		
+		if (result > 0) {
+			modelAndView.addObject("msg", "선택하신 배송지가 기본 배송지로 등록되었습니다.");
+		} else {
+			modelAndView.addObject("msg", "선택하신 배송지를 기본 배송지로 등록하는 도중 오류가 발생하였습니다.");
+		}
+		
+		
+		modelAndView.addObject("location", "/mypage/shippingLocation");
 		modelAndView.setViewName("common/msg");
 		return modelAndView;
 	}

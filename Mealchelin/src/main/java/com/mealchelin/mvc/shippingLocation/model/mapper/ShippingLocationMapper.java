@@ -21,6 +21,8 @@ public interface ShippingLocationMapper {
 	int selectShippingLocationCountByMemberNo(@Param("memberNo") int memberNo);
 
 	int updateStatus(@Param("shipNo") int shipNo);
+
+	int setShipNoForChangeDefaultLocation(@Param("shipNo") int shipNo);
 	
 	
 
