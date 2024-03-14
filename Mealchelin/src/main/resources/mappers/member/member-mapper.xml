@@ -166,4 +166,16 @@
 		WHERE MEMBER_NO = #{no}
 	</select>
 	
+	<update id="updateAdminMember" parameterType="Member">
+		UPDATE MEMBER
+		SET 
+			EMAIL = #{email},
+			PHONE = #{phone},
+			POSTAL_CODE = #{postalCode},
+			ADDRESS = #{address},
+			ADDRESS_DETAIL = #{addressDetail},
+			PASSWORD = #{password}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
 </mapper>

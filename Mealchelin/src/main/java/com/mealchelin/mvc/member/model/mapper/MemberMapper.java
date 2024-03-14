@@ -35,6 +35,8 @@ public interface MemberMapper {
 	int selectCount(@Param("name") String name);
 
 	Member selectAdminMemberByNo(@Param("no") int no);
+	
+	int updateAdminMember(Member member);
     
 	
 

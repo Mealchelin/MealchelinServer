@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,7 +50,7 @@ public class AdminMemberController {
 	
 	@GetMapping("/edit")
 	public ModelAndView adMemberEdit(ModelAndView modelAndView,
-									 @RequestParam int no) {
+			 						 @RequestParam int no) {
 		
 		Member member = memberService.getAdminMemberByNo(no);
 		
@@ -61,6 +62,51 @@ public class AdminMemberController {
 		return modelAndView;
 	}
 	
+	@PostMapping("/edit")
+	public ModelAndView adMemberEdit(ModelAndView modelAndView,
+								     @RequestParam(defaultValue="1") int memberNo,
+									 @RequestParam("adMemEmail") String email, 
+									 @RequestParam("adMemPh") String phone, 
+									 @RequestParam("adMemAd") String postalCode, 
+									 @RequestParam("adMemAd") String address, 
+									 @RequestParam("adMemDetailAd") String addressDetail,
+									 @RequestParam("adRandomPw") String password
+																			) {
+		int result = 0;
+		
+		Member member = null;
+		
+		member = memberService.getAdminMemberByNo(memberNo);
+		
+		if(member != null) {
+			
+			member.setEmail(email);
+			member.setPhone(phone);
+			member.setPostalCode(postalCode);
+			member.setAddress(address);
+			member.setAddressDetail(addressDetail);
+			member.setPassword(password);
+			
+			result = memberService.adminMemberUpdate(member);
+			
+			if(result > 0 ) {
+				modelAndView.addObject("msg", "정보 수정이 완료되었습니다.");
+				modelAndView.addObject("location", "/admin/member/adMember");	
+			} else {
+				modelAndView.addObject("msg", "정보 수정이 실패되었습니다.");
+				modelAndView.addObject("location", "/admin/member/edit?no="+member.getMemberNo());	
+			}
+		
+		} else {
+			modelAndView.addObject("msg", "잘못된 접근입니다.");
+			modelAndView.addObject("location", "/admin/member/edit?no="+member.getMemberNo());
+		}
+			
+			modelAndView.setViewName("common/msg");
+		
+		return modelAndView;
+		
+	}
 	
 	
 	

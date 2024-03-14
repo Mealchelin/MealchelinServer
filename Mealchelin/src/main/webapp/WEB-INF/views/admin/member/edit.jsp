@@ -38,7 +38,7 @@
 			<main class="content" style="background-color: #fff;">
 				<div class="container-fluid p-0">
 					<div class="row ad_mem_de">
-                        <form>
+                        <form method="POST">
                             <table class="col-12">
                                 <thead class="ad_mem_th">
                                     <th colspan="2">회원 정보 수정</th>
@@ -54,7 +54,7 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th">가입일자</td>
-                                        <td>${ member.enrollDate }</td>
+                                        <td><fmt:formatDate value="${ member.enrollDate }" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adMemEmail">이메일</label></td>
@@ -66,9 +66,9 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th" rowspan="3"> <label for="adMemAd">주소</label></td>
-                                        <td style="border-bottom:none;" rowspan="3"><input type="text" id="adMemAdPost" name="adMemAd"> <button type="button" class="meal_btn2" onclick="adMem_execDaumPostcode()">우편번호</button>
-                                            <br><input type="text" id="adMem_Ad" name="adMemAd" style="width: 305px;">
-                                            <br><input type="text" id="adMemDetailAd" name="adMemAd" style="width: 305px;">
+                                        <td style="border-bottom:none;" rowspan="3"><input type="text" id="adMemAdPost" name="adMemAdPost" value="${ member.postalCode }"> <button type="button" class="meal_btn2" onclick="adMem_execDaumPostcode()">우편번호</button>
+                                            <br><input type="text" id="adMem_Ad" name="adMemAd" style="width: 305px;" value="${ member.address }">
+                                            <br><input type="text" id="adMemDetailAd" name="adMemDetailAd" style="width: 305px;" value="${ member.addressDetail }">
                                         </td>
                                     </tr>
                                     <tr>
@@ -77,7 +77,7 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adMemBir">생년월일</label></td>
-                                        <td><input type="text" id="adMemBir" name="adMemBir" value="911109"></td>
+                                        <td><input type="text" id="adMemBir" name="adMemBir"  value="${ member.birth }"></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adRandomPw">임시 비밀번호</label></td>

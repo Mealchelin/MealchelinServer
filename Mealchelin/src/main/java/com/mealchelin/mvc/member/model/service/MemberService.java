@@ -35,6 +35,8 @@ public interface MemberService {
 
 	Member getAdminMemberByNo(int no);
 
+	int adminMemberUpdate(Member member);
+
 
 
 

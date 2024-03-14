@@ -290,6 +290,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mapper.selectAdminMemberByNo(no);
 	}
+
+	@Override
+	@Transactional
+	public int adminMemberUpdate(Member member) {
+		
+		return mapper.updateAdminMember(member);
+	}
 }
 
 
