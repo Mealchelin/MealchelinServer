@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.mapper.OrderMapper;
 import com.mealchelin.mvc.order.model.vo.Orders;
@@ -58,9 +60,34 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Orders> selectProductPayResultset() {
-		return orderMapper.selectProductPayResultset();
+	public List<Orders> selectProductPayResultset(PageInfo pageInfo, int memberNo) {
+		
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return orderMapper.selectProductPayResultset(rowBounds, memberNo);
 	}
+
+
+
+	@Override
+	public int getPayListCount() {
+		return orderMapper.selctPayConut();
+	}
+
+
+
+//	@Override
+//	public List<Orders> getPayListList(PageInfo pageInfo) {
+//		
+//		int limit = pageInfo.getListLimit();
+//		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+//		RowBounds rowBounds = new RowBounds(offset, limit);
+//		
+//		return orderMapper.selectAll(rowBounds);
+//	}
 
 
 

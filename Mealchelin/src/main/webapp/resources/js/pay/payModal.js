@@ -101,19 +101,21 @@ function getusername() {
 var username = document.getElementById("username").innerText;
 return username;
 }
+
 function getuserphone() {
 var userphone = document.getElementById("userphone").innerText;
 return userphone;
 }
+
 function getuserEmail() {
 var userEmail = document.getElementById("userEmail").innerText;
 return userEmail;
 }
+
 // 상품명을 가져오는 함수
 function getProductName() {
 var productName = $("#payFirstName").text(); // 상품명을 클래스 이름이 'pay_FirstName'인 요소에서 가져옴
-var productBrand = $("#paysubFirstName").text(); // 브랜드명을 클래스 이름이 'pay_subFirstName'인 요소에서 가져옴
-return productName + " " + productBrand; // 상품명과 브랜드명을 결합하여 반환
+return productName;// 상품명과 브랜드명을 결합하여 반환
 }
 
 //주소명 가져오는 함수

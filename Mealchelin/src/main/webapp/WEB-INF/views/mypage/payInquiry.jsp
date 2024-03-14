@@ -19,6 +19,7 @@
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/pay/OrderInquiry.css">
 <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
+<link rel="stylesheet" href="${ path }/css/pay/cscenterPayCommon.css" >
 
 
 <!-- jquery -->
@@ -58,15 +59,14 @@
 						<a href="#"> 배송 완료 </a>
 					</div>
 				</div>
-				<br>
-				<br>
+				<br> <br>
+					<c:forEach items="${orders}" var="order">
 				<div class="pay_ProductInfoArea">
 					<p class="pay_ProductTitle">
-						<span>2024.02.27</span> <a href="../pay/OrderDetails.html">주문내역
+						<span>${order.orderDate}</span> <a href="../pay/OrderDetails.html">주문내역
 							상세보기></a>
 					</p>
 					<p class="pay_line"></p>
-					<c:forEach items="${orders}" var="order">
 						<div class="pay_Product">
 							<div class="pay_ProductImg">
 								<a href="../img/new_01.jpg"><img
@@ -98,24 +98,27 @@
 								<p>${order.shipStatus}</p>
 							</div>
 						</div>
-					</c:forEach>
 				</div>
 			</div>
-
-
-			<div class="pay_pageNumber">
-				<ul>
-					<li><a href=""><</a></li>
-					<li><a href="">1</a></li>
-					<li><a href="">2</a></li>
-					<li><a href="">3</a></li>
-					<li><a href="">4</a></li>
-					<li><a href="">5</a></li>
-					<li><a href="">></a></li>
-
-				</ul>
+		</c:forEach>
+			<div class="cs-paging">
+				<button
+					onclick="location.href='${ path }/mypage/payInquiry?page=${ pageInfo.prevPage }'">&lt;</button>
+				<c:forEach var="current" begin="${ pageInfo.startPage }"
+					end="${ pageInfo.endPage }">
+					<c:choose>
+						<c:when test="${ current == pageInfo.currentPage }">
+							<button disabled>${ current }</button>
+						</c:when>
+						<c:otherwise>
+							<button
+								onclick="location.href='${ path }/mypage/payInquiry?page=${ current }'">${ current }</button>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<button
+					onclick="location.href='${ path }/mypage/payInquiry?page=${ pageInfo.nextPage }'">&gt;</button>
 			</div>
-
 		</section>
 	</main>
 

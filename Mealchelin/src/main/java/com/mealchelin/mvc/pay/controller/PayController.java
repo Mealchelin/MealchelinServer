@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.service.OrderService;
 import com.mealchelin.mvc.order.model.vo.OrderProduct;
@@ -239,20 +240,42 @@ public class PayController {
 		return modelAndView;
 	}
 	
-	
+	//주문내역페에지
 	@GetMapping("/mypage/payInquiry")
-	public ModelAndView payInquiry(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember) {
+	public ModelAndView payInquiry(ModelAndView modelAndView,
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam(defaultValue = "1") int page) {
 
 	    List<Orders> orders = null;
+	    
+	    
+	    int paylistCount = 0;
+		PageInfo pageInfo = null;
+		List<Orders> list = null;
+				
+		paylistCount = orderService.getPayListCount();
+		pageInfo = new PageInfo(page, 5, paylistCount, 5);
+//		list = orderService.getPayListList(pageInfo);
+		
+		System.out.println(paylistCount);
+				
+		log.info("Page Number : {}", page);
+		log.info("List Count : {}", paylistCount);
 
 	    // getOrderPayResult 메서드를 호출하여 마지막 주문 1건을 가져옵니다.
-	    orders = orderService.selectProductPayResultset();
+	    orders = orderService.selectProductPayResultset(pageInfo, loginMember.getMemberNo());
+	    
+	    
+	    
+	    
 
 	    // 로그에 주문 목록을 출력합니다.
 	    log.info("Orders: {}", orders);
 
 	    // ModelAndView에 주문 목록을 추가하고, 뷰 이름을 설정하여 반환합니다.
+	    modelAndView.addObject("pageInfo", pageInfo);
 	    modelAndView.addObject("orders", orders);
+	    modelAndView.addObject("list", list);
 	    modelAndView.setViewName("mypage/payInquiry");
 
 	    return modelAndView;

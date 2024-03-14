@@ -79,6 +79,7 @@ WHERE MEMBER_NO = #{memberNo}
     <result property="brand" column="BRAND"/>
     <result property="prdNo" column="PRD_NO"/>
     <result property="image" column="IMAGE"/>
+    <result property="cancleStatus" column="CANCLE_STATUS"/>
 </resultMap>
 
 
@@ -105,7 +106,37 @@ SELECT
     WHERE 
         O.MEMBER_NO = #{memberNo}  -- 해당 사용자의 주문만 가져오도록 변경
     ORDER BY 
-        O.ORDER_DATE DESC
+        O.ORDER_DATE  ASC
+</select>
+
+<select id="selctPayConut" resultType="_int" >
+
+SELECT COUNT(*) FROM ORDERS WHERE CANCLE_STATUS ='N'
+
+</select>
+
+
+<select id="selectAll" resultMap="selectProductPayResultMap" parameterType="_int">
+
+SELECT 
+        O.ORDER_NO,
+        O.MEMBER_NO,
+        O.PAYMENT_METHOD,
+        O.PAYMENT,
+        O.ORDER_DATE,
+        O.SHIP_STATUS,
+        O.ORDERS_NUMBERS,
+        P.NAME AS PRODUCT_NAME,
+        P.BRAND,
+        P.PRD_NO,
+        P.IMAGE,
+        O.CANCLE_STATUS
+    FROM ORDERS O
+    JOIN ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+    JOIN PRODUCT P ON OP.PRD_NO = P.PRD_NO
+    WHERE O.CANCLE_STATUS ='N' AND MEMBER_NO = #{memberNo}
+    ORDER BY O.ORDER_DATE  DESC
+
 </select>
 
 
