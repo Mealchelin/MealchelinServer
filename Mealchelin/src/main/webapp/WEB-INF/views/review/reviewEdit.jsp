@@ -39,7 +39,7 @@
             <div id="re_maindiv">
                 <form action="${ path }/review/reviewEditComplete" method="post" enctype="multipart/form-data">
                     <div id="re_innerdivMain">
-                        <img id="re_img" src="../img/product/${ review.productimage }" alt="">
+                        <img id="re_img" src="../img/review/${ review.renamedFilename }" alt="">
                         <div id="re_foodInfo">
                             <p id="re_foodName">${ review.productName }</p>
                             <c:choose>
