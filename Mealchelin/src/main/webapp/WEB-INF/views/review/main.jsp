@@ -47,9 +47,9 @@
 					<a
 						href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
 						<div class="re_imgDiv">
-							<img class="re_img" src="../img/new_01.jpg" alt="" />
+							<img class="re_img" src="../img/product/${ review.productimage }" alt="" />
 							<div class="re_innerimgDiv">
-								<p class="re_foodName">안동식 순살 찜닭</p>
+								<p class="re_foodName">${ review.productName }</p>
 								<p class="re_brandName">마이셰프</p>
 								<br> <br>
 								<p class="re_reviewTitle">${ review.name }</p>

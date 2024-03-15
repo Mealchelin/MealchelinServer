@@ -26,13 +26,13 @@ public class Review {
 	    
 	    private Date rgstrDate; // 등록 날짜
 	    
-	    private Long views; // 조회수
+	    private int views; // 조회수
 	    
 	    private String rstatus; // 상태 (Y/N)
 	    
 	    private int userNo; // 회원 번호
 	    
-	    private Long prdNo; // 상품 번호
+	    private int prdNo; // 상품 번호
 	    
 		private String id; // 회원 아이디
 		

@@ -119,7 +119,7 @@ public class AdminReviewController {
 				if(no != null) {
 					Review review= service.getReviewByNo(no);
 					if (review != null) {
-						review.setStatus("Y");
+						review.setRstatus("Y");
 						service.adSave(review);
 					}
 				}
@@ -145,7 +145,7 @@ public class AdminReviewController {
 				if(no != null) {
 					Review review= service.getReviewByNo(no);
 					if (review != null) {
-						review.setStatus("N");
+						review.setRstatus("N");
 						service.adSave(review);
 					}
 				}

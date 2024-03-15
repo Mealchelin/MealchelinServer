@@ -66,6 +66,7 @@ h3 {
 .re_foodName{
     float: left;
     font-size: 19px;
+    font-weight: bold;
 }
 
 .re_reviewContent{

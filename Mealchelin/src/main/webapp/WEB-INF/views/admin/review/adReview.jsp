@@ -110,7 +110,7 @@
 													<td>${ Math.round(review.rated) }/5</td>
 													<td class="d-none d-xl-table-cell">${ review.id }</td>
 													<td class="d-none d-xl-table-cell">${ review.rgstrDate }</td>
-													<c:set var="status" value="${ review.status }" scope="session" />
+													<c:set var="status" value="${ review.rstatus }" scope="session" />
 													<c:choose>
 														<c:when test='${ status == "Y" }'>
 															<td id="editStatus_Y" class="d-none d-xl-table-cell">노출</td>
