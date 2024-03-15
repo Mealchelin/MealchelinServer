@@ -93,6 +93,31 @@ public class PayController {
 
 		return modelAndView;
 	}
+	
+	
+	@GetMapping("/payment/shipChange")
+	public ModelAndView shipChange(
+			ModelAndView modelAndView,
+			@SessionAttribute Member loginMember) {
+		
+		List<ShippingLocation> list = null;
+		list = shippingService.getShippingLocationListByLoginMember(loginMember.getMemberNo());
+		modelAndView.addObject("list", list);
+		
+		
+		modelAndView.setViewName("payment/shipChange");
+		return modelAndView;
+	}
+	
+	@PostMapping("/payment/shipChange")
+	public String shipChange(
+			@RequestParam("ckShipNo") int no) {
+		
+		ShippingLocation shipLocation = shippingService.getShippingLocationByShipNo(no);
+		log.info(shipLocation.toString());
+		
+		return "";
+	}
 
 	@GetMapping("/payment/pay")
 	public ModelAndView cartpayment(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember) {

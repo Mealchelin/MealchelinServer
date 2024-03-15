@@ -123,7 +123,7 @@
 						</div>
 						<div class="pay_Sender">
 							<span class="pay_useraddress">배송지</span>
-							 <span class="pay_defaultPoint">기본배송지</span>
+							<span class="pay_defaultPoint">기본배송지</span>
 						</div>
 						<span class="pay_useraddresss" id="shipaddress">${shippingInfo.shipAddress}</span>
 						<!-- hidden input 태그 추가 -->
@@ -132,7 +132,7 @@
 						<!-- hidden input 태그 추가 -->
 						<input type="hidden" name="shipaddressdetail" value="${shippingInfo.shipAddressDetail}" id="shipaddressdetail" />
 						<div class="pay_addresschangeArea">
-							<a class="pay_addresschange">변경</a>
+							<a class="pay_addresschange" onclick="window.open('${ path }/payment/shipChange', '_blank', 'width=800, height=600'); return false;">변경</a>
 						</div>
 					</div>
 					

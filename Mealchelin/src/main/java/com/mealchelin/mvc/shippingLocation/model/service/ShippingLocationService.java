@@ -20,6 +20,8 @@ public interface ShippingLocationService {
 
 	int changeDefaultLocation(int shipNo);
 
+	ShippingLocation getShippingLocationByShipNo(int no);
+
 	
 
 	

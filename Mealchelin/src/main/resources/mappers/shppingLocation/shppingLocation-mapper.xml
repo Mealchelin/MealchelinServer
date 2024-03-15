@@ -92,6 +92,11 @@
 		SET SHIP_NO = SEQ_SHIP_NO.NEXTVAL
 		WHERE SHIP_NO = #{shipNo}
 	</update>
+	
+	<select id="selectShippingLocationByShipNo" resultMap="shippingLocationResultMap">
+		<include refid="selectShippingLocationSql"/>
+		AND SHIP_NO = #{no}
+	</select>
 
 
 </mapper>
