@@ -37,6 +37,7 @@
 		<result property="renamedFilename" column="RENAMED_FILENAME"/>
 		<result property="productName" column="PRODUCT_NAME"/>
 		<result property="productimage" column="PRODUCT_IMAGE"/>
+		<result property="brand" column="BRAND"/>
 	</resultMap>
 	
 	<resultMap id="orderListResultMap" type="MemberProdutOrderList">
@@ -158,7 +159,8 @@
 				REVIEW.PRD_NO,
                 MEMBER.ID,
                 PRODUCT.NAME AS "PRODUCT_NAME",
-                PRODUCT.IMAGE AS "PRODUCT_IMAGE"
+                PRODUCT.IMAGE AS "PRODUCT_IMAGE",
+                PRODUCT.BRAND AS "BRAND"
         FROM REVIEW
 		LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
         LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
@@ -195,7 +197,8 @@
 				REVIEW.VIEWS,
 				REVIEW.STATUS,
 				REVIEW.USER_NO,
-				PRODUCT.NAME as "PRODUCT_NAME"
+				PRODUCT.NAME as "PRODUCT_NAME",
+                PRODUCT.BRAND AS "BRAND"
         FROM REVIEW
 		LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
 		WHERE REVIEW.STATUS = 'Y' AND REVIEW.USER_NO = #{userNo}

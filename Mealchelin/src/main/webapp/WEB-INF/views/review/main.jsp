@@ -50,7 +50,7 @@
 							<img class="re_img" src="${ path }/img/review/${ review.renamedFilename }" alt="" />
 							<div class="re_innerimgDiv">
 								<p class="re_foodName">${ review.productName }</p>
-								<p class="re_brandName">마이셰프</p>
+								<p class="re_brandName">${ review.brand }</p>
 								<br> <br>
 								<p class="re_reviewTitle">${ review.name }</p>
 								<br>
