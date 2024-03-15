@@ -48,6 +48,7 @@
 		<result property="reviewAndDate" column="REVIEW_AND_DATE"/>
 		<result property="prdNo" column="PRODUCT_NO"/>
 		<result property="image" column="IMAGE"/>
+		<result property="brand" column="BRAND"/>
 	</resultMap>
 	
 
@@ -209,7 +210,8 @@
 	        ORDERS.ORDER_DATE AS "ORDER_DATE",
 	        ORDERS.REVIEW_AND_DATE AS "REVIEW_AND_DATE",
 	        order_product.prd_no AS "PRODUCT_NO",
-	        PRODUCT.IMAGE AS IMAGE
+	        PRODUCT.IMAGE AS IMAGE,
+            PRODUCT.BRAND AS BRAND
 	FROM MEMBER
 	LEFT JOIN ORDERS ON MEMBER.MEMBER_NO = ORDERS.MEMBER_NO
 	LEFT JOIN ORDER_PRODUCT ON ORDER_PRODUCT.ORDER_NO = ORDERS.ORDER_NO

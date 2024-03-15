@@ -25,4 +25,6 @@ public class MemberProdutOrderList {
     private String image; // 상품이미지
     
     private Date reviewAndDate; // 리뷰 마감일
+    
+    private String brand; // 상품 브랜드
 }
