@@ -31,7 +31,7 @@ public interface OrderMapper {
 	int updateAdOrders(Orders orders);
 
 	List<Orders> selectadMainOrderList();
-
+ 
 //	List<Orders> selectAll(RowBounds rowBounds);
     
 	List<Orders> selectPayInfo(int orderNo);
