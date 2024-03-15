@@ -3,10 +3,7 @@ package com.mealchelin.mvc.order.model.service;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.mealchelin.mvc.common.util.PageInfo;
-import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.vo.Orders;
 
 public interface OrderService {
@@ -35,7 +32,7 @@ public interface OrderService {
 	//리스트
 	List<Orders> selectPayInfo(int orderNo);
 
-	//단일
+//	단일
 	Orders selectPayInfoOne(int orderNo);
 
 

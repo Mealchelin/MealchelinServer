@@ -60,8 +60,8 @@
 							</tr>
 							<tr class="pay_ProductMenu">
 								<td>결제금액</td>
-								<td class="pay_subNameTwo">${items.payMent }원 <span>ㅣ</span> ${items.countQ }개
-								</td>
+								<td class="pay_subNameTwo"><fmt:formatNumber value="${items.price * items.countQ}" pattern="#,###"/>원 <span>ㅣ</span> ${items.countQ}개</td>
+
 							</tr>
 						</table>
 					</div>
@@ -71,7 +71,7 @@
 					<div class="pay_pay_Productreview">
 						<input type="button"
 							onclick="location.href='${path}/mypage/payDelete'" value="주문 취소" />
-						<input type="button" value="리뷰쓰기" />
+						<input type="button" onclick="location.href='${path}/review/reviewWrite?orderNo=${orderNo }'" value="리뷰쓰기" />
 						<p>* 리뷰는 구매일로부터</p>
 						<p>3개월까지만 작성 가능합니다</p>
 					</div>
@@ -189,11 +189,11 @@
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">받는분</td>
-								<td class="pay_subName">백성연</td>
+								<td class="pay_subName">${shipInfo.shipName }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">핸드폰</td>
-								<td class="pay_subName">010-2251-2148</td>
+								<td class="pay_subName">${shipInfo.phone }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
