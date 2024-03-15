@@ -32,9 +32,7 @@ public interface OrderService {
 	//리스트
 	List<Orders> selectPayInfo(int orderNo);
 
-//	단일
-	Orders selectPayInfoOne(int orderNo);
-
+	Orders selectOrderAll(int orderNo);
 
 
 }

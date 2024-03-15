@@ -36,6 +36,7 @@ public interface OrderMapper {
     
 	List<Orders> selectPayInfo(int orderNo);
 	
-	Orders selectPayInfoOne(int orderNo);
+ 	Orders selectOrderAll(int orderNo);
+	
     
 }

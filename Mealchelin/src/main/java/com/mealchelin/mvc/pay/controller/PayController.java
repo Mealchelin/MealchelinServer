@@ -310,29 +310,29 @@ public class PayController {
 	        @SessionAttribute("loginMember") Member loginMember,
 	        @RequestParam int orderNo) {
 	    
+		Orders orders = null;
+		
 	    List<Orders> result = null;
-	    Orders orders = null;
 	    
 	    
 	    // 사용자의 주문 목록을 가져옵니다.
 	    result = orderService.selectPayInfo(orderNo);
 	    
-	    
 	    ShippingLocation shipInfo =	shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 	   
-	    orders = orderService.selectPayInfoOne(orderNo);
 	  
-	    System.out.println(orders);
+	    orders = orderService.selectOrderAll(orderNo);
+	    
 	    System.out.println(shipInfo);
 	    
-	    log.info("################ = {}",orders);
 	    log.info("################ = {}",result);
+	    log.info("##########################+{}",shipInfo);
 
 	    // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
 	    modelAndView.addObject("loginMember", loginMember);
-	    modelAndView.addObject("order", orders);
 	    modelAndView.addObject("result", result);
 	    modelAndView.addObject("shipInfo", shipInfo);
+	    modelAndView.addObject("orders", orders);
 	    modelAndView.setViewName("mypage/payDetails");
 
 	    return modelAndView;

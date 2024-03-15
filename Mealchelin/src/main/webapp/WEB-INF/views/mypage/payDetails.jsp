@@ -69,9 +69,8 @@
 						<span>${items.shipStatus }</span>
 					</div>
 					<div class="pay_pay_Productreview">
-						<input type="button"
-							onclick="location.href='${path}/mypage/payDelete'" value="주문 취소" />
-						<input type="button" onclick="location.href='${path}/review/reviewWrite?orderNo=${orderNo }'" value="리뷰쓰기" />
+						<input type="button" onclick="location.href='${path}/mypage/payDelete'" value="주문 취소" />
+						<input type="button" onclick="location.href='${path}/review/reviewWrite?orderNo=${order.orderNo}'" value="리뷰쓰기" />
 						<p>* 리뷰는 구매일로부터</p>
 						<p>3개월까지만 작성 가능합니다</p>
 					</div>
@@ -122,8 +121,8 @@
 							<td>주문상태</td>
 						</tr>
 						<tr class="pay_secondInfoLine">
-							<td>주문번호 : ${ order.orderMembers }</td>
-							<td>${order.shipStatus }</td>
+							<td>주문번호 : 1</td>
+							<td>1</td>
 						</tr>
 					</table>
 				</div>
@@ -149,7 +148,7 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제방법</td>
-								<td class="pay_subName">${ order.paymentMethod }</td>
+								<td class="pay_subName">1</td>
 					
 							</tr>
 						</table>
@@ -165,7 +164,7 @@
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">주문번호</td>
-								<td class="pay_subName">${ order.orderMembers }</td>
+								<td class="pay_subName">${orders.orderMembers }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">보내는 분</td>
@@ -173,7 +172,7 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제일시</td>
-								<td class="pay_subName">${ order.orderDate }</td>
+								<td class="pay_subName">1</td>
 							</tr>
 						</table>
 					</div>
@@ -197,11 +196,12 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
-								<td class="pay_subName">서울 동작구 가로수길 109길(00아파트)</td>
+								<td class="pay_subName">${shipInfo.shipAddress }             ${shipInfo.shipAddressDetail }</td>
+
 							</tr>
 							<tr>
-								<td class="pay_mainName">받으실 장소</td>
-								<td class="pay_subName">문 앞</td>
+								<td class="pay_mainName">배송 요청사항</td>
+								<td class="pay_subName">1</td>
 							</tr>
 						</table>
 					</div>

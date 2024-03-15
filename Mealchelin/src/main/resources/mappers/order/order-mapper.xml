@@ -261,6 +261,8 @@ GROUP BY O.ORDER_NO
     <result property="countQ" column="QUANTITY"/>
     <result property="totalPrice" column="TOTAL_PRICE"/>
     <result property="price" column="PRICE"/>
+    <result property="request" column="REQUEST"/>
+    <result property="canclereason" column="CANCLE_REASON"/>
 </resultMap>
 
 
@@ -292,31 +294,24 @@ SELECT
         OP.ORDER_NO = #{orderProductNo} 
 </select>
 
+<select id="selectOrderAll" parameterType="_int" resultMap="selectProductPayInfoResultMap">
+
+SELECT 
+    ORDER_NO,
+    REQUEST,
+    PAYMENT_METHOD,
+    PAYMENT,
+    SHIP_STATUS,
+    ORDER_DATE,
+    CANCLE_STATUS,
+    CANCLE_REASON,
+    MEMBER_NO,
+    SHIP_NO,
+    ORDERS_NUMBERS
+FROM ORDERS
+WHERE ORDER_NO =#{orderNo}
 
 
-<select id="selectPayInfoOne" parameterType="int" resultMap="selectProductPayInfoResultMap">
-    SELECT 
-        O.ORDER_NO,
-        O.MEMBER_NO,
-        O.PAYMENT_METHOD,
-        O.PAYMENT,
-        O.ORDER_DATE,
-        O.SHIP_STATUS,
-        O.ORDERS_NUMBERS,
-        P.NAME AS PRODUCT_NAME,
-        P.PRD_NO,
-        P.IMAGE,
-        OP.PRD_NO,
-        OP.QUANTITY,
-        OP.TOTAL_PRICE
-    FROM 
-        ORDERS O
-    JOIN 
-        ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
-    JOIN 
-        PRODUCT P ON OP.PRD_NO = P.PRD_NO
-    WHERE 
-        O.ORDER_NO = #{orderNo} 
 </select>
 
 
