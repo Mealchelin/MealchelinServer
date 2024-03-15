@@ -88,7 +88,7 @@
                                             </select>
                                         </td>
                                         <td class="ad_th" id="adBuyCode">결제 방법</label></td>
-                                        <td>${ orders.payMent }</td>
+                                        <td>${ orders.paymentMethod }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" id="adBuyerName">주문자 이름</td>
@@ -124,7 +124,7 @@
                                     <tr>
                                     </tr>
                                     <tr>
-                                        <td class="ad_th">받을 장소</td>
+                                        <td class="ad_th">요청 사항</td>
                                         <td colspan="3">${ orders.request }</td>
                                     </tr>
                                 </tbody>
