@@ -135,7 +135,7 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th">상품명</td>
-                                        <td>불고기 볶음밥</td>
+                                        <td>${ review.productName }</td>
                                         <td class="ad_th">조회수</td>
                                         <td>
 											0
@@ -147,7 +147,7 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th">첨부파일</td>
-										<td colspan="3">${ review.image }</td>
+										<td colspan="3">${ review.renamedFilename }</td>
                                     </tr>
 									<tr>
 										<td colspan="4" style="padding: 20px;">

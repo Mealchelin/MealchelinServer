@@ -47,7 +47,7 @@
 					<a
 						href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
 						<div class="re_imgDiv">
-							<img class="re_img" src="../img/product/${ review.productimage }" alt="" />
+							<img class="re_img" src="${ path }/img/review/${ review.renamedFilename }" alt="" />
 							<div class="re_innerimgDiv">
 								<p class="re_foodName">${ review.productName }</p>
 								<p class="re_brandName">마이셰프</p>
