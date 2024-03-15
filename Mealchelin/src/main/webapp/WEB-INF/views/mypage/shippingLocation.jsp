@@ -153,13 +153,16 @@
 		$('#myform_submit').on('click', () => {
 			let nows = document.getElementsByName('ckShipNo');
 			nows.forEach(function (now) {
-				if (now.checked == true) {
-					if (confirm('선택한 배송지를 기본 배송지로 등록하시겠습니까?')) {
-						now.parentNode.setAttribute('method', 'post');
-						now.parentNode.setAttribute('action', '${path}/mypage/shippingLocation/setDefault');
-						now.parentNode.submit();
+				if (now.checked) {
+					if (nows[0].checked) {
+						alert('이미 기본 배송지로 등록된 배송지입니다.')
+					} else { 
+						if (confirm('선택한 배송지를 기본 배송지로 등록하시겠습니까?')) {
+							now.parentNode.setAttribute('method', 'post');
+							now.parentNode.setAttribute('action', '${path}/mypage/shippingLocation/setDefault');
+							now.parentNode.submit();
+						}
 					}
-
 				};
 			})
 		})

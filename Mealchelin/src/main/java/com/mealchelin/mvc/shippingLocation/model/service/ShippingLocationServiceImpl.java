@@ -79,6 +79,11 @@ public class ShippingLocationServiceImpl implements ShippingLocationService {
 		return mapper.setShipNoForChangeDefaultLocation(shipNo);
 	}
 
+	@Override
+	public ShippingLocation getShippingLocationByShipNo(int no) {
+		return mapper.selectShippingLocationByShipNo(no);
+	}
+
 
 	
 

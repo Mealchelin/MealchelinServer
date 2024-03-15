@@ -23,6 +23,8 @@ public interface ShippingLocationMapper {
 	int updateStatus(@Param("shipNo") int shipNo);
 
 	int setShipNoForChangeDefaultLocation(@Param("shipNo") int shipNo);
+
+	ShippingLocation selectShippingLocationByShipNo(@Param("no") int no);
 	
 	
 
