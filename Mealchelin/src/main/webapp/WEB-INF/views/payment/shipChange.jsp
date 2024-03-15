@@ -37,7 +37,7 @@
 	<main>
         <section>
             <h3 class="myadress">배송지 목록</h3>
-            <form id="defaultLocation" action="${ path }/payment/shipChange" method="post">
+<%--             <form id="defaultLocation" action="${ path }/payment/shipChange" method="post"> --%>
 	            <c:forEach var="shippingLocation" items="${ list }" varStatus="st">
 		            <div class="mytableDiv">
 		                <table class="mytatble" style="margin: 0 auto; width: 600px;">
@@ -70,8 +70,8 @@
 		                </table>
 		            </div>
 	            </c:forEach>
-	            <button class="myform_submit" onclick="window.close();">배송지 선택</button>
-            </form>
+	            <button class="myform_submit" onclick="changeShipLocation()">배송지 선택</button>
+<!--             </form> -->
         </section>
     </main>
     
@@ -80,20 +80,73 @@
     <script type="text/javascript" src="${ path }/js/mypage/shippingLocation.js"></script>
    	<script>
 	   	        
-   	document.addEventListener('DOMContentLoaded', function () {
-		var checkboxes = document.querySelectorAll('.myCheckBoxs');
-
-		checkboxes.forEach(function (checkbox) {
-			checkbox.addEventListener('click', function () {
-				// 모든 체크박스의 체크를 해제
-				checkboxes.forEach(function (otherCheckbox) {
-					if (otherCheckbox !== checkbox) {
-						otherCheckbox.checked = false;
-					}
+	   	document.addEventListener('DOMContentLoaded', function () {
+			var checkboxes = document.querySelectorAll('.myCheckBoxs');
+	
+			checkboxes.forEach(function (checkbox) {
+				checkbox.addEventListener('click', function () {
+					// 모든 체크박스의 체크를 해제
+					checkboxes.forEach(function (otherCheckbox) {
+						if (otherCheckbox !== checkbox) {
+							otherCheckbox.checked = false;
+						}
+					});
 				});
 			});
 		});
-	});
+	   	
+	   	
+	   	
+	   	function changeShipLocation() {
+	   	    var checkedCheckbox = document.querySelector('input[type="checkbox"]:checked');
+
+	   	    if (checkedCheckbox) {
+	   	    	
+	   	        console.log(checkedCheckbox); // 콘솔에 체크된 체크박스를 출력합니다.
+	   	        let shipId = checkedCheckbox.id;
+	   	        let shipNo = checkedCheckbox.value;
+	   	     	const last = parseInt(shipId.charAt(shipId.length - 1));
+	   	     	
+				if ('${list[0].shipNo}' == shipNo) {
+					console.log(1);
+					opener.document.getElementById('shipName').value = '${list[0].shipName}';
+					opener.document.getElementById('shipname').innerText = '${list[0].recipient}';
+					opener.document.getElementById('shipphone').innerText = '${list[0].phone}';
+					opener.document.getElementById('shipaddress').innerText = '${list[0].shipAddress}';
+					opener.document.getElementById('shipaddressdetail').innerText = '${list[0].shipAddressDetail}';
+				} else if ('${list[1].shipNo}' == shipNo) {
+					console.log(2);
+				} else if ('${list[2].shipNo}' == shipNo) {
+					console.log(3);
+				}  else if ('${list[3].shipNo}' == shipNo) {
+					console.log(4);
+				} else if ('${list[4].shipNo}' == shipNo) {
+					console.log(5);
+				}
+				
+				
+				
+	   	    } 
+	   		
+// 	   		var checkboxes = document.querySelectorAll('.myCheckBoxs');
+// 	   		checkboxes.forEach(function (checkbox) {
+// 	   			checkbox.attr('checked');
+// 	   		})
+// 	   		console.log(checkboxes);
+	   		
+	   		let location = {
+	   				shipNo : 0,
+	   				shipName : "",
+	   				recipient : "",
+	   				phone: "",
+	   				postalCode: "",
+	   				address: "",
+	   				adrressDetail: '',
+	   		}
+// 	   		setTimeout(function() {
+// 	   			window.close();
+// 	   		}, 100);
+	   	}
         
     </script> 
 </body>
