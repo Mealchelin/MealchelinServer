@@ -39,9 +39,9 @@
 			<h3>밀슐랭 상품 리뷰</h3>
             <div id="re_maindiv">
                 <div id="re_innerdivMain">
-                    <img id="re_img" src="../img/new_01.jpg" alt="">
+                    <img id="re_img" src="../img/product/${ review.productimage }" alt="">
                     <div id="re_foodInfo">
-                        <p id="re_foodName">안동식 순살 찜닭</p>
+                        <p id="re_foodName">${ review.productName }</p>
                         
                         <c:choose>
                         	<c:when test="${ review.rated == 0}">
