@@ -25,6 +25,8 @@ public interface ShippingLocationMapper {
 	int setShipNoForChangeDefaultLocation(@Param("shipNo") int shipNo);
 
 	ShippingLocation selectShippingLocationByShipNo(@Param("no") int no);
+
+	ShippingLocation selectDefaultShippingLocationByMemNo(@Param("memNo") int memberNo);
 	
 	
 

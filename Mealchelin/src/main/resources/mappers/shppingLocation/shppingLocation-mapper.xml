@@ -98,5 +98,26 @@
 		AND SHIP_NO = #{no}
 	</select>
 
+	<select id="selectDefaultShippingLocationByMemNo" resultMap="shippingLocationResultMap">
+		SELECT SHIP_NO,
+			   SHIP_NAME,
+			   RECIPIENT,
+			   PHONE,
+			   POSTAL_CODE,
+			   SHIP_ADDRESS,
+			   SHIP_ADDRESS_DETAIL,
+			   MOUNTAIN,
+			   PRICE,
+			   DEFAULT_CHECK,
+			   STATUS,
+			   MEMBER_NO
+		FROM (
+        <include refid="selectShippingLocationSql"/>
+        AND MEMBER_NO = #{memNo}
+        ORDER BY SHIP_NO DESC
+        )
+        WHERE ROWNUM = 1
+	</select>
+
 
 </mapper>

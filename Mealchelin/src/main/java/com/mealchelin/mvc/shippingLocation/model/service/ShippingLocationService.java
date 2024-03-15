@@ -22,6 +22,8 @@ public interface ShippingLocationService {
 
 	ShippingLocation getShippingLocationByShipNo(int no);
 
+	ShippingLocation getDefaultShippingLocationByMemNo(int memberNo);
+
 	
 
 	

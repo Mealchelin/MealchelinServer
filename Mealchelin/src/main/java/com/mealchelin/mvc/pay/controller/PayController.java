@@ -61,8 +61,8 @@ public class PayController {
 
 		// 주문 상품
 		product = productService.getProductByNo(no);
-		// 배송정보
-		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+		// 기본배송지
+		shippingInfo = shippingService.getDefaultShippingLocationByMemNo(loginMember.getMemberNo());
 
 		if (price > 50000) {
 			shipPrice = 0;
@@ -77,7 +77,7 @@ public class PayController {
 		// 결제수단 표시
 		payInfoList = payInfoService.selectByProductPay(loginMember.getMemberNo());
 
-		log.info("shippinginfo = {}", shippingInfo);
+		log.info("shippingInfo = {}", shippingInfo);
 		log.info("payInfoList = {}", payInfoList);
 
 		modelAndView.addObject("userInfo", loginMember); // 추가 정보를 모델에 추가
@@ -202,23 +202,22 @@ public class PayController {
 	@PostMapping("/payment/paysucces")
 	public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
 				HttpSession session) {
+		
 		// 세션에서 로그인한 회원 정보 가져오기
 		Member member = (Member) session.getAttribute("loginMember");
-
-		ShippingLocation shippingInfo = shippingService.getShippingInfoByInfo(member.getMemberNo());
-
+		
 		// 주문 정보에 회원 번호 설정
 		Orders order = new Orders();
 		order.setMemberNo(member.getMemberNo());
-		order.setShipNo(shippingInfo.getShipNo());
 
 		// 주문 정보와 회원 정보를 담은 Map 생성
 		orderInfo.put("order", order);
 		orderInfo.put("member", member);
 
 		// 결제 방식 추가
-		
 		log.info("orderInfo : {}",orderInfo);
+		int shipNo = (int)orderInfo.get("shipNo");
+		order.setShipNo(shipNo);
 
 		String orderMembers = (String) orderInfo.get("orderNo");
 		order.setOrderMembers(orderMembers);
