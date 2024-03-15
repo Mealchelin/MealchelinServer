@@ -23,4 +23,6 @@ public class MemberProdutOrderList {
     private int prdNo; // 상품번호
     
     private String image; // 상품이미지
+    
+    private Date reviewAndDate; // 리뷰 마감일
 }
