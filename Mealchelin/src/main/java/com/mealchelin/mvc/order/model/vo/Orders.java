@@ -55,6 +55,9 @@ public class Orders {
 
 	   // 상품이미지
 	   private String image;
+	   
+	   //상품 가격
+	   private int price;
 
 	   // 총가격
 	   private int totalPrice;

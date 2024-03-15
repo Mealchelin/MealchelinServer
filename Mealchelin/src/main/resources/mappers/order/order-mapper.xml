@@ -260,6 +260,7 @@ GROUP BY O.ORDER_NO
     <result property="image" column="IMAGE"/>
     <result property="countQ" column="QUANTITY"/>
     <result property="totalPrice" column="TOTAL_PRICE"/>
+    <result property="price" column="PRICE"/>
 </resultMap>
 
 
@@ -279,7 +280,8 @@ SELECT
         OP.PRD_NO,
 		OP.QUANTITY,
 		OP.TOTAL_PRICE,
-		OP.ORDER_NO
+		OP.ORDER_NO,
+		P.PRICE
     FROM 
         ORDERS O
     JOIN 
@@ -287,8 +289,10 @@ SELECT
     JOIN 
         PRODUCT P ON OP.PRD_NO = P.PRD_NO
     WHERE 
-        OP.ORDER_NO = #{orderProductNo} -- 해당 사용자의 주문만 가져오도록 변경
+        OP.ORDER_NO = #{orderProductNo} 
 </select>
+
+
 
 <select id="selectPayInfoOne" parameterType="int" resultMap="selectProductPayInfoResultMap">
     SELECT 

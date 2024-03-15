@@ -63,9 +63,8 @@
 				<c:forEach items="${orders}" var="order">
 					<div class="pay_ProductInfoArea">
 						<p class="pay_ProductTitle">
-							<span>${order.orderDate}</span> <a
-								href="${ path }/mypage/payDetails?orderNo=${order.orderNo}">주문내역
-								상세보기></a>
+							<span>${order.orderDate}</span> 
+							<a href="${ path }/mypage/payDetails?orderNo=${order.orderNo}">주문내역 상세보기></a>
 						</p>
 						<p class="pay_line"></p>
 						<div class="pay_Product">

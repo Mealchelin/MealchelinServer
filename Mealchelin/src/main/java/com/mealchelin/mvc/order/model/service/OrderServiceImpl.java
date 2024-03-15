@@ -112,7 +112,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	
-	//단일
+//	단일
 	@Override
 	public Orders selectPayInfoOne(int orderNo) {
 		return orderMapper.selectPayInfoOne(orderNo);

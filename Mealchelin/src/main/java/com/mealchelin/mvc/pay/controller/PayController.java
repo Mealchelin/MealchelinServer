@@ -316,10 +316,14 @@ public class PayController {
 	    
 	    // 사용자의 주문 목록을 가져옵니다.
 	    result = orderService.selectPayInfo(orderNo);
+	    
+	    
+	    ShippingLocation shipInfo =	shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 	   
 	    orders = orderService.selectPayInfoOne(orderNo);
 	  
 	    System.out.println(orders);
+	    System.out.println(shipInfo);
 	    
 	    log.info("################ = {}",orders);
 	    log.info("################ = {}",result);
@@ -328,6 +332,7 @@ public class PayController {
 	    modelAndView.addObject("loginMember", loginMember);
 	    modelAndView.addObject("order", orders);
 	    modelAndView.addObject("result", result);
+	    modelAndView.addObject("shipInfo", shipInfo);
 	    modelAndView.setViewName("mypage/payDetails");
 
 	    return modelAndView;
