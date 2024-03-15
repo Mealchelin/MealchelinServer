@@ -149,10 +149,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int updateStatusAdmin(int reviewNo, String status) {
+	public int updateStatusAdmin(int reviewNo, String rstatus) {
 		
 		
-		return mapper.updateStatusAdmin(reviewNo, status);
+		return mapper.updateStatusAdmin(reviewNo, rstatus);
 	}
 
 	

@@ -41,7 +41,7 @@ public interface ReviewService {
 
 	List<Review> getReviewListForHome();
 
-	int updateStatusAdmin(int reviewNo, String status);
+	int updateStatusAdmin(int reviewNo, String rstatus);
 
 	int getOrderListCountByUserNo(int userNo);
 

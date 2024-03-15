@@ -33,6 +33,10 @@
         .ad_mem_de td{
             border:1px solid #ccc;
         }
+        #fileDown{
+        	color:#495057;
+        	text-decoration: underline;
+        }
 
     </style>
 </head>
@@ -147,7 +151,12 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th">첨부파일</td>
-										<td colspan="3"><a href="${ path }/img/review/${ review.renamedFilename }">${ review.renamedFilename }</a></td>
+                                        <c:if test="${ empty review.renamedFilename }">							
+											<td colspan="3"> - </td>
+										</c:if>
+										<c:if test="${ not empty review.renamedFilename }">	
+											<td colspan="3"><a href="javascript:" id="fileDown">${ review.renamedFilename }</a></td>
+                                    	</c:if>
                                     </tr>
 									<tr>
 										<td colspan="4" style="padding: 20px;">
@@ -157,8 +166,15 @@
 									<tr>
 										<td class="ad_th"><label for="adReviewShow">노출 여부</label></td>
                                         <td colspan="3">
-											<label style="margin-right: 10px;"><input type="radio" checked name="status" id="adReviewShow" value="Y" style="width: 20px;"/>노출</label>
-                                            <label><input type="radio" name="status" id="adReviewShow" value="N" style="width: 30px;"/>비노출</label>
+                                        	<c:set var="status" value="${ review.rstatus }" scope="session"></c:set>
+                                        	<c:if test='${ status == "Y" }'>
+												<input type="radio" checked name="rstatus" id="adReviewShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            	<input type="radio" name="rstatus" id="adReviewShow" value="N" style="width: 30px;"/>비노출
+                                        	</c:if>
+                                        	<c:if test='${ status == "N" }'>
+												<input type="radio" name="rstatus" id="adReviewShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            	<input type="radio" checked name="rstatus" id="adReviewShow" value="N" style="width: 30px;"/>비노출
+                                        	</c:if>
 										</td>
 									</tr>
 									</tr>
@@ -205,7 +221,23 @@
 	</div>
     
     <!-- 필요한 js 밑에 추가-->
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
+    <script>
+	$(document).ready(() => {
+		$('#fileDown').on('click', () => {
+			let oname = encodeURIComponent('${ review.originalFilename }');
+			let rname = encodeURIComponent('${ review.renamedFilename }');
+						
+			console.log(oname);
+			console.log(rname);
+			
+			// location.assign('${ path }/board/fileDown?oname=' + oname + '&rname=' + rname);
+			location.assign(`${ path }/admin/review/fileDown?oname=\${oname}&rname=\${rname}`);
+		});
+		
+	});
+</script>
 </body>
 
 </html>

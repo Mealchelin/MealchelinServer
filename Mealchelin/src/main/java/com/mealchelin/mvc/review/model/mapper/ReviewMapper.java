@@ -52,7 +52,7 @@ public interface ReviewMapper {
 
 	List<Review> getReviewListForHome();
 
-	int updateStatusAdmin(@Param("reviewNo") int reviewNo, @Param("status") String status);
+	int updateStatusAdmin(@Param("reviewNo") int reviewNo, @Param("rstatus") String rstatus);
 
 	
 
