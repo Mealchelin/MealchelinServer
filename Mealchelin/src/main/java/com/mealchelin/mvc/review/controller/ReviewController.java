@@ -129,8 +129,8 @@ public class ReviewController {
 	@GetMapping("/main")
 	public ModelAndView home(ModelAndView modelAndView, 
 							 @RequestParam(defaultValue = "1") int page,
-							 @RequestParam(defaultValue = "", name = "searchType") String type,
-							 @RequestParam(defaultValue = "", name = "searchText") String text
+							 @RequestParam(defaultValue = "", name = "searchType") String category,
+							 @RequestParam(defaultValue = "", name = "searchText") String title
 							) {
 		int reviewCount = 0;
 		PageInfo pageInfo = null;
@@ -138,9 +138,9 @@ public class ReviewController {
 		
 		log.info(modelAndView.toString());
 
-		reviewCount = service.getReviewCount(type, text);
+		reviewCount = service.getReviewCount(category, title);
 		pageInfo = new PageInfo(page, 5, reviewCount, 12);
-		list = service.getReviewList(pageInfo, type, text);
+		list = service.getReviewList(pageInfo, category, title);
 
 		
 		log.info("page Number : {}", page);

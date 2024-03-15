@@ -13,11 +13,11 @@ public interface ReviewService {
 	int save(Review review);
 
 	
-	int getReviewCount(String type, String text);
+	int getReviewCount(String category, String title);
 	
 	int getAdminReviewCount();
 
-	List<Review> getReviewList(PageInfo pageInfo, String type, String text);
+	List<Review> getReviewList(PageInfo pageInfo, String category, String title);
 	
 	List<Review> getAdminReviewList(PageInfo pageInfo);
 
