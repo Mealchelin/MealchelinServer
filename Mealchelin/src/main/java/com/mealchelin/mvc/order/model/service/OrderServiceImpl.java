@@ -105,16 +105,20 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
+	//리스트
+	@Override
+	public List<Orders> selectPayInfo(int orderNo) {
+		return orderMapper.selectPayInfo(orderNo);
+	}
 
-//	@Override
-//	public List<Orders> getPayListList(PageInfo pageInfo) {
-//		
-//		int limit = pageInfo.getListLimit();
-//		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-//		RowBounds rowBounds = new RowBounds(offset, limit);
-//		
-//		return orderMapper.selectAll(rowBounds);
-//	}
+	
+	//단일
+	@Override
+	public Orders selectPayInfoOne(int orderNo) {
+		return orderMapper.selectPayInfoOne(orderNo);
+	}
+
+
 
 
 

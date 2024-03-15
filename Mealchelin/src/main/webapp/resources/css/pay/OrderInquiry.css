@@ -62,10 +62,11 @@
 }
 
 .pay_FirstChapter:hover,
-.pay_FirstChapter a:hover {
+.pay_FirstChapter:hover > a {
     color: white;
     background-color: rgb(59, 108, 81);
 }
+
 
 .pay_ProductTitle a:last-child {
     float: right;

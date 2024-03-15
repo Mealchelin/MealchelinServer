@@ -34,5 +34,8 @@ public interface OrderMapper {
 
 //	List<Orders> selectAll(RowBounds rowBounds);
     
+	List<Orders> selectPayInfo(int orderNo);
+	
+	Orders selectPayInfoOne(int orderNo);
     
 }

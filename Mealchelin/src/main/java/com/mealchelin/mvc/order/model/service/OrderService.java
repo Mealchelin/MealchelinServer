@@ -32,19 +32,12 @@ public interface OrderService {
 
 //	List<Orders> getPayListList(PageInfo pageInfo);
 
+	//리스트
+	List<Orders> selectPayInfo(int orderNo);
 
+	//단일
+	Orders selectPayInfoOne(int orderNo);
 
-
-
-
-
-
-
-
-
-
-	
-	
 
 
 }
