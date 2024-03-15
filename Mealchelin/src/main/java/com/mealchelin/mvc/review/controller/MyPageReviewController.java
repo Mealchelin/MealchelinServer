@@ -92,14 +92,6 @@ public class MyPageReviewController {
 		return modelAndView;
 	}
 
-	
-	
-//	@GetMapping("/writableReview")
-//		public String writableReview() {
-//			
-//		return "mypage/writableReview";
-//	} 
-
 	@GetMapping("/writableReviewEmpty")
 	public String mypageWritableReviewEmpty() {
 

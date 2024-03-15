@@ -92,7 +92,7 @@
 								</div>
 							</a>
 							<div id="re_editDeleteBtn">
-								<p id="re_companyName">오뚜기</p>
+								<p id="re_companyName">${ review.brand }</p>
 <%-- 								<a href="${ path }/mypage/delete?no=${ review.reviewNo } "> --%>
 									<button class="re_deleteBtn" id="deleteBtn" value="${ review.reviewNo }">삭제하기</button>
 <!-- 									<input class="re_deleteAndEditBtn" id="deleteBtn" type="button" value="삭제하기" /> -->

@@ -37,6 +37,7 @@
 		<result property="renamedFilename" column="RENAMED_FILENAME"/>
 		<result property="productName" column="PRODUCT_NAME"/>
 		<result property="productimage" column="PRODUCT_IMAGE"/>
+		<result property="brand" column="BRAND"/>
 	</resultMap>
 	
 	<resultMap id="orderListResultMap" type="MemberProdutOrderList">
@@ -45,8 +46,10 @@
 		<result property="productName" column="PRODUCT_NAME"/>
 		<result property="orderNo" column="ORDER_NO"/>
 		<result property="orderDate" column="ORDER_DATE"/>
+		<result property="reviewAndDate" column="REVIEW_AND_DATE"/>
 		<result property="prdNo" column="PRODUCT_NO"/>
 		<result property="image" column="IMAGE"/>
+		<result property="brand" column="BRAND"/>
 	</resultMap>
 	
 
@@ -156,10 +159,12 @@
 				REVIEW.PRD_NO,
                 MEMBER.ID,
                 PRODUCT.NAME AS "PRODUCT_NAME",
-                PRODUCT.IMAGE AS "PRODUCT_IMAGE"
+                PRODUCT.IMAGE AS "PRODUCT_IMAGE",
+                PRODUCT.BRAND AS "BRAND"
         FROM REVIEW
 		LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
         LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
+        WHERE REVIEW.STATUS = 'Y'
 		ORDER BY REVIEW_NO DESC
 	</select>
 	
@@ -192,7 +197,8 @@
 				REVIEW.VIEWS,
 				REVIEW.STATUS,
 				REVIEW.USER_NO,
-				PRODUCT.NAME as "PRODUCT_NAME"
+				PRODUCT.NAME as "PRODUCT_NAME",
+                PRODUCT.BRAND AS "BRAND"
         FROM REVIEW
 		LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
 		WHERE REVIEW.STATUS = 'Y' AND REVIEW.USER_NO = #{userNo}
@@ -205,8 +211,10 @@
 	        PRODUCT.NAME AS "PRODUCT_NAME",
 	        ORDERS.ORDER_NO AS "ORDER_NO",
 	        ORDERS.ORDER_DATE AS "ORDER_DATE",
+	        ORDERS.REVIEW_AND_DATE AS "REVIEW_AND_DATE",
 	        order_product.prd_no AS "PRODUCT_NO",
-	        PRODUCT.IMAGE AS IMAGE
+	        PRODUCT.IMAGE AS IMAGE,
+            PRODUCT.BRAND AS BRAND
 	FROM MEMBER
 	LEFT JOIN ORDERS ON MEMBER.MEMBER_NO = ORDERS.MEMBER_NO
 	LEFT JOIN ORDER_PRODUCT ON ORDER_PRODUCT.ORDER_NO = ORDERS.ORDER_NO

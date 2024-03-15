@@ -102,8 +102,10 @@ hr {
 }
 
 #re_companyName {
-    margin-left: 60px;
-    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #B4B4B4;
+    margin-bottom: 10px;
 }
 
 .re_deleteBtn {

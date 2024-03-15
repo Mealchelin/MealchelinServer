@@ -40,6 +40,8 @@ public class Review {
 		
 		private String productimage; // 상품 이미지
 		
+		private String brand; // 상품 브랜드
+		
 
 	}
 

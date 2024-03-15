@@ -58,12 +58,12 @@
                         <div id="re_reviewInfo">
                             <p id="re_foodName">${ memberProdutOrderList.productName }</p>
                             <p id="re_purchaseDate">구매일 : <span>${ memberProdutOrderList.orderDate }</span></p>
-                            <p id="re_companyName">오뚜기</p>
+                            <p id="re_companyName">${ memberProdutOrderList.brand }</p>
                         </div>
                         <div id="re_reviewBtnDiv">
                             <!-- 취소 누르면 뒤로 이동하게끔 해야함. reviewWrite페이지에서 취소 누르면 reviewMain으로 이동함.-->
                             <a href="${ path }/review/reviewWrite?orderNo=${ memberProdutOrderList.orderNo }"><input class="re_reviewBtn" type="button" value="리뷰쓰기" /></a>
-                            <p id="re_reviewEndDate">작성기한 : <span>2024.04.13</span></p>
+                            <p id="re_reviewEndDate">작성기한 : <span>${ memberProdutOrderList.reviewAndDate }</span></p>
                         </div>
                     </div>
                 </div>
