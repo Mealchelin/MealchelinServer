@@ -22,13 +22,15 @@ public interface OrderMapper {
 
 	int selctPayConut();
 
-	int selectadOrderCount();
+	int selectadOrderCount(@Param("shipStatus") String shipStatus, @Param("memId") String memId);
 
-	List<Orders> selectadOrderAll(RowBounds rowBounds);
+	List<Orders> selectadOrderAll(RowBounds rowBounds, @Param("shipStatus") String shipStatus, @Param("memId") String memId);
 
 	Orders selectOrderByNo(@Param("orderNo") int no);
 
 	int updateAdOrders(Orders orders);
+
+	List<Orders> selectadMainOrderList();
 
 //	List<Orders> selectAll(RowBounds rowBounds);
     

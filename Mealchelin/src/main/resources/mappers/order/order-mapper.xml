@@ -90,6 +90,7 @@ WHERE MEMBER_NO = #{memberNo}
     <result property="orderDate" column="ORDER_DATE"/>
     <result property="shipStatus" column="SHIP_STATUS"/>
     <result property="name" column="PRODUCT_NAME"/>
+    <result property="memId" column="M_ID"/>
     <result property="countQ" column="COUNT_QUANTITY"/>
 </resultMap>
 
@@ -98,7 +99,6 @@ WHERE MEMBER_NO = #{memberNo}
 	<result property="request" column="REQUEST"/>
 	<result property="sumQ" column="SUM_QUANTITY"/>
     <result property="mname" column="M_NAME"/>
-    <result property="memId" column="M_ID"/>
     <result property="recipient" column="RECIPIENT"/>
     <result property="phone" column="PHONE"/>
     <result property="postalCode" column="POSTAL_CODE"/>
@@ -167,7 +167,19 @@ SELECT
 
 <select id="selectadOrderCount" resultType="_int" >
 
-SELECT COUNT(*) FROM ORDERS
+SELECT COUNT(*)
+FROM ORDERS O
+JOIN MEMBER M ON M.MEMBER_NO = O.MEMBER_NO
+<if test="!(shipStatus.equals('') and memId.equals(''))">
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="!shipStatus.equals('')">
+			O.SHIP_STATUS LIKE '%' || #{shipStatus} || '%'
+		</if>
+		<if test="!memId.equals('')">
+			AND M.ID LIKE '%' || #{memId} || '%'
+		</if>
+	</trim>
+</if>
 
 </select>
 
@@ -181,10 +193,22 @@ SELECT
     MAX(O.ORDER_DATE) AS ORDER_DATE,
     MAX(O.SHIP_STATUS) AS SHIP_STATUS,
     MAX(P.NAME) AS PRODUCT_NAME,
+    MAX(M.ID) AS M_ID,
     COUNT(OP.QUANTITY) AS COUNT_QUANTITY
 FROM ORDERS O
 JOIN ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
 JOIN PRODUCT P ON OP.PRD_NO = P.PRD_NO
+JOIN MEMBER M ON M.MEMBER_NO = O.MEMBER_NO
+<if test="!(shipStatus.equals('') and memId.equals(''))">
+	<trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="!shipStatus.equals('')">
+			O.SHIP_STATUS LIKE '%' || #{shipStatus} || '%'
+		</if>
+		<if test="!memId.equals('')">
+			AND M.ID LIKE '%' || #{memId} || '%'
+		</if>
+	</trim>
+</if>
 GROUP BY O.ORDER_NO
 ORDER BY ORDER_NO DESC
 
@@ -219,6 +243,31 @@ JOIN SHIPPING_LOCATION SL ON O.SHIP_NO = SL.SHIP_NO
 JOIN MEMBER M ON M.MEMBER_NO = O.MEMBER_NO
 WHERE O.ORDER_NO = #{orderNo}
 GROUP BY O.ORDER_NO
+
+</select>
+
+<select id="selectadMainOrderList" resultMap="selectAdOrderResultMap" parameterType="Orders">
+
+SELECT ORDER_NO, MEMBER_NO, PAYMENT_METHOD, PAYMENT, ORDER_DATE, SHIP_STATUS, PRODUCT_NAME, M_ID, COUNT_QUANTITY
+FROM (
+    SELECT 
+        O.ORDER_NO AS ORDER_NO,
+        MAX(O.MEMBER_NO) AS MEMBER_NO,
+        MAX(O.PAYMENT_METHOD) AS PAYMENT_METHOD,
+        MAX(O.PAYMENT) AS PAYMENT,
+        MAX(O.ORDER_DATE) AS ORDER_DATE,
+        MAX(O.SHIP_STATUS) AS SHIP_STATUS,
+        MAX(P.NAME) AS PRODUCT_NAME,
+        MAX(M.ID) AS M_ID,
+        COUNT(OP.QUANTITY) AS COUNT_QUANTITY
+    FROM ORDERS O
+    JOIN ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+    JOIN PRODUCT P ON OP.PRD_NO = P.PRD_NO
+    JOIN MEMBER M ON M.MEMBER_NO = O.MEMBER_NO
+    GROUP BY O.ORDER_NO
+    ORDER BY ORDER_NO DESC
+)
+WHERE ROWNUM BETWEEN 1 AND 8
 
 </select>
 

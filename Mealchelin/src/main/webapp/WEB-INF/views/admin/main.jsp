@@ -267,54 +267,20 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
-										<tr>
-											<td>바질 크림 빠네파스타 밀키트 2인분</td>
-											<td class="d-none d-xl-table-cell">2023/12/15</td>
-											<td class="d-none d-xl-table-cell">lunarecho33</td>
-											<td>배송 준비중</td>
-										</tr>
+										<c:forEach var="orders" items="${ list }">
+											<tr>
+												<c:set var="count" value="${ orders.countQ }" scope="session"/> 
+		                                        <c:if test="${count == 1}">
+		                                            <td style="cursor: pointer;" onclick="window.open('${ path }/admin/delivery/edit?no=${ orders.orderNo }', '_blank', 'width=800, height=600'); return false;">${orders.name}</td>
+		                                        </c:if>
+		                                        <c:if test="${count != 1}">
+		                                           <td style="cursor: pointer;" onclick="window.open('${ path }/admin/delivery/edit?no=${ orders.orderNo }', '_blank', 'width=800, height=600'); return false;">${orders.name} 외 ${ orders.countQ-1 }개</td>
+		                                        </c:if>
+												<td class="d-none d-xl-table-cell"><fmt:formatDate value="${ orders.orderDate }" pattern="yyyy.MM.dd"/></td>
+												<td class="d-none d-xl-table-cell">${orders.memId}</td>
+												<td>${orders.shipStatus}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>

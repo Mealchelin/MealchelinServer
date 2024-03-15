@@ -109,32 +109,33 @@
                     <form style="display: flex;">
                         <div>
                             <select name="ad_buy_se" id="ad_buy_se" class="adSe">
-                                <option selected>배송 상태</option>
-                                <option value="">결제 완료</option>
-                                <option value="">배송 준비</option>
-                                <option value="">배송 중</option>
-                                <option value="">배송 완료</option>
-                                <option value="">결제 취소</option>
+                                <option value="" selected>배송상태</option>
+                                <option value="결제완료">결제완료</option>
+                                <option value="배송준비중">배송준비중</option>
+                                <option value="배송중">배송중</option>
+                                <option value="배송완료">배송완료</option>
+                                <option value="결제취소">결제취소</option>
                             </select>
                         </div>
                         <div class="col-12 col-lg-3">
-                            <input type="search" name="ad_memberSearch" id="ad_memberSearch" class="form-control mb-4" placeholder="상품명을 입력하세요." style="font-size: 13px;">
+                            <input type="search" name="ad_deliverySearch" id="ad_deliverySearch" class="form-control mb-4" placeholder="주문자 아이디를 입력하세요." style="font-size: 13px;">
                         </div>
                         <div class="col-12 col-lg-4" style="margin-left:10px;">
-                            <input type="submit" value="검색" class="btn btn-secondary" style="font-size: 13px;">
+                            <input type="submit" value="검색" class="btn btn-secondary" id="deliverySearch" style="font-size: 13px;">
                         </div>
                     </form>
 					<div class="row">
 						<div class="col-12">
+                   		  <form id="deliveryForm">
 							<div class="card">
 								<table class="table table-hover my-0" style="text-align: center;">
 									<thead>
 										<tr>
-                                            <th width="5%"><input type="checkbox" id="ad_buy_allChk" value="" name="ad_buy_chk" onclick='selectBuyAll(this)'></th>
+                                            <th width="5%"><input type="checkbox" class="ad_buy_chk" id="ad_buy_allChk" value="" name="ad_buy_chk" onclick='selectBuyAll(this)'></th>
 											<th width="12%">주문번호</th>
                                             <th>상품명</th>
+											<th class="d-none d-xl-table-cell" width="15%">주문자 아이디</th>
 											<th width="15%">결제금액</th>
-											<th class="d-none d-xl-table-cell" width="15%">결제수단</th>
 											<th class="d-none d-xl-table-cell" width="15%">배송상태</th>
 											<th class="d-none d-xl-table-cell" width="12%">주문날짜</th>
 										</tr>
@@ -149,7 +150,7 @@
 										    <c:forEach var="orders" items="${list}">
 										    	<tr>
 													<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
-													<td><input type="checkbox" class="ad_buy_chk" name="ad_buy_chk" value="${ orders.orderNo }"></td>
+													<td><input type="checkbox" class="ad_buy_chk" id="ad_buy_chk" name="ad_buy_chk" value="${ orders.orderNo }"></td>
 		                                            <td>${ orders.orderNo }</td>
 		                                            <c:set var="count" value="${ orders.countQ }" scope="session"/> 
 		                                            <c:if test="${count == 1}">
@@ -158,8 +159,8 @@
 		                                            <c:if test="${count != 1}">
 		                                            	<td style="cursor: pointer;" onclick="window.open('${ path }/admin/delivery/edit?no=${ orders.orderNo }', '_blank', 'width=800, height=600'); return false;">${orders.name} 외 ${ orders.countQ-1 }개</td>
 		                                            </c:if>
+													<td class="d-none d-xl-table-cell">${orders.memId}</td>
 													<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${orders.payMent}" />원</td>
-													<td class="d-none d-xl-table-cell">${orders.paymentMethod}</td>
 													<td class="d-none d-xl-table-cell">${orders.shipStatus}</td>
 													<td class="d-none d-xl-table-cell"><fmt:formatDate value="${ orders.orderDate }" pattern="yyyy.MM.dd"/></td>
 												</tr>
@@ -169,31 +170,32 @@
 								</table>
                             </div>
                             <div class="ad_sub_button">
-                                <button class="ad_sub_button_gy">배송 준비</button>
-                                <button class="ad_sub_button_gy">배송 중</button>
-                                <button class="ad_sub_button_gy">배송 완료</button>
+                                <button class="ad_sub_button_gy" id="packing">배송준비</button>
+                                <button class="ad_sub_button_gy" id="deliveryIng">배송중</button>
+                                <button class="ad_sub_button_gy" id="deliveryCom">배송완료</button>
                             </div>
+                          </form>
 						</div>
-						
-						<section id="cs-section3">
-					            <div class="cs-paging">
-						            <button onclick="location.href='${ path }/admin/post/ad1by1?page=${ pageInfo.prevPage }'">&lt;</button>
-							        <c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
-											<c:choose>
-												<c:when test="${ current == pageInfo.currentPage }">
-													<button disabled>${ current }</button>
-												</c:when>
-												<c:otherwise>
-													<button onclick="location.href='${ path }/admin/post/ad1by1?page=${ current }'">${ current }</button>
-												</c:otherwise>
-											</c:choose>
-									</c:forEach>
-									<button onclick="location.href='${ path }/admin/post/ad1by1?page=${ pageInfo.nextPage }'">&gt;</button>
-					            </div>
-					        </section>
 					</div>
-
 				</div>
+				<c:if test="${ not empty list }">
+					<section id="cs-section3">
+						 <div class="cs-paging">
+							<button onclick="location.href='${ path }/admin/delivery/adDelivery?page=${ pageInfo.prevPage }'">&lt;</button>
+								<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
+									<c:choose>
+										<c:when test="${ current == pageInfo.currentPage }">
+											<button disabled>${ current }</button>
+										</c:when>
+										<c:otherwise>
+											<button onclick="location.href='${ path }/admin/delivery/adDelivery?page=${ current }'">${ current }</button>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+							<button onclick="location.href='${ path }/admin/delivery/adDelivery?page=${ pageInfo.nextPage }'">&gt;</button>
+						</div>
+					</section>
+				</c:if>
 			</main>
 
 			<footer class="footer">
@@ -227,6 +229,7 @@
 	</div>
     
     <!-- 필요한 js 밑에 추가-->
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
     <script>
 		function selectBuyAll(selectBuyAll)  {
@@ -235,8 +238,34 @@
 			
 			checkboxes.forEach((checkbox) => {
 				checkbox.checked = selectBuyAll.checked;
-			})
+			});
 		}
+		
+		$(document).ready(() => {
+			$('#packing').on('click', () => {
+				if (confirm('선택한 데이터들을 배송 준비 중으로 변경 하시겠습니까?')) {
+					$('#deliveryForm').attr('method', 'post');
+					$('#deliveryForm').attr('action', '${path}/admin/delivery/packing');
+					$('#deliveryForm').submit();
+				}
+			});
+			
+			$('#deliveryIng').on('click', () => {
+				if (confirm('선택한 데이터들을 배송 중으로 변경 하시겠습니까?')) {
+					$('#deliveryForm').attr('method', 'post');
+					$('#deliveryForm').attr('action', '${path}/admin/delivery/deliveryIng');
+					$('#deliveryForm').submit();
+				}
+			});
+			
+			$('#deliveryCom').on('click', () => {
+				if (confirm('선택한 데이터들을 배송 완료로 변경 하시겠습니까?')) {
+					$('#deliveryForm').attr('method', 'post');
+					$('#deliveryForm').attr('action', '${path}/admin/delivery/deliveryCom');
+					$('#deliveryForm').submit();
+				}
+			});
+		});
 	</script>
     
 </body>

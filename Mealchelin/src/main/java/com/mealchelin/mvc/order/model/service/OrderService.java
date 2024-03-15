@@ -12,7 +12,6 @@ import com.mealchelin.mvc.order.model.vo.Orders;
 public interface OrderService {
     int save(Map<String, Object> orderInfo);
 
-
 	List<Orders> getOrderProductResultset(int memberNo);
 
 	int updateOrderProduct(Long ordersNumbers, int orderNo);
@@ -21,13 +20,15 @@ public interface OrderService {
 
 	int getPayListCount();
 
-	int getadOrderCount();
+	int getadOrderCount(String shipStatus, String memId);
 
-	List<Orders> getadOrderList(PageInfo pageInfo);
+	List<Orders> getadOrderList(PageInfo pageInfo, String shipStatus, String memId);
 
 	Orders getAdOrderByNo(int no);
 
 	int adOrderSave(Orders orders);
+
+	List<Orders> getadMainOrderList();
 
 //	List<Orders> getPayListList(PageInfo pageInfo);
 

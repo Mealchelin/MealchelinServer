@@ -76,17 +76,17 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int getadOrderCount() {
-		return orderMapper.selectadOrderCount();
+	public int getadOrderCount(String shipStatus, String memId) {
+		return orderMapper.selectadOrderCount(shipStatus, memId);
 	}
 
 	@Override
-	public List<Orders> getadOrderList(PageInfo pageInfo) {
+	public List<Orders> getadOrderList(PageInfo pageInfo, String shipStatus, String memId) {
 		int limit = pageInfo.getListLimit();
 		int offset = (pageInfo.getCurrentPage() - 1) * limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return orderMapper.selectadOrderAll(rowBounds);
+		return orderMapper.selectadOrderAll(rowBounds, shipStatus, memId);
 	}
 
 	@Override
@@ -97,6 +97,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public int adOrderSave(Orders orders) {
 		return orderMapper.updateAdOrders(orders);
+	}
+
+	@Override
+	public List<Orders> getadMainOrderList() {
+		return orderMapper.selectadMainOrderList();
 	}
 
 

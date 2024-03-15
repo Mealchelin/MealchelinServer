@@ -85,6 +85,9 @@ public class Orders {
 
 	   // 주문자 아이디
 	   private String memId;
+	   
+	   //장바구니 주문번호
+	   private int orderProductNo;
 
 	}
 
