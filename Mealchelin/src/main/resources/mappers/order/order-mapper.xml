@@ -146,6 +146,7 @@ SELECT
 <resultMap id="selectProductPayInfoResultMap" type="com.mealchelin.mvc.order.model.vo.Orders">
 
  <id property="orderNo" column="ORDER_NO"/>
+    <result property="orderProductNo" column="ORDER_NO"/>
     <result property="memberNo" column="MEMBER_NO"/>
     <result property="paymentMethod" column="PAYMENT_METHOD"/>
     <result property="payMent" column="PAYMENT"/>
@@ -175,7 +176,8 @@ SELECT
         P.IMAGE,
         OP.PRD_NO,
 		OP.QUANTITY,
-		OP.TOTAL_PRICE
+		OP.TOTAL_PRICE,
+		OP.ORDER_NO
     FROM 
         ORDERS O
     JOIN 
@@ -183,7 +185,7 @@ SELECT
     JOIN 
         PRODUCT P ON OP.PRD_NO = P.PRD_NO
     WHERE 
-        O.MEMBER_NO = #{memberNo} -- 해당 사용자의 주문만 가져오도록 변경
+        OP.ORDER_NO = #{orderProductNo} -- 해당 사용자의 주문만 가져오도록 변경
 </select>
 
 <select id="selectPayInfoOne" parameterType="int" resultMap="selectProductPayInfoResultMap">

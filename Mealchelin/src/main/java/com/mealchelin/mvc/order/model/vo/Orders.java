@@ -13,6 +13,9 @@ public class Orders {
 
 	// 주문 번호
 	private int orderNo;
+	
+	//장바구니 주문번호
+	private int orderProductNo;
 
 	// 배송사번호
 	private String orderMembers;

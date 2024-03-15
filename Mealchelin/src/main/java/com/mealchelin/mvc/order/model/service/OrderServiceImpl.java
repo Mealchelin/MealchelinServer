@@ -77,12 +77,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 
-
+	//리스트
 	@Override
-	public List<Orders> selectPayInfo(int member) {
-		return orderMapper.selectPayInfo(member);
+	public List<Orders> selectPayInfo(int orderNo) {
+		return orderMapper.selectPayInfo(orderNo);
 	}
 
+	
+	//단일
 	@Override
 	public Orders selectPayInfoOne(int orderNo) {
 		return orderMapper.selectPayInfoOne(orderNo);

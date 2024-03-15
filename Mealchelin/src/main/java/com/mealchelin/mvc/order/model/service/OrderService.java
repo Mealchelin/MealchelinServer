@@ -20,10 +20,12 @@ public interface OrderService {
 
 	int getPayListCount();
 
+	//리스트
+	List<Orders> selectPayInfo(int orderNo);
 
-	List<Orders> selectPayInfo(int member);
 
-
+	
+	//단일
 	Orders selectPayInfoOne(int orderNo);
 
 

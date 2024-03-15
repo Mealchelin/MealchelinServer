@@ -40,32 +40,33 @@
 		<section id="pay_sections">
 			<h2>주문 내역 상세</h2>
 			<div class="pay_mainContentTitle">
-				<span>주문번호 216156146546</span> <span class="pay_OrderDetails">배송
+				<span>주문번호 ${order.orderMembers }</span> <span class="pay_OrderDetails">배송
 					또는 상품에 문제가 있나요? <a href="${ path }/cscenter/inquiry">1:1문의 ></a>
 				</span>
 			</div>
 			<div class="pay_mainContentArea"></div>
+			<c:forEach items="${result }" var="items">
 			<div class="pay_ProductInfoArea">
 				<div class="pay_Product">
 					<div class="pay_ProductImg">
-						<a href="../img/new_01.jpg"><img src="../img/new_01.jpg"
+						<a href="../img/new_01.jpg"><img src="${ path }/img/product/${items.image}"
 							class="pay_ProductImgArea"></a>
 					</div>
 					<div class="pay_ProductInfo">
 						<table class="pay_table">
 							<tr>
 								<td>상품명</td>
-								<td class="pay_subNameOne">안동심 순살 찜닭</td>
+								<td class="pay_subNameOne">${items.name }</td>
 							</tr>
 							<tr class="pay_ProductMenu">
 								<td>결제금액</td>
-								<td class="pay_subNameTwo">15,800원 <span>ㅣ</span> 1개
+								<td class="pay_subNameTwo">${items.payMent }원 <span>ㅣ</span> ${items.countQ }개
 								</td>
 							</tr>
 						</table>
 					</div>
 					<div class="pay_Productresult">
-						<span>배송중</span>
+						<span>${items.shipStatus }</span>
 					</div>
 					<div class="pay_pay_Productreview">
 						<input type="button"
@@ -76,6 +77,7 @@
 					</div>
 				</div>
 			</div>
+		</c:forEach>
 
 			<p class="pay_line"></p>
 			<div class="pay_button">
@@ -120,15 +122,7 @@
 							<td>주문상태</td>
 						</tr>
 						<tr class="pay_secondInfoLine">
-							<td>주문번호 : ${order.orderMembers }</td>
-							<td>${order.shipStatus }</td>
-						</tr>
-						<tr class="pay_secondInfoLine">
-							<td>주문번호 : ${order.orderMembers }</td>
-							<td>${order.shipStatus }</td>
-						</tr>
-						<tr class="pay_secondInfoLine">
-							<td>주문번호 : ${order.orderMembers }</td>
+							<td>주문번호 : ${ order.orderMembers }</td>
 							<td>${order.shipStatus }</td>
 						</tr>
 					</table>
@@ -139,6 +133,7 @@
 				</div>
 				<div class="pay_userInfo">
 					<div class="pay_ProductInfo">
+				
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">상품금액</td>
@@ -154,7 +149,8 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제방법</td>
-								<td class="pay_subName">카카오페이</td>
+								<td class="pay_subName">${ order.paymentMethod }</td>
+					
 							</tr>
 						</table>
 					</div>
@@ -169,15 +165,15 @@
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">주문번호</td>
-								<td class="pay_subName">216156146546</td>
+								<td class="pay_subName">${ order.orderMembers }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">보내는 분</td>
-								<td class="pay_subName">백성연</td>
+								<td class="pay_subName">${loginMember.name }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제일시</td>
-								<td class="pay_subName">2024-02-09</td>
+								<td class="pay_subName">${ order.orderDate }</td>
 							</tr>
 						</table>
 					</div>
