@@ -26,5 +26,5 @@ public class MemberProdutOrderList {
     
     private Date reviewAndDate; // 리뷰 마감일
     
-    private String brand; // 상품 브랜드
+    private String brand; // 상품 브랜드 
 }
