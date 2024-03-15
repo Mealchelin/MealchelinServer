@@ -94,11 +94,25 @@
 		WHERE MEMBER_NO = #{userNo}
 	</select>
 	
-	<!-- 게시글 목록 조회(전체 목록) -->
+	<!-- 게시글 목록 조회(전체 목록) 검색도 함!-->
 	<select id="getReviewCount" resultType="_int">
 		SELECT COUNT(*) 
-		FROM REVIEW 
-		WHERE STATUS='Y'
+		FROM REVIEW
+		LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
+		LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
+		WHERE REVIEW.STATUS='Y'
+		<if test="searchType != ''">
+			<trim prefix="AND" prefixOverrides="AND|OR">
+				<choose>
+					<when test="searchType.equals('title')">
+						REVIEW.NAME LIKE '%' || #{searchText} || '%'
+					</when>
+					<when test="searchType.equals('writerId')">
+						MEMBER.ID LIKE '%' || #{searchText} || '%'
+					</when>		
+				</choose>
+			</trim>
+		</if>
 	</select>
 	
 	<!-- Admin 게시글 목록 조회(전체 목록) -->
@@ -122,27 +136,6 @@
                 MEMBER.ID
         FROM REVIEW
 		LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
-		<if test="!(category.equals('') and title.equals(''))">
-			<trim prefix="WHERE" prefixOverrides="AND|OR">
-				<if test="!category.equals('')">
-					<choose>
-						<when test="type.equals('title')">
-							NAME LIKE '%' || #{text} || '%'
-						</when>
-						<when test="type.equals('writerId')">
-							
-						</when>
-					
-					
-					
-					</choose>
-				</if>
-			</trim>
-		</if>
-		
-		
-		
-		
 		ORDER BY REVIEW_NO DESC
 	</select>
 
@@ -167,6 +160,18 @@
 		LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
         LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
         WHERE REVIEW.STATUS = 'Y'
+        	<if test="searchType != ''">
+			<trim prefix="AND" prefixOverrides="AND|OR">
+				<choose>
+					<when test="searchType.equals('title')">
+						REVIEW.NAME LIKE '%' || #{searchText} || '%'
+					</when>
+					<when test="searchType.equals('writerId')">
+						MEMBER.ID LIKE '%' || #{searchText} || '%'
+					</when>		
+				</choose>
+			</trim>
+		</if>
 		ORDER BY REVIEW_NO DESC
 	</select>
 	
