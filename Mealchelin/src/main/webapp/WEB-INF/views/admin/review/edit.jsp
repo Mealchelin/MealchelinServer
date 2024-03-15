@@ -138,7 +138,7 @@
                                         <td>${ review.productName }</td>
                                         <td class="ad_th">조회수</td>
                                         <td>
-											0
+											${ review.views }
                                         </td>
                                     </tr>
                                     <tr>
@@ -147,7 +147,7 @@
                                     </tr>
                                     <tr>
                                         <td class="ad_th">첨부파일</td>
-										<td colspan="3">${ review.renamedFilename }</td>
+										<td colspan="3"><a href="${ path }/img/review/${ review.renamedFilename }">${ review.renamedFilename }</a></td>
                                     </tr>
 									<tr>
 										<td colspan="4" style="padding: 20px;">
