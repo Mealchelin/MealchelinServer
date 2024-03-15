@@ -111,28 +111,28 @@ WHERE MEMBER_NO = #{memberNo}
 
 
 <select id="selectProductPayResultset" parameterType="map" resultMap="selectProductPayResultMap">
-SELECT 
-        O.ORDER_NO,
-        O.MEMBER_NO,
-        O.PAYMENT_METHOD,
-        O.PAYMENT,
-        O.ORDER_DATE,
-        O.SHIP_STATUS,
-        O.ORDERS_NUMBERS,
-        P.NAME AS PRODUCT_NAME,
-        P.BRAND,
-        P.PRD_NO,
-        P.IMAGE
-    FROM 
-        ORDERS O
-    JOIN 
-        ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
-    JOIN 
-        PRODUCT P ON OP.PRD_NO = P.PRD_NO
-    WHERE 
-        O.MEMBER_NO = #{memberNo}  -- 해당 사용자의 주문만 가져오도록 변경
-    ORDER BY 
-        O.ORDER_DATE  ASC
+SELECT
+    O.ORDER_NO,
+    O.MEMBER_NO,
+    O.PAYMENT_METHOD,
+    O.PAYMENT,
+    O.ORDER_DATE,
+    O.SHIP_STATUS,
+    O.ORDERS_NUMBERS,
+    P.NAME AS PRODUCT_NAME,
+    P.BRAND,
+    P.PRD_NO,
+    P.IMAGE
+FROM 
+    ORDERS O
+JOIN 
+    ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+JOIN 
+    PRODUCT P ON OP.PRD_NO = P.PRD_NO
+WHERE
+    O.MEMBER_NO = #{memberNo}
+ORDER BY 
+    O.ORDER_NO DESC
 </select>
 
 <select id="selctPayConut" resultType="_int" >
@@ -347,6 +347,18 @@ WHERE ROWNUM BETWEEN 1 AND 8
 		SHIP_STATUS = #{shipStatus}
 	WHERE ORDER_NO = #{orderNo}
 </update>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

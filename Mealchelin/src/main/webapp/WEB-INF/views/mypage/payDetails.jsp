@@ -6,7 +6,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<c:set var="totalPrice" value="0" />
+
+<c:set var="formattedPhone" value="${shipInfo.phone.substring(0, 3)}-${shipInfo.phone.substring(3, 7)}-${shipInfo.phone.substring(7)}" />
+
 <c:set var="path" value="${ pageContext.request.contextPath }" />
+
+<c:forEach items="${result}" var="item">
+    <c:set var="totalPrice" value="${totalPrice + item.price * item.countQ}" />
+</c:forEach>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -40,43 +48,49 @@
 		<section id="pay_sections">
 			<h2>주문 내역 상세</h2>
 			<div class="pay_mainContentTitle">
-				<span>주문번호 ${order.orderMembers }</span> <span class="pay_OrderDetails">배송
-					또는 상품에 문제가 있나요? <a href="${ path }/cscenter/inquiry">1:1문의 ></a>
+				<span>주문번호 ${order.orderMembers }</span> <span
+					class="pay_OrderDetails">배송 또는 상품에 문제가 있나요? <a
+					href="${ path }/cscenter/inquiry">1:1문의 ></a>
 				</span>
 			</div>
 			<div class="pay_mainContentArea"></div>
 			<c:forEach items="${result }" var="items">
-			<div class="pay_ProductInfoArea">
-				<div class="pay_Product">
-					<div class="pay_ProductImg">
-						<a href="../img/new_01.jpg"><img src="${ path }/img/product/${items.image}"
-							class="pay_ProductImgArea"></a>
-					</div>
-					<div class="pay_ProductInfo">
-						<table class="pay_table">
-							<tr>
-								<td>상품명</td>
-								<td class="pay_subNameOne">${items.name }</td>
-							</tr>
-							<tr class="pay_ProductMenu">
-								<td>결제금액</td>
-								<td class="pay_subNameTwo"><fmt:formatNumber value="${items.price * items.countQ}" pattern="#,###"/>원 <span>ㅣ</span> ${items.countQ}개</td>
-
-							</tr>
-						</table>
-					</div>
-					<div class="pay_Productresult">
-						<span>${items.shipStatus }</span>
-					</div>
-					<div class="pay_pay_Productreview">
-						<input type="button" onclick="location.href='${path}/mypage/payDelete'" value="주문 취소" />
-						<input type="button" onclick="location.href='${path}/review/reviewWrite?orderNo=${order.orderNo}'" value="리뷰쓰기" />
-						<p>* 리뷰는 구매일로부터</p>
-						<p>3개월까지만 작성 가능합니다</p>
+				<div class="pay_ProductInfoArea">
+					<div class="pay_Product">
+						<div class="pay_ProductImg">
+							<a href="../img/new_01.jpg"><img
+								src="${ path }/img/product/${items.image}"
+								class="pay_ProductImgArea"></a>
+						</div>
+						<div class="pay_ProductInfo">
+							<table class="pay_table">
+								<tr>
+									<td>상품명</td>
+									<td class="pay_subNameOne">${items.name }</td>
+								</tr>
+								<tr class="pay_ProductMenu">
+									<td>상품금액</td>
+									<td class="pay_subNameTwo"><fmt:formatNumber
+											value="${items.price * items.countQ}" pattern="#,###" />원 <span>ㅣ</span>
+										${items.countQ}개</td>
+								</tr>
+							</table>
+						</div>
+						<div class="pay_Productresult">
+							<span>${items.shipStatus }</span>
+						</div>
+						<div class="pay_pay_Productreview">
+							<input type="button"
+								onclick="location.href='${path}/mypage/payDelete'" value="주문 취소" />
+							<input type="button"
+								onclick="location.href='${path}/mypage/writableReview'"
+								value="리뷰쓰기" />
+							<p>* 리뷰는 구매일로부터</p>
+							<p>3개월까지만 작성 가능합니다</p>
+						</div>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
+			</c:forEach>
 
 			<p class="pay_line"></p>
 			<div class="pay_button">
@@ -92,64 +106,166 @@
 			<div class="pay_FiveContent">
 				<span class="pay_fiveContentTitle">배송 조회</span>
 			</div>
-			<div class="pay_DeliveryInfo">
-				<div class="pay_preparation">
-					<img src="../img/pay_preparation1.png">
-					<p>상품준비중</p>
-				</div>
-				<div class="pay_Deliveryline">
-					<img src="../img/Group 60.png">
-				</div>
-				<div class="pay_shipping">
-					<img src="../img/pay_shipping2.png">
 
-					<p>배송중</p>
-				</div>
-				<div class="pay_Deliveryline">
-					<img src="../img/Group 60.png">
-					<!-- <span></span> -->
-				</div>
-				<div class="pay_completed">
-					<img src="../img/pay_completed1.png">
-					<p>배송완료</p>
-				</div>
+			<c:choose>
+				<c:when test="${orders.shipStatus eq '배송중'}">
+					<div class="pay_DeliveryInfo">
+						<div class="pay_preparation">
+							<img src="../img/pay_preparation1.png">
+							<p>상품준비중</p>
+						</div>
+						<div class="pay_Deliveryline">
+							<img src="../img/Group 60.png">
+						</div>
+						<div class="pay_shipping">
+							<img src="../img/pay_shipping2.png">
+							<p>배송중</p>
+						</div>
+						<div class="pay_Deliveryline">
+							<img src="../img/Group 60.png">
+							<!-- <span></span> -->
+						</div>
+						<div class="pay_completed">
+							<img src="../img/pay_completed1.png">
+							<p>배송완료</p>
+						</div>
+					</div>
+				</c:when>
+
+				<c:when test="${orders.shipStatus eq '배송완료'}">
+					<div class="pay_DeliveryInfo">
+						<div class="pay_preparation">
+							<img src="../img/pay_preparation1.png">
+							<p>상품준비중</p>
+						</div>
+						<div class="pay_Deliveryline">
+							<img src="../img/Group 60.png">
+						</div>
+						<div class="pay_shipping">
+							<img src="../img/pay_shipping1.png">
+							<p>배송중</p>
+						</div>
+						<div class="pay_Deliveryline">
+							<img src="../img/Group 60.png">
+							<!-- <span></span> -->
+						</div>
+						<div class="pay_completed">
+							<img src="../img/pay_completed2.png">
+							<p>배송완료</p>
+						</div>
+					</div>
+				</c:when>
+
+				<c:otherwise>
+					<div class="pay_DeliveryInfo">
+						<div class="pay_preparation">
+							<img src="../img/pay_preparation2.png">
+							<p>상품준비중</p>
+						</div>
+						<div class="pay_Deliveryline">
+							<img src="../img/Group 60.png">
+						</div>
+						<div class="pay_shipping">
+							<img src="../img/pay_shipping1.png">
+
+							<p>배송중</p>
+						</div>
+						<div class="pay_Deliveryline">
+							<img src="../img/Group 60.png">
+							<!-- <span></span> -->
+						</div>
+						<div class="pay_completed">
+							<img src="../img/pay_completed1.png">
+							<p>배송완료</p>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<div class="pay_Deliverycheck">
+				<table>
+					<tr class="pay_FirstInfoLine">
+						<td>주문번호</td>
+						<td>주문상태</td>
+					</tr>
+					<c:choose>
+						<c:when test="${orders.shipStatus eq '배송중'}">
+							<!-- 배송중 또는 배송완료인 경우 -->
+
+							<tr class="pay_secondInfoLine">
+								<td>${orders.orderMembers }</td>
+								<td>배송준비중</td>
+							</tr>
+							<tr class="pay_secondInfoLine">
+								<td>${orders.orderMembers }</td>
+								<td>배송중</td>
+							</tr>
+						</c:when>
+						<c:when test="${orders.shipStatus eq '배송완료'}">
+							<!-- 배송완료인 경우 -->
+							<tr class="pay_secondInfoLine">
+								<td>${orders.orderMembers }</td>
+								<td>배송준비중</td>
+							</tr>
+							<tr class="pay_secondInfoLine">
+								<td>${orders.orderMembers }</td>
+								<td>배송중</td>
+							</tr>
+							<tr class="pay_secondInfoLine">
+								<td>${orders.orderMembers }</td>
+								<td>배송완료</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<!-- 배송중이나 배송완료가 아닌 경우 -->
+							<tr class="pay_secondInfoLine">
+								<td>${orders.orderMembers }</td>
+								<td>배송준비중</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
 			</div>
-				<div class="pay_Deliverycheck">
-					<table>
-						<tr class="pay_FirstInfoLine">
-							<td>주문번호 / 배송번호</td>
-							<td>주문상태</td>
-						</tr>
-						<tr class="pay_secondInfoLine">
-							<td>주문번호 : 1</td>
-							<td>1</td>
-						</tr>
-					</table>
-				</div>
 			<div class="pay_FirstContentArea">
 				<div class="pay_FirstContent">
 					<span class="pay_FirstContentTitle">결제 정보</span> <span></span>
 				</div>
 				<div class="pay_userInfo">
 					<div class="pay_ProductInfo">
-				
+
 						<table class="pay_Maintable">
+						
 							<tr>
 								<td class="pay_mainName">상품금액</td>
-								<td class="pay_subName">15,800원</td>
+								<td class="pay_subName"><fmt:formatNumber
+										value="${totalPrice}" type="number" pattern="#,###" />원</td>
 							</tr>
-							<tr>
-								<td class="pay_mainName">배송비</td>
-								<td class="pay_subName">0원</td>
-							</tr>
+							<c:set var="shippingPrice" value="0" />
+								<c:choose>
+								    <c:when test="${shippingInfo.mountain == 'N'}">
+								        <c:set var="shippingPrice" value="3000" />
+								    </c:when>
+								    <c:otherwise>
+								        <c:set var="shippingPrice" value="5000" />
+								    </c:otherwise>
+								</c:choose>
+								
+								<c:if test="${totalPrice >= 50000}">
+								    <c:set var="shippingPrice" value="0" />
+								</c:if>
+								
+								<tr>
+								    <td class="pay_mainName">배송비</td>
+								    <td class="pay_subName"><fmt:formatNumber value="${shippingPrice}" type="number" pattern="#,###" />원</td>
+								</tr>
 							<tr>
 								<td class="pay_mainName">결제금액</td>
-								<td class="pay_subName">15,800원</td>
+								<td class="pay_subName"><fmt:formatNumber
+										value="${orders.payMent}" pattern="#,##0원" type="number" /></td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제방법</td>
-								<td class="pay_subName">1</td>
-					
+								<td class="pay_subName">${orders.paymentMethod }</td>
+
 							</tr>
 						</table>
 					</div>
@@ -172,7 +288,7 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제일시</td>
-								<td class="pay_subName">1</td>
+								<td class="pay_subName">${orders.orderDate }</td>
 							</tr>
 						</table>
 					</div>
@@ -189,19 +305,20 @@
 							<tr>
 								<td class="pay_mainName">받는분</td>
 								<td class="pay_subName">${shipInfo.shipName }</td>
-							</tr>
-							<tr>
-								<td class="pay_mainName">핸드폰</td>
-								<td class="pay_subName">${shipInfo.phone }</td>
-							</tr>
+							</tr>						
+								<tr>
+								    <td class="pay_mainName">핸드폰</td>
+								    <td class="pay_subName">${formattedPhone}</td>
+								</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
-								<td class="pay_subName">${shipInfo.shipAddress }             ${shipInfo.shipAddressDetail }</td>
+								<td class="pay_subName">${shipInfo.shipAddress }
+									${shipInfo.shipAddressDetail }</td>
 
 							</tr>
 							<tr>
 								<td class="pay_mainName">배송 요청사항</td>
-								<td class="pay_subName">1</td>
+								<td class="pay_subName">${orders.request }</td>
 							</tr>
 						</table>
 					</div>

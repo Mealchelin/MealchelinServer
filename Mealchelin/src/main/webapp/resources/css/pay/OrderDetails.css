@@ -141,6 +141,7 @@
 
 .pay_ProductInfo {
     width: 100%;
+    padding-bottom: 16px;
 }
 
 .pay_table {
@@ -149,8 +150,9 @@
 }
 
 .pay_table td{
-    padding: 7px;
-    width: 200px;
+    width: 2000px;
+    padding-left: 20px;
+    padding-top: 10px;
 }
 
  .pay_subName {
@@ -197,7 +199,7 @@
 .pay_Productresult {
     padding-left: 100px;
     font-size: 20px;
-    width: 263px;
+    width: 400px;
 }
 
 .pay_pay_Productreview {
