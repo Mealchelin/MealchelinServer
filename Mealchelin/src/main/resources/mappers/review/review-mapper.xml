@@ -160,7 +160,7 @@
 		LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
         LEFT JOIN PRODUCT ON REVIEW.PRD_NO = PRODUCT.PRD_NO
         WHERE REVIEW.STATUS = 'Y'
-        	<if test="searchType != ''">
+        <if test="searchType != ''">
 			<trim prefix="AND" prefixOverrides="AND|OR">
 				<choose>
 					<when test="searchType.equals('title')">
