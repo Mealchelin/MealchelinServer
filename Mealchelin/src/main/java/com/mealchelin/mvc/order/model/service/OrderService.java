@@ -34,6 +34,12 @@ public interface OrderService {
 
 	Orders selectOrderAll(int orderNo);
 
+
+	 boolean cancelOrder(int orderNo);
+
+	
+
+
 	
 	
 	

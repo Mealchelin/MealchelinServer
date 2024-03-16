@@ -6,11 +6,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -360,20 +363,81 @@ public class PayController {
 
 
 
-
+	//주문취소페이지
 	@GetMapping("/mypage/payDelete")
-	public ModelAndView payDelete(ModelAndView modelAndView) {
+	public ModelAndView payDelete(ModelAndView modelAndView,
+			@SessionAttribute("loginMember") Member loginMember,
+            @RequestParam int orderNo
+			) {
+		ShippingLocation shippingInfo = null;
+	    Orders orders = null;
+	    List<Orders> result = null;
 
-		
-		
-		
+	    // 사용자의 주문 목록을 가져옵니다.
+	    result = orderService.selectPayInfo(orderNo);
+
+	    ShippingLocation shipInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+
+	    // 산간 여부 확인 후 변수에 저장
+	    shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+	    
+	    orders = orderService.selectOrderAll(orderNo);
+
+	    // 각 주문 항목의 가격과 수량을 곱하여 총 가격을 계산합니다.
+	    List<Double> totalPrices = new ArrayList<>();
+	    for (Orders item : result) {
+	        double totalPrice = item.getPrice() * item.getCountQ();
+	        totalPrices.add(totalPrice);
+	    }
+	    
+
+	    // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
+	    modelAndView.addObject("loginMember", loginMember);
+	    modelAndView.addObject("result", result);
+	    modelAndView.addObject("shipInfo", shipInfo);
+	    modelAndView.addObject("orders", orders);
+	    modelAndView.addObject("totalPrices", totalPrices); // 총 가격을 추가합니다.
+	    modelAndView.addObject("shippingInfo", shippingInfo); // 총 가격을 추가합니다.
 		
 		modelAndView.setViewName("mypage/payDelete");
 		
 
 		return modelAndView;
 	}
+	
 
+
+	//주문취소완료페이지
+	@GetMapping("/payment/payCncel")
+	public ModelAndView payCncelView(ModelAndView modelAndView,
+	                                  @SessionAttribute("loginMember") Member loginMember,
+	                                  @RequestParam int orderNo) {
+
+	    // 주문 취소 처리 로직을 수행합니다.
+	    boolean success = orderService.cancelOrder(orderNo);
+
+	    if (success) {
+	        modelAndView.addObject("msg", "주문 취소를 성공하였습니다"); // 주문 취소 실패 여부를 모델에 추가합니다.
+	        modelAndView.addObject("cancelSuccess", true); // 주문 취소 성공 여부를 모델에 추가합니다.
+	        modelAndView.addObject("location", "/");  // 주문 취소 성공 시 이동할 경로를 설정합니다.
+	    } else {
+	        modelAndView.addObject("msg", "주문 취소를 실패하였습니다"); // 주문 취소 실패 여부를 모델에 추가합니다.
+	        modelAndView.addObject("cancelSuccess", false); // 주문 취소 실패 여부를 모델에 추가합니다.
+	        modelAndView.addObject("location", "/mypage/payDetails?orderNo=" + orderNo); // 주문 취소 실패 시 이동할 경로를 설정합니다.
+	    }
+
+	    modelAndView.setViewName("payment/payCncel");
+	    return modelAndView;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
 }
 	
 	

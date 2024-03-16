@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
@@ -118,7 +119,26 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.selectOrderAll(orderNo);
 	}
 
+
+	@Override
+    @Transactional
+    public boolean cancelOrder(int orderNo) {
+        try {
+            // 주문 취소 로직 수행
+            orderMapper.updateCancelStatus(orderNo); // 매퍼를 통해 취소 상태 업데이트
+            return true; // 성공적으로 주문이 취소됨을 반환
+        } catch (Exception e) {
+            // 주문 취소 실패 시 로그를 남기고 실패를 반환
+            System.err.println("Failed to cancel order: " + e.getMessage());
+            return false;
+        }
+    }
+
+
+
 	
+	
+
 
 
 

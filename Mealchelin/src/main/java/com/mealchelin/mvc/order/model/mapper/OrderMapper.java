@@ -37,6 +37,14 @@ public interface OrderMapper {
 	List<Orders> selectPayInfo(int orderNo);
 	
  	Orders selectOrderAll(int orderNo);
-	
+
+	void updateCancelStatus(int orderNo);
+
+
+
+ 	
+ 	
+ 	
+ 	
     
 }

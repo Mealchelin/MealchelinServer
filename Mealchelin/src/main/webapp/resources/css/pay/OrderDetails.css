@@ -205,6 +205,38 @@
     margin: 1px;
 }
 
+
+.pay_pay_Productreview a {
+    border: 1px solid #559D50;
+    width: 101px;
+    height: 35px;
+    background-color: #fff;
+    color: #559D50;
+    padding-bottom: 2px;
+    display: block;
+    margin-top: 9px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+        font-size: 14px;
+    text-align: center;
+    padding-top: 4px;
+}
+.pay_pay_Productreview a:hover {
+    border: 1px solid #559D50;
+    width: 101px;
+    height: 35px;
+    background-color: #3B6C51;
+    color: #ffff;
+    padding-bottom: 2px;
+    display: block;
+    margin-top: 9px;
+    border-radius: 2px;
+        font-size: 14px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+
 .pay_pay_Productreview input {
     border: 1px solid #559D50;
     width: 101px;

@@ -48,7 +48,7 @@
 		<section id="pay_sections">
 			<h2>주문 내역 상세</h2>
 			<div class="pay_mainContentTitle">
-				<span>주문번호 ${order.orderMembers }</span> <span
+				<span>주문번호 ${orders.orderMembers }</span> <span
 					class="pay_OrderDetails">배송 또는 상품에 문제가 있나요? <a
 					href="${ path }/cscenter/inquiry">1:1문의 ></a>
 				</span>
@@ -58,9 +58,8 @@
 				<div class="pay_ProductInfoArea">
 					<div class="pay_Product">
 						<div class="pay_ProductImg">
-							<a href="../img/new_01.jpg"><img
-								src="${ path }/img/product/${items.image}"
-								class="pay_ProductImgArea"></a>
+							<a href="../img/new_01.jpg">
+							<img src="${ path }/img/product/${items.image}" class="pay_ProductImgArea"></a>
 						</div>
 						<div class="pay_ProductInfo">
 							<table class="pay_table">
@@ -80,8 +79,8 @@
 							<span>${items.shipStatus }</span>
 						</div>
 						<div class="pay_pay_Productreview">
-							<input type="button"
-								onclick="location.href='${path}/mypage/payDelete'" value="주문 취소" />
+						<a href="${path}/mypage/payDelete?orderNo=${orders.orderNo}">주문 취소</a>
+<%-- 							<input type="hidden" onclick="location.href='${path}/mypage/payDelete?orderNo=${order.orderNo}'" value="주문 취소" /> --%>
 							<input type="button"
 								onclick="location.href='${path}/mypage/writableReview'"
 								value="리뷰쓰기" />

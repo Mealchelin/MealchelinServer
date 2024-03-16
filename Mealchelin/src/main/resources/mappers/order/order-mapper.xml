@@ -15,7 +15,7 @@
 	<result property="orderDate" column="ORDER_DATE"/>
 	<result property="name" column="NAME"/>
 	<result property="orderMembers" column="ORDERS_NUMBERS"/>
-	
+	<result property="cancleStatus" column="CANCLE_STATUS"/>
 	
 	</resultMap>
 	
@@ -52,11 +52,12 @@ SELECT
     ORDERS.PAYMENT_METHOD,
     ORDERS.PAYMENT,
     ORDERS.ORDER_DATE,
+    ORDERS.CANCLE_STATUS,
     PRODUCT.NAME AS PRODUCT_NAME
 FROM ORDERS
 JOIN PRODUCT ON ORDERS.ORDER_NO = PRODUCT.PRD_NO
-WHERE MEMBER_NO = #{memberNo}
-
+WHERE MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
+ 
 </select>
 
 <update id="updateProductResultset" parameterType="map">
@@ -119,6 +120,7 @@ SELECT
     O.ORDER_DATE,
     O.SHIP_STATUS,
     O.ORDERS_NUMBERS,
+    O.CANCLE_STATUS,
     P.NAME AS PRODUCT_NAME,
     P.BRAND,
     P.PRD_NO,
@@ -130,7 +132,7 @@ JOIN
 JOIN 
     PRODUCT P ON OP.PRD_NO = P.PRD_NO
 WHERE
-    O.MEMBER_NO = #{memberNo}
+    O.MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
 ORDER BY 
     O.ORDER_NO DESC
 </select>
@@ -263,6 +265,7 @@ GROUP BY O.ORDER_NO
     <result property="price" column="PRICE"/>
     <result property="request" column="REQUEST"/>
     <result property="canclereason" column="CANCLE_REASON"/>
+    <result property="cancleStatus" column="CANCLE_STATUS"/>
 </resultMap>
 
 
@@ -283,6 +286,8 @@ SELECT
 		OP.QUANTITY,
 		OP.TOTAL_PRICE,
 		OP.ORDER_NO,
+		O.CANCLE_REASON,
+		O.CANCLE_STATUS,
 		P.PRICE
     FROM 
         ORDERS O
@@ -291,7 +296,7 @@ SELECT
     JOIN 
         PRODUCT P ON OP.PRD_NO = P.PRD_NO
     WHERE 
-        OP.ORDER_NO = #{orderProductNo} 
+        OP.ORDER_NO = #{orderProductNo} AND CANCLE_STATUS = 'N' 
 </select>
 
 <select id="selectOrderAll" parameterType="_int" resultMap="selectProductPayInfoResultMap">
@@ -309,7 +314,7 @@ SELECT
     SHIP_NO,
     ORDERS_NUMBERS
 FROM ORDERS
-WHERE ORDER_NO =#{orderNo}
+WHERE ORDER_NO =#{orderNo} AND CANCLE_STATUS = 'N'
 
 
 </select>
@@ -341,24 +346,11 @@ WHERE ROWNUM BETWEEN 1 AND 8
 
 </select>
 
-<update id="updateAdOrders" parameterType="Orders">
-	UPDATE ORDERS
-	SET
-		SHIP_STATUS = #{shipStatus}
-	WHERE ORDER_NO = #{orderNo}
-</update>
-
-
-
-
-
-
-
-
-
-
-
-
+ <update id="updateCancelStatus" parameterType="_int" >
+        UPDATE ORDERS
+        SET CANCLE_STATUS = 'Y'
+        WHERE ORDER_NO = #{orderNo}
+    </update>
 
 
 

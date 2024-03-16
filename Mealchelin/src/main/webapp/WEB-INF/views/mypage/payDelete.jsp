@@ -6,6 +6,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<c:set var="totalPrice" value="0" />
+
+<c:set var="formattedPhone"
+	value="${shipInfo.phone.substring(0, 3)}-${shipInfo.phone.substring(3, 7)}-${shipInfo.phone.substring(7)}" />
+
+<c:set var="path" value="${ pageContext.request.contextPath }" />
+
+<c:forEach items="${result}" var="item">
+	<c:set var="totalPrice"
+		value="${totalPrice + item.price * item.countQ}" />
+</c:forEach>
+
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
 <!DOCTYPE html>
@@ -36,39 +48,49 @@
 
 	<!-- 내용 넣기 -->
 	<main id="pay_Mains">
-	<jsp:include page="/WEB-INF/views/mypage/mypageHeaderBox.jsp"/>
+		<jsp:include page="/WEB-INF/views/mypage/mypageHeaderBox.jsp" />
 		<section class="pay_Sections">
 			<!-- <h2 class="pay_Title">주문서</h2> -->
 			<h3 class="pay_Title">주문취소</h3>
 			<div class="pay_MainContent">
 				<div class="pay_FirstContent">
-					<span class="pay_FirstContentTitle">주문번호 216156146546</span>
+					<span class="pay_FirstContentTitle">주문번호
+						${orders.orderMembers }</span>
 				</div>
-				<div class="pay_FirstContentArea">
-					<img src="../img/new_01.jpg" class="pay_menuPhoto"> <span
-						class="pay_FirstMemu"> <span class="pay_FirstName">안동식
-							순살 찜닭 상품을 취소합니다. </span>
-					</span>
-				</div>
+				<c:forEach items="${result }" var="items">
+					<div class="pay_FirstContentArea">
+						<!-- 				pay_menuPhoto -->
+						<img src="${ path }/img/product/${items.image}"
+							class="pay_menuPhoto">
+						<%-- 					 <span class="pay_FirstName"> ${items.name }  ${items.countQ }개 </span> --%>
+						<div class="pay_ProductInfo">
+							<table class="pay_table">
+								<tr>
+									<td>상품명</td>
+									<td class="pay_subNameOne">${items.name }</td>
+								</tr>
+								<tr class="pay_ProductMenu">
+									<td>상품금액</td>
+									<td class="pay_subNameTwo"><fmt:formatNumber
+											value="${items.price * items.countQ}" pattern="#,###" />원 <span>ㅣ</span>
+										${items.countQ}개</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</c:forEach>
 				<div class="pay_SecondContentArea">
 					<div class="pay_SecondContent">
 						<span class="pay_secondContentTitle">취소 사유 선택</span>
 						<div class="pay_payInfo">
 							<div class="pay_payList">
 								<div class="pay_Info">
-									<label for="pay_one"><input type="checkbox"
-										id="pay_one" name="pay_check">단순변심</label> <label
-										for="pay_two"> <input type="checkbox" id="pay_two"
-										name="pay_check">상품 옵션 변경
-									</label> <label for="pay_three"><input type="checkbox"
-										id="pay_three" name="pay_check">추가 주문</label> <label
-										for="pay_four"> <input type="checkbox" id="pay_four"
-										name="pay_check">결제 수단 변경
-									</label> <label for="pay_five"> <input type="checkbox"
-										id="pay_five" name="pay_check">배송 정보 변경
-									</label> <label for="pay_six"> <input type="checkbox"
-										id="pay_six" name="pay_check">상품 가격
-									</label>
+								    <label for="pay_one"><input type="checkbox" id="pay_one" name="pay_check">단순변심</label>
+								    <label for="pay_two"><input type="checkbox" id="pay_two" name="pay_check">상품 옵션 변경</label>
+								    <label for="pay_three"><input type="checkbox" id="pay_three" name="pay_check">추가 주문</label>
+								    <label for="pay_four"><input type="checkbox" id="pay_four" name="pay_check">결제 수단 변경</label>
+								    <label for="pay_five"><input type="checkbox" id="pay_five" name="pay_check">배송 정보 변경</label>
+								    <label for="pay_six"><input type="checkbox" id="pay_six" name="pay_check">상품 가격</label>
 								</div>
 							</div>
 						</div>
@@ -82,17 +104,34 @@
 					<div class="pay_userInfo">
 						<div class="pay_Sender">
 							<span class="pay_username">주문금액</span> <span
-								class="pay_usernames">25,730원</span>
+								class="pay_usernames"><fmt:formatNumber
+									value="${totalPrice}" type="number" pattern="#,###" />원</span>
 						</div>
+						<c:set var="shippingPrice" value="0" />
+						<c:choose>
+							<c:when test="${shippingInfo.mountain == 'N'}">
+								<c:set var="shippingPrice" value="3000" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="shippingPrice" value="5000" />
+							</c:otherwise>
+						</c:choose>
+
+						<c:if test="${totalPrice >= 50000}">
+							<c:set var="shippingPrice" value="0" />
+						</c:if>
 						<div class="pay_Sender">
 							<span class="pay_userPhone">배송비</span> <span
-								class="pay_userPhones">0원</span>
+								class="pay_userPhones"><fmt:formatNumber
+									value="${shippingPrice}" type="number" pattern="#,###" />원</span>
 						</div>
 					</div>
 				</div>
 				<div class="pay_finalResult">
 					<span class="pay_Delivery">최종 환불 금액</span> <span
-						class="pay_Finalpay">25,730원</span>
+						class="pay_Finalpay"><fmt:formatNumber
+							value="${totalPrice+shippingPrice}" pattern="#,##0원"
+							type="number" /></span>
 				</div>
 				<div class="pay_fourContentArea">
 					<div class="pay_payfourInfo">
@@ -105,9 +144,9 @@
 					</div>
 				</div>
 				<div class="pay_pay_Productreview">
-                    <input type="button" value="주문 취소" />
-                    <input type="button" value="홈으로 이동" />
-                </div>
+					<a href="${path}/payment/payCncel?orderNo=${orders.orderNo}" id="cancelOrderBtn">주문 취소</a>
+					<input type="button" onclick="location.href='/'" value="홈으로 이동" />
+				</div>
 			</div>
 		</section>
 	</main>
