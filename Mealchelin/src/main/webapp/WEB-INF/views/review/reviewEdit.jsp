@@ -105,7 +105,6 @@
 	                            </c:when>
                             </c:choose>
                         </div>
-                        <br>
                         <p id="re_titleAndDetailReview" >제목</p>
                         <textarea maxlength="30" id="re_titleContent" name="name">${ review.name }</textarea>
                         <p id="re_textCount"><span id="re_nowTextCount1">0</span>/30</p>

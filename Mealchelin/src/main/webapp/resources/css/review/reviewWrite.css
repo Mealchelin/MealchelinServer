@@ -23,13 +23,14 @@ h3 {
 }
 
 #re_img {
-    width: 130px;
+    width: 170px;
     float: left;
     margin-right: 20px;
 }
 
 #re_foodInfo {
     margin-top: 20px;
+    height:170px;
 }
 
 #re_foodName {
@@ -48,13 +49,13 @@ h3 {
 }
 
 .re_star{
-    margin-top: 65px;
+	margin-top: 5px;
 }
 
 .starR{
     color: #D9D9D9;
     font-size: 30px;
-    margin-top: 30px;
+    margin-top: 5px;
     /* cursor: pointer; */
 }
 
@@ -65,6 +66,7 @@ h3 {
 #re_titleAndDetailReview {
     font-size: 14px;
     margin-top: 20px;
+    clear:both;
 }
 
 #re_inputTitle {

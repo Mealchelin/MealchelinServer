@@ -67,7 +67,6 @@
 							</c:otherwise>
                         </c:choose>
                     </div>
-                    <br>
                     <p id="re_titleAndDetailReview" >제목</p>
                     <textarea maxlength="30" name="name" id="re_titleContent" cols="3" rows="1" readonly>${ review.name }</textarea>
                     <p id="re_titleAndDetailReview">상세리뷰</p>

@@ -51,7 +51,6 @@
                                 <input id="ratedInput" type="hidden" name="rated" value="0" />
                             </div>
                         </div>
-                        <br>
                         <p id="re_titleAndDetailReview" >제목</p>
                         <textarea maxlength="30" name="name" id="re_inputTitle" cols="3" rows="1" placeholder="다른 고객님에게 도움이 되도록 상품에 대한 솔직한 평가를 남겨주세요."></textarea>
                         <p id="re_textCount"><span id="re_nowTextCount1">0</span>/30</p>
