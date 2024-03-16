@@ -1,6 +1,7 @@
 package com.mealchelin.mvc.shoppingBasket.model.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 
@@ -14,4 +15,6 @@ public interface ShoppingBasketMapper {
 	ShoppingBasket selectGetBasket(int memberNo);
 
 	int updateBasket(ShoppingBasket shoppingBasket);
+
+	int updatePayment(@Param("memNo") int memNo, @Param("reset") int reset);
 }

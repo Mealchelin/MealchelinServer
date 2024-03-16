@@ -108,6 +108,11 @@
 		WHERE MEMBER_NO = #{memberNo} AND PRD_NO = #{prdNo}
 	</delete>
 	
+	<delete id="deleteSbpBySell" parameterType="_int">
+		DELETE FROM SHOPPING_BASKET_PRODUCT
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
 	
 
 </mapper>

@@ -300,4 +300,12 @@
 		WHERE PRD_NO = #{no}
 	</update>
 	
+	<update id="updateSellCount" parameterType="_int">
+		UPDATE PRODUCT
+		SET
+			STOCK = STOCK - 1,
+			TOTAL_SALES = TOTAL_SALES + 1
+		WHERE PRD_NO = #{no}
+	</update>
+	
 </mapper>

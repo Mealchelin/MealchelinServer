@@ -49,4 +49,6 @@ public interface ProductMapper {
 
 	int updateStatus(Product product);
 
+	int updateSellCount(@Param("no") int no);
+
 }

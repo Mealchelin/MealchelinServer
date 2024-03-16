@@ -37,13 +37,11 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
+	<update id="updatePayment" parameterType="map">
+		UPDATE SHOPPING_BASKET
+		SET
+			PAYMENT = #{reset}
+		WHERE MEMBER_NO = #{memNo}
+	</update>
 	
-	
-	
-	
-	
-
-
-
-
 </mapper>

@@ -25,4 +25,6 @@ public interface ShoppingBasketProductMapper {
 
 	int updateSbpByNo(ShoppingBasketProduct shoppingBasketProduct);
 
+	int deleteSbpBySell(@Param("memberNo") int memberNo);
+
 }

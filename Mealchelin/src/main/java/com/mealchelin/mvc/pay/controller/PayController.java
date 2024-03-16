@@ -28,6 +28,9 @@ import com.mealchelin.mvc.product.model.service.ProductService;
 import com.mealchelin.mvc.product.model.vo.Product;
 import com.mealchelin.mvc.shippingLocation.model.service.ShippingLocationService;
 import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketProductService;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketService;
+import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
 import lombok.RequiredArgsConstructor;
@@ -45,6 +48,8 @@ public class PayController {
 	private final ProductService productService;
 	private final OrderService orderService;
 	private final OrderProductService orderProductService;
+	private final ShoppingBasketProductService sbpService;
+	private final ShoppingBasketService sbService;
 
 	
 	@GetMapping("/payment/directpay")
@@ -129,7 +134,7 @@ public class PayController {
 		shippingProductList = payService.getShippingList(loginMember.getMemberNo());
 
 		// 배송정보
-		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+		shippingInfo = shippingService.getDefaultShippingLocationByMemNo(loginMember.getMemberNo());
 
 		System.out.println(payInfoList);
 
@@ -184,8 +189,12 @@ public class PayController {
 		int result = 0;
 		for(int i = 0; i < OrderProducts.size(); i++) {
 			System.out.println("test : " + OrderProducts.get(i));
+			int proNo = OrderProducts.get(i).getProNo();
+			int result2 = 0;
 			
 			result = payInfoService.saveOrderProduct(OrderProducts.get(i));
+			result2 = productService.updateSellCount(proNo);
+			log.info("상품 판매 후 판매량, 재고 수 변경 {}", result2);
 		}
 		
 //		System.out.println("OrderProducts : " + OrderProducts);
@@ -244,7 +253,16 @@ public class PayController {
 		//시퀀스로 생성된 orderNo로 ORDER_PRODUCT에 업데이트 해준다.
 		result += orderService.updateOrderProduct(ordersNumbers, order.getOrderNo());
 		
-
+		// 로그인 멤버의 장바구니 리셋 
+		int memNo = member.getMemberNo();
+		// 장바구니 payment = 0
+		// 장바구니 상품 멤버 번호에 맞는 상품들 전부 delete
+		int result2 = sbpService.deleteSbpBySell(memNo);
+		int result3 = sbService.resetSbPayment(memNo, 0);
+		log.info("장바구니 상품 삭제하고 장바구니 금액 0으로 만듦 {}, {}", result3, result2);
+		
+		
+		
 		if (result > 0) {
 			modelAndView.addObject("msg", "결제가 완료되었습니다");
 		} else {
@@ -354,46 +372,3 @@ public class PayController {
 }
 	
 	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
