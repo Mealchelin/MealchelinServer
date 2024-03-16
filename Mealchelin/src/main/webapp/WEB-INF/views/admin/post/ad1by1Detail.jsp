@@ -137,6 +137,7 @@
                                         <td class="ad_th">작성자</td>
                                         <td>${ inquiry.mname }</td>
                                         <td class="ad_th" id="adCSWrite">답변 여부</td>
+                                        <c:set var="status" value="${ inquiry.answerState }" scope="session"/> 
                                         <c:choose>
 													<c:when test='${ status == "Y" }'>
 														<td>답변 완료</td>
