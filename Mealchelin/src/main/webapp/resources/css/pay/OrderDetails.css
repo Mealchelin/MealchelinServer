@@ -146,13 +146,12 @@
 
 .pay_table {
     margin-top: 1px;
-    width: 250px;
+    width: 300px;
 }
 
 .pay_table td{
-    width: 2000px;
-    padding-left: 20px;
     padding-top: 10px;
+    padding-left:20px;
 }
 
  .pay_subName {
@@ -181,7 +180,6 @@
 
 
 .pay_subNameTwo {
-    padding-left: 30px;
     width: 100px;
 }
 
@@ -197,7 +195,7 @@
 
 
 .pay_Productresult {
-    padding-left: 100px;
+    padding-left: 158px;
     font-size: 20px;
     width: 400px;
 }

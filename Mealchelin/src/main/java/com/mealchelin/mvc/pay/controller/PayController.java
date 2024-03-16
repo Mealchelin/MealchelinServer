@@ -65,15 +65,15 @@ public class PayController {
 		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 
 		if (price > 50000) {
-			shipPrice = 0;
+		    shipPrice = 0;
 		} else {
-
-			if (shippingInfo.getMountain() == "N") {
-				shipPrice = 3000;
-			} else {
-				shipPrice = 5000;
-			}
+		    if (shippingInfo != null && "N".equals(shippingInfo.getMountain())) {
+		        shipPrice = 3000;
+		    } else {
+		        shipPrice = 5000;
+		    }
 		}
+
 		// 결제수단 표시
 		payInfoList = payInfoService.selectByProductPay(loginMember.getMemberNo());
 
@@ -210,7 +210,11 @@ public class PayController {
 		// 주문 정보에 회원 번호 설정
 		Orders order = new Orders();
 		order.setMemberNo(member.getMemberNo());
-		order.setShipNo(shippingInfo.getShipNo());
+		if (shippingInfo != null) {
+	        order.setShipNo(shippingInfo.getShipNo());
+	    } else {
+	        // shippingInfo가 null일 때의 처리 로직 추가
+	    }
 
 		// 주문 정보와 회원 정보를 담은 Map 생성
 		orderInfo.put("order", order);
@@ -259,9 +263,13 @@ public class PayController {
 
 	//결제완료페이지 
 	@GetMapping("/payment/paysucces")
-	public ModelAndView paySuccessView(ModelAndView modelAndView) {
+	public ModelAndView paySuccessView(ModelAndView modelAndView,
+			@SessionAttribute("loginMember") Member loginMember
+			) {
+		
+		
+		modelAndView.addObject("loginMember", loginMember);
 		modelAndView.setViewName("payment/paysucces");
-
 		return modelAndView;
 	}
 	

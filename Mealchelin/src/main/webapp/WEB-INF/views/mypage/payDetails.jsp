@@ -260,7 +260,7 @@
 							<tr>
 								<td class="pay_mainName">결제금액</td>
 								<td class="pay_subName"><fmt:formatNumber
-										value="${orders.payMent}" pattern="#,##0원" type="number" /></td>
+										value="${totalPrice+shippingPrice}" pattern="#,##0원" type="number" /></td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제방법</td>
