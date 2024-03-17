@@ -139,8 +139,6 @@ function getquest() {
 let quest = document.getElementById("payDeliveryUserRequest").value; // 상품명을 클래스 이름이 'pay_FirstName'인 요소에서 가져옴
 return quest;
 }
-
-
 // {
 //     pg: "kakaopay.TCSUBSCRIP",
 //     pay_method: "card",
@@ -281,7 +279,7 @@ switch (method) {
     IMP.request_pay(
         {
             ...payData,
-        pg: "mobilians",
+        pg: 'html5_inicis',
         pay_method: "phone"
         },
         function (rsp) {
@@ -295,7 +293,7 @@ switch (method) {
             buyerName: getusername(), // 구매자 이름
             buyerTel: getuserphone(), // 구매자 전화번호
             buyerAddr: getProductAdress(), // 구매자 주소
-            paymentMethod: "신용카드", // 결제 방식 추가
+            paymentMethod: "휴대폰", // 결제 방식 추가
             quest: getquest(),
             shipNo: getshipNo()
             };

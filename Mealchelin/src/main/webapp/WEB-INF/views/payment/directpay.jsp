@@ -345,10 +345,7 @@
 			<div class="pay_pay_Productreview">
 				<input type="button" id="payButton" value="결제하기" /> 
 				<input type="button" onclick="location.href='/'" value="홈으로 이동" />
-<<<<<<< HEAD
 			</div>
-=======
->>>>>>> origin/feature/pay_sy
 			</div>
 		</div>
 		</section>
