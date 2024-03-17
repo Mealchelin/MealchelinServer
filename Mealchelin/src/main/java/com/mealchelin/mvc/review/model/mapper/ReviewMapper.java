@@ -17,14 +17,14 @@ public interface ReviewMapper {
 
 	int insertReview(Review review);
 	// 검색 
-	int getReviewCount(String category, String title);
+	int getReviewCount(@Param("searchType") String searchType, @Param("searchText")String searchText);
 	
 	int getAdminReviewCount();
 	
 	List<Review> adminSelectAll(RowBounds rowBounds);
 	
 	// 검색
-	List<Review> selectAll(RowBounds rowBounds, String category, String title);
+	List<Review> selectAll(RowBounds rowBounds, @Param("searchType") String searchType, @Param("searchText")String searchText);
 
 	Review selectReviewByNo(int reviewNo);
 	

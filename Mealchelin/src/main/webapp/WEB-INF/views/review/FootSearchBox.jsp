@@ -22,7 +22,7 @@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> <%@ taglib uri="htt
         <!-- 내용 넣기 -->
         <main>
             <section>
-                <form action="${ path }/review/reviewEmpty">
+                <form action="${ path }/review/main">
                     <div id="re_bottomSearchBox">
                     	<!-- 
                         <select id="re_shearchBtn" name="period" id="">
