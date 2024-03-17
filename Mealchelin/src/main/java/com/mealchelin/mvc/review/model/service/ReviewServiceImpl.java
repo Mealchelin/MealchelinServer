@@ -31,10 +31,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getReviewCount(String category, String text) {
+	public int getReviewCount(String searchType, String searchText) {
 		
 		
-		return mapper.getReviewCount(category, text);
+		return mapper.getReviewCount(searchType, searchText);
 	}
 	
 	@Override
@@ -55,13 +55,13 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> getReviewList(PageInfo pageInfo, String category, String text) {
+	public List<Review> getReviewList(PageInfo pageInfo, String searchType, String searchText) {
 		int limit = pageInfo.getListLimit();
 		int offset = (pageInfo.getCurrentPage() - 1) * limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		
-		return mapper.selectAll(rowBounds, category, text);
+		return mapper.selectAll(rowBounds, searchType, searchText);
 	}
 
 	@Override

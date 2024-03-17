@@ -105,7 +105,7 @@
 			<trim prefix="AND" prefixOverrides="AND|OR">
 				<choose>
 					<when test="searchType.equals('title')">
-						REVIEW.NAME LIKE '%' || #{searchText} || '%'
+						PRODUCT.NAME LIKE '%' || #{searchText} || '%'
 					</when>
 					<when test="searchType.equals('writerId')">
 						MEMBER.ID LIKE '%' || #{searchText} || '%'
@@ -115,7 +115,7 @@
 		</if>
 		<if test="searchType == ''">
 			<trim prefix="AND" prefixOverrides="AND|OR">
-				(REVIEW.NAME LIKE '%' || #{searchText} || '%'
+				(PRODUCT.NAME LIKE '%' || #{searchText} || '%'
 				OR MEMBER.ID LIKE '%' || #{searchText} || '%')
 			</trim>
 		</if>
@@ -170,7 +170,7 @@
 			<trim prefix="AND" prefixOverrides="AND|OR">
 				<choose>
 					<when test="searchType.equals('title')">
-						REVIEW.NAME LIKE '%' || #{searchText} || '%'
+						PRODUCT.NAME LIKE '%' || #{searchText} || '%'
 					</when>
 					<when test="searchType.equals('writerId')">
 						MEMBER.ID LIKE '%' || #{searchText} || '%'
@@ -180,7 +180,7 @@
 		</if>
 		<if test="searchType == ''">
 			<trim prefix="AND" prefixOverrides="AND|OR">
-				(REVIEW.NAME LIKE '%' || #{searchText} || '%'
+				(PRODUCT.NAME LIKE '%' || #{searchText} || '%'
 				OR MEMBER.ID LIKE '%' || #{searchText} || '%')
 			</trim>
 		</if>
@@ -235,7 +235,7 @@
 	        PRODUCT.IMAGE AS IMAGE,
             PRODUCT.BRAND AS BRAND
 	FROM MEMBER
-	LEFT JOIN ORDERS ON MEMBER.MEMBER_NO = ORDERS.MEMBER_NO
+	JOIN ORDERS ON MEMBER.MEMBER_NO = ORDERS.MEMBER_NO
 	LEFT JOIN ORDER_PRODUCT ON ORDER_PRODUCT.ORDER_NO = ORDERS.ORDER_NO
 	LEFT JOIN PRODUCT ON order_product.prd_no = PRODUCT.PRD_NO
 	WHERE MEMBER.MEMBER_NO = #{userNo}
@@ -313,7 +313,7 @@
 	</update>
 
 	<select id="getReviewListForHome" resultMap="reviewListResultMap">
-		SELECT	ROWNUM,
+		       SELECT	ROWNUM,
 				REVIEW_NO,
 				RATED,NAME,
 				CONTENT,IMAGE,
@@ -322,6 +322,8 @@
 				STATUS,
 				USER_NO,
 				PRD_NO,
+				ORIGINAL_FILENAME,
+				RENAMED_FILENAME,
 				ID
         FROM (
 		SELECT	REVIEW.REVIEW_NO AS REVIEW_NO,
@@ -334,9 +336,12 @@
 				REVIEW.STATUS AS STATUS,
 				REVIEW.USER_NO AS USER_NO,
 				REVIEW.PRD_NO AS PRD_NO,
+				REVIEW.ORIGINAL_FILENAME AS ORIGINAL_FILENAME,
+				REVIEW.RENAMED_FILENAME AS RENAMED_FILENAME,
                 MEMBER.ID AS ID
             FROM REVIEW
             LEFT JOIN MEMBER ON REVIEW.USER_NO = MEMBER.MEMBER_NO
+            WHERE REVIEW.STATUS = 'Y'
 			ORDER BY REVIEW_NO DESC
 		)
 		WHERE ROWNUM BETWEEN 1 AND 9

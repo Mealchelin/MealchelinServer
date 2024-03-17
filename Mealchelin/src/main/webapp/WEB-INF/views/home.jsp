@@ -154,7 +154,7 @@
                     <c:forEach var="review" items="${ review }">
                     <div class="m_review_box">
                         <a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
-                            <div class="m_review_img"><img src="${ path }/img/review_img.jpg"></div>
+                            <div class="m_review_img"><img class="m_riveiw_img_in" src="${ path }/img/review/${ review.renamedFilename }"></div>
                             <div class="m_review_txt">
                                 <div class="m_review_title">${ review.name }</div>
                                 <div class="m_review_con">${ review.content }</div>

@@ -10,7 +10,7 @@ h3 {
 }
 
 #re_writableReview {
-    margin: 20px;
+
     color: #B4B4B4;
 }
 
@@ -38,6 +38,5 @@ hr {
 
 #re_emptyReview{
     text-align: center;
-    margin: 350px;
-    font-size: 20px;
+    margin: 50px;
 }

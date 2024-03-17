@@ -39,7 +39,7 @@
 	<main id="pay_mains">
 		<jsp:include page="/WEB-INF/views/mypage/mypageHeaderBox.jsp" />
 		<section id="pay_sections">
-			<h2>주문 조회</h2>
+			<h2 class="pay_header"> 주문 조회</h2>
 			<div class="pay_mainContentTitle">
 				<span>주문 내역</span> <span class="pay_OrderDetails">현재 상품 배송상태를
 					확인할 수 있어요</span>

@@ -33,7 +33,7 @@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> <%@ taglib uri="htt
                     	 -->
                         <select id="re_shearchBtn" name="searchType">
                             <option value="">전체</option>
-                            <option value="title">제목</option>
+                            <option value="title">제품명</option>
                             <option value="writerId">아이디</option>
                         </select>
                         <input id="re_shearchBtn" type="text" name="searchText"/>

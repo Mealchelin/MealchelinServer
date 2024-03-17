@@ -159,3 +159,8 @@ textarea {
 #re_imgadd {
     /* display: none; */
 }
+
+#re_emptyReview{
+	text-align: center;
+    margin: 50px;
+}

@@ -8,10 +8,13 @@ h3 {
 #re_writtenReview {
     margin-right: 20px !important;
     color: #B4B4B4;
+    font-size: 18px;
 }
 
 #re_writableReview {
-    margin: 20px;
+    margin: 20px 20px 20px 0px;
+	font-size: 18px;
+	margin-left: 2px;
 }
 
 #re_periodDropBox {

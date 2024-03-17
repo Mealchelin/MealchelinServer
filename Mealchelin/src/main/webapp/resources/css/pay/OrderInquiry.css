@@ -5,12 +5,12 @@
 #pay_sections {
     width: 1100px;
     margin: auto;
-    padding-top: 61px;
+    padding-top: 50px;
 }
 
 
 #pay_sections h2 {
-    padding-bottom: 60px;
+    padding-bottom: 30px;
 }
 
 
@@ -26,12 +26,12 @@
 
 
 .pay_mainContentTitle span:first-child{
-    font-size: 24px;
+    font-size: 21px;
 }
 
 
 .pay_OrderDetails {
-    padding-left: 20px;
+    padding-left: 10px;
     color: rgb(212, 206, 206);
     font-size: 13px;
 }
@@ -167,4 +167,8 @@
 
 .pay_table td{
     padding: 4px;
+}
+
+.pay_header{
+	font-size: 28px;
 }

@@ -7,11 +7,13 @@ h3 {
 
 #re_writtenReview {
     margin-right: 20px;
+    font-size: 18px;
+	margin-left: 2px;
 }
 
 #re_writableReview {
-    margin: 20px;
     color: #B4B4B4;
+    font-size: 18px;
 }
 
 #re_periodDropBox {
@@ -146,4 +148,8 @@ hr {
 #re_star {
     color: #86BC66;
     font-size: 25px;
+}
+
+.re_atag{
+	width: 109px;
 }

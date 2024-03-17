@@ -36,7 +36,6 @@ hr {
 }
 
 #re_emptyReview{
-    text-align: center;
-    margin: 350px;
-    font-size: 20px;
+	text-align: center;
+    margin: 50px;
 }

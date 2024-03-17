@@ -44,13 +44,13 @@
 		<jsp:include page="./../mypage/mypageHeaderBox.jsp" />
 		<section>
 			<h3>나의 리뷰</h3>
-			<a href="${ path }/mypage/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
-                <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
+			<a class="re_atag" href="${ path }/mypage/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
+            <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
 			
 			<hr />
 
 			<c:if test="${ empty list }">
-				<p id="re_emptyReview">작성한 구매후기가 없습니다.</p>
+				<p id="re_emptyReview">작성한 리뷰가 없습니다.</p>
 			</c:if>
 			<c:if test="${ not empty list }">
 				<c:forEach var="review" items="${ list }">

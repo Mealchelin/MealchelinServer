@@ -39,13 +39,13 @@
 	<main>
 	<jsp:include page="./../mypage/mypageHeaderBox.jsp" />
 		<section>
-			<h3>나의 리뷰</h3>
+			<h3 class="re_headerName">나의 리뷰</h3>
                 <a href="${ path }/mypage/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
                 <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
                 <hr />
                 
                 <c:if test="${ empty list }">
-					<p id="re_emptyReview">작성한 구매후기가 없습니다.</p>
+					<p id="re_emptyReview">작성한 가능한 리뷰가 없습니다.</p>
 				</c:if>
 				
 				<c:if test="${ not empty list }">
@@ -71,27 +71,28 @@
 			</c:if>
 		</section>
 		<c:if test="${ not empty list }">
-		<section id="cs-section3">
-			<div class="cs-paging">
-				<button
-					onclick="location.href='${ path }/mypage/writableReview?page=${ pageInfo.prevPage }'">&lt;</button>
-				<c:forEach var="current" begin="${ pageInfo.startPage }"
-					end="${ pageInfo.endPage }">
-					<c:choose>
-						<c:when test="${ current == pageInfo.currentPage }">
-							<button disabled>${ current }</button>
-						</c:when>
-						<c:otherwise>
-							<button
-								onclick="location.href='${ path }/mypage/writableReview?page=${ current }'">${ current }</button>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<button
-					onclick="location.href='${ path }/mypage/writableReview?page=${ pageInfo.nextPage }'">&gt;</button>
-			</div>
-		</section>
-		</c:if>
+	      <section id="cs-section3">
+	         <div class="cs-paging">
+	            <button
+	               onclick="location.href='${ path }/mypage/writableReview?page=${ pageInfo.prevPage }'">&lt;</button>
+	            <c:forEach var="current" begin="${ pageInfo.startPage }"
+	               end="${ pageInfo.endPage }">
+	               <c:choose>
+	                  <c:when test="${ current == pageInfo.currentPage }">
+	                     <button disabled>${ current }</button>
+	                  </c:when>
+	                  <c:otherwise>
+	                     <button
+	                        onclick="location.href='${ path }/mypage/writableReview?page=${ current }'">${ current }</button>
+	                  </c:otherwise>
+	               </c:choose>
+	            </c:forEach>
+	            <button
+	               onclick="location.href='${ path }/mypage/writableReview?page=${ pageInfo.nextPage }'">&gt;</button>
+	         </div>
+	      </section>
+      	</c:if>
+		
 	</main>
 
 	<!-- 푸터 -->
