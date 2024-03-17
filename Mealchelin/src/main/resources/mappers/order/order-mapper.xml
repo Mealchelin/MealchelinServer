@@ -132,16 +132,18 @@ JOIN
 JOIN 
     PRODUCT P ON OP.PRD_NO = P.PRD_NO
 WHERE
-    O.MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
+    O.MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N' 
 ORDER BY 
     O.ORDER_NO DESC
 </select>
 
-<select id="selctPayConut" resultType="_int" >
-
-SELECT COUNT(*) FROM ORDERS WHERE CANCLE_STATUS ='N'
-
+<select id="selectPayCount" parameterType="_int">
+    SELECT COUNT(*) 
+    FROM ORDERS
+    WHERE MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
 </select>
+
+
 
 
 <select id="selectAll" resultMap="selectProductPayResultMap" parameterType="_int">

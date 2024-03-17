@@ -61,19 +61,18 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Orders> selectProductPayResultset(PageInfo pageInfo, int memberNo) {
+	public List<Orders> selectProductPayResultset(PageInfo pageInfo, int loginMember) {
 		
 		int limit = pageInfo.getListLimit();
 		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return orderMapper.selectProductPayResultset(rowBounds, memberNo);
+		return orderMapper.selectProductPayResultset(rowBounds, loginMember);
 	}
 
 	@Override
-	public int getPayListCount() {
-		return orderMapper.selctPayConut();
+	public int getPayListCount(int loginMember) {
+		return orderMapper.selectPayCount(loginMember);
 	}
 
 	@Override

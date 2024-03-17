@@ -295,7 +295,6 @@ public class PayController {
 	public ModelAndView payInquiry(ModelAndView modelAndView,
 			@SessionAttribute("loginMember") Member loginMember,
 			@RequestParam(defaultValue = "1") int page
-			
 			) {
 
 	    List<Orders> orders = null;
@@ -304,8 +303,10 @@ public class PayController {
 	    int paylistCount = 0;
 		PageInfo pageInfo = null;
 		List<Orders> list = null;
+		log.info(loginMember.toString());
+		
 				
-		paylistCount = orderService.getPayListCount();
+		paylistCount = orderService.getPayListCount(loginMember.getMemberNo());
 		pageInfo = new PageInfo(page, 3, paylistCount, 5);
 //		list = orderService.getPayListList(pageInfo);
 		

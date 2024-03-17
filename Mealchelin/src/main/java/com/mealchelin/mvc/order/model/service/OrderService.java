@@ -13,9 +13,9 @@ public interface OrderService {
 
 	int updateOrderProduct(Long ordersNumbers, int orderNo);
 
-	List<Orders> selectProductPayResultset(PageInfo pageInfo, int memberNo);
+	List<Orders> selectProductPayResultset(PageInfo pageInfo, int loginMember);
 
-	int getPayListCount();
+	int getPayListCount(int loginMember);
 
 	int getadOrderCount(String shipStatus, String memId);
 

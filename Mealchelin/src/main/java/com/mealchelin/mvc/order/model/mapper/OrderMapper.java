@@ -20,7 +20,7 @@ public interface OrderMapper {
 	
 	List<Orders> selectProductPayResultset(RowBounds rowBounds, int loginMember);
 
-	int selctPayConut();
+	int selectPayCount(@Param("memberNo") int loginMember);
 
 	int selectadOrderCount(@Param("shipStatus") String shipStatus, @Param("memId") String memId);
 
