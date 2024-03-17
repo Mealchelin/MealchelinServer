@@ -51,11 +51,9 @@
 							<div class="re_innerimgDiv">
 								<p class="re_foodName">${ review.productName }</p>
 								<p class="re_brandName">${ review.brand }</p>
-								<br> <br>
+								<br>
 								<p class="re_reviewTitle">${ review.name }</p>
-								<br>
 								<p class="re_reviewContent">${ review.content }</p>
-								<br>
 								<c:choose>
 									<c:when test="${ review.rated == 1}">
 										<span class="starR"><span id="re_star">★</span>★★★★</span>

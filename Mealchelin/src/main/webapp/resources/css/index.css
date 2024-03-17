@@ -80,7 +80,8 @@
         }
         
         .pick_txt h3{
-            padding-bottom:10px;
+        	padding-bottom:10px;
+        	text-align:left;
         }
 
         .main_pages_prev {
@@ -131,7 +132,7 @@
             background-color: rgba(0,0,0,0.5);
             width: 266px;
             height: 266px;
-            padding:100px;
+            padding:100px 50px;
             text-align: center;
             color:#ffff;
             box-sizing: border-box;
@@ -226,24 +227,29 @@
             position: relative;
             float:left;
             width: 260px;
-            height: 363px;
+            height: 380px;
+        }
+        
+        .main_review_txt h3{
+        	padding-bottom:10px;
+        	text-align:left;
         }
 
         .main_review_list{
             width: 840px;
-            height: 363px;
+            height: 380px;
             float: right;
         }
 
         .m_review_box{
             width: 262px;
-            height: 363px;
+            height: 380px;
             margin-left: 12px;
         }
 
         .m_review_img img{
             width: 262px;
-            height: 200px;
+            height: 190px;
             margin:0;
             padding:0;
             object-fit: cover;
@@ -253,7 +259,7 @@
 
         .m_review_txt{
             width: 262px;
-            height: 264px;
+            height: 190px;
             box-sizing: border-box;
             padding:20px;
             background-color: #fff;
@@ -269,16 +275,15 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
-            height:110px;
+            height:90px;
         }
         
         .m_review_title{
         	overflow: hidden;
-        	height:50px;
+        	height:30px;
         }
 
         .m_review_star{
-            padding-top:10px;
             float:left;
             color: #86BC66;
         }
@@ -289,5 +294,16 @@
             font-size: 14px;
             color: #8F8F8F;
         }
+        
+.starR{
+color: #D9D9D9;
+font-size: 25px;
+/* cursor: pointer; */
+}
+
+#re_star {
+    color: #86BC66;
+    font-size: 25px;
+}
 
       
