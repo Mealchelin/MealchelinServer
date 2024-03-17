@@ -115,6 +115,20 @@
     width: 160px;
 }
 
+
+.pay_userrecipient {
+    display: inline-block;
+    font-size: 16px;
+    width: 150px;
+}
+
+.pay_userrecipients {
+    display: inline-block;
+    font-size: 16px;
+    width: 150px;
+}
+
+
 .pay_userPhone {
     display: inline-block;
     font-size: 16px;

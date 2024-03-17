@@ -129,13 +129,17 @@
                   <span class="pay_thirdContentTitle">배송 정보</span>
                </div>
                <div class="pay_ShippingInfo">
-                  <div class="pay_SenderInfo">
-                     <input type="hidden" name="shipNo" id="shipNo" value="${shippingInfo.shipNo}" />
-                     <span class="pay_username">이름</span> 
-                     <span class="pay_usernames" id="shipname">${shippingInfo.shipName}</span>
-                     <!-- hidden input 태그 추가 -->
-<%--                      <input type="hidden" name="shipName" id="shipName" value="${shippingInfo.shipName}" /> --%>
-                  </div>
+                 <div class="pay_SenderInfo">
+							<input type="hidden" name="shipNo" id="shipNo" value="${shippingInfo.shipNo}" />
+							<span class="pay_username">배송지명</span> 
+							<span class="pay_usernames" id="shipname">${shippingInfo.shipName}</span>
+						</div>
+						<div class="pay_Sender">
+							<span class="pay_userrecipient">수취인</span> 
+							<span class="pay_userrecipients" id="shiprecipient">${shippingInfo.recipient}</span>
+							<!-- hidden input 태그 추가 -->
+<%-- 							<input type="hidden" name="shipName" id="shipName" value="${shippingInfo.shipName}" /> --%>
+						</div>
                   <div class="pay_Sender">
                      <span class="pay_userPhone">연락처</span> 
                      <span class="pay_userPhones" id="shipphone">${shippingInfo.phone}</span>

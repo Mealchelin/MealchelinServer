@@ -110,35 +110,40 @@
 				if ('${list[0].shipNo}' == shipNo) {
 					console.log(1);
 					opener.document.getElementById('shipNo').value = parseInt("${list[0].shipNo}");
-					opener.document.getElementById('shipname').innerText = '${list[0].recipient}';
+					opener.document.getElementById('shipname').innerText = '${list[0].shipName}';
+					opener.document.getElementById('shiprecipient').innerText = '${list[0].recipient}';
 					opener.document.getElementById('shipphone').innerText = '${list[0].phone}';
 					opener.document.getElementById('shipaddress').innerText = '${list[0].shipAddress}';
 					opener.document.getElementById('shipaddressdetail').innerText = '${list[0].shipAddressDetail}';
 				} else if ('${list[1].shipNo}' == shipNo) {
 					console.log(2);
 					opener.document.getElementById('shipNo').value = "${list[1].shipNo}";
-					opener.document.getElementById('shipname').innerText = '${list[1].recipient}';
+					opener.document.getElementById('shipname').innerText = '${list[1].shipName}';
+					opener.document.getElementById('shiprecipient').innerText = '${list[1].recipient}';
 					opener.document.getElementById('shipphone').innerText = '${list[1].phone}';
 					opener.document.getElementById('shipaddress').innerText = '${list[1].shipAddress}';
 					opener.document.getElementById('shipaddressdetail').innerText = '${list[1].shipAddressDetail}';
 				} else if ('${list[2].shipNo}' == shipNo) {
 					console.log(3);
 					opener.document.getElementById('shipNo').value = "${list[2].shipNo}";
-					opener.document.getElementById('shipname').innerText = '${list[2].recipient}';
+					opener.document.getElementById('shipname').innerText = '${list[2].shipName}';
+					opener.document.getElementById('shiprecipient').innerText = '${list[2].recipient}';
 					opener.document.getElementById('shipphone').innerText = '${list[2].phone}';
 					opener.document.getElementById('shipaddress').innerText = '${list[2].shipAddress}';
 					opener.document.getElementById('shipaddressdetail').innerText = '${list[2].shipAddressDetail}';
 				}  else if ('${list[3].shipNo}' == shipNo) {
 					console.log(4);
 					opener.document.getElementById('shipNo').value = "${list[3].shipNo}";
-					opener.document.getElementById('shipname').innerText = '${list[3].recipient}';
+					opener.document.getElementById('shipname').innerText = '${list[3].shipName}';
+					opener.document.getElementById('shiprecipient').innerText = '${list[3].recipient}';
 					opener.document.getElementById('shipphone').innerText = '${list[3].phone}';
 					opener.document.getElementById('shipaddress').innerText = '${list[3].shipAddress}';
 					opener.document.getElementById('shipaddressdetail').innerText = '${list[3].shipAddressDetail}';
 				} else if ('${list[4].shipNo}' == shipNo) {
 					console.log(5);
 					opener.document.getElementById('shipNo').value = "${list[4].shipNo}";
-					opener.document.getElementById('shipname').innerText = '${list[4].recipient}';
+					opener.document.getElementById('shipname').innerText = '${list[4].shipName}';
+					opener.document.getElementById('shiprecipient').innerText = '${list[4].recipient}';
 					opener.document.getElementById('shipphone').innerText = '${list[4].phone}';
 					opener.document.getElementById('shipaddress').innerText = '${list[4].shipAddress}';
 					opener.document.getElementById('shipaddressdetail').innerText = '${list[4].shipAddressDetail}';
