@@ -172,6 +172,12 @@
 				</choose>
 			</trim>
 		</if>
+		<if test="searchType == ''">
+			<trim prefix="AND" prefixOverrides="AND|OR">
+				REVIEW.NAME LIKE '%' || #{searchText} || '%'
+				OR MEMBER.ID LIKE '%' || #{searchText} || '%'
+			</trim>
+		</if>
 		ORDER BY REVIEW_NO DESC
 	</select>
 	
