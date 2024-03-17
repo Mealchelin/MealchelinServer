@@ -26,7 +26,10 @@ h3 {
     width: 170px;
     float: left;
     margin-right: 20px;
-    height: 130px;
+    height: 170px;
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
 }
 
 #re_foodInfo {
@@ -38,6 +41,12 @@ h3 {
     font-size: 18px;
     font-weight: 500;
     font-weight: bold;
+}
+
+#re_memberName{
+	margin-top:5px;
+	font-size:14px;
+	color: #999;
 }
 
 #re_productSelectBtn {
