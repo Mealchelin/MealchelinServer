@@ -210,76 +210,67 @@ public class PayController {
 	}
 	
 	
-	// 단일 상품 결재
-	@PostMapping("/payment/paysucces")
-	public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
-				HttpSession session) {
-		
-		// 세션에서 로그인한 회원 정보 가져오기
-		Member member = (Member) session.getAttribute("loginMember");
-		
-		// 주문 정보에 회원 번호 설정
-		Orders order = new Orders();
-		order.setMemberNo(member.getMemberNo());
-		if (shippingInfo != null) {
-	        order.setShipNo(shippingInfo.getShipNo());
-	    } else {
-	        // shippingInfo가 null일 때의 처리 로직 추가
-	    }
+	// 단일 상품 결제
+	   @PostMapping("/payment/paysucces")
+	   public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
+	            HttpSession session) {
+	      // 세션에서 로그인한 회원 정보 가져오기
+	      Member member = (Member) session.getAttribute("loginMember");
 
-		// 주문 정보와 회원 정보를 담은 Map 생성
-		orderInfo.put("order", order);
-		orderInfo.put("member", member);
+	      ShippingLocation shippingInfo = shippingService.getShippingInfoByInfo(member.getMemberNo());
 
-		// 결제 방식 추가
-		log.info("orderInfo : {}",orderInfo);
-		int shipNo = (int)orderInfo.get("shipNo");
-		order.setShipNo(shipNo);
+	      // 주문 정보에 회원 번호 설정
+	      Orders order = new Orders();
+	      order.setMemberNo(member.getMemberNo());
+	      if (shippingInfo != null) {
+	           order.setShipNo(shippingInfo.getShipNo());
+	       } else {
+	           // shippingInfo가 null일 때의 처리 로직 추가
+	       }
 
-		String orderMembers = (String) orderInfo.get("orderNo");
-		order.setOrderMembers(orderMembers);
+	      // 주문 정보와 회원 정보를 담은 Map 생성
+	      orderInfo.put("order", order);
+	      orderInfo.put("member", member);
 
-		String paymentMethod = (String) orderInfo.get("paymentMethod");
-		order.setPaymentMethod(paymentMethod);
+	      // 결제 방식 추가
+	      
+	      log.info("orderInfo : {}",orderInfo);
 
-		int payMent = (int) orderInfo.get("amount");
-		order.setPayMent(payMent);
+	      String orderMembers = (String) orderInfo.get("orderNo");
+	      order.setOrderMembers(orderMembers);
 
-		String request = (String) orderInfo.get("quest");
-		order.setRequest(request);
-		
-		// 주문 정보를 저장하고 결과를 반환
-		int result = orderService.save(orderInfo);
-		
-		
-		//가져온 orderInfo 에서 Orders 객체를 가져온다.
-		order = (Orders)orderInfo.get("order");
-		
-		//결재시 생성한 주문번호에서 숫자값만 추출
-		Long ordersNumbers = Long.parseLong(order.getOrderMembers().replace("ORD", "").replace("-", ""));
-		
-		//시퀀스로 생성된 orderNo로 ORDER_PRODUCT에 업데이트 해준다.
-		result += orderService.updateOrderProduct(ordersNumbers, order.getOrderNo());
-		
-		// 로그인 멤버의 장바구니 리셋 
-		int memNo = member.getMemberNo();
-		// 장바구니 payment = 0
-		// 장바구니 상품 멤버 번호에 맞는 상품들 전부 delete
-		int result2 = sbpService.deleteSbpBySell(memNo);
-		int result3 = sbService.resetSbPayment(memNo, 0);
-		log.info("장바구니 상품 삭제하고 장바구니 금액 0으로 만듦 {}, {}", result3, result2);
-		
-		
-		
-		if (result > 0) {
-			modelAndView.addObject("msg", "결제가 완료되었습니다");
-		} else {
-			modelAndView.addObject("msg", "결제에 실패하였습니다.");
-		}
+	      String paymentMethod = (String) orderInfo.get("paymentMethod");
+	      order.setPaymentMethod(paymentMethod);
 
-		modelAndView.setViewName("redirect:/payment/paysucces");
-		return modelAndView;
-	}
+	      int payMent = (int) orderInfo.get("amount");
+	      order.setPayMent(payMent);
+
+	      String request = (String) orderInfo.get("quest");
+	      order.setRequest(request);
+	      
+	      // 주문 정보를 저장하고 결과를 반환
+	      int result = orderService.save(orderInfo);
+	      
+	      
+	      //가져온 orderInfo 에서 Orders 객체를 가져온다.
+	      order = (Orders)orderInfo.get("order");
+	      
+	      //결재시 생성한 주문번호에서 숫자값만 추출
+	      Long ordersNumbers = Long.parseLong(order.getOrderMembers().replace("ORD", "").replace("-", ""));
+	      
+	      //시퀀스로 생성된 orderNo로 ORDER_PRODUCT에 업데이트 해준다.
+	      result += orderService.updateOrderProduct(ordersNumbers, order.getOrderNo());
+	      
+
+	      if (result > 0) {
+	         modelAndView.addObject("msg", "결제가 완료되었습니다");
+	      } else {
+	         modelAndView.addObject("msg", "결제에 실패하였습니다.");
+	      }
+
+	      modelAndView.setViewName("redirect:/payment/paysucces");
+	      return modelAndView;
+	   }
 
 
 	//결제완료페이지 

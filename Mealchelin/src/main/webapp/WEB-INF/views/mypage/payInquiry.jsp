@@ -47,6 +47,9 @@
 			<div class="pay_mainContentArea">
 				<div class="pay_chapter">
 					<div class="pay_FirstChapter">
+						<a href="#"> 결제 완료 </a>
+					</div>
+					<div class="pay_FirstChapter">
 						<a href="#"> 배송 준비중 </a>
 					</div>
 					<div class="pay_FirstChapter">
