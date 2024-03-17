@@ -141,16 +141,17 @@
 
 .pay_ProductInfo {
     width: 100%;
+    padding-bottom: 16px;
 }
 
 .pay_table {
     margin-top: 1px;
-    width: 250px;
+    width: 300px;
 }
 
 .pay_table td{
-    padding: 7px;
-    width: 200px;
+    padding-top: 10px;
+    padding-left:20px;
 }
 
  .pay_subName {
@@ -179,7 +180,6 @@
 
 
 .pay_subNameTwo {
-    padding-left: 30px;
     width: 100px;
 }
 
@@ -195,15 +195,47 @@
 
 
 .pay_Productresult {
-    padding-left: 100px;
+    padding-left: 158px;
     font-size: 20px;
-    width: 263px;
+    width: 400px;
 }
 
 .pay_pay_Productreview {
     padding-left: 130px;
     margin: 1px;
 }
+
+
+.pay_pay_Productreview a {
+    border: 1px solid #559D50;
+    width: 101px;
+    height: 35px;
+    background-color: #fff;
+    color: #559D50;
+    padding-bottom: 2px;
+    display: block;
+    margin-top: 9px;
+    border-radius: 2px;
+    margin-bottom: 5px;
+        font-size: 14px;
+    text-align: center;
+    padding-top: 4px;
+}
+.pay_pay_Productreview a:hover {
+    border: 1px solid #559D50;
+    width: 101px;
+    height: 35px;
+    background-color: #3B6C51;
+    color: #ffff;
+    padding-bottom: 2px;
+    display: block;
+    margin-top: 9px;
+    border-radius: 2px;
+        font-size: 14px;
+    text-align: center;
+    padding-top: 4px;
+}
+
 
 .pay_pay_Productreview input {
     border: 1px solid #559D50;

@@ -1,6 +1,7 @@
 package com.mealchelin.mvc.order.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -91,7 +92,7 @@ public class Orders {
 	   
 	   //장바구니 주문번호
 	   private int orderProductNo;
-
+	   
 	}
 
 

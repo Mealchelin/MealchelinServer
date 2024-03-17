@@ -16,7 +16,7 @@
     <!--default css-->
     <link rel="stylesheet" href="${ path }/css/common.css">
     <!-- 필요한 css -->
-    <link rel="stylesheet" href="${ path }/css/pay/paySucces.css">
+    <link rel="stylesheet" href="${ path }/css/pay/payCncel.css">
     
     
     <!-- jquery -->
@@ -38,19 +38,10 @@
         <section>
             <div id="co_mainDiv">
                 <img src="../img/all/logo5.png" alt="로고사진" class="memLogo">
-                <p id="co_ment">
-                    <span>${loginMember.name }</span>님의 주문이 완료되었습니다.
-                    <!-- <br>
-                    <span>내일 아침</span>에 만나요!
-                    <br>
-                    <p>배송 예정일 : 02월 12일(월)</p> -->
-                </p>
-                <!-- <div id="co_addressAndOrderNumber">
-                    <p id="co_order">서울 동작구 가로수길 109(00아파트) <br> 주문번호 216156146546</p>
-                </div> -->
-             
-                <input id="co_goOrderList" type="button" onclick="location.href='/mypage/payInquiry'"  value="주문내역으로 이동">
-                <input id="co_goHomeBtn" type="button" onclick="location.href='/'" value="홈으로 이동">
+                <h3>주문 취소가 완료되었습니다.</h3>
+                <p id="co_subment">결제수단에 따라 3~7일 후 <br>취소 금액 확인이 가능합니다.</p>
+                <input id="co_goOrderList" onclick="location.href='${ path }/mypage/payInquiry'" type="button" value="주문내역으로 이동">
+                <input id="co_goHomeBtn" onclick="location.href='/'" type="button" value="홈으로 이동">
             </div>
         </section>
     </main>

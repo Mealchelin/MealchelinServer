@@ -15,7 +15,7 @@
 	<result property="orderDate" column="ORDER_DATE"/>
 	<result property="name" column="NAME"/>
 	<result property="orderMembers" column="ORDERS_NUMBERS"/>
-	
+	<result property="cancleStatus" column="CANCLE_STATUS"/>
 	
 	</resultMap>
 	
@@ -52,11 +52,12 @@ SELECT
     ORDERS.PAYMENT_METHOD,
     ORDERS.PAYMENT,
     ORDERS.ORDER_DATE,
+    ORDERS.CANCLE_STATUS,
     PRODUCT.NAME AS PRODUCT_NAME
 FROM ORDERS
 JOIN PRODUCT ON ORDERS.ORDER_NO = PRODUCT.PRD_NO
-WHERE MEMBER_NO = #{memberNo}
-
+WHERE MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
+ 
 </select>
 
 <update id="updateProductResultset" parameterType="map">
@@ -111,28 +112,29 @@ WHERE MEMBER_NO = #{memberNo}
 
 
 <select id="selectProductPayResultset" parameterType="map" resultMap="selectProductPayResultMap">
-SELECT 
-        O.ORDER_NO,
-        O.MEMBER_NO,
-        O.PAYMENT_METHOD,
-        O.PAYMENT,
-        O.ORDER_DATE,
-        O.SHIP_STATUS,
-        O.ORDERS_NUMBERS,
-        P.NAME AS PRODUCT_NAME,
-        P.BRAND,
-        P.PRD_NO,
-        P.IMAGE
-    FROM 
-        ORDERS O
-    JOIN 
-        ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
-    JOIN 
-        PRODUCT P ON OP.PRD_NO = P.PRD_NO
-    WHERE 
-        O.MEMBER_NO = #{memberNo}  -- 해당 사용자의 주문만 가져오도록 변경
-    ORDER BY 
-        O.ORDER_DATE  ASC
+SELECT
+    O.ORDER_NO,
+    O.MEMBER_NO,
+    O.PAYMENT_METHOD,
+    O.PAYMENT,
+    O.ORDER_DATE,
+    O.SHIP_STATUS,
+    O.ORDERS_NUMBERS,
+    O.CANCLE_STATUS,
+    P.NAME AS PRODUCT_NAME,
+    P.BRAND,
+    P.PRD_NO,
+    P.IMAGE
+FROM 
+    ORDERS O
+JOIN 
+    ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+JOIN 
+    PRODUCT P ON OP.PRD_NO = P.PRD_NO
+WHERE
+    O.MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
+ORDER BY 
+    O.ORDER_NO DESC
 </select>
 
 <select id="selctPayConut" resultType="_int" >
@@ -261,6 +263,9 @@ GROUP BY O.ORDER_NO
     <result property="countQ" column="QUANTITY"/>
     <result property="totalPrice" column="TOTAL_PRICE"/>
     <result property="price" column="PRICE"/>
+    <result property="request" column="REQUEST"/>
+    <result property="canclereason" column="CANCLE_REASON"/>
+    <result property="cancleStatus" column="CANCLE_STATUS"/>
 </resultMap>
 
 
@@ -281,6 +286,8 @@ SELECT
 		OP.QUANTITY,
 		OP.TOTAL_PRICE,
 		OP.ORDER_NO,
+		O.CANCLE_REASON,
+		O.CANCLE_STATUS,
 		P.PRICE
     FROM 
         ORDERS O
@@ -289,34 +296,27 @@ SELECT
     JOIN 
         PRODUCT P ON OP.PRD_NO = P.PRD_NO
     WHERE 
-        OP.ORDER_NO = #{orderProductNo} 
+        OP.ORDER_NO = #{orderProductNo} AND CANCLE_STATUS = 'N' 
 </select>
 
+<select id="selectOrderAll" parameterType="_int" resultMap="selectProductPayInfoResultMap">
+
+SELECT 
+    ORDER_NO,
+    REQUEST,
+    PAYMENT_METHOD,
+    PAYMENT,
+    SHIP_STATUS,
+    ORDER_DATE,
+    CANCLE_STATUS,
+    CANCLE_REASON,
+    MEMBER_NO,
+    SHIP_NO,
+    ORDERS_NUMBERS
+FROM ORDERS
+WHERE ORDER_NO =#{orderNo} AND CANCLE_STATUS = 'N'
 
 
-<select id="selectPayInfoOne" parameterType="int" resultMap="selectProductPayInfoResultMap">
-    SELECT 
-        O.ORDER_NO,
-        O.MEMBER_NO,
-        O.PAYMENT_METHOD,
-        O.PAYMENT,
-        O.ORDER_DATE,
-        O.SHIP_STATUS,
-        O.ORDERS_NUMBERS,
-        P.NAME AS PRODUCT_NAME,
-        P.PRD_NO,
-        P.IMAGE,
-        OP.PRD_NO,
-        OP.QUANTITY,
-        OP.TOTAL_PRICE
-    FROM 
-        ORDERS O
-    JOIN 
-        ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
-    JOIN 
-        PRODUCT P ON OP.PRD_NO = P.PRD_NO
-    WHERE 
-        O.ORDER_NO = #{orderNo} 
 </select>
 
 
@@ -346,12 +346,11 @@ WHERE ROWNUM BETWEEN 1 AND 8
 
 </select>
 
-<update id="updateAdOrders" parameterType="Orders">
-	UPDATE ORDERS
-	SET
-		SHIP_STATUS = #{shipStatus}
-	WHERE ORDER_NO = #{orderNo}
-</update>
+ <update id="updateCancelStatus" parameterType="_int" >
+        UPDATE ORDERS
+        SET CANCLE_STATUS = 'Y'
+        WHERE ORDER_NO = #{orderNo}
+    </update>
 
 
 
