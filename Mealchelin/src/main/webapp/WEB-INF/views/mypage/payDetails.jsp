@@ -12,6 +12,8 @@
 
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
+<c:set var="shippingPrice" value="0" />
+
 <c:forEach items="${result}" var="item">
     <c:set var="totalPrice" value="${totalPrice + item.price * item.countQ}" />
 </c:forEach>
@@ -19,38 +21,32 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"
-	charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
 <title>밀슐랭</title>
 <!--default css-->
 <link rel="stylesheet" href="${ path }/css/common.css">
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/pay/OrderDetails.css">
 <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
-
-
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>
 </head>
-
 <body>
 	<!-- 플로팅 배너(TOP버튼)-->
 	<div class="top" id="topBtn"></div>
-
 	<!-- 네비게이션 헤더 -->
 	<header id="header">
 		<jsp:include page="./../layout/header.jsp" />
 	</header>
-
 	<!-- 내용 넣기 -->
 	<main id="pay_mains">
 		<jsp:include page="/WEB-INF/views/mypage/mypageHeaderBox.jsp" />
 		<section id="pay_sections">
 			<h2>주문 내역 상세</h2>
 			<div class="pay_mainContentTitle">
-				<span>주문번호 ${orders.orderMembers }</span> <span
-					class="pay_OrderDetails">배송 또는 상품에 문제가 있나요? <a
-					href="${ path }/cscenter/inquiry">1:1문의 ></a>
+				<span>주문번호 ${orders.orderMembers }</span>
+				 <span class="pay_OrderDetails">배송 또는 상품에 문제가 있나요? 
+				 <a href="${ path }/cscenter/inquiry">1:1문의 ></a>
 				</span>
 			</div>
 			<div class="pay_mainContentArea"></div>
@@ -69,9 +65,7 @@
 								</tr>
 								<tr class="pay_ProductMenu">
 									<td>상품금액</td>
-									<td class="pay_subNameTwo"><fmt:formatNumber
-											value="${items.price * items.countQ}" pattern="#,###" />원 <span>ㅣ</span>
-										${items.countQ}개</td>
+									<td class="pay_subNameTwo"><fmt:formatNumber value="${items.price * items.countQ}" pattern="#,###" />원 <span>ㅣ</span> ${items.countQ}개</td>
 								</tr>
 							</table>
 						</div>
@@ -80,23 +74,17 @@
 						</div>
 						<div class="pay_pay_Productreview">
 						<a href="${path}/mypage/payDelete?orderNo=${orders.orderNo}">주문 취소</a>
-<%-- 							<input type="hidden" onclick="location.href='${path}/mypage/payDelete?orderNo=${order.orderNo}'" value="주문 취소" /> --%>
-							<input type="button"
-								onclick="location.href='${path}/mypage/writableReview'"
-								value="리뷰쓰기" />
+							<input type="button" onclick="location.href='${path}/mypage/writableReview'" value="리뷰쓰기" />
 							<p>* 리뷰는 구매일로부터</p>
 							<p>3개월까지만 작성 가능합니다</p>
 						</div>
 					</div>
 				</div>
 			</c:forEach>
-
 			<p class="pay_line"></p>
 			<div class="pay_button">
-				<input type="button"
-					onclick="location.href='${path}/mypage/shoppingBasket'"
-					value="상품 다시 담기"> <input type="button"
-					onclick="location.href='${path}/product/list'" value="상품 목록 페이지 이동">
+				<input type="button" onclick="location.href='${path}/mypage/shoppingBasket'" value="상품 다시 담기"> 
+				<input type="button" onclick="location.href='${path}/product/list'" value="상품 목록 페이지 이동">
 			</div>
 			<div class="pay_infomessage">
 				<p>주문 취소는 [결제완료] 상태일 경우에만 가능합니다</p>
@@ -105,7 +93,6 @@
 			<div class="pay_FiveContent">
 				<span class="pay_fiveContentTitle">배송 조회</span>
 			</div>
-
 			<c:choose>
 				<c:when test="${orders.shipStatus eq '배송중'}">
 					<div class="pay_DeliveryInfo">
@@ -130,7 +117,6 @@
 						</div>
 					</div>
 				</c:when>
-
 				<c:when test="${orders.shipStatus eq '배송완료'}">
 					<div class="pay_DeliveryInfo">
 						<div class="pay_preparation">
@@ -146,7 +132,6 @@
 						</div>
 						<div class="pay_Deliveryline">
 							<img src="../img/Group 60.png">
-							<!-- <span></span> -->
 						</div>
 						<div class="pay_completed">
 							<img src="../img/pay_completed2.png">
@@ -154,7 +139,6 @@
 						</div>
 					</div>
 				</c:when>
-
 				<c:otherwise>
 					<div class="pay_DeliveryInfo">
 						<div class="pay_preparation">
@@ -189,7 +173,6 @@
 					<c:choose>
 						<c:when test="${orders.shipStatus eq '배송중'}">
 							<!-- 배송중 또는 배송완료인 경우 -->
-
 							<tr class="pay_secondInfoLine">
 								<td>${orders.orderMembers }</td>
 								<td>배송준비중</td>
@@ -230,15 +213,12 @@
 				</div>
 				<div class="pay_userInfo">
 					<div class="pay_ProductInfo">
-
 						<table class="pay_Maintable">
-						
 							<tr>
 								<td class="pay_mainName">상품금액</td>
 								<td class="pay_subName"><fmt:formatNumber
 										value="${totalPrice}" type="number" pattern="#,###" />원</td>
 							</tr>
-							<c:set var="shippingPrice" value="0" />
 								<c:choose>
 								    <c:when test="${shippingInfo.mountain == 'N'}">
 								        <c:set var="shippingPrice" value="3000" />
@@ -247,11 +227,9 @@
 								        <c:set var="shippingPrice" value="5000" />
 								    </c:otherwise>
 								</c:choose>
-								
 								<c:if test="${totalPrice >= 50000}">
 								    <c:set var="shippingPrice" value="0" />
 								</c:if>
-								
 								<tr>
 								    <td class="pay_mainName">배송비</td>
 								    <td class="pay_subName"><fmt:formatNumber value="${shippingPrice}" type="number" pattern="#,###" />원</td>
@@ -264,7 +242,6 @@
 							<tr>
 								<td class="pay_mainName">결제방법</td>
 								<td class="pay_subName">${orders.paymentMethod }</td>
-
 							</tr>
 						</table>
 					</div>
@@ -293,7 +270,7 @@
 					</div>
 				</div>
 			</div>
-			</div>
+		</div>
 			<div class="pay_tridContentArea">
 				<div class="pay_tridContent">
 					<span class="pay_secondContentTitle">배송정보</span> <span></span>
@@ -311,9 +288,7 @@
 								</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
-								<td class="pay_subName">${shipInfo.shipAddress }
-									${shipInfo.shipAddressDetail }</td>
-
+								<td class="pay_subName">${shipInfo.shipAddress } ${shipInfo.shipAddressDetail }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">배송 요청사항</td>
@@ -322,11 +297,9 @@
 						</table>
 					</div>
 				</div>
-
 			</div>
 		</section>
 	</main>
-
 	<!-- 푸터 -->
 	<footer>
 		<jsp:include page="./../layout/footer.jsp" />

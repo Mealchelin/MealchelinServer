@@ -10,9 +10,6 @@
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <c:set var="totalPrice" value="${price + shipPrice }" />
 
-
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,9 +20,6 @@
 <link rel="stylesheet" href="${ path }/css/common.css">
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/pay/payPagedirect.css">
-
-
-
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
@@ -33,11 +27,7 @@
 	var IMP = window.IMP;
 	IMP.init("imp31687115");
 </script>
-
-
-
 </head>
-
 <body>
 	<!-- 플로팅 배너(TOP버튼)-->
 	<div class="top" id="topBtn"></div>
@@ -59,20 +49,20 @@
 					</div>
 					<form action="payment/paysucces" method="POST">
 					<div class="pay_FirstContentArea">
-						<img src="${ path }/img/product/${product.image}" class="pay_menuPhoto"> <span class="pay_FirstMemu">
+						<img src="${ path }/img/product/${product.image}" class="pay_menuPhoto"> 
+							<span class="pay_FirstMemu">
 							<span class="pay_FirstName" id="payFirstName">${product.name}</span>
 							<p class="pay_subFirstName" id="paysubFirstName">${product.brand}</p>
-						</span> 
+							</span> 
 						<span class="pay_number" id="paynumber">${quantity}개</span>
 						 <span class="pay_paynumber" id="paypaynumber"> <fmt:formatNumber value="${price}" type="number" /> 원</span> 
-						 <input type="hidden" name="prdNo" value="${product.no}"/> 
-						 <input type="hidden" name="image" value="${product.image}"/> 
-						 <input type="hidden" name="payFirstName" id="payFirstName" value="${product.name}" /> 
-						 <input type="hidden" name="paysubFirstName" id="paysubFirstName" value="${product.brand}" /> 
-						 <input type="hidden" name="paynumber" id="paynumber" value="${quantity}개" /> 
-						 <input type="hidden" name="paypaynumber" id="paypaynumber" value="${price}" />						
+							 <input type="hidden" name="prdNo" value="${product.no}"/> 
+							 <input type="hidden" name="image" value="${product.image}"/> 
+							 <input type="hidden" name="payFirstName" id="payFirstName" value="${product.name}" /> 
+							 <input type="hidden" name="paysubFirstName" id="paysubFirstName" value="${product.brand}" /> 
+							 <input type="hidden" name="paynumber" id="paynumber" value="${quantity}개" /> 
+							 <input type="hidden" name="paypaynumber" id="paypaynumber" value="${price}" />						
 					</div>
-
 					<div class="pay_SecondContentArea">
 						<div class="pay_SecondContent">
 							<span class="pay_secondContentTitle">주문자 정보</span>
@@ -81,30 +71,24 @@
 							<div class="pay_Sender">
 								<span class="pay_username">이름</span>
 								 <span class="pay_usernames" id="username">${userInfo.name}</span>
-								<!-- hidden input 태그 추가 -->
 								<input type="hidden" name="username" id="username" value="${userInfo.name}" />
 							</div>
 							<div class="pay_Sender">
 								<span class="pay_userPhone">연락처</span> <span
 									class="pay_userPhones" id="userphone">${userInfo.phone}</span>
-								<!-- hidden input 태그 추가 -->
-								<input type="hidden" name="userphone" id="userphone"
-									value="${userInfo.phone}" />
+								<input type="hidden" name="userphone" id="userphone" value="${userInfo.phone}" />
 							</div>
 						</div>
 						<div class="pay_Sender">
-							<span class="pay_userEmail">이메일</span> <span
-								class="pay_userEmails" id="userEmail"> ${userInfo.email}</span>
+							<span class="pay_userEmail">이메일</span>
+							 <span class="pay_userEmails" id="userEmail"> ${userInfo.email}</span>
 							<br>
 							<p>
 								이메일을 통해 주문처리과정을 보내드립니다 <br> 정보변경은 맛슐랭>개인정보 수정 메뉴에서 가능합니다
 							</p>
 						</div>
-						<!-- hidden input 태그 추가 -->
-						<input type="hidden" name="useremail" id="useremail"
-							value="${userInfo.email}" />
+						<input type="hidden" name="useremail" id="useremail" value="${userInfo.email}" />
 					</div>
-					
 					<div class="pay_thirdContent">
 						<span class="pay_thirdContentTitle">배송 정보</span>
 					</div>
@@ -112,29 +96,24 @@
 						<div class="pay_SenderInfo">
 							<span class="pay_username">이름</span> 
 							<span class="pay_usernames" id="shipname">${shippingInfo.shipName}</span>
-							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="shipName" id="shipName" value="${shippingInfo.shipName}" />
+								<input type="hidden" name="shipName" id="shipName" value="${shippingInfo.shipName}" />
 						</div>
 						<div class="pay_Sender">
 							<span class="pay_userPhone">연락처</span> 
 							<span class="pay_userPhones" id="shipphone">${shippingInfo.phone}</span>
-							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="shipPhone" id="shipPhone" value="${shippingInfo.phone}" />
+								<input type="hidden" name="shipPhone" id="shipPhone" value="${shippingInfo.phone}" />
 						</div>
 						<div class="pay_Sender">
 							<span class="pay_useraddress">배송지</span>
 						</div>
 						<span class="pay_useraddresss" id="shipaddress">${shippingInfo.shipAddress}</span>
-						<!-- hidden input 태그 추가 -->
-						<input type="hidden" name="shipAddress" value="${shippingInfo.shipAddress}" id="shipaddress" />
 						<p class="pay_addressInfo" id="shipaddressdetail">${shippingInfo.shipAddressDetail}</p>
-						<!-- hidden input 태그 추가 -->
-						<input type="hidden" name="shipaddressdetail" value="${shippingInfo.shipAddressDetail}" id="shipaddressdetail" />
+							<input type="hidden" name="shipAddress" value="${shippingInfo.shipAddress}" id="shipaddress" />
+							<input type="hidden" name="shipaddressdetail" value="${shippingInfo.shipAddressDetail}" id="shipaddressdetail" />
 						<div class="pay_addresschangeArea">
 							<a class="pay_addresschange" onclick="window.open('${ path }/payment/shipChange', '_blank', 'width=800, height=600'); return false;">변경</a>
 						</div>
 					</div>
-					
 					<div class="pay_DeliveryRequestInfoArea">
 						<div class="pay_DeliveryRequestInfo">
 							<span class="pay_DeliveryRequest">배송요청사항</span>
@@ -142,7 +121,6 @@
 							<p class="pay_UserRequest">배송 요청사항을 입력해주세요</p>
 						</div>
 					</div>
-					
 					<div class="pay_FiveContent">
 						<span class="pay_fiveContentTitle">결제 수단</span>
 					</div>
@@ -154,57 +132,46 @@
 									<input type="checkbox" id="pay_kakao" name="pay_check" value="pay_kakao"> <label for="pay_kakao">
 									<img src="../img/all/kakao-pay.png"></label>
 								</div>
-								<!-- hidden input 태그 추가 -->
-								<input type="hidden" id="pay_kakao_hidden" name="pay_kakao_hidden" value="카카오페이">
 								<div class="pay_cardArea">
 									<input type="checkbox" id="pay_card" name="pay_check" value="pay_card"> <label for="pay_card">신용카드</label>
 								</div>
-								<!-- hidden input 태그 추가 -->
-								<input type="hidden" id="pay_card_hidden" name="pay_card_hidden" value="신용카드">
 								<div class="pay_phoneArea">
 									<input type="checkbox" id="pay_phone" name="pay_check" value="pay_phone"> <label for="pay_phone">휴대폰</label>
 								</div>
-								<!-- hidden input 태그 추가 -->
+								<input type="hidden" id="pay_card_hidden" name="pay_card_hidden" value="신용카드">
+								<input type="hidden" id="pay_kakao_hidden" name="pay_kakao_hidden" value="카카오페이">
 								<input type="hidden" id="pay_phone_hidden" name="pay_phone_hidden" value="휴대폰">
 							</div>
 						</div>
 					</div>
-					
 					<div class="pay_sixContent">
 						<span class="pay_sixContentTitle">결제 정보</span>
 					</div>
-					
 					<div class="pay_payResultArea">
 						<div class="pay_payResult">
 							<span class="pay_paymentInfo">결제금액</span>
 								 <span class="pay_payment">결제 금액</span> <span class="pay_pay"> <fmt:formatNumber value="${totalPrice}" type="number" /> 원
 							</span>
-							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="totalPrice" id="totalPrice" value="${totalPrice}" />
 						</div>
 						<div class="pay_paymentInfo">
 							<span class="pay_Product">ㄴ 상품금액</span>
 								 <span class="pay_payMoney"> <fmt:formatNumber value="${price}" type="number" /> 원
 							</span>
-							<!-- hidden input 태그 추가 -->
-							<input type="hidden" name="productPrice" id="productPrice" value="${price}" />
 						</div>
-						
 						<div class="pay_paymentInfo">
 							<span class="pay_Delivery">ㄴ 배송비</span>
 							 <span class="pay_pay"> <fmt:formatNumber value="${shipPrice}" type="number" /> 원 </span>
-							<!-- hidden input 태그 추가 -->
-							<input type="hidden" class="shippingPrice" id="shippingPrice" name="shippingPrice" value="${totalPrice}" />
 						</div>
-						
 						<div class="pay_finalResult">
 							<span class="pay_Delivery">최종 결제 금액</span>
 							 <span id="price" class="pay_Finalpay"> <fmt:formatNumber value="${totalPrice}" type="number" />원</span>
 						</div>
+							<input type="hidden" class="shippingPrice" id="shippingPrice" name="shippingPrice" value="${totalPrice}" />
+							<input type="hidden" name="productPrice" id="productPrice" value="${price}" />
+							<input type="hidden" name="totalPrice" id="totalPrice" value="${totalPrice}" />
+						</div>
 					</form>
 			<div class="pay_line"></div>
-		</div>
-
 			<div class="pay_sevenContent">
 				<span class="pay_sevenContentTitle">개인정보 수집 및 동의</span>
 			</div>
@@ -370,29 +337,20 @@
 					<button class="memmodal_btn2">확인</button>
 				</div>
 			</div>
-
 			<div class="pay_pay_Productreview">
-				<input type="button" id="payButton" value="결제하기" /> <input
-					type="button" onclick="location.href='/'" value="홈으로 이동" />
+				<input type="button" id="payButton" value="결제하기" /> 
+				<input type="button" onclick="location.href='/'" value="홈으로 이동" />
 			</div>
-			</div>
+		</div>
 		</section>
 	</main>
-
-
 	<!-- 푸터 -->
 	<footer>
 		<jsp:include page="./../layout/footer.jsp" />
 	</footer>
-
 	<!-- 필요한 js 밑에 추가-->
 	<script type="text/javascript" src="${ path }/js/index.js"></script>
 	<script type="text/javascript" src="${ path }/js/pay/payPage.js"></script>
 	<script type="text/javascript" src="${ path }/js/pay/payModal.js"></script>
-
-
-
-
 </body>
-
 </html>
