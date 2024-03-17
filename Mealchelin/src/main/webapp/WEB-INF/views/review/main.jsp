@@ -80,7 +80,7 @@
 				</c:forEach>
 			 </c:if>
 			 <c:if test="${ empty list}">
-			 	<div class="re_imgDiv">조회 결과가 없습니다.</div>
+			 	<div style="text-align: center; margin: 0 auto;">조회 결과가 없습니다.</div>
 			 </c:if>
 				<jsp:include page="./FootSearchBox.jsp" />
 			</div>
