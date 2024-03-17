@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="path" value="${ pageContext.request.contextPath }" />
+<c:set var="reviewId" value="${ review.id }"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -74,6 +75,9 @@
 											<span class="starR"><span class="starR">★</span>★★★★</span>
 									</c:otherwise>
 								</c:choose>
+								<div class="re_reviewId">
+									${fn:substring(review.id,0,4) }***
+								</div>
 							</div>
 						</div>
 					</a>
