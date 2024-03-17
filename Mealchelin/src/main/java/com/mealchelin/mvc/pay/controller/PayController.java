@@ -190,6 +190,7 @@ public class PayController {
 		}
 		
 		int result = 0;
+		log.info("{}", OrderProducts.size());
 		for(int i = 0; i < OrderProducts.size(); i++) {
 			System.out.println("test : " + OrderProducts.get(i));
 			int proNo = OrderProducts.get(i).getProNo();
