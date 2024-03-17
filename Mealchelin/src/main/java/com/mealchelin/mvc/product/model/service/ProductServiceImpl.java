@@ -143,4 +143,9 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.updateStatus(product);
 	}
 
+	@Override
+	public int updateSellCount(int proNo) {
+		return productMapper.updateSellCount(proNo);
+	}
+
 }

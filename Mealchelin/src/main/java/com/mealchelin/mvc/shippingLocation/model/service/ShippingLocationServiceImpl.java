@@ -84,6 +84,12 @@ public class ShippingLocationServiceImpl implements ShippingLocationService {
 		return mapper.selectShippingLocationByShipNo(no);
 	}
 
+	// 멤버 번호로 기본 배송지 조회
+	@Override
+	public ShippingLocation getDefaultShippingLocationByMemNo(int memberNo) {
+		return mapper.selectDefaultShippingLocationByMemNo(memberNo);
+	}
+
 
 	
 

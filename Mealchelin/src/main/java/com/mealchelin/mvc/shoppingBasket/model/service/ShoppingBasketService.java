@@ -10,4 +10,6 @@ public interface ShoppingBasketService {
 
 	int updateSbByNo(ShoppingBasket shoppingBasket);
 
+	int resetSbPayment(int memNo, int reset);
+
 }

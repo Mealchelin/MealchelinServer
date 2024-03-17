@@ -18,6 +18,7 @@ document.getElementById("payButton").addEventListener("click", function () {
         buyer_addr: getProductAdress(),
         quest: getquest(),
         m_redirect_url: "/payment/paysucces/",
+        shipNo: getshipNo(),
         };
     
     console.log(payData);
@@ -91,6 +92,9 @@ console.log(getProductName());
 console.log(getProductAdress());
 console.log(price);
 console.log(quest);
+console.log(getshipNo());
+console.log(typeof getshipNo());
+
 
 console.log(createOrderNum());
 console.log(typeof createOrderNum());
@@ -111,6 +115,12 @@ function getuserEmail() {
 var userEmail = document.getElementById("userEmail").innerText;
 return userEmail;
 }
+function getshipNo() {
+var shipNo = parseInt(document.getElementById("shipNo").value);
+return shipNo;
+}
+
+
 
 // 상품명을 가져오는 함수
 function getProductName() {
@@ -182,6 +192,7 @@ switch (method) {
             buyerAddr: getProductAdress(), // 구매자 주소
             paymentMethod: "카카오페이", // 결제 방식 추가
             quest: getquest(),
+            shipNo: getshipNo(),
             };
 
             // AJAX를 통해 데이터를 서버에 전송
@@ -234,6 +245,7 @@ switch (method) {
             buyerAddr: getProductAdress(), // 구매자 주소
             paymentMethod: "신용카드", // 결제 방식 추가
             quest: getquest(),
+            shipNo: getshipNo(),
             };
 
             console.log(data);
@@ -285,6 +297,7 @@ switch (method) {
             buyerAddr: getProductAdress(), // 구매자 주소
             paymentMethod: "신용카드", // 결제 방식 추가
             quest: getquest(),
+            shipNo: getshipNo()
             };
 
             console.log(data);

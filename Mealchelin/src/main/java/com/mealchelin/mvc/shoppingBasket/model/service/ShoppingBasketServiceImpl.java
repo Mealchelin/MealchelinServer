@@ -42,4 +42,10 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 		return shoppingBasketMapper.updateBasket(shoppingBasket);
 	}
 
+
+	@Override
+	public int resetSbPayment(int memNo, int reset) {
+		return shoppingBasketMapper.updatePayment(memNo, reset);
+	}
+
 }

@@ -40,7 +40,7 @@
         #{memberNo},
         #{shipNo}
     )
-</insert>
+	</insert>
 
 
 

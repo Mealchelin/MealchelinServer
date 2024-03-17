@@ -22,4 +22,6 @@ public interface ShoppingBasketProductService {
 
 	int updateSbpByNo(ShoppingBasketProduct shoppingBasketProduct);
 
+	int deleteSbpBySell(int memNo);
+
 }

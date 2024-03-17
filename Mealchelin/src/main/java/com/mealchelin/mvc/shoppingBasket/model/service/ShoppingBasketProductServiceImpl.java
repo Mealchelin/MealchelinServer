@@ -74,6 +74,11 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 		return sbpMapper.updateSbpByNo(shoppingBasketProduct);
 	}
 
+	@Override
+	public int deleteSbpBySell(int memNo) {
+		return sbpMapper.deleteSbpBySell(memNo);
+	}
+
 
 
 }
