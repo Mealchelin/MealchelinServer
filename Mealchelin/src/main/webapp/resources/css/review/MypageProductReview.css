@@ -48,6 +48,9 @@ hr {
 #re_foodImg {
     width: 150px;
     height: 150px;
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
 }
 
 #re_foodImgAndName{
