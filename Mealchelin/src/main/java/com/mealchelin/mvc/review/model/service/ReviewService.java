@@ -23,7 +23,7 @@ public interface ReviewService {
 
 	Review getReviewByNo(int reviewNo);
 	
-	MemberProdutOrderList getOrderInfo(int orderNo);
+	MemberProdutOrderList getOrderInfo(int memberNo, int orderNo, int prdNo);
 
 	int getReviewCountByuserNo(int userNo);
 

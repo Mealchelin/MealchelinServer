@@ -158,12 +158,12 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/reviewWrite")
-	public ModelAndView reviewWrite(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember, @RequestParam int orderNo) {
-		int userNo = loginMember.getMemberNo();
-		MemberProdutOrderList memberProdutOrderList = null;
+	public ModelAndView reviewWrite(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember, @RequestParam int orderNo, @RequestParam int prdNo) {
+		MemberProdutOrderList memberProdutOrderList = null; 
 		
-		memberProdutOrderList = service.getOrderInfo(orderNo);
+		int memberNo = loginMember.getMemberNo();
 		
+		memberProdutOrderList = service.getOrderInfo(memberNo, orderNo, prdNo);
 		
 		modelAndView.addObject("memberProdutOrderList", memberProdutOrderList);
 		modelAndView.setViewName("review/reviewWrite");

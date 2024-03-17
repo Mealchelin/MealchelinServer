@@ -72,10 +72,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public MemberProdutOrderList getOrderInfo(int orderNo) {
+	public MemberProdutOrderList getOrderInfo(int memberNo, int orderNo, int prdNo) {
 		
-		
-		return mapper.getOrderInfo(orderNo);
+		return mapper.getOrderInfo(memberNo, orderNo, prdNo);
 	}
 
 	@Override
