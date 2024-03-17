@@ -293,7 +293,7 @@ switch (method) {
             buyerName: getusername(), // 구매자 이름
             buyerTel: getuserphone(), // 구매자 전화번호
             buyerAddr: getProductAdress(), // 구매자 주소
-            paymentMethod: "휴대폰", // 결제 방식 추가
+            paymentMethod: "신용카드", // 결제 방식 추가
             quest: getquest(),
             shipNo: getshipNo()
             };
