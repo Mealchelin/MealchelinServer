@@ -28,7 +28,7 @@ public interface ReviewMapper {
 
 	Review selectReviewByNo(int reviewNo);
 	
-	MemberProdutOrderList getOrderInfo(int orderNo);
+	MemberProdutOrderList getOrderInfo(@Param("memberNo") int memberNo,@Param("orderNo") int orderNo, @Param("prdNo") int prdNo);
 
 	int getReviewCountByuserNo(int userNo);
 	

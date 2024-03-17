@@ -62,7 +62,7 @@
                         </div>
                         <div id="re_reviewBtnDiv">
                             <!-- 취소 누르면 뒤로 이동하게끔 해야함. reviewWrite페이지에서 취소 누르면 reviewMain으로 이동함.-->
-                            <a href="${ path }/review/reviewWrite?prdNo=${ memberProdutOrderList.prdNo }"><input class="re_reviewBtn" type="button" value="리뷰쓰기" /></a>
+                            <a href="${ path }/review/reviewWrite?orderNo=${ memberProdutOrderList.orderNo }&prdNo=${ memberProdutOrderList.prdNo }"><input class="re_reviewBtn" type="button" value="리뷰쓰기" /></a>
                             <p id="re_reviewEndDate">작성기한 : <span>${ memberProdutOrderList.reviewAndDate }</span></p>
                         </div>
                     </div>
