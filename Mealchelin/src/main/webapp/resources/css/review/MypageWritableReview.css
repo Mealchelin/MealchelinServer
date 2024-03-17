@@ -50,6 +50,9 @@ hr {
     height: 150px;
     float: left;
     margin-right: 10px;
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
 }
 
 #re_reviewInfo {

@@ -31,6 +31,9 @@ h3 {
     width: 252px;
     height: 250px;
     /* float: left; */
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
 }
 
 .re_imgDiv{
