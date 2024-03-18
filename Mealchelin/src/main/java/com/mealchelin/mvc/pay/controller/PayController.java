@@ -77,12 +77,9 @@ public class PayController {
 		if (price > 50000) {
 		    shipPrice = 0;
 		} else {
-		    if (shippingInfo != null && "N".equals(shippingInfo.getMountain())) {
-		        shipPrice = 3000;
-		    } else {
-		        shipPrice = 5000;
+		        shipPrice = 3000;	   
 		    }
-		}
+		
 
 		// 결제수단 표시
 		payInfoList = payInfoService.selectByProductPay(loginMember.getMemberNo());
@@ -419,50 +416,7 @@ public class PayController {
         
         return modelAndView;
         }
-    
-    
 
-//    //주문상세페이지
-//    @GetMapping("/mypage/payDetails")
-//    public ModelAndView payDetails(ModelAndView modelAndView,
-//                                    @SessionAttribute("loginMember") Member loginMember,
-//                                    @RequestParam int orderNo) {
-//        ShippingLocation shippingInfo = null;
-//        Orders orders = null;
-//        List<Orders> result = null;
-//
-//        // 사용자의 주문 목록을 가져옵니다.
-//        result = orderService.selectPayInfo(orderNo);
-//
-//        ShippingLocation shipInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
-//
-//        // 산간 여부 확인 후 변수에 저장
-//        shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
-//        
-//
-//        orders = orderService.selectOrderAll(orderNo);
-//
-//        // 각 주문 항목의 가격과 수량을 곱하여 총 가격을 계산합니다.
-//        List<Double> totalPrices = new ArrayList<>();
-//        for (Orders item : result) {
-//            double totalPrice = item.getPrice() * item.getCountQ();
-//            totalPrices.add(totalPrice);
-//        }
-//
-//        // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
-//        modelAndView.addObject("loginMember", loginMember);
-//        modelAndView.addObject("result", result);
-//        modelAndView.addObject("shipInfo", shipInfo);
-//        modelAndView.addObject("orders", orders);
-//        modelAndView.addObject("totalPrices", totalPrices); // 총 가격을 추가합니다.
-//        modelAndView.addObject("shippingInfo", shippingInfo); // 총 가격을 추가합니다.
-//        modelAndView.setViewName("mypage/payDetails");
-//
-//        return modelAndView;
-//    }
-    
-    
-    
 
 	//주문취소페이지
 	@GetMapping("/mypage/payDelete")
@@ -480,7 +434,7 @@ public class PayController {
 	    ShippingLocation shipInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 
 	    // 산간 여부 확인 후 변수에 저장
-	    shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+	    shippingInfo = shippingService.getDefaultShippingLocationByMemNo(orderNo);
 	    
 	    orders = orderService.selectOrderAll(orderNo);
 

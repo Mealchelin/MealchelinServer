@@ -15,10 +15,8 @@
 
 
 <c:set var="shippingPrice" value="3000" /> <!-- 기본 배송비 -->
-<c:if test="${shippingInfo != null and shippingInfo.mountain == 'Y'}">
-    <!-- 산간 지역이면 배송비 추가 -->
-    <c:set var="shippingPrice" value="${shippingPrice + 2000}" />
-</c:if>
+
+
 <c:if test="${totalPrice >= 50000}">
     <!-- 주문 총액이 5만원 이상이면 배송비 무료 -->
     <c:set var="shippingPrice" value="0" />

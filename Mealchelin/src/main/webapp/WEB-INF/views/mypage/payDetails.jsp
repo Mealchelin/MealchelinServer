@@ -219,16 +219,13 @@
 										value="${totalPrice}" type="number" pattern="#,###" />원</td>
 							</tr>
 								<c:choose>
-								    <c:when test="${shippingInfo.mountain == 'N'}">
-								        <c:set var="shippingPrice" value="3000" />
+								    <c:when test="${totalPrice >= 50000}">
+								        <c:set var="shippingPrice" value="0" />
 								    </c:when>
 								    <c:otherwise>
-								        <c:set var="shippingPrice" value="5000" />
+								        <c:set var="shippingPrice" value="3000" />
 								    </c:otherwise>
-								</c:choose>
-								<c:if test="${totalPrice >= 50000}">
-								    <c:set var="shippingPrice" value="0" />
-								</c:if>
+								</c:choose>	
 								<tr>
 								    <td class="pay_mainName">배송비</td>
 								    <td class="pay_subName"><fmt:formatNumber value="${shippingPrice}" type="number" pattern="#,###" />원</td>
