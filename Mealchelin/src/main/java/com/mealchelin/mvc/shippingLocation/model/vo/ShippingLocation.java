@@ -12,6 +12,9 @@ public class ShippingLocation {
 	//배송지 번호
 	private int shipNo;
 	
+	//주문 번호 
+	private String request;
+	
 	//배송지명 
 	private String shipName;
 	

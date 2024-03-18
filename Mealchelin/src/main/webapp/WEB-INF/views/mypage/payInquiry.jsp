@@ -60,64 +60,52 @@
 					</div>
 				</div>
 				<br> <br>
-				<c:forEach items="${orders}" var="order">
-					<div class="pay_ProductInfoArea">
-						<p class="pay_ProductTitle">
-							<span>${order.orderDate}</span> 
-							<a href="${ path }/mypage/payDetails?orderNo=${order.orderNo}">주문내역 상세보기></a>
-						</p>
-						<p class="pay_line"></p>
-						<div class="pay_Product">
-							<div class="pay_ProductImg">
-								<a href="../img/new_01.jpg"> <img
-									src="${ path }/img/product/${order.image}"
-									class="pay_ProductImgArea" id="pay_ProductImgArea"> <input
-									type="hidden" value="${order.image}" name="payImgArea"
-									id="pay_ProductImgArea">
-								</a>
-							</div>
-							<div class="pay_ProductInfo">
+    <c:forEach items="${orders}" var="order">
+				<form action="${path}/mypage/payDetails" method="POST"> 
+        <div class="pay_ProductInfoArea">
+            <p class="pay_ProductTitle">
+                <span>${order.orderDate}</span> 
+<%--                 <a href="${path}/mypage/payDetails?orderNo=${order.orderNo}">주문내역 상세보기></a> --%>
+		<input type="hidden" name="orderNo" value="${order.orderNo}"><button type="submit">주문내역 상세보기</button>
+            </p>
+            <p class="pay_line"></p>
+            <div class="pay_Product">
+                <div class="pay_ProductImg">
+                    <a href="../img/new_01.jpg"> <img
+                        src="${path}/img/product/${order.image}"
+                        class="pay_ProductImgArea" id="pay_ProductImgArea"> <input
+                        type="hidden" value="${order.image}" name="payImgArea"
+                        id="pay_ProductImgArea">
+                    </a>
+                </div>
+                <div class="pay_ProductInfo">
+                    <table class="pay_table">
+                        <tr>
+                            <td>상품명</td>
+                            <td class="pay_subName" id="pay_subName">${order.name} <input type="hidden" value="${order.name}" name="paySubName" id="pay_subNumber"></td>
+                        </tr>
+                        <tr>
+                            <td>주문번호</td>
+                            <td class="pay_subName" id="pay_subNumber">${order.orderNo} <input type="hidden" value="${order.orderNo}" name="paySubNumber" id="pay_subNumber"></td>
+                        </tr>
+                        <tr>
+                            <td>결제방법</td>
+                            <td class="pay_subName" id="pay_subPay">${order.paymentMethod} <input type="hidden" value="${order.paymentMethod}" name="paySubPay" id="pay_subPay"></td>
+                        </tr>
+                        <tr>
+                            <td>결제금액</td>
+                            <td class="pay_subName" id="pay_subresult"><fmt:formatNumber value="${order.payMent}" type="number" />원 <input type="hidden" value="${order.payMent}" name="paySubResult" id="pay_subresult"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pay_ProductResult">
+                    <p>${order.shipStatus}</p>
+                </div>
+            </div>
+        </div>
+</form>
+    </c:forEach>
 
-								<table class="pay_table">
-									<tr>
-										<td>상품명</td>
-										<td class="pay_subName" id="pay_subName">${order.name} <input
-											type="hidden" value="${order.name}" name="paySubName"
-											id="pay_subNumber">
-										</td>
-
-									</tr>
-									<tr>
-										<td>주문번호</td>
-										<td class="pay_subName" id="pay_subNumber">
-											${order.orderMembers} <input type="hidden"
-											value="${order.orderMembers}" name="paySubNumber"
-											id="pay_subNumber">
-										</td>
-									</tr>
-									<tr>
-										<td>결제방법</td>
-										<td class="pay_subName" id="pay_subPay">
-											${order.paymentMethod} <input type="hidden"
-											value="${order.paymentMethod}" name="paySubPay"
-											id="pay_subPay">
-										</td>
-									</tr>
-									<tr>
-										<td>결제금액</td>
-										<td class="pay_subName" id="pay_subresult"><fmt:formatNumber
-												value="${order.payMent}" type="number" />원 <input
-											type="hidden" value="${order.payMent}" name="paySubResult"
-											id="pay_subresult"></td>
-									</tr>
-								</table>
-							</div>
-							<div class="pay_ProductResult">
-								<p>${order.shipStatus}</p>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
 			</div>
 			<div class="cs-paging">
 				<button

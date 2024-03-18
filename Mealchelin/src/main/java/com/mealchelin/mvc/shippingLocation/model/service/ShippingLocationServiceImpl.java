@@ -29,8 +29,8 @@ public class ShippingLocationServiceImpl implements ShippingLocationService {
 	}
 	
 	@Override
-	public ShippingLocation getShippingInfoByInfo(int memberNo) {
-		return mapper.selectFindByNo(memberNo);
+	public ShippingLocation getShippingInfoByInfo(int orderNo) {
+		return mapper.selectFindByNo(orderNo);
 	}
 
 	@Override

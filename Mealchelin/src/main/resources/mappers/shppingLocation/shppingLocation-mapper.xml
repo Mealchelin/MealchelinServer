@@ -36,16 +36,21 @@
 		<result property="defaultCheck" column="DEFAULT_CHECK"/>
 		<result property="status" column="STATUS"/>
 		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="request" column="REQUEST"/>
 	</resultMap>
 
 	<select id="selectFindByNo" parameterType="_int" resultMap="shippingLocationResultMap">
-		SELECT  SHIP_NO,
-				SHIP_NAME,
-				PHONE,
-				SHIP_ADDRESS,
-				SHIP_ADDRESS_DETAIL
-		FROM SHIPPING_LOCATION
-		WHERE STATUS = 'Y' AND MEMBER_NO = #{memberNo} AND DEFAULT_CHECK = 'Y'
+	SELECT SL.SHIP_NO,
+       SL.SHIP_NAME,
+       O.REQUEST,
+       SL.PHONE,
+       SL.SHIP_ADDRESS,
+       SL.SHIP_ADDRESS_DETAIL,
+       O.MEMBER_NO
+FROM ORDERS O
+JOIN SHIPPING_LOCATION SL ON O.SHIP_NO = SL.SHIP_NO
+WHERE O.ORDER_NO = #{orderNo}
+  AND SL.STATUS = 'Y' 
 
 	</select>
 

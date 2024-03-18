@@ -61,6 +61,7 @@
 
 }
 
+
 .pay_FirstChapter:hover,
 .pay_FirstChapter:hover > a {
     color: white;
@@ -68,10 +69,30 @@
 }
 
 
-.pay_ProductTitle a:last-child {
+.pay_ProductTitle button:last-child {
     float: right;
     padding-top: 11px;
+    border:none;
+    background-color: #fff;
+    font-size: 16px;
 }
+
+.pay_ProductTitle button:last-child:hover {
+    float: right;
+    padding-top: 11px;
+    border:none;
+    background-color: #fff;
+    font-size: 16px;
+    color: rgb(59, 108, 81);
+}
+
+
+
+
+
+
+
+
 
 .pay_ProductInfoArea{
     width: 100%;

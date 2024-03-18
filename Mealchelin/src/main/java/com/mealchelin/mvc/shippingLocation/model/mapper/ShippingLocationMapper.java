@@ -12,7 +12,7 @@ import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
 public interface ShippingLocationMapper {
 
 	
-	ShippingLocation selectFindByNo(@Param("memberNo") int memberNo);
+	ShippingLocation selectFindByNo(@Param("orderNo") int orderNo);
 	
 	int insertShippingLocation(ShippingLocation shippingLocation);
 
