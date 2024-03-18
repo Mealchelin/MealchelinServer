@@ -1,0 +1,104 @@
+/* 섹션 1 */
+#cs-section1 {
+    margin: 40px auto 20px auto;
+    text-align: center;
+}
+
+.cs-list-btns {
+    margin: 50px 0 30px 0;
+}
+
+.cs-list-btns>button {
+    width: 160px;
+    height: 40px;
+    cursor: pointer;
+    border:none;
+    line-height: 0;
+    font-size: 16px;
+    box-shadow: 0 0 0 1px #3B6C51 inset;
+    background-color: #fff;
+    color: #3B6C51;
+}
+
+.cs-list-btns>button:hover{
+	background-color:#3B6C51;
+	color:#fff;
+}
+
+.cs-list-btns>button.active{
+	background-color:#3B6C51;
+	color:#fff;
+}
+
+.cs-list-btns>button:nth-child(2) {
+    margin: 0 20px;
+}
+
+/* 섹션 2 */
+#cs-section2 {
+    margin: 20px auto 40px auto;
+}
+
+/* 컬럼명 */
+.cs-list-title {
+    display: flex;
+    text-align: center;
+    height: 75px;
+    flex-wrap: wrap;
+    align-content: center;
+    border-top: 1px solid #191919;
+    border-bottom: 1px solid #191919;
+}
+
+/* 리스트 설정 */
+.cs-list-ul {
+    list-style-type: none;
+}
+
+.cs-list-content {
+    display: flex;
+    text-align: center;
+    height: 75px;
+    flex-wrap: wrap;
+    align-content: center;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.cs-list-ul-title {
+    text-align: start;
+    padding-left: 100px;
+}
+
+/* 섹션 3 페이징처리 */
+#cs-section3 {
+   height: 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  
+}
+
+.cs-paging {
+    height: 25px;
+    display: flex;
+    gap:10px;
+    justify-content: center;
+      margin-bottom:38px
+}
+
+.cs-paging button{    
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-size: 16px;
+    color: #8F8F8F;
+}   
+
+.cs-paging button:hover{    
+    color: #86BC66;
+    cursor: pointer;
+}
+
+.cs-paging button:disabled{
+	color:#86BC66;
+}

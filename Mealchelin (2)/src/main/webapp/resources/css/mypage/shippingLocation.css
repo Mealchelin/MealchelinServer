@@ -1,0 +1,127 @@
+.myadress {
+    text-align: center;
+    margin: 40px auto;
+    margin-top:50px;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+input[type=checkbox]+label{
+    display: inline-block;  
+    cursor: pointer; 
+    position: relative;
+    margin-top: 3px;
+    font-size: 19px;
+}
+
+input[type=checkbox]+label::before{
+    content: '';
+    display: inline-block; 
+    vertical-align: middle;
+    margin: 0px 10px 5px 3px;
+    width: 21px;
+    height: 21px;
+    background: url('../../img/all/check.png') no-repeat;
+    background-size: cover;
+}
+
+input[type="checkbox"]:checked + label::before{
+    background: url('../../img/all/check-active.png') no-repeat; 
+    background-size: cover;
+}
+
+.mytavleDiv {
+    width: 1028px;
+    border-top: 1px solid #191919;
+    margin: 20px auto;
+}
+
+.mytableDiv {
+    border-top: 1px solid #191919;
+    width: 1000px;
+    margin: 0px auto;
+    padding: 25px 0px;
+}
+
+.myaddress_update, .myaddress_delete {
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.mytable_inputTd > input {
+    border: 1px solid #d9d9d9;
+    height: 32px;
+    border-radius: 3px;
+    padding-left: 5px;
+}
+
+.mytable_inputName > input, .mytable_inputNumber > input {
+    width: 190px;
+}
+
+.mytable_inputAddressNumber > input {
+    width: 100px;
+}
+
+.mytable_inputButton {
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:7px 10px;
+    background-color: #fff;
+    color: #559D50;
+    height: 32px;
+    border-radius: 3px;
+}
+
+.mytable_inputButton:hover {
+    border:none;
+    padding:7px 10px;
+    background-color: #3B6C51;
+    color: #fff;
+    height: 32px;
+    border-radius: 3px;
+}
+
+.mytable_inputAddress > input, .mytable_inputAddressDetail > input {
+    width: 300px;
+}
+
+.mytable_inputSubmit {
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:7px 10px;
+    background-color: #fff;
+    color: #559D50;
+    border-radius: 3px;
+}
+
+.mytable_inputSubmit:hover {
+    border:none;
+    padding:7px 10px;
+    background-color: #3B6C51;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.mytable_inputTable {
+    border-collapse: separate;
+    border-spacing: 7px;   
+}
+
+.mytable_input {
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.myform_submit {
+    margin: 40px auto 20px 50px;
+    display: block;
+    border:none;
+    padding:7px 30px;
+    background-color: #3B6C51;
+    color: #fff;
+    border-radius: 3px;
+}

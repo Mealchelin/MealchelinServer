@@ -1,0 +1,195 @@
+#pay_mains {
+    width: 100%;
+}
+
+#pay_sections {
+    width: 1100px;
+    margin: auto;
+    padding-top: 50px;
+}
+
+
+#pay_sections h2 {
+    padding-bottom: 30px;
+}
+
+
+.pay_mainContentArea {
+    height: 100%;
+    width: 1100px;
+    border-top: 1px solid black;
+}
+
+.pay_mainContentTitle {
+    padding-bottom: 10px;
+}
+
+
+.pay_mainContentTitle span:first-child{
+    font-size: 21px;
+}
+
+
+.pay_OrderDetails {
+    padding-left: 10px;
+    color: rgb(212, 206, 206);
+    font-size: 13px;
+}
+
+.pay_chapter {
+    width: 1100px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.pay_FirstChapter {
+    border: 1px solid rgb(59, 108, 81);
+    width: 150px;
+    height: 45px;
+    float: left;
+    padding: 2px;
+    margin-right: 15px;
+}
+
+.pay_FirstChapter>a {
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+    align-items: center;
+    color: rgb(59, 108, 81);
+    font-size: 16px;
+
+}
+
+
+.pay_FirstChapter:hover,
+.pay_FirstChapter:hover > a {
+    color: white;
+    background-color: rgb(59, 108, 81);
+}
+
+
+.pay_ProductTitle button:last-child {
+    float: right;
+    padding-top: 11px;
+    border:none;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.pay_ProductTitle button:last-child:hover {
+    float: right;
+    padding-top: 11px;
+    border:none;
+    background-color: #fff;
+    font-size: 16px;
+    color: rgb(59, 108, 81);
+}
+
+
+
+
+
+
+
+
+
+.pay_ProductInfoArea{
+    width: 100%;
+    height: 250px;
+}
+
+
+.pay_ProductImgArea {
+    width: 200px;
+    height: 200px;
+    margin-top: 30px;
+}
+
+.pay_ProductImgArea {
+    width: 135px;
+    height: 135px;
+}
+
+.pay_ProductTitle span:first-child{
+    font-size: 20px;
+}
+
+
+
+.pay_ProductTitle{
+    padding-bottom: 10px;
+}
+
+.pay_line {
+    border: 1px solid rgb(210, 210, 210);
+}
+
+.pay_Product{
+    display: flex;
+}
+
+.pay_ProductInfo{
+    width: 55%;
+    height: 200px;   
+    margin-top: 35px;
+}
+
+.pay_ProductImg{
+    width: 15%;
+}
+
+
+.pay_ProductResult{
+    margin-top: 7%;
+    margin-left: 16%;
+    width: 99px;
+    height: 0px;
+}
+
+
+.pay_ProductResult p{
+   display: flex;
+    font-size: 24px;
+    width: 129px;
+    justify-content: center;
+    
+}
+
+.pay_pageNumber{
+    padding-bottom: 50px;
+}
+
+
+.pay_pageNumber>ul li{
+    display: inline-block;
+    font-size: 16px;
+   
+}
+
+.pay_pageNumber ul{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.pay_pageNumber a{
+    color: rgb(143, 143, 143);
+}
+
+.pay_pageNumber a:hover{
+    color: rgb(134,188,102);
+}
+
+.pay_table .pay_subName{
+    padding-left: 16px;
+}
+
+.pay_table td{
+    padding: 4px;
+}
+
+.pay_header{
+	font-size: 28px;
+}

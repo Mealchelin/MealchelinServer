@@ -1,0 +1,42 @@
+h3 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+#re_writtenReview {
+    margin-right: 20px;
+}
+
+#re_writableReview {
+
+    color: #B4B4B4;
+}
+
+#re_periodDropBox {
+    width: 180px;
+    padding: 6px;
+    margin: 5px;
+    margin-left: 630px;
+    
+}
+
+select {
+    -moz-appearance: none;
+    /* -webkit-appearance: none; */
+    /* appearance: none; */
+    border: 1px solid #EEEEEE;
+}
+
+hr {
+    width: 1100px;
+    size: 1px;
+    color: #EEEEEE;
+     margin-top: 10px;
+}
+
+#re_emptyReview{
+    text-align: center;
+    margin: 50px;
+}

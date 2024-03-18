@@ -1,0 +1,309 @@
+
+
+        /*색션1 - 배너*/
+        #section1{
+            width:100%;
+            height:543px;
+            margin:0;
+            padding:0;
+        }
+
+        .banner-slide{
+            width: 100%;
+            min-width: 1100px;
+            height: 543px;
+            object-fit: cover;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        
+        .slick-active {
+            opacity: 1;
+        }
+
+        .slick-slide img{
+            object-fit: cover;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+
+        }
+        
+        .slick-current img{
+            opacity: 1;
+        }
+
+        .banner-box{
+            position: relative;
+            text-align: center;
+        }
+
+        .banner-box img{
+            width: 100%;
+            height: 543px;
+            min-width:1100px;
+            object-fit: cover;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .banner-box-txt{
+            position: absolute;
+            bottom:60px;
+            left:55px;
+            line-height: 30px;
+            text-align: left;
+        }
+        
+        .banner-box-txt h2, .banner-box-txt h3{
+            color:#fff;
+            padding-top:10px;
+        }
+
+        /*섹션2 - 밀슐랭'S PICK*/
+        #section2{
+            margin-top:100px;
+        }
+        
+        .main_pick{
+            width: 1100px;
+            height: 276px;
+        }
+        
+        .pick_txt{
+            float:left;
+            width: 266px;
+            height: 266px;
+            position: relative;
+        }
+        
+        .pick_txt h3{
+        	padding-bottom:10px;
+        	text-align:left;
+        }
+
+        .main_pages_prev {
+            width: 37px; height: 37px;
+            background:url('../img/main-sprite.png') -67px -299px;
+            cursor: pointer;
+            position: absolute;
+            bottom:0px;
+            right:55px;
+        }
+
+        .main_pages_prev:hover{
+            width: 37px; height: 37px;
+            background:url('../img/main-sprite.png') -124px -299px;
+        }
+
+        .main_pages_next {
+            width: 37px; height: 37px;
+            background:url('../img/main-sprite.png') -10px -299px;
+            cursor: pointer;
+            position: absolute;
+            bottom:0px;
+            right:10px;
+        }
+
+        .main_pages_next:hover{
+            width: 37px; height: 37px;
+            background:url('../img/main-sprite.png') -347px -185px;
+        }
+
+        .pick_list{
+            float:right;
+            width: 832px;
+            height: 266px;
+        }
+
+        .pick_box{
+            position: relative;
+            width: 266px;
+            height: 266px;
+            margin-left: 12px;
+            cursor: pointer;
+        }
+
+        .pick_hover{
+            display: none;
+            position: absolute;
+            background-color: rgba(0,0,0,0.5);
+            width: 266px;
+            height: 266px;
+            padding:100px 50px;
+            text-align: center;
+            color:#ffff;
+            box-sizing: border-box;
+        }
+
+        .pick_box:hover .pick_hover{
+            display: block;
+        }
+
+        /*섹션3 - 소배너*/
+        #section3{
+            margin-top:100px;
+            background-image: url('../img/sub_banner_img01.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 380px;
+            width: 100%;
+            min-width: 1100px;
+        }
+
+        .main_sub_banner{
+            margin: auto;
+            width:1100px;
+        }
+
+        .main_sub_banner h3{
+            text-align: left;
+            float:right;
+            padding:155px 0;
+            color:#fff;
+            font-size: 24px;
+            font-weight: 500;;
+        }
+
+        /* 섹션4 */
+        #section4{
+            width: 1100px;
+            margin: 100px auto;
+        }
+
+        .main_new_menu {
+            margin-top: 35px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px 17px;
+        }
+
+        .main_new_box{
+            width: 262px;
+            height: 328px;
+        }
+
+        .main_new_box_img img{
+            width: 262px;
+            height: 262px;
+        }
+
+        .main_new_box_txt{
+            padding-top: 7px;
+        }
+
+        .main_new_txt_brand{
+            font-size: 14px;
+            color: #8F8F8F;
+            float:left;
+            padding-top:7px;
+        }
+
+        .main_new_txt_price{
+            float:right;
+            font-weight: 600;
+            padding-top:5px;
+        }
+
+        /* 섹션5 */
+        #section5{
+            width: 100%;
+            min-width: 1100px;
+            height: 554px;
+            background-color: #F0F4EE;
+            margin-top: 100px;
+        }
+
+        .main_review{
+            width: 1100px;
+            margin: 0 auto;
+            padding-top:45px;
+        }
+
+        .main_review_txt{
+            position: relative;
+            float:left;
+            width: 260px;
+            height: 380px;
+        }
+        
+        .main_review_txt h3{
+        	padding-bottom:10px;
+        	text-align:left;
+        }
+
+        .main_review_list{
+            width: 840px;
+            height: 380px;
+            float: right;
+        }
+
+        .m_review_box{
+            width: 262px;
+            height: 380px;
+            margin-left: 12px;
+        }
+
+        .m_review_img img{
+            width: 262px;
+            height: 190px;
+            margin:0;
+            padding:0;
+            object-fit: cover;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .m_review_txt{
+            width: 262px;
+            height: 190px;
+            box-sizing: border-box;
+            padding:20px;
+            background-color: #fff;
+        }
+
+        .m_review_con{
+            font-size: 14px;
+            color: #8F8F8F;
+            letter-spacing: -0.03rem;
+            padding: 5px 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+            height:90px;
+        }
+        
+        .m_review_title{
+        	overflow: hidden;
+        	height:30px;
+        }
+
+        .m_review_star{
+            float:left;
+            color: #86BC66;
+        }
+
+        .m_review_date{
+            float:right;
+            padding-top:10px;
+            font-size: 14px;
+            color: #8F8F8F;
+        }
+        
+.starR{
+color: #D9D9D9;
+font-size: 25px;
+/* cursor: pointer; */
+}
+
+#re_star {
+    color: #86BC66;
+    font-size: 25px;
+}
+
+      

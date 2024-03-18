@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper
+	namespace="com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketProductMapper">
+
+	<resultMap id="sbpResultMap" type="ShoppingBasketProduct">
+		<id property="prdNo" column="PRD_NO"/>
+		<id property="memberNo" column="MEMBER_NO"/>
+		<result property="quantity" column="QUANTITY"/>
+		<result property="totalPrice" column="TOTAL_PRICE"/>
+	</resultMap>
+
+	<insert id="insertSbp" parameterType="ShoppingBasketProduct">
+		INSERT INTO SHOPPING_BASKET_PRODUCT (
+			PRD_NO,
+			MEMBER_NO,
+			QUANTITY,
+			TOTAL_PRICE
+		) VALUES (
+			#{prdNo},
+			#{memberNo},
+			#{quantity},
+			#{totalPrice}
+		)
+	</insert>
+
+	<resultMap id="shoppingBasketResultMap"
+		type="ShoppingBasketProduct">
+		<id property="memberNo" column="MEMBER_NO" />
+		<result property="prdNo" column="PRD_NO" />
+		<result property="name" column="NAME" />
+		<result property="price" column="PRICE" />
+		<result property="image" column="IMAGE" />
+		<result property="brand" column="BRAND" />
+		<result property="quantity" column="QUANTITY" />
+	</resultMap>
+	
+	<resultMap id="shoppingBasketViewResultMap"
+		type="ShoppingBasketProduct" extends="shoppingBasketResultMap">
+		<result property="totalPrice" column="TOTAL_PRICE" />
+		<result property="payment" column="PAYMENT" />
+	</resultMap>
+
+
+
+	<select id="selectByProduct" resultMap="shoppingBasketResultMap"
+		parameterType="_int">
+		SELECT s.MEMBER_NO,
+		s.PRD_NO,
+		p.NAME,
+		p.PRICE,
+		p.IMAGE,
+		p.BRAND,
+		s.QUANTITY
+		FROM SHOPPING_BASKET_PRODUCT s
+		JOIN PRODUCT p ON
+		s.PRD_NO = p.PRD_NO
+		WHERE s.MEMBER_NO = #{memberNo}
+
+	</select>
+	
+	<select id="selectSbpByNo" parameterType="map" resultMap="sbpResultMap">
+		SELECT PRD_NO,
+			   MEMBER_NO,
+			   QUANTITY,
+			   TOTAL_PRICE
+		FROM SHOPPING_BASKET_PRODUCT
+		WHERE PRD_NO = #{prdNo} 
+		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectSbpCountByMemberNo" resultType="_int" parameterType="int">
+		SELECT COUNT(*) FROM SHOPPING_BASKET_PRODUCT WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectSbpAllbyMemNo" parameterType="ShoppingBasketProduct" resultMap="shoppingBasketViewResultMap">
+		SELECT SP.PRD_NO AS PRD_NO,
+		        P.NAME AS NAME,
+		        P.IMAGE AS IMAGE,
+		        P.PRICE AS PRICE,
+		        P.BRAND AS BRAND,
+		        M.MEMBER_NO AS MEMBER_NO,
+		        SP.QUANTITY AS QUANTITY,
+		        SP.TOTAL_PRICE AS TOTAL_PRICE,
+                S.PAYMENT AS PAYMENT
+		FROM SHOPPING_BASKET_PRODUCT SP
+		JOIN MEMBER M ON SP.MEMBER_NO = M.MEMBER_NO
+		JOIN PRODUCT P ON SP.PRD_NO = P.PRD_NO
+        JOIN SHOPPING_BASKET S ON SP.MEMBER_NO = S.MEMBER_NO
+		WHERE M.MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateSbpByNo" parameterType="ShoppingBasketProduct">
+		UPDATE SHOPPING_BASKET_PRODUCT
+		SET
+			QUANTITY = #{quantity},
+			TOTAL_PRICE = #{totalPrice}
+		WHERE MEMBER_NO = #{memberNo} AND PRD_NO = #{prdNo}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteSbpByNo" parameterType="map">
+		DELETE FROM SHOPPING_BASKET_PRODUCT
+		WHERE MEMBER_NO = #{memberNo} AND PRD_NO = #{prdNo}
+	</delete>
+	
+	<delete id="deleteSbpBySell" parameterType="_int">
+		DELETE FROM SHOPPING_BASKET_PRODUCT
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
+	
+
+</mapper>

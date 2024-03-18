@@ -1,0 +1,69 @@
+
+.myTitle {
+    font-size: 28px;
+    text-align: center;
+    margin: 50px 0px 50px 0px;
+}
+
+.mySubTitle1 {
+    font-size: 20px;
+}
+
+.mySubTitle2 {
+    color: #949494;
+}
+
+.mySubTitle3{
+    font-size: 13px;
+    color: #949494;
+    margin-bottom: 5px;
+}
+
+.myInputBox {
+    text-align: center;
+}
+
+.mymemberLb {
+    text-align: left;
+}
+
+.myInputDiv{
+    display: inline-block;
+}
+
+.myInputDiv1 {
+    margin-top: 40px;
+}
+
+.myInputDiv1, .myInputDiv3 {
+    text-align: right;
+    width: 65px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.mymemberIp {
+    border: 1px solid #A7A7A7;
+    border-radius: 3px;
+    width: 200px;
+    height: 30px;
+    padding-left: 5px;
+}
+
+.myInputDiv4{
+    margin-bottom: 40px;
+}
+
+.myInputBtn {
+    margin: 0px 500px 40px 510px;
+    display: block;
+    border:none;
+    padding:7px 30px;
+    background-color: #3B6C51;
+    color: #fff;
+    width: 137px;
+    height: 40px;
+
+}
+
+

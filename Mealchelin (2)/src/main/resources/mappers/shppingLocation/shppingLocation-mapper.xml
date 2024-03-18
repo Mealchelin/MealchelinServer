@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mealchelin.mvc.shippingLocation.model.mapper.ShippingLocationMapper">
+	<sql id="selectShippingLocationSql">
+		SELECT SHIP_NO,
+			   SHIP_NAME,
+			   RECIPIENT,
+			   PHONE,
+			   POSTAL_CODE,
+			   SHIP_ADDRESS,
+			   SHIP_ADDRESS_DETAIL,
+			   MOUNTAIN,
+			   PRICE,
+			   DEFAULT_CHECK,
+			   STATUS,
+			   MEMBER_NO
+		FROM SHIPPING_LOCATION
+		WHERE STATUS = 'Y'
+	</sql>
+	
+
+	<resultMap id="shippingLocationResultMap" type="ShippingLocation">
+		<id property="shipNo" column="SHIP_NO"/>
+		<result property="shipName" column="SHIP_NAME"/>
+		<result property="recipient" column="RECIPIENT"/>
+		<result property="phone" column="PHONE"/>
+		<result property="postalCode" column="POSTAL_CODE"/>
+		<result property="shipAddress" column="SHIP_ADDRESS"/>
+		<result property="shipAddressDetail" column="SHIP_ADDRESS_DETAIL"/>
+		<result property="mountain" column="MOUNTAIN"/>
+		<result property="price" column="PRICE"/>
+		<result property="defaultCheck" column="DEFAULT_CHECK"/>
+		<result property="status" column="STATUS"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="request" column="REQUEST"/>
+	</resultMap>
+
+	<select id="selectFindByNo" parameterType="_int" resultMap="shippingLocationResultMap">
+	SELECT SL.SHIP_NO,
+       SL.SHIP_NAME,
+       O.REQUEST,
+       SL.PHONE,
+       SL.SHIP_ADDRESS,
+       SL.SHIP_ADDRESS_DETAIL,
+       O.MEMBER_NO
+FROM ORDERS O
+JOIN SHIPPING_LOCATION SL ON O.SHIP_NO = SL.SHIP_NO
+WHERE O.ORDER_NO = #{orderNo}
+  AND SL.STATUS = 'Y' 
+
+	</select>
+
+	<insert id="insertShippingLocation" parameterType="ShippingLocation"
+			useGeneratedKeys="true" keyColumn="SHIP_NO" keyProperty="shipNo">
+		INSERT INTO SHIPPING_LOCATION (MEMBER_NO, 
+		                               SHIP_NO, 
+		                               SHIP_NAME, 
+		                               RECIPIENT, 
+		                               PHONE, 
+		                               POSTAL_CODE, 
+		                               SHIP_ADDRESS,
+		                               SHIP_ADDRESS_DETAIL
+		                       ) VALUES (
+		                       		   #{memberNo}, 
+                                       SEQ_SHIP_NO.NEXTVAL, 
+                    		           #{shipName}, 
+                    		           #{recipient}, 
+                    		           #{phone},
+                     		           #{postalCode}, 
+                     		           #{shipAddress},
+                     		           #{shipAddressDetail}
+                     		           )
+	</insert>
+	
+	<select id="selectShippingLocationListByLoginMember" resultMap="shippingLocationResultMap">
+		<include refid="selectShippingLocationSql"/>
+		AND MEMBER_NO = #{memberNo}
+		ORDER BY SHIP_NO DESC
+	</select>
+	
+	<select id="selectShippingLocationCountByMemberNo" resultType="_int">
+		SELECT COUNT(*) FROM SHIPPING_LOCATION WHERE STATUS = 'Y' AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<update id="updateStatus" parameterType="_int">
+		UPDATE SHIPPING_LOCATION 
+		SET STATUS = 'N'
+		WHERE SHIP_NO = #{shipNo}
+	</update>
+	
+	<update id="setShipNoForChangeDefaultLocation" parameterType="_int">
+		UPDATE SHIPPING_LOCATION 
+		SET SHIP_NO = SEQ_SHIP_NO.NEXTVAL
+		WHERE SHIP_NO = #{shipNo}
+	</update>
+	
+	<select id="selectShippingLocationByShipNo" resultMap="shippingLocationResultMap">
+		<include refid="selectShippingLocationSql"/>
+		AND SHIP_NO = #{no}
+	</select>
+
+	<select id="selectDefaultShippingLocationByMemNo" resultMap="shippingLocationResultMap">
+		SELECT SHIP_NO,
+			   SHIP_NAME,
+			   RECIPIENT,
+			   PHONE,
+			   POSTAL_CODE,
+			   SHIP_ADDRESS,
+			   SHIP_ADDRESS_DETAIL,
+			   MOUNTAIN,
+			   PRICE,
+			   DEFAULT_CHECK,
+			   STATUS,
+			   MEMBER_NO
+		FROM (
+        <include refid="selectShippingLocationSql"/>
+        AND MEMBER_NO = #{memNo}
+        ORDER BY SHIP_NO DESC
+        )
+        WHERE ROWNUM = 1
+	</select>
+
+
+</mapper>

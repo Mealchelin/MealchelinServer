@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketMapper">
+	<resultMap  id="shoppingBasketResultMap" type="ShoppingBasket">
+		<id property="memberNo" column="MEMBER_NO"/>
+		<result property="payment" column="PAYMENT"/>
+		<result property="shoppingBasketNo" column="SHOPPING_BASKET_NO"/>	
+	</resultMap>
+
+	<insert id="insertShoppingBasket" parameterType="_int">		
+		INSERT INTO SHOPPING_BASKET (
+			SHOPPING_BASKET_NO,
+			MEMBER_NO
+		) VALUES (
+			SEQ_SHOP_NO.NEXTVAL,
+			#{memberNo}
+		)
+	</insert>
+	
+	<select id="selectGetBasket" resultMap="shoppingBasketResultMap" parameterType="_int">
+		SELECT MEMBER_NO,
+			   SHOPPING_BASKET_NO,
+			   PAYMENT
+		FROM SHOPPING_BASKET
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<!-- 금액 수정 -->
+	<update id="updateBasket" parameterType="ShoppingBasket">
+		UPDATE SHOPPING_BASKET
+		SET
+			PAYMENT = #{payment}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="updatePayment" parameterType="map">
+		UPDATE SHOPPING_BASKET
+		SET
+			PAYMENT = #{reset}
+		WHERE MEMBER_NO = #{memNo}
+	</update>
+	
+</mapper>
