@@ -1,6 +1,7 @@
 package com.mealchelin.mvc.pay.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -350,8 +351,6 @@ public class PayController {
 	    // 산간 여부 확인 후 변수에 저장
 	    shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
 	    
-	
-	    
 
 	    orders = orderService.selectOrderAll(orderNo);
 
@@ -425,24 +424,36 @@ public class PayController {
 	@GetMapping("/payment/payCncel")
 	public ModelAndView payCncelView(ModelAndView modelAndView,
 	                                  @SessionAttribute("loginMember") Member loginMember,
-	                                  @RequestParam int orderNo) {
+	                                  @RequestParam Map<String, String> params) {
+	    int orderNo = Integer.parseInt(params.get("orderNo"));
+	    String cancelReason = params.get("cancelReason");
 
 	    // 주문 취소 처리 로직을 수행합니다.
 	    boolean success = orderService.cancelOrder(orderNo);
 
+	    // 주문 취소 사유를 업데이트합니다.
+	    Map<String, Object> updateParams = new HashMap<>();
+	    updateParams.put("orderNo", orderNo);
+	    updateParams.put("cancelReason", cancelReason);
+	    int updateResult = orderService.updateCancleReasonSave(updateParams);
+
 	    if (success) {
-	        modelAndView.addObject("msg", "주문 취소를 성공하였습니다"); // 주문 취소 실패 여부를 모델에 추가합니다.
-	        modelAndView.addObject("cancelSuccess", true); // 주문 취소 성공 여부를 모델에 추가합니다.
-	        modelAndView.addObject("location", "/");  // 주문 취소 성공 시 이동할 경로를 설정합니다.
+	        modelAndView.addObject("msg", "주문 취소를 성공하였습니다");
+	        modelAndView.addObject("cancelSuccess", true);
+	        modelAndView.addObject("updateResult", updateResult);
+	        modelAndView.addObject("location", "/");
 	    } else {
-	        modelAndView.addObject("msg", "주문 취소를 실패하였습니다"); // 주문 취소 실패 여부를 모델에 추가합니다.
-	        modelAndView.addObject("cancelSuccess", false); // 주문 취소 실패 여부를 모델에 추가합니다.
-	        modelAndView.addObject("location", "/mypage/payDetails?orderNo=" + orderNo); // 주문 취소 실패 시 이동할 경로를 설정합니다.
+	        modelAndView.addObject("msg", "주문 취소를 실패하였습니다");
+	        modelAndView.addObject("cancelSuccess", false);
+	        modelAndView.addObject("location", "/mypage/payDetails?orderNo=" + orderNo);
 	    }
 
 	    modelAndView.setViewName("payment/payCncel");
 	    return modelAndView;
 	}
+
+
+
 
 
 	

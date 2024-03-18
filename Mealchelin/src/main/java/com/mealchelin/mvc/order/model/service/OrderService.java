@@ -37,6 +37,8 @@ public interface OrderService {
 
 	 boolean cancelOrder(int orderNo);
 
+	int updateCancleReasonSave(Map<String, Object> params);
+
 	
 
 

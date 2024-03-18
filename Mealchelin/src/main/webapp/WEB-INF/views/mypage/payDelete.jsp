@@ -78,12 +78,12 @@
 						<div class="pay_payInfo">
 							<div class="pay_payList">
 								<div class="pay_Info">
-								    <label for="pay_one"><input type="checkbox" id="pay_one" name="pay_check"> 단순변심</label>
-								    <label for="pay_two"><input type="checkbox" id="pay_two" name="pay_check"> 상품 옵션 변경</label>
-								    <label for="pay_three"><input type="checkbox" id="pay_three" name="pay_check"> 추가 주문</label>
-								    <label for="pay_four"><input type="checkbox" id="pay_four" name="pay_check"> 결제 수단 변경</label>
-								    <label for="pay_five"><input type="checkbox" id="pay_five" name="pay_check"> 배송 정보 변경</label>
-								    <label for="pay_six"><input type="checkbox" id="pay_six" name="pay_check"> 상품 가격</label>
+								    <label for="pay_one"><input type="radio" id="pay_one" name="cancelReason" value="단순변심"> 단순변심</label>
+							        <label for="pay_two"><input type="radio" id="pay_two" name="cancelReason" value="상품 옵션 변경"> 상품 옵션 변경</label>
+							        <label for="pay_three"><input type="radio" id="pay_three" name="cancelReason" value="추가 주문"> 추가 주문</label>
+							        <label for="pay_four"><input type="radio" id="pay_four" name="cancelReason" value="결제 수단 변경"> 결제 수단 변경</label>
+							        <label for="pay_five"><input type="radio" id="pay_five" name="cancelReason" value="배송 정보 변경"> 배송 정보 변경</label>
+							        <label for="pay_six"><input type="radio" id="pay_six" name="cancelReason" value="상품 가격"> 상품 가격</label>
 								</div>
 							</div>
 						</div>
@@ -130,7 +130,8 @@
 					</div>
 				</div>
 				<div class="pay_pay_Productreview">
-					<a href="${path}/payment/payCncel?orderNo=${orders.orderNo}" id="cancelOrderBtn">주문 취소</a>
+<%-- 					<a href="${path}/payment/payCncel?orderNo=${orders.orderNo}&cancelReason=${orders.cancleReason}" id="cancelOrderBtn">주문 취소</a> --%>
+					<a onclick="sendCancelReason()" id="cancelOrderBtn">주문 취소</a>
 					<input type="button" onclick="location.href='/'" value="홈으로 이동" />
 				</div>
 			</div>
@@ -145,6 +146,30 @@
 	<script type="text/javascript" src="${ path }/js/index.js"></script>
 	<script type="text/javascript" src="${ path }/js/pay/OrderDelete.js"></script>
 	<script type="text/javascript" src="${ path }/js/pay/OrderDeleteChoose.js"></script>
+	
+	<script>
+    function sendCancelReason() {
+        let cancelReason = document.querySelector('input[name="cancelReason"]:checked').value;
+        
+        if (confirm('주문을 취소하시겠습니까?')) {
+            let url = '/payment/payCncel?orderNo=${orders.orderNo}&cancelReason=' + encodeURIComponent(cancelReason);
+            window.location.href = url;
+        } else {
+            return false;
+        }
+    }
+</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 
 </html>

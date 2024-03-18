@@ -137,10 +137,12 @@ ORDER BY
     O.ORDER_NO DESC
 </select>
 
-<select id="selectPayCount" parameterType="_int">
-    SELECT COUNT(*) 
-    FROM ORDERS
-    WHERE MEMBER_NO = #{memberNo} AND CANCLE_STATUS = 'N'
+
+<select id="selectPayCount" parameterType="int">
+     SELECT COUNT(*) 
+    FROM ORDERS O
+    JOIN ORDER_PRODUCT OP ON O.ORDER_NO = OP.ORDER_NO
+    WHERE O.MEMBER_NO = #{memberNo} AND O.CANCLE_STATUS = 'N'
 </select>
 
 
@@ -353,6 +355,23 @@ WHERE ROWNUM BETWEEN 1 AND 8
         SET CANCLE_STATUS = 'Y'
         WHERE ORDER_NO = #{orderNo}
     </update>
+
+
+
+
+
+ <update id="updateCancleReason" parameterType="map">
+        UPDATE ORDERS
+        SET CANCLE_REASON = #{cancleReason}
+        WHERE ORDER_NO = #{orderNo}
+    </update>
+
+
+
+
+
+
+
 
 
 

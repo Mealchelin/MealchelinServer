@@ -40,6 +40,8 @@ public interface OrderMapper {
 
 	void updateCancelStatus(int orderNo);
 
+	int updateCancleReason(Map<String, Object> params);
+
 
 
  	
