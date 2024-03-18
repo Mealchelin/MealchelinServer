@@ -123,6 +123,7 @@ hr {
     background-color: #fff;
     color: #559D50;
     margin: 22px 10px 5px 10px;
+    float: right;
 }
 
 .re_editBtn {
@@ -132,6 +133,7 @@ hr {
     background-color: #fff;
     color: #559D50;
     margin: 5px 10px;
+    float: right;
 }
 
 #re_bottomPageNumbers{

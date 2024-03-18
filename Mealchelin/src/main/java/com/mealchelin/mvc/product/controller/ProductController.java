@@ -239,22 +239,28 @@ public class ProductController {
 		int listCount = 0;
 		PageInfo pageInfo = null; 
 		
+		if (result.trim() == "" || result == null) {
+			modelAndView.addObject("msg", "잘못된 접근입니다.");
+			modelAndView.addObject("location", "/");
+			modelAndView.setViewName("common/msg");
+			
+		} else {
+			listCount = productService.getProductCountBySearch(result);
+			
+			pageInfo = new PageInfo(page, 5, listCount, 16);
+			
+			list = productService.getProductListBySearch(result, pageInfo);
+			
+			log.info("{}", list);
+			
+			modelAndView.addObject("result", result);
+			modelAndView.addObject("listCount", listCount);
+			modelAndView.addObject("list", list);
+			modelAndView.addObject("pageInfo", pageInfo);
+			
+			modelAndView.setViewName("product/search");
+		}
 		
-		listCount = productService.getProductCountBySearch(result);
-		
-		
-		pageInfo = new PageInfo(page, 5, listCount, 16);
-		
-		list = productService.getProductListBySearch(result, pageInfo);
-		
-		log.info("{}", list);
-		
-		modelAndView.addObject("result", result);
-		modelAndView.addObject("listCount", listCount);
-		modelAndView.addObject("list", list);
-		modelAndView.addObject("pageInfo", pageInfo);
-		
-		modelAndView.setViewName("product/search");
 		
 		
 		return modelAndView;

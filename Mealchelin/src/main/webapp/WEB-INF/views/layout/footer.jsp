@@ -7,10 +7,10 @@
 <div class="footer">
     <div class="foot_1">
         <ul>
-            <li><a href="">회사소개</a></li>
+            <li><a href="${ path }/brand/information">회사소개</a></li>
             <li><a href="">이용약관</a></li>
             <li><a href="">개인정보처리방침</a></li>
-            <li><a href="">공지사항</a></li>
+            <li><a href="${ path }/cscenter/notice">공지사항</a></li>
         </ul>
         <br/>
     </div>

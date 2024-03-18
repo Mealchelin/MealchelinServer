@@ -41,7 +41,7 @@
                         <img id="re_img" src="../img/product/${ memberProdutOrderList.image }" alt="">
                         <div id="re_foodInfo">
                             <p id="re_foodName">${ memberProdutOrderList.productName }</p>
-                            <p id="re_memberName">${ memberProdutOrderList.memberId }</p>
+                            <p id="re_memberName">${fn:substring(memberProdutOrderList.memberId,0,4) }***</p>
                             <input type="hidden" name="prdNo" value="${ memberProdutOrderList.prdNo }">
                             <div name="rated" class="re_star">
                                 <span name="rated" data-value="1" class="starR">★</span>
