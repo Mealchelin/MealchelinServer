@@ -14,7 +14,7 @@ h3 {
 
 #re_reviewBtnDiv{
     text-align: right;
-
+	margin-bottom:20px;
 }
 
 .mainDiv{
@@ -31,10 +31,12 @@ h3 {
     width: 252px;
     height: 250px;
     /* float: left; */
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
 }
 
 .re_imgDiv{
-    margin-top: 26px;
     border: 1px solid #E1E1E1;
     width: 254px;
 }
@@ -47,10 +49,16 @@ h3 {
     font-size: 16px;
 }
 
-.re_brandName{
+.re_brandName{ 
     margin-top: 5px;
     color: #8F8F8F;
-    float:right
+    font-size:14px;
+    float:right;
+    text-align:right;
+    width:60px;
+    height:20px;
+    text-overflow: clip;
+    overflow: hidden;
 }
 
 .re_star{
@@ -60,32 +68,49 @@ h3 {
 
 .re_innerimgDiv{
     word-break: break-all;
-    padding: 10px;
+    padding: 15px;
 }
 
 .re_foodName{
     float: left;
-    font-size: 19px;
+    font-weight: bold;
+    width:160px;
+    height:25px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 
 .re_reviewContent{
-	height: 140px;
+	height: 100px;
     overflow: hidden;
+    font-size:14px;
 }
 
 .re_reviewTitle{
 	height: 20px;
     overflow: hidden;
-    
+    clear:both;
+    margin: 10px 0;
 }
 
 .starR{
     color: #D9D9D9;
-    font-size: 30px;
+    font-size: 25px;
     /* cursor: pointer; */
 }
 
 #re_star {
     color: #86BC66;
-    font-size: 30px;
+    font-size: 25px;
+}
+
+.re_reviewId {
+	font-size: 15px;
+    display: inline-block;
+    margin-left: 29px;
+	color: #8F8F8F;
+	vertical-align: text-top;
 }

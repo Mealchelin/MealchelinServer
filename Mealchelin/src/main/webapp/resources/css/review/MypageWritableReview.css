@@ -6,12 +6,15 @@ h3 {
 }
 
 #re_writtenReview {
-    margin: 20px;
+    margin-right: 20px !important;
     color: #B4B4B4;
+    font-size: 18px;
 }
 
 #re_writableReview {
-    margin: 20px;
+    margin: 20px 20px 20px 0px;
+	font-size: 18px;
+	margin-left: 2px;
 }
 
 #re_periodDropBox {
@@ -31,8 +34,10 @@ select {
 
 hr {
     width: 1100px;
-    size: 1px;
-    color: #EEEEEE;
+    border:none;
+    background-color: #B4B4B4;
+    height:1px;
+    margin:10px 0 30px 0;
 }
 
 #re_mainDiv1 {
@@ -40,7 +45,7 @@ hr {
     width: 1100px;
     margin-top: 15px;
     margin-bottom: 15px;
-    border: 1px solid #B4B4B4;
+    border: 1px solid #CECECE;
 }
 
 #re_foodImg {
@@ -48,11 +53,14 @@ hr {
     height: 150px;
     float: left;
     margin-right: 10px;
+    object-fit: cover;
+    overflow: hidden;
+    text-align: center;
 }
 
 #re_reviewInfo {
     float: left;
-    
+    margin-left:10px;
 }
 
 #re_review1{

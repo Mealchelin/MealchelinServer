@@ -271,18 +271,31 @@ public class MemberServiceImpl implements MemberService {
 	}
 //----------------------------admin
 	@Override
-	public List<Member> getMemberList(PageInfo pageInfo) {
+	public List<Member> getMemberList(PageInfo pageInfo, String name) {
 		int limit = pageInfo.getListLimit();
 	    int offset = (pageInfo.getCurrentPage() - 1) * limit;
 	    RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		
-		return mapper.selectAll(rowBounds);
+		return mapper.selectAll(rowBounds, name);
 	}
 
 	@Override
-	public int getMemberCount() {
-		return mapper.selectCount();
+	public int getMemberCount(String name) {
+		return mapper.selectCount(name);
+	}
+
+	@Override
+	public Member getAdminMemberByNo(int no) {
+		
+		return mapper.selectAdminMemberByNo(no);
+	}
+
+	@Override
+	@Transactional
+	public int adminMemberUpdate(Member member) {
+		
+		return mapper.updateAdminMember(member);
 	}
 }
 

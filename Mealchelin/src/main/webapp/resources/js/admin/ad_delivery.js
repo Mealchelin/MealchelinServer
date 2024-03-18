@@ -2,7 +2,7 @@ function CancelSelect(e){
     const value = e.value;
     let cancelInfo = document.getElementById('cancelInfo');
 
-    if(value=="cancel"){
+    if(value=="결제취소"){
         cancelInfo.style.display="inline-table";
     } else {
         cancelInfo.style.display="none";

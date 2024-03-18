@@ -10,7 +10,7 @@ import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.cscenter.model.vo.Support;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.review.model.mapper.ReviewMapper;
-import com.mealchelin.mvc.review.model.vo.MemberDTO;
+import com.mealchelin.mvc.review.model.vo.MemberProdutOrderList;
 import com.mealchelin.mvc.review.model.vo.Review;
 
 import lombok.RequiredArgsConstructor;
@@ -31,10 +31,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int getReviewCount() {
+	public int getReviewCount(String searchType, String searchText) {
 		
 		
-		return mapper.getReviewCount();
+		return mapper.getReviewCount(searchType, searchText);
 	}
 	
 	@Override
@@ -55,13 +55,13 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<Review> getReviewList(PageInfo pageInfo) {
+	public List<Review> getReviewList(PageInfo pageInfo, String searchType, String searchText) {
 		int limit = pageInfo.getListLimit();
 		int offset = (pageInfo.getCurrentPage() - 1) * limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		
-		return mapper.selectAll(rowBounds);
+		return mapper.selectAll(rowBounds, searchType, searchText);
 	}
 
 	@Override
@@ -70,12 +70,24 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.selectReviewByNo(reviewNo);
 	}
+	
+	@Override
+	public MemberProdutOrderList getOrderInfo(int memberNo, int orderNo, int prdNo) {
+		
+		return mapper.getOrderInfo(memberNo, orderNo, prdNo);
+	}
 
 	@Override
 	public int getReviewCountByuserNo(int userNo) {
 		
 		
 		return mapper.getReviewCountByuserNo(userNo);
+	}
+	
+	@Override
+	public int getOrderListCountByUserNo(int userNo) {
+		
+		return mapper.getOrderListCountByUserNo(userNo);
 	}
 
 	@Override
@@ -87,6 +99,16 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		return mapper.selectAllByuserNo(rowBounds, userNo);
 	}
+	
+	@Override
+	public List<MemberProdutOrderList> getOrderListByUserNo(PageInfo pageInfo, int userNo) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getOrderListByUserNo(rowBounds, userNo);
+	}
+
 	
 	@Override
 	public int delete(int no) {
@@ -119,24 +141,26 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.updateAdReview(review);
 	}
 
+	@Override
+	public List<Review> getReviewListForHome() {
+		
+		return mapper.getReviewListForHome();
+	}
 
-//	@Override
-//	@Transactional
-//	public void adSave(Review review) {
-//		int result = 0;
-//		
-//		if (review.getReviewNo() > 0) {
-//			// update
-//			result = mapper.updateAdSupport(review);
-//		} else {
-//			// insert
-//			result = mapper.insertAdSupport(review);
-//		}
-//		
-//		return result;
-//		
-//		
-//	}
+	@Override
+	public int updateStatusAdmin(int reviewNo, String rstatus) {
+		
+		
+		return mapper.updateStatusAdmin(reviewNo, rstatus);
+	}
+
+	
+
+	
+
+	
+
+
 
 
 	

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mealchelin.mvc.common.util.PageInfo;
 import com.mealchelin.mvc.member.model.vo.Member;
@@ -60,34 +61,85 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<Orders> selectProductPayResultset(PageInfo pageInfo, int memberNo) {
+	public List<Orders> selectProductPayResultset(PageInfo pageInfo, int loginMember) {
 		
 		int limit = pageInfo.getListLimit();
 		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-		
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return orderMapper.selectProductPayResultset(rowBounds, memberNo);
+		return orderMapper.selectProductPayResultset(rowBounds, loginMember);
+	}
+
+	@Override
+	public int getPayListCount(int loginMember) {
+		return orderMapper.selectPayCount(loginMember);
+	}
+
+	@Override
+	public int getadOrderCount(String shipStatus, String memId) {
+		return orderMapper.selectadOrderCount(shipStatus, memId);
+	}
+
+	@Override
+	public List<Orders> getadOrderList(PageInfo pageInfo, String shipStatus, String memId) {
+		int limit = pageInfo.getListLimit();
+		int offset = (pageInfo.getCurrentPage() - 1) * limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return orderMapper.selectadOrderAll(rowBounds, shipStatus, memId);
+	}
+
+	@Override
+	public Orders getAdOrderByNo(int no) {
+		return orderMapper.selectOrderByNo(no);
+	}
+
+	@Override
+	public int adOrderSave(Orders orders) {
+		return orderMapper.updateAdOrders(orders);
+	}
+
+	@Override
+	public List<Orders> getadMainOrderList() {
+		return orderMapper.selectadMainOrderList();
+	}
+
+
+	//리스트
+	@Override
+	public List<Orders> selectPayInfo(int orderNo) {
+		return orderMapper.selectPayInfo(orderNo);
 	}
 
 
 
 	@Override
-	public int getPayListCount() {
-		return orderMapper.selctPayConut();
+	public Orders selectOrderAll(int orderNo) {
+		return orderMapper.selectOrderAll(orderNo);
 	}
 
 
+	@Override
+    @Transactional
+    public boolean cancelOrder(int orderNo) {
+        try {
+            // 주문 취소 로직 수행
+            orderMapper.updateCancelStatus(orderNo); // 매퍼를 통해 취소 상태 업데이트
+            return true; // 성공적으로 주문이 취소됨을 반환
+        } catch (Exception e) {
+            // 주문 취소 실패 시 로그를 남기고 실패를 반환
+            System.err.println("Failed to cancel order: " + e.getMessage());
+            return false;
+        }
+    }
 
-//	@Override
-//	public List<Orders> getPayListList(PageInfo pageInfo) {
-//		
-//		int limit = pageInfo.getListLimit();
-//		int offset = (pageInfo.getCurrentPage() - 1) * limit;
-//		RowBounds rowBounds = new RowBounds(offset, limit);
-//		
-//		return orderMapper.selectAll(rowBounds);
-//	}
+
+
+	
+	
+
+
+
 
 
 

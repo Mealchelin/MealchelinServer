@@ -139,6 +139,19 @@
     width: 0px
 }
 
+.pay_userrecipient {
+    display: inline-block;
+    font-size: 16px;
+    width: 150px;
+}
+
+.pay_userrecipients {
+    display: inline-block;
+    font-size: 16px;
+    width: 150px;
+}
+
+
 
 
 .pay_Sender p{
@@ -151,7 +164,7 @@
 .pay_useraddress {
     display: inline-block;
     font-size: 16px;
-    width: 143px;
+    width: 150px;
 }
 
 .pay_useraddresss {

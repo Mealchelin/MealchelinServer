@@ -133,6 +133,10 @@
 
 .pd-paging button:hover{    
     /* 생각보다 티가 안나는거 같음  */
-    color: #559D50;
+    color: #86BC66;
+    cursor: pointer;
+}
+.pd-paging button:disabled{    
+    color: #86BC66;
     cursor: pointer;
 }

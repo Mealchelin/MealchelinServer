@@ -41,6 +41,7 @@
 	<resultMap id="shoppingBasketViewResultMap"
 		type="ShoppingBasketProduct" extends="shoppingBasketResultMap">
 		<result property="totalPrice" column="TOTAL_PRICE" />
+		<result property="payment" column="PAYMENT" />
 	</resultMap>
 
 
@@ -83,11 +84,35 @@
 		        P.BRAND AS BRAND,
 		        M.MEMBER_NO AS MEMBER_NO,
 		        SP.QUANTITY AS QUANTITY,
-		        SP.TOTAL_PRICE AS TOTAL_PRICE
+		        SP.TOTAL_PRICE AS TOTAL_PRICE,
+                S.PAYMENT AS PAYMENT
 		FROM SHOPPING_BASKET_PRODUCT SP
 		JOIN MEMBER M ON SP.MEMBER_NO = M.MEMBER_NO
 		JOIN PRODUCT P ON SP.PRD_NO = P.PRD_NO
+        JOIN SHOPPING_BASKET S ON SP.MEMBER_NO = S.MEMBER_NO
 		WHERE M.MEMBER_NO = #{memberNo}
 	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateSbpByNo" parameterType="ShoppingBasketProduct">
+		UPDATE SHOPPING_BASKET_PRODUCT
+		SET
+			QUANTITY = #{quantity},
+			TOTAL_PRICE = #{totalPrice}
+		WHERE MEMBER_NO = #{memberNo} AND PRD_NO = #{prdNo}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteSbpByNo" parameterType="map">
+		DELETE FROM SHOPPING_BASKET_PRODUCT
+		WHERE MEMBER_NO = #{memberNo} AND PRD_NO = #{prdNo}
+	</delete>
+	
+	<delete id="deleteSbpBySell" parameterType="_int">
+		DELETE FROM SHOPPING_BASKET_PRODUCT
+		WHERE MEMBER_NO = #{memberNo}
+	</delete>
+	
+	
 
 </mapper>

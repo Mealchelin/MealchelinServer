@@ -93,8 +93,16 @@
                     </div>
                     <div class="pd-view-btns">
                         <!-- 임의의 주소값 -->
-                        <button class="pd-view-btn-basket" formaction="/product/shoppingBasket" formmethod="post">장바구니 담기</button>
-                        <button class="pd-view-btn-purchase" formaction="/product/purchase" formmethod="post">구매하기</button>
+                        <c:if test="${ product.sale == 'N' }">
+                        	<button class="pd-view-btn-disabled" disabled>판매 중지된 상품입니다.</button>
+                        </c:if>
+                        <c:if test="${ product.sale == 'Y' && product.stock == 0 }">
+	                        <button class="pd-view-btn-disabled" disabled>품절된 상품입니다.</button>
+                        </c:if>
+                        <c:if test="${ product.sale == 'Y' && product.stock != 0 }">
+	                        <button class="pd-view-btn-basket pdd-btn" formaction="/product/shoppingBasket" formmethod="post">장바구니 담기</button>
+	                        <button class="pd-view-btn-purchase pdd-btn" formaction="/product/purchase" formmethod="post">구매하기</button>
+                        </c:if>
                     </div>
                 </div>
             </form>
@@ -199,7 +207,21 @@
             let price2 = price1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
             $("#pd-view-totalPrice").html(price2 + "원");
         });
+    	
+        
+//         let htmlCollection = document.getElementsByClassName('pdd-btn');
+//         let btns = [...htmlCollection];
+//         console.log(btns);
+//         btns.forEach(function (btn) {
+//     		if (btn.disabled) {
+//     			btn.innerText = "품절"
+//     		}
+//     	})
+    
+    
     });
+    
+    
     </script>
 
 </body>

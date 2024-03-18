@@ -79,7 +79,7 @@
                                         <td class="ad_th"><label for="adProName">상품명</label></td>
                                         <td><input type="text" name="name" id="adProName" value="${ product.name }"></td>
                                         <td class="ad_th">등록 날짜</td>
-                                        <td><fmt:formatDate value="${ product.rgstrDate }" pattern="yyyy-MM-dd"/></td>
+                                        <td><fmt:formatDate value="${ product.rgstrDate }" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adProCat">카테고리</label></td>

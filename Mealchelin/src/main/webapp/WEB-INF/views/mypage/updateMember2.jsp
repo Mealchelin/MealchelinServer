@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="${ path }/css/common.css">
     <!-- 필요한 css -->
     <link rel="stylesheet" href="${ path }/css/mypage/updateMember2.css">
+    <link rel="stylesheet" href="${ path }/css/mypage/mypageHeaderBox.css">
     
     <!-- jquery -->
     <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -32,6 +33,7 @@
     
     <!-- 내용 넣기 -->
  	 <main>
+ 	    <jsp:include page="mypageHeaderBox.jsp"/>
         <section>
             <h3 class="myTitle">내 정보수정</h3>
                 <form action="" method="post">

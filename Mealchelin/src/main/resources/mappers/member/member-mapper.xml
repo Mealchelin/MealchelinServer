@@ -43,14 +43,21 @@
 	<!-- 회원 수 구하기 -->
 	<select id="selectCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
+		<if test="!name.equals('')">
+			WHERE ID LIKE '%' || #{name} || '%'
+		 	OR NAME LIKE '%' || #{name} || '%'
+		</if>
 	</select>
 	
 	<!-- 모든 회원 조회 -->
 	<select id="selectAll" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
+		<if test="!name.equals('')">
+			WHERE ID LIKE '%' || #{name} || '%'
+		 	OR NAME LIKE '%' || #{name} || '%'
+		</if>
 		 ORDER BY ENROLL_DATE DESC
 	</select>
-	
 	
 	<select id="selectMemberById" parameterType="String" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
@@ -105,7 +112,9 @@
 		UPDATE MEMBER
 		SET 
 			NAME = #{name},
-			PASSWORD = #{password},
+			<if test="password == null">
+				PASSWORD = #{password},
+			</if>
 			PHONE = #{phone},
 			EMAIL = #{email},
 			POSTAL_CODE = #{postalCode},
@@ -153,4 +162,22 @@
 		#{phone_number}
 		)
 	</insert>
+	
+	<select id="selectAdminMemberByNo" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE MEMBER_NO = #{no}
+	</select>
+	
+	<update id="updateAdminMember" parameterType="Member">
+		UPDATE MEMBER
+		SET 
+			EMAIL = #{email},
+			PHONE = #{phone},
+			POSTAL_CODE = #{postalCode},
+			ADDRESS = #{address},
+			ADDRESS_DETAIL = #{addressDetail},
+			PASSWORD = #{password}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
 </mapper>

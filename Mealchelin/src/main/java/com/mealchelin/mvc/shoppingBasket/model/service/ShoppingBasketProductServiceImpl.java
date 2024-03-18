@@ -5,15 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.shoppingBasket.model.mapper.ShoppingBasketProductMapper;
-import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
-
 
 import lombok.RequiredArgsConstructor;
 
-@Service
+@Service	
 @RequiredArgsConstructor
 public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductService {
 	
@@ -63,9 +60,25 @@ public class ShoppingBasketProductServiceImpl implements ShoppingBasketProductSe
 	}
 
 	@Override
-	public int getPayment(ShoppingBasket shoppingBasket) {
-		return sbpMapper.countPayment(shoppingBasket);
+	public ShoppingBasketProduct getSbpByNo(int prdNo, int memberNo) {
+		return sbpMapper.selectSbpByNo(prdNo, memberNo);
 	}
+
+	@Override
+	public int deleteSbpByNo(int prdNo, int memberNo) {
+		return sbpMapper.deleteSbpByNo(prdNo, memberNo);
+	}
+
+	@Override
+	public int updateSbpByNo(ShoppingBasketProduct shoppingBasketProduct) {
+		return sbpMapper.updateSbpByNo(shoppingBasketProduct);
+	}
+
+	@Override
+	public int deleteSbpBySell(int memNo) {
+		return sbpMapper.deleteSbpBySell(memNo);
+	}
+
 
 
 }

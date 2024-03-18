@@ -48,6 +48,7 @@
 }
 
 .pay_FirstName {
+	padding-top:26px;
     padding-left: 34px;
     font-size: 20px;
 }
@@ -528,6 +529,8 @@ input[type=checkbox]:checked::before {
     font-size: 17px;
     
 }
+
+
 .pay_pay_Productreview input:hover {
     border: 1px solid #559D50;
     width: 179px;
@@ -539,12 +542,111 @@ input[type=checkbox]:checked::before {
     margin-top: 9px;
     border-radius: 2px;
     font-size: 17px;
+    
+}
+
+.pay_pay_Productreview a {
+    border: 1px solid #559D50;
+    width: 179px;
+    height: 50px;
+    background-color: #fff;
+    color: #559D50;
+    padding-bottom: 2px;
+    display: block;
+    margin-top: 9px;
+    border-radius: 2px;
+    font-size: 17px;
+    text-align: center;
+    padding-top: 10px;
+    
+}
+
+
+.pay_pay_Productreview a:hover {
+    border: 1px solid #559D50;
+    width: 179px;
+    height: 50px;
+    background-color: #3B6C51;
+    color: #ffff;
+    padding-bottom: 2px;
+    display: block;
+    margin-top: 9px;
+    border-radius: 2px;
+    font-size: 17px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+.pay_Product {
+    display: flex;
+    align-items: center;
+    width: 1075px;
+}
+
+
+.pay_ProductImg {
+    width: 10%;
+}
+
+.pay_ProductResult p {
+    font-size: 24px;
+    width: 99px;
+
+}
+
+.pay_ProductInfo {
+    width: 100%;
+    padding-bottom: 16px;
+}
+
+.pay_table {
+    margin-top: 1px;
+    width: 300px;
+}
+
+.pay_table td{
+    padding-top: 10px;
+    padding-left:20px;
+}
+
+ .pay_subName {
+    padding: 8px;
+    width: 202px;
+}
+
+.pay_Maintable{
+    width: 500px;
+}
+
+
+.pay_mainName {
+    width: 153px;
 }
 
 
 
+.pay_subName{
+    padding-left: 1px;
+}
+
+.pay_mainName{
+    color: #7A7A7A;
+}
 
 
+.pay_subNameTwo {
+    width: 100px;
+}
+
+
+.pay_subNameOne {
+    width: 200px;
+}
+
+.pay_ProductMenu span {
+    color: rgb(143, 143, 143);
+}
 
 
 

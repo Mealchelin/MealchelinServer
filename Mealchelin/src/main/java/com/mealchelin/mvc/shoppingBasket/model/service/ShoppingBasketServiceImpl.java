@@ -17,16 +17,35 @@ public class ShoppingBasketServiceImpl implements ShoppingBasketService {
 	
 	@Override
 	@Transactional
-	public int save(ShoppingBasket shoppingBasket) {
+	public int save(int memberNo) {
 		int result = 0;
 		
 		if (result > 0) {
 			// update 
 		} else {
 			//insert 
-			result = shoppingBasketMapper.insertShoppingBasket(shoppingBasket);
+			result = shoppingBasketMapper.insertShoppingBasket(memberNo);
 		}
 		return result;
+	}
+
+
+	@Override
+	public ShoppingBasket getBasket(int memberNo) {
+		
+		return shoppingBasketMapper.selectGetBasket(memberNo);
+	}
+
+
+	@Override
+	public int updateSbByNo(ShoppingBasket shoppingBasket) {
+		return shoppingBasketMapper.updateBasket(shoppingBasket);
+	}
+
+
+	@Override
+	public int resetSbPayment(int memNo, int reset) {
+		return shoppingBasketMapper.updatePayment(memNo, reset);
 	}
 
 }

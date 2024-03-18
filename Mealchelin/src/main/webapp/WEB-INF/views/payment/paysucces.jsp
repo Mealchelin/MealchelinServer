@@ -39,7 +39,7 @@
             <div id="co_mainDiv">
                 <img src="../img/all/logo5.png" alt="로고사진" class="memLogo">
                 <p id="co_ment">
-                    <span>백성연</span>님의 주문이 완료되었습니다.
+                    <span>${loginMember.name }</span>님의 주문이 완료되었습니다.
                     <!-- <br>
                     <span>내일 아침</span>에 만나요!
                     <br>

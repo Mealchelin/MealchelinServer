@@ -44,19 +44,13 @@
 		<jsp:include page="./../mypage/mypageHeaderBox.jsp" />
 		<section>
 			<h3>나의 리뷰</h3>
-			<a href="${ path }/mypage/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
-                <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
-			<select name="period"
-				id="re_periodDropBox">
-				<option value="">기간</option>
-				<option value="3">3개월</option>
-				<option value="6">6개월</option>
-				<option value="12">12개월</option>
-			</select>
+			<a class="re_atag" href="${ path }/mypage/mypageProductReview"><span id="re_writtenReview">작성한 리뷰</span></a>
+            <a href="${ path }/mypage/writableReview"><span id="re_writableReview">작성 가능한 리뷰</span></a>
+			
 			<hr />
 
 			<c:if test="${ empty list }">
-				<p id="re_emptyReview">작성한 구매후기가 없습니다.</p>
+				<p id="re_emptyReview">작성한 리뷰가 없습니다.</p>
 			</c:if>
 			<c:if test="${ not empty list }">
 				<c:forEach var="review" items="${ list }">
@@ -64,10 +58,10 @@
 						<div id="re_review1">
 <%-- 							<a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }"> --%>
 								<div id="re_foodImgAndName">
-									<img src="../img/new_01.jpg" alt="" id="re_foodImg" />
+									<img src="${ path }/img/review/${ review.renamedFilename }" alt="" id="re_foodImg" />
 								</div>
 								<div id="re_reviewInfo">
-									<p id="re_foodName">안동식 순살 찜닭</p>
+									<p id="re_foodName">${ review.productName }</p>
 									<p id="re_reviewTitle">${ review.name }</p>
 									<p id="re_reviewContent">${ review.content }</p>
 
@@ -98,7 +92,7 @@
 								</div>
 							</a>
 							<div id="re_editDeleteBtn">
-								<p id="re_companyName">업체이름</p>
+								<p id="re_companyName">${ review.brand }</p>
 <%-- 								<a href="${ path }/mypage/delete?no=${ review.reviewNo } "> --%>
 									<button class="re_deleteBtn" id="deleteBtn" value="${ review.reviewNo }">삭제하기</button>
 <!-- 									<input class="re_deleteAndEditBtn" id="deleteBtn" type="button" value="삭제하기" /> -->

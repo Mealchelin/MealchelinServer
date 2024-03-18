@@ -5,7 +5,7 @@
 }
 
 .mytitle {
-    font-size: 25px;
+    font-size: 28px;
     text-align: center;
     margin: 50px 0px;
 }
@@ -104,7 +104,8 @@ input[type="checkbox"]:checked + label::before{
 }
 
 .mytd6 {
-    width: 40px;
+    width: 70px;
+    padding-top:4px;
     text-align: right;
 }
 
@@ -117,8 +118,7 @@ input[type="checkbox"]:checked + label::before{
 .myAllPriceDiv{
     border-top: 1px solid #bbb;
     width: 999px;
-    height: 110px;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     text-align: right;
     margin-top: -10px;
 }
@@ -133,7 +133,7 @@ input[type="checkbox"]:checked + label::before{
 }
 
 .myAllPrice {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     margin-right: 8px;
     color: #284D38;
@@ -157,8 +157,14 @@ cursor: pointer;
 color: #C0C0C0;
 }
 
-.myCounter>button:hover {
-    border-radius: 2px;
+.myCounter>button.myCounter-minus:hover {
+    border-radius: 5px 0 0 5px;
+    background-color: #ededed;
+    color: #191919;
+}
+
+.myCounter>button.myCounter-plus:hover {
+    border-radius: 0 5px 5px 0;
     background-color: #ededed;
     color: #191919;
 }
@@ -181,6 +187,7 @@ input::-webkit-inner-spin-button {
 }
 
 .finalbtn {
+	cursor:pointer;
     border:none;
     width: 150px;
     height: 40px;
@@ -188,6 +195,7 @@ input::-webkit-inner-spin-button {
     padding:7px 30px;
     background-color: #3B6C51;
     color: #fff;
-    margin: 20px auto;
+    margin: 0 auto;
+    margin-bottom:70px;
     text-align: center;
 }

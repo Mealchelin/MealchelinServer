@@ -48,7 +48,7 @@
 			<main class="content" style="background-color: #fff;">
 				<div class="container-fluid p-0">
 					<div class="row ad_mem_de">
-                        <form>
+                        <form method="POST" action="${ path }/admin/delivery/edit?no=${ orders.orderNo }">
                             <table class="col-12">
                                 <thead class="ad_mem_th">
                                     <th colspan="4">주문 관리</th>
@@ -56,69 +56,76 @@
                                 <tbody>
                                     <tr>
                                         <td class="ad_th" id="adBuyNo">주문 번호</td>
-                                        <td>43</td>
+                                        <td>${ orders.orderNo }</td>
                                         <td class="ad_th" id="adBuyName">주문 날짜</td>
-                                        <td>2024.02.21</td>
+                                        <td><fmt:formatDate value="${ orders.orderDate }" pattern="yyyy.MM.dd"/></td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" id="adBuyName">상품명</td>
-                                        <td colspan="3">빠네 크림 파스타, 불고기, 피자</td>
+                                        <td colspan="3">${ orders.name }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" id="adBuyCount">상품 수</td>
-                                        <td>3</td>
+                                        <td>${ orders.sumQ }</td>
                                         <td class="ad_th" id="adBuyName">상품 금액</td>
-                                        <td>15,900원</td>
+                                        <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${orders.payMent}" />원</td>
                                     </tr>
-                                    <tr>
+<!--                                <tr>
                                         <td class="ad_th" id="adBuyCount">배송비</td>
                                         <td>3,000원</td>
                                         <td class="ad_th" id="adBuyName">결제 금액</td>
                                         <td>18,900원</td>
                                     </tr>
-                                    <tr>
+ -->                                    <tr>
                                         <td class="ad_th"><label for="adBuyCat">배송 상태</label></td>
                                         <td>
-                                            <select name="adBuycat" id="adBuycat" class="adCat" onchange="CancelSelect(this)">
-                                                <option selected value="">결제 완료</option>
-                                                <option value="">배송 준비</option>
-                                                <option value="">배송 중</option>
-                                                <option value="">배송 완료</option>
-                                                <option value="cancel">결제 취소</option>
+                                            <select name="shipStatus" id="adBuycat" class="adCat" onchange="CancelSelect(this)">
+                                                <option selected value="결제완료">결제완료</option>
+                                                <option value="배송준비중">배송준비중</option>
+                                                <option value="배송중">배송중</option>
+                                                <option value="배송완료">배송완료</option>
+                                                <option value="결제취소">결제취소</option>
                                             </select>
                                         </td>
                                         <td class="ad_th" id="adBuyCode">결제 방법</label></td>
-                                        <td>카카오페이</td>
+                                        <td>${ orders.paymentMethod }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th" id="adBuyerName">주문자 이름</td>
-                                        <td>백성연</td>
+                                        <td>${ orders.mname }</td>
                                         <td class="ad_th" id="adBuyerId">주문자 아이디</td>
-                                        <td>BaekSee</td>
+                                        <td>${ orders.memId }</td>
                                     </tr>
                                     <tr class="ad_mem_th">
                                         <td colspan="4">배송지 관리</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th"><label for="adDeliName">수취인명</label></td>
-                                        <td><input type="text" name="adDeliName" id="adDeliName" value="백성연"></td>
-                                        <td class="ad_th"><label for="adDeliPh">전화번호</label></td>
-                                        <td><input type="text" name="adDeliPh" id="adDeliPh" value="01000000000"></td>
+                                        <td>${ orders.recipient }</td>
+                                        <td class="ad_th">전화번호</td>
+                                        <td>${ orders.phone }</td>
                                     </tr>
                                     <tr>
+                                        <td class="ad_th" rowspan="3"> <label for="adDeliAd">배송지 주소</label></td>
+                                        <td style="border-bottom:none;" rowspan="3"colspan="3"> 우편번호 : ${ orders.postalCode }
+                                            <br>${ orders.shipAddress }
+                                            <br>${ orders.shipAddressDetail }
+                                        </td>
+                                    </tr>
+<!--                                <tr>
                                         <td class="ad_th" rowspan="3"> <label for="adDeliAd">배송지 주소</label></td>
                                         <td style="border-bottom:none;" rowspan="3"colspan="3"><input type="text" id="adDeliAdPost" name="adDeliAd"> <button type="button" class="meal_btn2" onclick="adDeli_execDaumPostcode()">우편번호</button>
                                             <br><input type="text" id="adDeli_Ad" name="adDeliAd" style="width: 305px;">
                                             <br><input type="text" id="adDeliDetailAd" name="adDeliAd" style="width: 305px;">
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                     </tr>
                                     <tr>
                                     </tr>
                                     <tr>
-                                        <td class="ad_th"><label for="adDeliWh">받을 장소</label></td>
-                                        <td colspan="3"><input type="text" id="adDeliWh" name="adDeliWh" value="문 앞"></td>
+                                        <td class="ad_th">요청 사항</td>
+                                        <td colspan="3">${ orders.request }</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -163,6 +170,19 @@
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/ad_delivery.js"></script> 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    	var selectedStatus = '${ orders.shipStatus }';
+    	let adBuycat = document.getElementById('adBuycat');
+    	
+    	for (var i = 0; i < adBuycat.options.length; i++) {
+    	    if (adBuycat.options[i].value === selectedStatus) {
+    	    	adBuycat.options[i].selected = true;
+    	        break;
+    	    }
+    	}
+    });
+    </script>
 </body>
 
 </html>

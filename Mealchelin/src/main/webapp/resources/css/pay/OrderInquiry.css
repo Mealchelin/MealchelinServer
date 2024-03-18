@@ -5,12 +5,12 @@
 #pay_sections {
     width: 1100px;
     margin: auto;
-    padding-top: 61px;
+    padding-top: 50px;
 }
 
 
 #pay_sections h2 {
-    padding-bottom: 60px;
+    padding-bottom: 30px;
 }
 
 
@@ -26,12 +26,12 @@
 
 
 .pay_mainContentTitle span:first-child{
-    font-size: 24px;
+    font-size: 21px;
 }
 
 
 .pay_OrderDetails {
-    padding-left: 20px;
+    padding-left: 10px;
     color: rgb(212, 206, 206);
     font-size: 13px;
 }
@@ -62,10 +62,37 @@
 }
 
 .pay_FirstChapter:hover,
-.pay_FirstChapter a:hover {
+.pay_FirstChapter:hover > a {
     color: white;
     background-color: rgb(59, 108, 81);
 }
+
+.pay_ProductTitle button:last-child {
+    float: right;
+    padding-top: 11px;
+    border:none;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.pay_ProductTitle button:last-child:hover {
+    float: right;
+    padding-top: 11px;
+    border:none;
+    background-color: #fff;
+    font-size: 16px;
+    color: rgb(59, 108, 81);
+}
+
+
+
+
+
+
+
+
+
+
 
 .pay_ProductTitle a:last-child {
     float: right;
@@ -108,8 +135,7 @@
 }
 
 .pay_ProductInfo{
-    /* display: inline-block; */
-    width: 58%;
+    width: 55%;
     height: 200px;   
     margin-top: 35px;
 }
@@ -128,8 +154,10 @@
 
 
 .pay_ProductResult p{
+   display: flex;
     font-size: 24px;
     width: 129px;
+    justify-content: center;
     
 }
 
@@ -165,4 +193,8 @@
 
 .pay_table td{
     padding: 4px;
+}
+
+.pay_header{
+	font-size: 28px;
 }

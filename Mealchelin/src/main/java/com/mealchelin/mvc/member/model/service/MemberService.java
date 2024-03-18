@@ -29,9 +29,13 @@ public interface MemberService {
 
 	Member getUserInfo(String access_Token);
 
-	List<Member> getMemberList(PageInfo pageInfo);
+	int getMemberCount(String name);
 
-	int getMemberCount();
+	List<Member> getMemberList(PageInfo pageInfo, String name);
+
+	Member getAdminMemberByNo(int no);
+
+	int adminMemberUpdate(Member member);
 
 
 

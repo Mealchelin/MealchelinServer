@@ -3,6 +3,7 @@
     margin: 80px auto 80px auto;
     display: flex;
     justify-content: space-between;
+    height: 555px;
 }
 
 /* 제품 정보(우측) 전체 */
@@ -102,13 +103,22 @@
     line-height: 1px;
 }
 
+.pd-view-btns>button[disabled] {
+	cursor: default;
+}
+
 .pd-view-btn-basket {
     box-shadow: 0 0 0 1px #3B6C51 inset;
     background-color: #ffffff;
     color: #3B6C51;
 }
 
-.pd-view-btn-basket:active {
+.pd-view-btn-basket[disabled] {
+	box-shadow: 0 0 0 1px grey inset;
+	color: grey;
+}
+
+.pd-view-btn-basket:not([disabled]):active {
     background-color: #ededed;
 }
 
@@ -117,8 +127,20 @@
     color: #fff;
 }
 
-.pd-view-btn-purchase:active {
+.pd-view-btn-purchase[disabled] {
+	background-color: grey;
+}
+
+.pd-view-btn-purchase:not([disabled]):active {
     background-color: #2f5640;
+}
+
+.pd-view-btn-disabled {
+	width: 300px !important; 
+	color: grey;
+	box-shadow: 0 0 0 1px grey inset;
+	margin-left: 75px;
+	background-color: #ffffff;
 }
 
 /* 섹션2 상품 상세 정보 */

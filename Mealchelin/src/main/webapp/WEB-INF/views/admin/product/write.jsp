@@ -6,7 +6,7 @@
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 <c:set var="today" value="<%=new java.util.Date()%>" />
-<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd" /></c:set>
 
 <!DOCTYPE html>
 <html lang="ko">

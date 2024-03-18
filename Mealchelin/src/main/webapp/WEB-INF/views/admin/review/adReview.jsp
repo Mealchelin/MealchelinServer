@@ -62,19 +62,27 @@
 		<!--상단 바-->
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
-				<a class="sidebar-toggle js-sidebar-toggle"> <i class="hamburger align-self-center"></i>
+				<a class="sidebar-toggle js-sidebar-toggle">
+					<i class="hamburger align-self-center"></i>
 				</a>
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
-						<li class="nav-item dropdown"><a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown"> <i class="align-middle" data-feather="settings"></i>
-						</a> <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown"> <span class="text-dark"><i class="align-middle me-2" data-feather="user"></i><b>관리자님</b> 어서오세요</span>
-						</a>
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+								<i class="align-middle" data-feather="settings"></i>
+							</a>
+
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+								<span class="text-dark"><i  class="align-middle me-2" data-feather="user"></i><b>관리자님</b> 어서오세요</span>
+							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a> <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
-							</div></li>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="monitor"></i> PC 홈페이지</a>
+		                        <a class="dropdown-item" href="${ path }/"><i class="align-middle me-1" data-feather="smartphone"></i> 모바일 홈페이지</a>
+		                        <div class="dropdown-divider"></div>
+		                        <a class="dropdown-item" href="${ path }/member/logout"><i class="align-middle me-1" data-feather="log-out"></i> 로그아웃</a>
+		                     </div>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -106,11 +114,11 @@
 													<!-- 참고용 : <td><input data-cartCode="${cart.cartCode}" type="checkbox" class="chk" value="${cart.itemCode}"></td> -->
 													<td><input type="checkbox" class="ad_review_chk" id="ad_review_chk" name="ad_review_chk" value="${ review.reviewNo }"></td>
 													<td>${ review.reviewNo }</td>
-													<td style="cursor: pointer;" onclick="location.href='${ path }/admin/review/edit'">${ review.name }</td>
+													<td style="cursor: pointer;" onclick="location.href='${ path }/admin/review/edit?reviewNo=${ review.reviewNo }'">${ review.name }</td>
 													<td>${ Math.round(review.rated) }/5</td>
 													<td class="d-none d-xl-table-cell">${ review.id }</td>
 													<td class="d-none d-xl-table-cell">${ review.rgstrDate }</td>
-													<c:set var="status" value="${ review.status }" scope="session" />
+													<c:set var="status" value="${ review.rstatus }" scope="session" />
 													<c:choose>
 														<c:when test='${ status == "Y" }'>
 															<td id="editStatus_Y" class="d-none d-xl-table-cell">노출</td>

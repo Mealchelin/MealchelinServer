@@ -33,6 +33,7 @@ public class ShoppingBasketProduct {
 	//상품 총금액
 	private int totalPrice;
 	
-	
+	//상품 전체 금액
+	private int payment;
 	
 }

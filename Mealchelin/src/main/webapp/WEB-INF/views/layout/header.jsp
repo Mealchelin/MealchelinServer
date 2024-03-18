@@ -80,6 +80,6 @@
 
         </c:if>
      
-        <a href="${ path }mypage/shoppingBasket"><li class="nav_cart" ></li></a>
+        <a href="${ path }/mypage/shoppingBasket"><li class="nav_cart" ></li></a>
     </ul>
 </nav>

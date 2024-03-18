@@ -471,6 +471,7 @@
 	
 	                    if(obj.duplicate){
 	                        alert('이미 사용중인 아이디 입니다.');
+	                        $('#memID').val('');
 	                    } else {
 	                        alert('사용 가능한 아이디 입니다.');
 	                    }

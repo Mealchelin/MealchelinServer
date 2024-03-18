@@ -33,6 +33,10 @@
         .ad_mem_de td{
             border:1px solid #ccc;
         }
+        #fileDown{
+        	color:#495057;
+        	text-decoration: underline;
+        }
 
     </style>
 </head>
@@ -114,58 +118,69 @@
 				<div class="container-fluid p-0">
                     <div class="row ad_mem_de">
                         <h1 class="h3 mb-4" style="font-weight: 600;">리뷰 관리</h1>
-                        <form>
+                        <form action="${ path }/admin/review/edit" method="POST">
+                        <input type="hidden" name="reviewNo" value="${ review.reviewNo }">
 						<div class="col-12">
 							<div class="card">
 								<table class="table my-4" style="width: 95%; margin:0 auto;">
 									<tr>
                                         <td class="ad_th" width="25%">게시글 번호</td>
-                                        <td width="25%">1</td>
+                                        <td width="25%">${ review.reviewNo }</td>
                                         <td class="ad_th" width="25%">게시글 작성 날짜</td>
-                                        <td width="25%">20204.02.21</td>
+                                        <td width="25%">${ review.rgstrDate }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">작성자</td>
-                                        <td>Baeksee</td>
+                                        <td>${ review.id }</td>
                                         <td class="ad_th">별점</td>
                                         <td>
-											4 / 5
+											${ Math.round(review.rated) } / 5
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">상품명</td>
-                                        <td>불고기 볶음밥</td>
+                                        <td>${ review.productName }</td>
                                         <td class="ad_th">조회수</td>
                                         <td>
-											0
+											${ review.views }
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">제목</td>
-										<td colspan="3">맛있네요.</td>
+										<td colspan="3">${ review.name }</td>
                                     </tr>
                                     <tr>
                                         <td class="ad_th">첨부파일</td>
-										<td colspan="3">0182985y9.jpg</td>
+                                        <c:if test="${ empty review.renamedFilename }">							
+											<td colspan="3"> - </td>
+										</c:if>
+										<c:if test="${ not empty review.renamedFilename }">	
+											<td colspan="3"><a href="javascript:" id="fileDown">${ review.renamedFilename }</a></td>
+                                    	</c:if>
                                     </tr>
 									<tr>
 										<td colspan="4" style="padding: 20px;">
-											볶음밥이 맛있고, 조리하기 편하네요.<br>
-                                            요새 먹었던 것 중 최고인 것 같습니다.<br>
-                                            같이 들어있는 고기와 냉동 밥을 함께 딱~ ^^ 넣고 볶아주면 미식 요리 저리가라네요.
+											${ review.content }
 										</td>
 									</tr>
 									<tr>
 										<td class="ad_th"><label for="adReviewShow">노출 여부</label></td>
                                         <td colspan="3">
-											<label style="margin-right: 10px;"><input type="radio" checked name="adReviewShow" id="adReviewShow" value="Y" style="width: 20px;"/>노출</label>
-                                            <label><input type="radio" name="adReviewShow" id="adReviewShow" value="N" style="width: 30px;"/>비노출</label>
+                                        	<c:set var="status" value="${ review.rstatus }" scope="session"></c:set>
+                                        	<c:if test='${ status == "Y" }'>
+												<input type="radio" checked name="rstatus" id="adReviewShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            	<input type="radio" name="rstatus" id="adReviewShow" value="N" style="width: 30px;"/>비노출
+                                        	</c:if>
+                                        	<c:if test='${ status == "N" }'>
+												<input type="radio" name="rstatus" id="adReviewShow" value="Y" style="width: 20px; margin-right: 10px;"/>노출
+                                            	<input type="radio" checked name="rstatus" id="adReviewShow" value="N" style="width: 30px;"/>비노출
+                                        	</c:if>
 										</td>
 									</tr>
 									</tr>
 								</table>
 								<div style="margin:0 auto; width: 205px; margin-bottom:30px;">
-									<button type="submit" class="meal_btn3">수정</button>
+									<button type="submit"  class="meal_btn3">수정</button>
 									<button type="button" class="meal_btn4" style="margin-left:5px;" onClick="location.href='${ path }/admin/review/adReview'">목록</button>
 								</div>
                             </div>
@@ -206,7 +221,23 @@
 	</div>
     
     <!-- 필요한 js 밑에 추가-->
+    <script src="${ path }/js/jquery-3.7.1.js"></script>
     <script type="text/javascript" src="${ path }/js/admin/app.js"></script>
+    <script>
+	$(document).ready(() => {
+		$('#fileDown').on('click', () => {
+			let oname = encodeURIComponent('${ review.originalFilename }');
+			let rname = encodeURIComponent('${ review.renamedFilename }');
+						
+			console.log(oname);
+			console.log(rname);
+			
+			// location.assign('${ path }/board/fileDown?oname=' + oname + '&rname=' + rname);
+			location.assign(`${ path }/admin/review/fileDown?oname=\${oname}&rname=\${rname}`);
+		});
+		
+	});
+</script>
 </body>
 
 </html>

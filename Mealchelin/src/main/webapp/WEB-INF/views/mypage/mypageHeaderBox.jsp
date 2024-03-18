@@ -9,7 +9,7 @@
                 <div class="myGrayboxLeft">
                     <div>
                         <img src="../img/all/face.png" alt="얼굴사진">
-                        <p><span>이주연님</span> 안녕하세요</p>
+                        <p><span>${ loginMember.name }님</span> 안녕하세요</p>
                         <a href="${ path }/mypage/updateMember"><button class="myBtn1">내 정보 수정</button></a><br>
                         <a href="${ path }/mypage/shippingLocation"><button class="myBtn2">배송지 관리</button></a>
                     </div>

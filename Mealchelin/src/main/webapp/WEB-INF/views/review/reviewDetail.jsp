@@ -39,10 +39,10 @@
 			<h3>밀슐랭 상품 리뷰</h3>
             <div id="re_maindiv">
                 <div id="re_innerdivMain">
-                    <img id="re_img" src="../img/new_01.jpg" alt="">
+                    <img id="re_img" src="../img/review/${ review.renamedFilename }" alt="">
                     <div id="re_foodInfo">
-                        <p id="re_foodName">안동식 순살 찜닭</p>
-                        
+                        <p id="re_foodName">${ review.productName }</p>
+                        <p id="re_memberName">${fn:substring(review.id,0,4) }***</p>
                         <c:choose>
                         	<c:when test="${ review.rated == 0}">
 								<p class="starR"><span id="re_star" ></span>★★★★★</p>
@@ -67,7 +67,6 @@
 							</c:otherwise>
                         </c:choose>
                     </div>
-                    <br>
                     <p id="re_titleAndDetailReview" >제목</p>
                     <textarea maxlength="30" name="name" id="re_titleContent" cols="3" rows="1" readonly>${ review.name }</textarea>
                     <p id="re_titleAndDetailReview">상세리뷰</p>

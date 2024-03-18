@@ -101,3 +101,7 @@
 .cs-paging button:disabled{
 	color:#86BC66;
 }
+
+.re_headerName {
+	font-size: 28px;
+}
