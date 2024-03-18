@@ -598,6 +598,7 @@ input[type=checkbox]:checked::before {
 .pay_ProductInfo {
     width: 100%;
     padding-bottom: 16px;
+    padding-left:20px;
 }
 
 .pay_table {
@@ -607,7 +608,6 @@ input[type=checkbox]:checked::before {
 
 .pay_table td{
     padding-top: 10px;
-    padding-left:20px;
 }
 
  .pay_subName {
@@ -641,7 +641,7 @@ input[type=checkbox]:checked::before {
 
 
 .pay_subNameOne {
-    width: 200px;
+    width: 213px;
 }
 
 .pay_ProductMenu span {
