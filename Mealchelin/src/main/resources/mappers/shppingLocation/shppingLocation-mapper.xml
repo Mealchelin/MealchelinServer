@@ -17,7 +17,8 @@
 			   PRICE,
 			   DEFAULT_CHECK,
 			   STATUS,
-			   MEMBER_NO
+			   MEMBER_NO,
+			   SHIP_DEFAULT_NO
 		FROM SHIPPING_LOCATION
 		WHERE STATUS = 'Y'
 	</sql>
@@ -37,6 +38,7 @@
 		<result property="status" column="STATUS"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="request" column="REQUEST"/>
+		<result property="shipDefaultNo" column="SHIP_DEFAULT_NO"/>
 	</resultMap>
 
 	<select id="selectFindByNo" parameterType="_int" resultMap="shippingLocationResultMap">
@@ -50,8 +52,7 @@
        O.MEMBER_NO
 FROM ORDERS O
 JOIN SHIPPING_LOCATION SL ON O.SHIP_NO = SL.SHIP_NO
-WHERE O.ORDER_NO = #{orderNo}
-  AND SL.STATUS = 'Y' 
+WHERE O.ORDER_NO = #{orderNo} 
 
 	</select>
 
@@ -64,7 +65,8 @@ WHERE O.ORDER_NO = #{orderNo}
 		                               PHONE, 
 		                               POSTAL_CODE, 
 		                               SHIP_ADDRESS,
-		                               SHIP_ADDRESS_DETAIL
+		                               SHIP_ADDRESS_DETAIL,
+		                               SHIP_DEFAULT_NO
 		                       ) VALUES (
 		                       		   #{memberNo}, 
                                        SEQ_SHIP_NO.NEXTVAL, 
@@ -73,14 +75,15 @@ WHERE O.ORDER_NO = #{orderNo}
                     		           #{phone},
                      		           #{postalCode}, 
                      		           #{shipAddress},
-                     		           #{shipAddressDetail}
+                     		           #{shipAddressDetail},
+                     		           SEQ_SHIP_DNO.NEXTVAL 
                      		           )
 	</insert>
 	
 	<select id="selectShippingLocationListByLoginMember" resultMap="shippingLocationResultMap">
 		<include refid="selectShippingLocationSql"/>
 		AND MEMBER_NO = #{memberNo}
-		ORDER BY SHIP_NO DESC
+		ORDER BY SHIP_DEFAULT_NO DESC
 	</select>
 	
 	<select id="selectShippingLocationCountByMemberNo" resultType="_int">
@@ -95,7 +98,7 @@ WHERE O.ORDER_NO = #{orderNo}
 	
 	<update id="setShipNoForChangeDefaultLocation" parameterType="_int">
 		UPDATE SHIPPING_LOCATION 
-		SET SHIP_NO = SEQ_SHIP_NO.NEXTVAL
+		SET SHIP_DEFAULT_NO = SEQ_SHIP_DNO.NEXTVAL
 		WHERE SHIP_NO = #{shipNo}
 	</update>
 	
@@ -117,10 +120,11 @@ WHERE O.ORDER_NO = #{orderNo}
 			   DEFAULT_CHECK,
 			   STATUS,
 			   MEMBER_NO
+			   SHIP_DEFAULT_NO
 		FROM (
         <include refid="selectShippingLocationSql"/>
         AND MEMBER_NO = #{memNo}
-        ORDER BY SHIP_NO DESC
+        ORDER BY SHIP_DEFAULT_NO DESC
         )
         WHERE ROWNUM = 1
 	</select>

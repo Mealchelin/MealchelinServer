@@ -48,6 +48,9 @@ public class ShippingLocation {
     //주문 번호 
     private String request;
     
+    // 기본 배송지 번호
+    private int shipDefaultNo;
+    
 	
 	
 }
