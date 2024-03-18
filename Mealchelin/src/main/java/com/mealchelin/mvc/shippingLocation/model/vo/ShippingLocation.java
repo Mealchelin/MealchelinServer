@@ -45,7 +45,9 @@ public class ShippingLocation {
 	//회원 번호 
 	private int memberNo;
 	
-	
+    //주문 번호 
+    private String request;
+    
 	
 	
 }

@@ -53,7 +53,7 @@
 			<h3 class="pay_Title">주문취소</h3>
 			<div class="pay_MainContent">
 				<div class="pay_FirstContent">
-					<span class="pay_FirstContentTitle">주문번호 ${orders.orderMembers }</span>
+					<span class="pay_FirstContentTitle">주문번호 ${orders.orderNo }</span>
 				</div>
 				<c:forEach items="${result }" var="items">
 					<div class="pay_FirstContentArea">

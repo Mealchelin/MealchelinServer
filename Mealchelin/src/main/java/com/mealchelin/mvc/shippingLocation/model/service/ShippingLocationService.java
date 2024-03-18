@@ -8,8 +8,8 @@ import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
 public interface ShippingLocationService {
 
 
-	ShippingLocation getShippingInfoByInfo(int memberNo);
-
+    ShippingLocation getShippingInfoByInfo(int loginMember);
+    
 	int save(ShippingLocation shippingLocation);
 
 	List<ShippingLocation> getShippingLocationListByLoginMember(int memberNo);
@@ -22,8 +22,7 @@ public interface ShippingLocationService {
 
 	ShippingLocation getShippingLocationByShipNo(int no);
 
-	ShippingLocation getDefaultShippingLocationByMemNo(int memberNo);
-
+    ShippingLocation getDefaultShippingLocationByMemNo(int orderNo);
 	
 
 	
