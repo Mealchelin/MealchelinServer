@@ -42,7 +42,7 @@
                     <img id="re_img" src="../img/review/${ review.renamedFilename }" alt="">
                     <div id="re_foodInfo">
                         <p id="re_foodName">${ review.productName }</p>
-                        <p id="re_memberName">${fn:substring(review.id,0,4) }***</p>
+                        <p id="re_memberName">${ review.id }</p>
                         <c:choose>
                         	<c:when test="${ review.rated == 0}">
 								<p class="starR"><span id="re_star" ></span>★★★★★</p>

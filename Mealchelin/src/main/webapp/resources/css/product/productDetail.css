@@ -135,14 +135,6 @@
     background-color: #2f5640;
 }
 
-.pd-view-btn-disabled {
-	width: 300px !important; 
-	color: grey;
-	box-shadow: 0 0 0 1px grey inset;
-	margin-left: 75px;
-	background-color: #ffffff;
-}
-
 /* 섹션2 상품 상세 정보 */
 #pd-view-section2 {
     margin: 40px auto 40px auto;

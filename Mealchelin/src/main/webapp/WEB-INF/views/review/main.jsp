@@ -1,21 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="path" value="${ pageContext.request.contextPath }" />
-<c:set var="reviewId" value="${ review.id }" />
+<c:set var="reviewId" value="${ review.id }"/>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"
+	charset="UTF-8">
 <title>밀슐랭</title>
 <!--default css-->
 <link rel="stylesheet" href="${ path }/css/common.css">
 <!-- 필요한 css -->
 <link rel="stylesheet" href="${ path }/css/review/reviewMain.css" />
-<link rel="stylesheet" href="${ path }/css/cscenter/cscenterListCommon.css">
+<link rel="stylesheet"
+	href="${ path }/css/cscenter/cscenterListCommon.css">
 
 <!-- jquery -->
 <script src="${ path }/js/jquery-3.7.1.js"></script>
@@ -35,71 +38,77 @@
 		<section>
 			<h3>밀슐랭 상품 리뷰</h3>
 			<div id="re_reviewBtnDiv">
-				<a href="${ path }/mypage/writableReview"><input id="re_reviewBtn" type="button" value="리뷰 작성" /></a>
+				<a href="${ path }/mypage/writableReview"><input
+					id="re_reviewBtn" type="button" value="리뷰 작성" /></a>
 			</div>
 
 			<div class="mainDiv">
-				<c:if test="${ not empty list}">
-					<c:forEach var="review" items="${ list }">
-						<a href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
-							<div class="re_imgDiv">
-								<img class="re_img" src="${ path }/img/review/${ review.renamedFilename }" alt="" />
-								<div class="re_innerimgDiv">
-									<p class="re_foodName">${ review.productName }</p>
-									<p class="re_brandName">${ review.brand }</p>
-									<br>
-									<p class="re_reviewTitle">${ review.name }</p>
-									<p class="re_reviewContent">${ review.content }</p>
-									<c:choose>
-										<c:when test="${ review.rated == 1}">
-											<span class="starR"><span id="re_star">★</span>★★★★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 2 }">
-											<span class="starR"><span id="re_star">★★</span>★★★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 3}">
-											<span class="starR"><span id="re_star">★★★</span>★★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 4}">
-											<span class="starR"><span id="re_star">★★★★</span>★</span>
-										</c:when>
-										<c:when test="${ review.rated  == 5}">
-											<span class="starR"><span id="re_star">★★★★★</span></span>
-										</c:when>
-										<c:otherwise> 
+			<c:if test="${ not empty list}">
+				<c:forEach var="review" items="${ list }">
+					<a
+						href="${ path }/review/reviewDetail?reviewNo=${ review.reviewNo }">
+						<div class="re_imgDiv">
+							<img class="re_img" src="${ path }/img/review/${ review.renamedFilename }" alt="" />
+							<div class="re_innerimgDiv">
+								<p class="re_foodName">${ review.productName }</p>
+								<p class="re_brandName">${ review.brand }</p>
+								<br>
+								<p class="re_reviewTitle">${ review.name }</p>
+								<p class="re_reviewContent">${ review.content }</p>
+								<c:choose>
+									<c:when test="${ review.rated == 1}">
+										<span class="starR"><span id="re_star">★</span>★★★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 2 }">
+										<span class="starR"><span id="re_star">★★</span>★★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 3}">
+										<span class="starR"><span id="re_star">★★★</span>★★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 4}">
+										<span class="starR"><span id="re_star">★★★★</span>★</span>
+									</c:when>
+									<c:when test="${ review.rated  == 5}">
+										<span class="starR"><span id="re_star">★★★★★</span></span>
+									</c:when>
+									<c:otherwise> 
 											<span class="starR"><span class="starR">★</span>★★★★</span>
-										</c:otherwise>
-									</c:choose>
-									<div class="re_reviewId">${fn:substring(review.id,0,4) }***</div>
+									</c:otherwise>
+								</c:choose>
+								<div class="re_reviewId">
+									${fn:substring(review.id,0,4) }***
 								</div>
 							</div>
-						</a>
-					</c:forEach>
-				</c:if>
-				<c:if test="${ empty list}">
-					<div style="text-align: center; margin: 0 auto;">조회 결과가 없습니다.</div>
-				</c:if>
+						</div>
+					</a>
+				</c:forEach>
+			 </c:if>
+			 <c:if test="${ empty list}">
+			 	<div style="text-align: center; margin: 0 auto;">조회 결과가 없습니다.</div>
+			 </c:if>
 				<jsp:include page="./FootSearchBox.jsp" />
 			</div>
-
+			
 		</section>
 		<section id="cs-section3">
-			<c:if test="${ not empty list}">
-				<div class="cs-paging">
-					<button onclick="location.href='${ path }/review/main?page=${ pageInfo.prevPage }'">&lt;</button>
-					<c:forEach var="current" begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }">
-						<c:choose>
-							<c:when test="${ current == pageInfo.currentPage }">
-								<button disabled>${ current }</button>
-							</c:when>
-							<c:otherwise>
-								<button onclick="location.href='${ path }/review/main?page=${ current }'">${ current }</button>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<button onclick="location.href='${ path }/review/main?page=${ pageInfo.nextPage }'">&gt;</button>
-				</div>
-			</c:if>
+			<div class="cs-paging">
+				<button
+					onclick="location.href='${ path }/review/main?page=${ pageInfo.prevPage }'">&lt;</button>
+				<c:forEach var="current" begin="${ pageInfo.startPage }"
+					end="${ pageInfo.endPage }">
+					<c:choose>
+						<c:when test="${ current == pageInfo.currentPage }">
+							<button disabled>${ current }</button>
+						</c:when>
+						<c:otherwise>
+							<button
+								onclick="location.href='${ path }/review/main?page=${ current }'">${ current }</button>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<button
+					onclick="location.href='${ path }/review/main?page=${ pageInfo.nextPage }'">&gt;</button>
+			</div>
 		</section>
 	</main>
 

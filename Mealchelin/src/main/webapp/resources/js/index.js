@@ -39,8 +39,6 @@ $(document).on('ready', function(){
         slidesToShow: 3,
         slidesToScroll: 3
     });
-    
-    
 
 });
 
@@ -58,12 +56,3 @@ const scrollWindow = function () {
 };
 
 topBtn.addEventListener('click', scrollWindow);
-
-
-/* 헤더 검색 내용 없을 시 메세지 */
-$('#nav_search_but').on('click', (event) => {
-	if ($('#nav_search').val().trim() == '' || $('#nav_search').val() == null) {
-		event.preventDefault();
-		alert('검색어를 입력해주세요');
-	}
-});

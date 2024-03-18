@@ -7,14 +7,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,7 +31,6 @@ import com.mealchelin.mvc.shippingLocation.model.service.ShippingLocationService
 import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
 import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketProductService;
 import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketService;
-import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
 import lombok.RequiredArgsConstructor;
