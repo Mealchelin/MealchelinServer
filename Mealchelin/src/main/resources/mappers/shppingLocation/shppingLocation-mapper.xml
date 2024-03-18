@@ -43,6 +43,7 @@
 		    SELECT SL.SHIP_NO,
        SL.SHIP_NAME,
        O.REQUEST,
+       SL.RECIPIENT,
        SL.PHONE,
        SL.SHIP_ADDRESS,
        SL.SHIP_ADDRESS_DETAIL,

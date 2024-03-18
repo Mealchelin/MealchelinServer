@@ -259,7 +259,7 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">보내는 분</td>
-							                                <td class="pay_subName">${shippingInfo.shipName }</td>
+							                                <td class="pay_subName">${shippingInfo.recipient }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제일시</td>
@@ -278,7 +278,7 @@
 					<div class="pay_ProductInfos">
 						<table class="pay_Maintable">
 							<tr>
-								<td class="pay_mainName">받는분</td>
+								<td class="pay_mainName">받는 분</td>
 								<td class="pay_subName">${shippingInfo.shipName }</td>
 							</tr>						
 								<tr>
@@ -287,7 +287,7 @@
 								</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
-								 <td class="pay_subName">${shippingInfo.shipAddress } ${shipInfo.shipAddressDetail }</td>
+								 <td class="pay_subName">${shippingInfo.shipAddress } ${shippingInfo.shipAddressDetail }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">배송 요청사항</td>
