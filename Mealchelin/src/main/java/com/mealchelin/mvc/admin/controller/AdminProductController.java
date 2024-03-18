@@ -297,8 +297,10 @@ public class AdminProductController {
 			for(Integer no : productList) {
 				if (no != null) {
 					Product product = productService.getProductAllByNo(no);
-					product.setDisplay("Y");
-					productService.save(product);
+					if(product != null) {
+						product.setDisplay("Y");
+						productService.save(product);
+					}
 				}
 			}
 			
@@ -322,8 +324,10 @@ public class AdminProductController {
 			for(Integer no : productList) {
 				if (no != null) {
 					Product product = productService.getProductAllByNo(no);
-					product.setDisplay("N");
-					productService.save(product);
+					if(product != null) {
+						product.setDisplay("N");
+						productService.save(product);
+					}
 				}
 			}
 			modelAndView.addObject("msg", "선택한 데이터를 비노출하였습니다.");
@@ -345,7 +349,9 @@ public class AdminProductController {
 			for(Integer no : productList) {
 				if (no != null) {
 					Product product = productService.getProductAllByNo(no);
-					productService.delete(product);
+					if(product != null) {
+						productService.delete(product);
+					}
 				}
 			}
 			modelAndView.addObject("msg", "선택한 데이터를 삭제하였습니다.");

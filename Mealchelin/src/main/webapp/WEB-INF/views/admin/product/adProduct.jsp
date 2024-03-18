@@ -131,7 +131,7 @@
                     </form>
 					<div class="row">
 						<div class="col-12">
-							<form id="exposureForm" method="post">
+							<form id="exposureForm">
 								<div class="card">
 									<table class="table table-hover my-0" style="text-align: center;">
 										<thead>

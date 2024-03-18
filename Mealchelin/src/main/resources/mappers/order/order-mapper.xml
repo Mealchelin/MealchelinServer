@@ -353,11 +353,13 @@ WHERE ROWNUM BETWEEN 1 AND 8
         SET CANCLE_STATUS = 'Y'
         WHERE ORDER_NO = #{orderNo}
     </update>
-
-
-
-
-
+    
+<update id="updateAdOrders" parameterType="Orders">
+	UPDATE ORDERS
+	SET
+		SHIP_STATUS = #{shipStatus}
+	WHERE ORDER_NO = #{orderNo}
+</update>
 
 
 </mapper>
