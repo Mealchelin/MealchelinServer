@@ -103,22 +103,27 @@ $(document).ready(()=>{
             let priceStr = $(element).text().replace(/[^0-9]/gi, '').replace('원', '');
             totalPrice += parseInt(priceStr);
         });
-
-        $.ajax({
-	        type : "POST",
-	        url : "/mypage/shoppingBasketTotal",
-	        dataType : "json",
-	        data : {"payment" : totalPrice},
-	        error : function(request, status, error){
-	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	        },
-	        success : function(data){
-                if(data.success){
-                    location.href="/payment/pay";
-                } else {
-                    alert('구매하기 버튼을 다시 눌러주세요.')
-                }
-            }
-	    });
+        
+        if (totalPrice == 0) {
+        	alert("최소 1개의 상품이 담겨 있어야 합니다.");
+        	event.preventDefault();
+        } else {
+	        $.ajax({
+		        type : "POST",
+		        url : "/mypage/shoppingBasketTotal",
+		        dataType : "json",
+		        data : {"payment" : totalPrice},
+		        error : function(request, status, error){
+		            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		        },
+		        success : function(data){
+	                if(data.success){
+	                    location.href="/payment/pay";
+	                } else {
+	                    alert('구매하기 버튼을 다시 눌러주세요.')
+	                }
+	            }
+		    });
+        }
 
     });
