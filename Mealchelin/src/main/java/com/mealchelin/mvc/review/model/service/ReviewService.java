@@ -47,6 +47,10 @@ public interface ReviewService {
 
 	List<MemberProdutOrderList> getOrderListByUserNo(PageInfo pageInfo, int userNo);
 
+	int hasReview(int orderNo);
+
+	int noHasReview(int no);
+
 	
 
 }

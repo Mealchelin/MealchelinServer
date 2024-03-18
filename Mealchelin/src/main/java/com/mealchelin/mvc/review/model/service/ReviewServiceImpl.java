@@ -154,6 +154,18 @@ public class ReviewServiceImpl implements ReviewService {
 		return mapper.updateStatusAdmin(reviewNo, rstatus);
 	}
 
+	@Override
+	public int hasReview(int orderNo) {
+		
+		return mapper.hasReview(orderNo);
+	}
+
+	@Override
+	public int noHasReview(int no) {
+		
+		return mapper.noHasReview(no);
+	}
+
 	
 
 	

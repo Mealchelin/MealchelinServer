@@ -64,9 +64,6 @@ public class MyPageReviewController {
 		pageInfo = new PageInfo(page, 5, reviewCount, 5);
 		list = service.getOrderListByUserNo(pageInfo, userNo);
 		
-//		log.info("page Number : {}", page);
-//		log.info("List Count : {}", reviewCount);
-		
 		modelAndView.addObject("pageInfo", pageInfo);
 		modelAndView.addObject("list", list);
 		modelAndView.setViewName("mypage/writableReview");
@@ -77,8 +74,11 @@ public class MyPageReviewController {
 	@GetMapping("/delete")
 	public ModelAndView delete(ModelAndView modelAndView, @RequestParam("no") int no) {
 		int result = 0;
-
+		int noHasReview = 0;
+		
 		result = service.delete(no);
+		noHasReview = service.noHasReview(no);
+		
 		if (result > 0) {
 			modelAndView.addObject("msg", "삭제 성공");
 			modelAndView.addObject("location", "/mypage/mypageProductReview");

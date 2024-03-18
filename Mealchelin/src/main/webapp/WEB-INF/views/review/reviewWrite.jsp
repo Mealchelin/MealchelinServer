@@ -66,6 +66,8 @@
                             <a href="${ path }/mypage/writableReview"><input id="re_cancelBtn" type="button" value="취소"></a>
                         </div>
                     </div>
+                    <input type="hidden" name="hasReview" value="Y">
+                    <input type="hidden" name="orderNo" value="${ memberProdutOrderList.orderNo }">
                 </form>
             </div>
 		</section>

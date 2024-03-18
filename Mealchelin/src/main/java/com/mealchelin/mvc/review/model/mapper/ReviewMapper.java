@@ -53,6 +53,10 @@ public interface ReviewMapper {
 	List<Review> getReviewListForHome();
 
 	int updateStatusAdmin(@Param("reviewNo") int reviewNo, @Param("rstatus") String rstatus);
+	
+	int hasReview(int orderNo);
+	
+	int noHasReview(int no);
 
 	
 

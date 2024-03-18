@@ -39,8 +39,10 @@ public class ReviewController {
 	
 //	리뷰 등록하는 코드
 	@PostMapping("/reviewAddComplete")
-	public ModelAndView reviewWrite(ModelAndView modelAndView, Review review, @SessionAttribute("loginMember") Member loginMember, @RequestParam("upfile") MultipartFile upfile) {
+	public ModelAndView reviewWrite(ModelAndView modelAndView, Review review, @SessionAttribute("loginMember") Member loginMember, @RequestParam("upfile") MultipartFile upfile
+			,@RequestParam("orderNo") int orderNo) {
 		int result = 0;
+		int hasReview = 0;
 		
 		if (upfile != null && !upfile.isEmpty()) {
 			String location = null;
@@ -62,6 +64,9 @@ public class ReviewController {
 		
 		review.setUserNo(loginMember.getMemberNo());
 		result = service.save(review);
+		
+		// 리뷰 등록시 작성 가능한 리뷰에서 보이지 않게 만드는 코드
+		hasReview = service.hasReview(orderNo);
 		
 		if (result > 0) {
 			modelAndView.addObject("msg", "게시글 등록 성공");
