@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="totalPrice" value="0" />
-<c:set var="formattedPhone" value="${shippingInfo.phone.substring(0, 3)}-${shippingInfo.phone.substring(3, 7)}-${shippingInfo.phone.substring(7)}" /><c:set var="formattedPhone" value="${shipInfo.phone.substring(0, 3)}-${shipInfo.phone.substring(3, 7)}-${shipInfo.phone.substring(7)}" />
+<c:set var="formattedPhone" value="${shippingInfo.phone.substring(0, 3)}-${shippingInfo.phone.substring(3, 7)}-${shippingInfo.phone.substring(7)}" />
 
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
@@ -279,7 +279,7 @@
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">받는분</td>
-								<td class="pay_subName">${shipInfo.shipName }</td>
+								<td class="pay_subName">${shippingInfo.shipName }</td>
 							</tr>						
 								<tr>
 								    <td class="pay_mainName">핸드폰</td>
@@ -287,11 +287,11 @@
 								</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
-								                                <td class="pay_subName">${shippingInfo.shipAddress } ${shipInfo.shipAddressDetail }</td>
+								 <td class="pay_subName">${shippingInfo.shipAddress } ${shipInfo.shipAddressDetail }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">배송 요청사항</td>
-							                                <td class="pay_subName">${shippingInfo.request }</td>
+							    <td class="pay_subName">${shippingInfo.request }</td>
 							</tr>
 						</table>
 					</div>
