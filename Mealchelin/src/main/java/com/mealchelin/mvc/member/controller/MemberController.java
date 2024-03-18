@@ -209,7 +209,7 @@ public class MemberController {
 		int result = 0;
 		
 		
-		if(password == null) {
+		if(password == null || password.isEmpty()) {
 		
 			member.setMemberNo(loginMember.getMemberNo());
 			member.setName(name);

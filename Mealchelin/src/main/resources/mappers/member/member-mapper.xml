@@ -112,8 +112,8 @@
 		UPDATE MEMBER
 		SET 
 			NAME = #{name},
-			<if test="password != null">
-				PASSWORD = #{password},
+			<if test="password != null and password != ''">
+			PASSWORD = #{password},
 			</if>
 			PHONE = #{phone},
 			EMAIL = #{email},
