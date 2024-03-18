@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mealchelin.mvc.common.util.PageInfo;
+import com.mealchelin.mvc.member.model.service.MemberService;
 import com.mealchelin.mvc.member.model.vo.Member;
 import com.mealchelin.mvc.order.model.service.OrderService;
 import com.mealchelin.mvc.order.model.vo.OrderProduct;
@@ -53,6 +54,7 @@ public class PayController {
 	private final OrderProductService orderProductService;
 	private final ShoppingBasketProductService sbpService;
 	private final ShoppingBasketService sbService;
+	private final MemberService memService;
 
 	
 	@GetMapping("/payment/directpay")
@@ -402,6 +404,8 @@ public class PayController {
         double totalPrice = item.getPrice() * item.getCountQ();
         totalPrices.add(totalPrice);
         }
+        int memNo = orders.getMemberNo();
+        Member member = memService.getAdminMemberByNo(memNo);
         
         // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
         modelAndView.addObject("loginMember", loginMember);
@@ -410,6 +414,7 @@ public class PayController {
         modelAndView.addObject("orders", orders);
         modelAndView.addObject("totalPrices", totalPrices); // 총 가격을 추가합니다.
         modelAndView.addObject("shippingInfo", shippingInfo); // 총 가격을 추가합니다.
+        modelAndView.addObject("member", member);
         modelAndView.setViewName("mypage/payDetails");
         
         return modelAndView;

@@ -259,7 +259,7 @@
 							</tr>
 							<tr>
 								<td class="pay_mainName">보내는 분</td>
-							                                <td class="pay_subName">${shippingInfo.recipient }</td>
+							                                <td class="pay_subName">${member.name }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제일시</td>
@@ -279,7 +279,7 @@
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">받는 분</td>
-								<td class="pay_subName">${shippingInfo.shipName }</td>
+								<td class="pay_subName">${shippingInfo.recipient }</td>
 							</tr>						
 								<tr>
 								    <td class="pay_mainName">핸드폰</td>
