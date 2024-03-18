@@ -76,8 +76,8 @@ public class MyPageReviewController {
 		int result = 0;
 		int noHasReview = 0;
 		
-		noHasReview = service.noHasReview(no);
 		result = service.delete(no);
+		noHasReview = service.noHasReview(no);
 		
 		if (result > 0) {
 			modelAndView.addObject("msg", "삭제 성공");
