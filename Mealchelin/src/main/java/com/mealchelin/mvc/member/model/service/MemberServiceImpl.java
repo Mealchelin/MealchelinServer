@@ -110,9 +110,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		if (member == null || !encoder.matches(password, member.getPassword())) {
 			return null;
+		}else {
+			
+			return member;
 		}
 		
-		return member;
 	}
 	
 	

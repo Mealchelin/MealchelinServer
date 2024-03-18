@@ -36,7 +36,7 @@
  	    <jsp:include page="mypageHeaderBox.jsp"/>
         <section>
             <h3 class="myTitle">내 정보수정</h3>
-                <form action="" method="post">
+                <form method="post">
                     <div class="myInputBox">
                         <div class="myInputDiv1">
                             <label for="myMemberName" >이름</label>

@@ -70,9 +70,10 @@ public class AdminMemberController {
 								     @RequestParam("memberNo") int memberNo,
 									 @RequestParam("adMemEmail") String email, 
 									 @RequestParam("adMemPh") String phone, 
-									 @RequestParam("adMemAd") String postalCode, 
+									 @RequestParam("adMemAdPost") String postalCode, 
 									 @RequestParam("adMemAd") String address, 
 									 @RequestParam("adMemDetailAd") String addressDetail,
+									 @RequestParam("adMemBir") String birth,
 									 @RequestParam("adRandomPw") String password
 																			) {
 		int result = 0;
@@ -89,6 +90,7 @@ public class AdminMemberController {
 			member.setAddress(address);
 			member.setAddressDetail(addressDetail);
 			member.setPassword(encoder.encode(password));
+			member.setBirth(birth);
 			
 			result = memberService.adminMemberUpdate(member);
 			
