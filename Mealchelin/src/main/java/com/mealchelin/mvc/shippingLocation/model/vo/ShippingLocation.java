@@ -49,12 +49,3 @@ public class ShippingLocation {
 	
 	
 }
-
-
-
-
-
-
-
-
-

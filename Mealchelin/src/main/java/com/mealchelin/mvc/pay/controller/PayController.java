@@ -6,11 +6,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,6 +31,9 @@ import com.mealchelin.mvc.product.model.service.ProductService;
 import com.mealchelin.mvc.product.model.vo.Product;
 import com.mealchelin.mvc.shippingLocation.model.service.ShippingLocationService;
 import com.mealchelin.mvc.shippingLocation.model.vo.ShippingLocation;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketProductService;
+import com.mealchelin.mvc.shoppingBasket.model.service.ShoppingBasketService;
+import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasket;
 import com.mealchelin.mvc.shoppingBasket.model.vo.ShoppingBasketProduct;
 
 import lombok.RequiredArgsConstructor;
@@ -44,7 +50,9 @@ public class PayController {
 	private final UserOrderPayService payService;
 	private final ProductService productService;
 	private final OrderService orderService;
-	private final OrderProductService  orderProductService;
+	private final OrderProductService orderProductService;
+	private final ShoppingBasketProductService sbpService;
+	private final ShoppingBasketService sbService;
 
 	
 	@GetMapping("/payment/directpay")
@@ -61,23 +69,23 @@ public class PayController {
 
 		// 주문 상품
 		product = productService.getProductByNo(no);
-		// 배송정보
-		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+		// 기본배송지
+		shippingInfo = shippingService.getDefaultShippingLocationByMemNo(loginMember.getMemberNo());
 
 		if (price > 50000) {
-			shipPrice = 0;
+		    shipPrice = 0;
 		} else {
-
-			if (shippingInfo.getMountain() == "N") {
-				shipPrice = 3000;
-			} else {
-				shipPrice = 5000;
-			}
+		    if (shippingInfo != null && "N".equals(shippingInfo.getMountain())) {
+		        shipPrice = 3000;
+		    } else {
+		        shipPrice = 5000;
+		    }
 		}
+
 		// 결제수단 표시
 		payInfoList = payInfoService.selectByProductPay(loginMember.getMemberNo());
 
-		log.info("shippinginfo = {}", shippingInfo);
+		log.info("shippingInfo = {}", shippingInfo);
 		log.info("payInfoList = {}", payInfoList);
 
 		modelAndView.addObject("userInfo", loginMember); // 추가 정보를 모델에 추가
@@ -93,6 +101,31 @@ public class PayController {
 
 		return modelAndView;
 	}
+	
+	
+	@GetMapping("/payment/shipChange")
+	public ModelAndView shipChange(
+			ModelAndView modelAndView,
+			@SessionAttribute Member loginMember) {
+		
+		List<ShippingLocation> list = null;
+		list = shippingService.getShippingLocationListByLoginMember(loginMember.getMemberNo());
+		modelAndView.addObject("list", list);
+		
+		
+		modelAndView.setViewName("payment/shipChange");
+		return modelAndView;
+	}
+	
+	@PostMapping("/payment/shipChange")
+	public String shipChange(
+			@RequestParam("ckShipNo") int no) {
+		
+		ShippingLocation shipLocation = shippingService.getShippingLocationByShipNo(no);
+		log.info(shipLocation.toString());
+		
+		return "";
+	}
 
 	@GetMapping("/payment/pay")
 	public ModelAndView cartpayment(ModelAndView modelAndView, @SessionAttribute("loginMember") Member loginMember) {
@@ -104,7 +137,7 @@ public class PayController {
 		shippingProductList = payService.getShippingList(loginMember.getMemberNo());
 
 		// 배송정보
-		shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+		shippingInfo = shippingService.getDefaultShippingLocationByMemNo(loginMember.getMemberNo());
 
 		System.out.println(payInfoList);
 
@@ -157,10 +190,15 @@ public class PayController {
 		}
 		
 		int result = 0;
+		log.info("{}", OrderProducts.size());
 		for(int i = 0; i < OrderProducts.size(); i++) {
 			System.out.println("test : " + OrderProducts.get(i));
+			int proNo = OrderProducts.get(i).getProNo();
+			int result2 = 0;
 			
 			result = payInfoService.saveOrderProduct(OrderProducts.get(i));
+			result2 = productService.updateSellCount(proNo);
+			log.info("상품 판매 후 판매량, 재고 수 변경 {}", result2);
 		}
 		
 //		System.out.println("OrderProducts : " + OrderProducts);
@@ -174,77 +212,90 @@ public class PayController {
 	
 	
 	// 단일 상품 결재
-	@PostMapping("/payment/paysucces")
-	public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
-				HttpSession session) {
-		// 세션에서 로그인한 회원 정보 가져오기
-		Member member = (Member) session.getAttribute("loginMember");
+		@PostMapping("/payment/paysucces")
+		public ModelAndView paySuccess(ModelAndView modelAndView, @RequestBody Map<String, Object> orderInfo,
+					HttpSession session) {
+			
+			// 세션에서 로그인한 회원 정보 가져오기
+			Member member = (Member) session.getAttribute("loginMember");
+			
+			// 주문 정보에 회원 번호 설정
+			Orders order = new Orders();
+			order.setMemberNo(member.getMemberNo());
 
-		ShippingLocation shippingInfo = shippingService.getShippingInfoByInfo(member.getMemberNo());
+			// 주문 정보와 회원 정보를 담은 Map 생성
+			orderInfo.put("order", order);
+			orderInfo.put("member", member);
 
-		// 주문 정보에 회원 번호 설정
-		Orders order = new Orders();
-		order.setMemberNo(member.getMemberNo());
-		order.setShipNo(shippingInfo.getShipNo());
+			// 결제 방식 추가
+			log.info("orderInfo : {}",orderInfo);
+			int shipNo = (int)orderInfo.get("shipNo");
+			order.setShipNo(shipNo);
 
-		// 주문 정보와 회원 정보를 담은 Map 생성
-		orderInfo.put("order", order);
-		orderInfo.put("member", member);
+			String orderMembers = (String) orderInfo.get("orderNo");
+			order.setOrderMembers(orderMembers);
 
-		// 결제 방식 추가
-		
-		log.info("orderInfo : {}",orderInfo);
+			String paymentMethod = (String) orderInfo.get("paymentMethod");
+			order.setPaymentMethod(paymentMethod);
 
-		String orderMembers = (String) orderInfo.get("orderNo");
-		order.setOrderMembers(orderMembers);
+			int payMent = (int) orderInfo.get("amount");
+			order.setPayMent(payMent);
 
-		String paymentMethod = (String) orderInfo.get("paymentMethod");
-		order.setPaymentMethod(paymentMethod);
+			String request = (String) orderInfo.get("quest");
+			order.setRequest(request);
+			
+			// 주문 정보를 저장하고 결과를 반환
+			int result = orderService.save(orderInfo);
+			
+			
+			//가져온 orderInfo 에서 Orders 객체를 가져온다.
+			order = (Orders)orderInfo.get("order");
+			
+			//결재시 생성한 주문번호에서 숫자값만 추출
+			Long ordersNumbers = Long.parseLong(order.getOrderMembers().replace("ORD", "").replace("-", ""));
+			
+			//시퀀스로 생성된 orderNo로 ORDER_PRODUCT에 업데이트 해준다.
+			result += orderService.updateOrderProduct(ordersNumbers, order.getOrderNo());
+			
+			// 로그인 멤버의 장바구니 리셋 
+			int memNo = member.getMemberNo();
+			// 장바구니 payment = 0
+			// 장바구니 상품 멤버 번호에 맞는 상품들 전부 delete
+			int result2 = sbpService.deleteSbpBySell(memNo);
+			int result3 = sbService.resetSbPayment(memNo, 0);
+			log.info("장바구니 상품 삭제하고 장바구니 금액 0으로 만듦 {}, {}", result3, result2);
+			
+			
+			
+			if (result > 0) {
+				modelAndView.addObject("msg", "결제가 완료되었습니다");
+			} else {
+				modelAndView.addObject("msg", "결제에 실패하였습니다.");
+			}
 
-		int payMent = (int) orderInfo.get("amount");
-		order.setPayMent(payMent);
-
-		String request = (String) orderInfo.get("quest");
-		order.setRequest(request);
-		
-		// 주문 정보를 저장하고 결과를 반환
-		int result = orderService.save(orderInfo);
-		
-		
-		//가져온 orderInfo 에서 Orders 객체를 가져온다.
-		order = (Orders)orderInfo.get("order");
-		
-		//결재시 생성한 주문번호에서 숫자값만 추출
-		Long ordersNumbers = Long.parseLong(order.getOrderMembers().replace("ORD", "").replace("-", ""));
-		
-		//시퀀스로 생성된 orderNo로 ORDER_PRODUCT에 업데이트 해준다.
-		result += orderService.updateOrderProduct(ordersNumbers, order.getOrderNo());
-		
-
-		if (result > 0) {
-			modelAndView.addObject("msg", "결제가 완료되었습니다");
-		} else {
-			modelAndView.addObject("msg", "결제에 실패하였습니다.");
+			modelAndView.setViewName("redirect:/payment/paysucces");
+			return modelAndView;
 		}
-
-		modelAndView.setViewName("redirect:/payment/paysucces");
-		return modelAndView;
-	}
-
 
 	//결제완료페이지 
 	@GetMapping("/payment/paysucces")
-	public ModelAndView paySuccessView(ModelAndView modelAndView) {
+	public ModelAndView paySuccessView(ModelAndView modelAndView,
+			@SessionAttribute("loginMember") Member loginMember
+			) {
+		
+		
+		modelAndView.addObject("loginMember", loginMember);
 		modelAndView.setViewName("payment/paysucces");
-
 		return modelAndView;
 	}
+	
 	
 	//주문내역페에지
 	@GetMapping("/mypage/payInquiry")
 	public ModelAndView payInquiry(ModelAndView modelAndView,
 			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam(defaultValue = "1") int page) {
+			@RequestParam(defaultValue = "1") int page
+			) {
 
 	    List<Orders> orders = null;
 	    
@@ -252,9 +303,11 @@ public class PayController {
 	    int paylistCount = 0;
 		PageInfo pageInfo = null;
 		List<Orders> list = null;
+		log.info(loginMember.toString());
+		
 				
-		paylistCount = orderService.getPayListCount();
-		pageInfo = new PageInfo(page, 5, paylistCount, 5);
+		paylistCount = orderService.getPayListCount(loginMember.getMemberNo());
+		pageInfo = new PageInfo(page, 3, paylistCount, 5);
 //		list = orderService.getPayListList(pageInfo);
 		
 		System.out.println(paylistCount);
@@ -265,10 +318,6 @@ public class PayController {
 	    // getOrderPayResult 메서드를 호출하여 마지막 주문 1건을 가져옵니다.
 	    orders = orderService.selectProductPayResultset(pageInfo, loginMember.getMemberNo());
 	    
-	    
-	    
-	    
-
 	    // 로그에 주문 목록을 출력합니다.
 	    log.info("Orders: {}", orders);
 
@@ -280,39 +329,129 @@ public class PayController {
 
 	    return modelAndView;
 	}
-
-
-
-
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//주문상세페이지
 	@GetMapping("/mypage/payDetails")
-	public ModelAndView payDetails(ModelAndView modelAndView) {
+	public ModelAndView payDetails(ModelAndView modelAndView,
+	                                @SessionAttribute("loginMember") Member loginMember,
+	                                @RequestParam int orderNo) {
+		ShippingLocation shippingInfo = null;
+	    Orders orders = null;
+	    List<Orders> result = null;
 
-		modelAndView.setViewName("mypage/payDetails");
+	    // 사용자의 주문 목록을 가져옵니다.
+	    result = orderService.selectPayInfo(orderNo);
 
-		return modelAndView;
+	    ShippingLocation shipInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+
+	    // 산간 여부 확인 후 변수에 저장
+	    shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+	    
+	
+	    
+
+	    orders = orderService.selectOrderAll(orderNo);
+
+	    // 각 주문 항목의 가격과 수량을 곱하여 총 가격을 계산합니다.
+	    List<Double> totalPrices = new ArrayList<>();
+	    for (Orders item : result) {
+	        double totalPrice = item.getPrice() * item.getCountQ();
+	        totalPrices.add(totalPrice);
+	    }
+
+	    // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
+	    modelAndView.addObject("loginMember", loginMember);
+	    modelAndView.addObject("result", result);
+	    modelAndView.addObject("shipInfo", shipInfo);
+	    modelAndView.addObject("orders", orders);
+	    modelAndView.addObject("totalPrices", totalPrices); // 총 가격을 추가합니다.
+	    modelAndView.addObject("shippingInfo", shippingInfo); // 총 가격을 추가합니다.
+	    modelAndView.setViewName("mypage/payDetails");
+
+	    return modelAndView;
 	}
 
+
+
+
+	//주문취소페이지
 	@GetMapping("/mypage/payDelete")
-	public ModelAndView payDelete(ModelAndView modelAndView) {
+	public ModelAndView payDelete(ModelAndView modelAndView,
+			@SessionAttribute("loginMember") Member loginMember,
+            @RequestParam int orderNo
+			) {
+		ShippingLocation shippingInfo = null;
+	    Orders orders = null;
+	    List<Orders> result = null;
 
+	    // 사용자의 주문 목록을 가져옵니다.
+	    result = orderService.selectPayInfo(orderNo);
+
+	    ShippingLocation shipInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+
+	    // 산간 여부 확인 후 변수에 저장
+	    shippingInfo = shippingService.getShippingInfoByInfo(loginMember.getMemberNo());
+	    
+	    orders = orderService.selectOrderAll(orderNo);
+
+	    // 각 주문 항목의 가격과 수량을 곱하여 총 가격을 계산합니다.
+	    List<Double> totalPrices = new ArrayList<>();
+	    for (Orders item : result) {
+	        double totalPrice = item.getPrice() * item.getCountQ();
+	        totalPrices.add(totalPrice);
+	    }
+	    
+
+	    // ModelAndView에 주문 목록과 주문 상세 정보를 추가하고, 뷰 이름을 설정하여 반환합니다.
+	    modelAndView.addObject("loginMember", loginMember);
+	    modelAndView.addObject("result", result);
+	    modelAndView.addObject("shipInfo", shipInfo);
+	    modelAndView.addObject("orders", orders);
+	    modelAndView.addObject("totalPrices", totalPrices); // 총 가격을 추가합니다.
+	    modelAndView.addObject("shippingInfo", shippingInfo); // 총 가격을 추가합니다.
+		
 		modelAndView.setViewName("mypage/payDelete");
+		
 
 		return modelAndView;
 	}
+	
 
+
+	//주문취소완료페이지
+	@GetMapping("/payment/payCncel")
+	public ModelAndView payCncelView(ModelAndView modelAndView,
+	                                  @SessionAttribute("loginMember") Member loginMember,
+	                                  @RequestParam int orderNo) {
+
+	    // 주문 취소 처리 로직을 수행합니다.
+	    boolean success = orderService.cancelOrder(orderNo);
+
+	    if (success) {
+	        modelAndView.addObject("msg", "주문 취소를 성공하였습니다"); // 주문 취소 실패 여부를 모델에 추가합니다.
+	        modelAndView.addObject("cancelSuccess", true); // 주문 취소 성공 여부를 모델에 추가합니다.
+	        modelAndView.addObject("location", "/");  // 주문 취소 성공 시 이동할 경로를 설정합니다.
+	    } else {
+	        modelAndView.addObject("msg", "주문 취소를 실패하였습니다"); // 주문 취소 실패 여부를 모델에 추가합니다.
+	        modelAndView.addObject("cancelSuccess", false); // 주문 취소 실패 여부를 모델에 추가합니다.
+	        modelAndView.addObject("location", "/mypage/payDetails?orderNo=" + orderNo); // 주문 취소 실패 시 이동할 경로를 설정합니다.
+	    }
+
+	    modelAndView.setViewName("payment/payCncel");
+	    return modelAndView;
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
 }
+	
+	
