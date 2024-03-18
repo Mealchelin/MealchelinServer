@@ -1,0 +1,110 @@
+.myTitle {
+    font-size: 25px;
+    text-align: center;
+    margin: 30px 0px 30px 0px;
+}
+
+.myInputBox {
+    margin: 0 auto;
+    text-align: center;
+    width: 620px;
+    border-top: 1px solid #C1C1C1;
+    border-bottom: 1px solid #C1C1C1;
+    padding-right: 30px;
+}
+
+.myInputDiv1, .myInputDiv2 {
+    display: inline-block;
+}
+
+.myInputDiv1 {
+    text-align: right;
+    width: 100px;
+    height: 30px;
+    margin-right: 20px;
+}
+
+.mymemberIp {
+    border: 1px solid #A7A7A7;
+    border-radius: 3px;
+    width: 255px;
+    height: 30px;
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+#myMemberAdress {
+    margin-right: 0px;
+    width: 150px;
+    height: 30px;
+    border: 1px solid #A7A7A7;
+    padding-left: 5px;
+    border-radius: 3px;
+}
+
+.myInputBtn1 {
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:5.5px 11px;
+    background-color: #fff;
+    color: #559D50;
+    border-radius: 3px;
+}
+
+.myInputBtn1:hover {
+    border:none;
+    padding:5.5px 11px;
+    background-color: #3B6C51;
+    color: #fff;
+    border-radius: 3px;
+}
+
+#myMemberAdress2 {
+    margin-top: 2px;
+    margin-left: -6px;
+
+}
+
+#myMemberAdress3{
+    margin-top: 6px;
+    margin-left: 122px;
+}
+
+#myMemberName {
+    margin-top: 10px;
+}
+
+.mySubText {
+    color: #559D50;
+    font-size: 12px;
+}
+
+.mySubText1 {
+
+    margin-left: 43px;
+    padding-left: 63px;
+}
+
+.mySubText2 {
+    margin-left: 34px;
+}
+
+.myBtnGroup {
+    text-align: center;
+    margin: 18px 0px;
+}
+
+.myStatus {
+    border: none;
+    box-shadow: 0 0 0 1px #559D50 inset;
+    padding:7px 30px;
+    background-color: #fff;
+    color: #559D50;
+}
+
+.myUpdate {
+    border:none;
+    padding:7px 20px;
+    background-color: #3B6C51;
+    color: #fff;
+}
