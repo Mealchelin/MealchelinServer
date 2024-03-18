@@ -7,8 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <c:set var="totalPrice" value="0" />
-
-<c:set var="formattedPhone" value="${shipInfo.phone.substring(0, 3)}-${shipInfo.phone.substring(3, 7)}-${shipInfo.phone.substring(7)}" />
+<c:set var="formattedPhone" value="${shippingInfo.phone.substring(0, 3)}-${shippingInfo.phone.substring(3, 7)}-${shippingInfo.phone.substring(7)}" /><c:set var="formattedPhone" value="${shipInfo.phone.substring(0, 3)}-${shipInfo.phone.substring(3, 7)}-${shipInfo.phone.substring(7)}" />
 
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 
@@ -44,7 +43,7 @@
 		<section id="pay_sections">
 			<h2>주문 내역 상세</h2>
 			<div class="pay_mainContentTitle">
-				<span>주문번호 ${orders.orderMembers }</span>
+				                <span>주문번호 ${orders.orderNo }</span>
 				 <span class="pay_OrderDetails">배송 또는 상품에 문제가 있나요? 
 				 <a href="${ path }/cscenter/inquiry">1:1문의 ></a>
 				</span>
@@ -185,22 +184,22 @@
 						<c:when test="${orders.shipStatus eq '배송완료'}">
 							<!-- 배송완료인 경우 -->
 							<tr class="pay_secondInfoLine">
-								<td>${orders.orderMembers }</td>
+							                                <td>${orders.orderNo }</td>
 								<td>배송준비중</td>
 							</tr>
 							<tr class="pay_secondInfoLine">
-								<td>${orders.orderMembers }</td>
+							                                <td>${orders.orderNo }</td>
 								<td>배송중</td>
 							</tr>
 							<tr class="pay_secondInfoLine">
-								<td>${orders.orderMembers }</td>
+							                                <td>${orders.orderNo }</td>
 								<td>배송완료</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
 							<!-- 배송중이나 배송완료가 아닌 경우 -->
 							<tr class="pay_secondInfoLine">
-								<td>${orders.orderMembers }</td>
+							                                <td>${orders.orderNo }</td>
 								<td>배송준비중</td>
 							</tr>
 						</c:otherwise>
@@ -256,11 +255,11 @@
 						<table class="pay_Maintable">
 							<tr>
 								<td class="pay_mainName">주문번호</td>
-								<td class="pay_subName">${orders.orderMembers }</td>
+							                                <td class="pay_subName">${orders.orderNo }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">보내는 분</td>
-								<td class="pay_subName">${loginMember.name }</td>
+							                                <td class="pay_subName">${shippingInfo.shipName }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">결제일시</td>
@@ -288,11 +287,11 @@
 								</tr>
 							<tr>
 								<td class="pay_mainName">주소</td>
-								<td class="pay_subName">${shipInfo.shipAddress } ${shipInfo.shipAddressDetail }</td>
+								                                <td class="pay_subName">${shippingInfo.shipAddress } ${shipInfo.shipAddressDetail }</td>
 							</tr>
 							<tr>
 								<td class="pay_mainName">배송 요청사항</td>
-								<td class="pay_subName">${orders.request }</td>
+							                                <td class="pay_subName">${shippingInfo.request }</td>
 							</tr>
 						</table>
 					</div>
