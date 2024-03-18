@@ -6,6 +6,7 @@
 
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -39,6 +40,7 @@
             <h3 class="myadress">배송지 관리</h3>
             <button class="myform_submit" id="myform_submit">기본 배송지로 등록</button>
             <c:forEach var="shippingLocation" items="${ list }" varStatus="st">
+            <c:set var="formattedPhone" value="${shippingLocation.phone.substring(0, 3)}-${shippingLocation.phone.substring(3, 7)}-${shippingLocation.phone.substring(7)}" />
 	            <div class="mytableDiv">
 	                <table class="mytatble" style="margin: 0 auto; width: 1028px;">
 	                    <colgroup>
@@ -65,7 +67,7 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <td class="mytable_number">${ shippingLocation.phone }</td>
+	                            <td class="mytable_number">${ formattedPhone }</td>
 	                        </tr>
 	                        <tr>
 	                            <td class="mytable_addressNumber">${ shippingLocation.postalCode }</td>
